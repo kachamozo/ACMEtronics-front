@@ -1,12 +1,35 @@
-import React from 'react'
-import Carousel from './Carousel'
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllProducts } from "../redux/actions";
+import Carousel from "./Carousel";
+import Card from "./Card"
 
-function Home  () {
+function Home() {
+  const allProducts = useSelector((state) => state.Products);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllProducts());
+  },[dispatch]);
+
   return (
     <div>
-<Carousel/>
+      <Carousel />
+      {allProducts?.map((e) => (
+          <div key={e.id}>
+            <Card
+              id={e.id}
+              name={e.tittle}
+              brand={e.brand}
+              price={e.price}
+              stock={e.stock}
+              rating={e.rating}
+              image={e.image}
+            />
+          </div>
+        ))}
     </div>
-  )
+  );
 }
 
-export default Home
+export default Home;
