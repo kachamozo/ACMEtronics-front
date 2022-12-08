@@ -15,11 +15,11 @@ function Home() {
   return (
     <div>
       <Carousel />
-      {allProducts?.map((e) => (
+      {allProducts?.slice(0,5).map((e) => (
           <div key={e.id}>
             <Card
               id={e.id}
-              name={e.tittle}
+              name={e.name}
               brand={e.brand}
               price={e.price}
               stock={e.stock}
