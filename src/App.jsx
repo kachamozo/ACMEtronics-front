@@ -3,6 +3,7 @@ import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import About from "./components/About";
 import Shop from "./components/Shop";
+import Detail from "./components/Detail/Detail";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/home" element={<Home />} />
 		<Route path="/about" element={<About />} />
 		<Route path="/shop" element={<Shop />} />
+		<Route path="/shop/:id" element={<Detail />} />
       </Routes>
     </div>
   );

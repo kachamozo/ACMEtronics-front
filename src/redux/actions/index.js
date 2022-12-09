@@ -1,9 +1,10 @@
-import axio from "axios";
-export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
+import axios from 'axios';
+export const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS';
+export const GET_PRODUCT_DETAIL = 'GET_PRODUCT_DETAIL'
 
 export const getAllProducts = () => {
   return async function (dispatch) {
-    const response = await axio.get("http://localhost:3001/product");
+    const response = await axios.get('http://localhost:3001/product');
     console.log(response.data)
     return dispatch({
       type: GET_ALL_PRODUCTS,
@@ -11,3 +12,13 @@ export const getAllProducts = () => {
     });
   };
 };
+/* ---- GET PRODUCT BY ID - descomentar cuando esté la ruta -------
+export const getProductDetail = (id) =>{
+  return async function(dispatch){
+    const response = await axios.get('http://localhost:3001/product/:'+id)
+    return dispatch({
+      type: GET_PRODUCT_DETAIL,
+      payload: response.data
+    })
+  }
+} */
