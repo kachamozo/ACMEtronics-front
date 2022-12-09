@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../redux/actions";
-import Carousel from "./Carousel";
+import Carousel from "./Carousel/Carousel";
 import Card from "./Card"
 
 function Home() {
