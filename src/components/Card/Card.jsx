@@ -14,7 +14,7 @@ function Card(props) {
       <img
         src={props.image}
         alt="image not found"
-        width={"100px"}
+        width={"120px"}
         height={"160px"}
       />
 

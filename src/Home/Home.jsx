@@ -15,20 +15,22 @@ function Home() {
 
   return (
     <div>
-      <Carousel />
-      {allProducts?.slice(0, 10).map((e) => {
-        return (
-          <div className="product-card" key={e.id}>
-            <Card
-              id={e.id}
-              name={e.name}
-              price={e.price}
-              rating={e.rating}
-              image={e.image}
-            />
-          </div>
-        );
-      })}
+      <Carousel />{" "}
+      <div className="card-container">
+        {allProducts?.slice(0, 12).map((e) => {
+          return (
+            <div className="product-card" key={e.id}>
+              <Card
+                id={e.id}
+                name={e.name}
+                price={e.price}
+                rating={e.rating}
+                image={e.image}
+              />
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 }

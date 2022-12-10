@@ -3,13 +3,9 @@
   padding: 0;
 }
 
-.product-card {
-  display: flex;
-  position: relative;
-  top: 10px;
-  left: 20px;
-  right: 10px;
-  flex-wrap: nowrap;
-  flex-direction: column;
-  justify-content: center;
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-gap: 30px;
+  margin-top: 30px;
 }

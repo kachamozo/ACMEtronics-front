@@ -4,13 +4,17 @@
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
   text-align: center;
+  align-content: center;
   font-family: "Raleway";
+  justify-content: center;
+  display: cover;
   position: relative;
-  padding: auto;
+  padding: 10px;
   flex: auto;
   flex-wrap: wrap;
-  width: calc(25% - 20px);
-  height: 22rem;
+  flex-direction: row;
+
+  height: 25rem;
   margin-right: 20px;
   margin-bottom: 20px;
 }
