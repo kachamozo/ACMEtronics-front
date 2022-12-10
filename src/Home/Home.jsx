@@ -11,6 +11,7 @@ function Home() {
 
   useEffect(() => {
     dispatch(getAllProducts());
+    document.getElementById('search').value = ''   
   }, [dispatch]);
 
   return (

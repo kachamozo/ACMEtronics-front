@@ -15,8 +15,10 @@ function Shop() {
   const currentPosts = selectProduct.slice(indexOfFirstPost, indexOfLastPost);
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
+ 
   useEffect(() => {
     dispatch(getAllProducts());
+    document.getElementById('search').value = ''   
   }, [dispatch]);
   return (
     <div>

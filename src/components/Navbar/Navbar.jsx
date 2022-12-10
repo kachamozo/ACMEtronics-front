@@ -22,9 +22,11 @@ function Navbar() {
     
         <div className='search-bar'>
               <input
+              id='search'
               className="bar-btn"
               name="search"
               placeholder="Search..."
+              value={name}
               onChange={(e) => handleSearch(e.target.value)}
             ></input>
             
