@@ -5,11 +5,14 @@ import About from "./components/About/About";
 import Shop from "./components/Shop/Shop";
 import Detail from "./components/Detail/Detail";
 import Carousel from "./components/Carousel/Carousel";
+import Filter  from "./components/Filter/Filter";
 
 function App() {
   return (
     <div>
       <Navbar />
+
+      <Filter />
      
       <Routes>
         <Route path="/home" element={<Home />} />
