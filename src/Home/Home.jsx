@@ -14,7 +14,7 @@ function Home() {
   }, [dispatch]);
 
   return (
-    <div>
+    <div className="background">
       <Carousel />{" "}
       <div className="card-container">
         {allProducts?.slice(0, 12).map((e) => {
