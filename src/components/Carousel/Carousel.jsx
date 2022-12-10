@@ -16,7 +16,7 @@ function Carousel() {
     <>
     <Glider
       slidesToShow={1}
-
+    >
     </Glider>
  
   </>
