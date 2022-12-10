@@ -22,7 +22,7 @@ function Shop() {
     document.getElementById('search').value = ''   
   }, [dispatch]);
   return (
-    <div className="background">
+    <div className="shop-background">
       {currentPosts?.map((e) => {
         return (
           <div className="card-container" key={e.id}>
