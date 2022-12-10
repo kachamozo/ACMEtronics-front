@@ -1,0 +1,15 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+.product-card {
+  display: flex;
+  position: relative;
+  top: 10px;
+  left: 20px;
+  right: 10px;
+  flex-wrap: nowrap;
+  flex-direction: column;
+  justify-content: center;
+}
