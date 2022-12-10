@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { searchName } from '../../redux/actions';
@@ -8,8 +8,10 @@ import './Navbar.css';
 function Navbar() {
 
     const dispatch = useDispatch()
+    const [name, setName] = useState('')
    const handleSearch = (e) => {
     dispatch(searchName(e))
+    setName(e)
    }
     return ( 
         <div className='nav-bar' >
