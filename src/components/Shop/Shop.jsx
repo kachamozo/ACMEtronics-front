@@ -1,9 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
 import React from "react";
 import { useEffect, useState } from "react";
-import { getAllProducts } from "../redux/actions";
-import ShopCard from "./ShopCard";
-import Pagination from "./Pagination";
+import { getAllProducts } from "../../redux/actions";
+import ShopCard from "../ShopCard/ShopCard";
+import Pagination from "../Pagination/Pagination";
+import "./Shop.css";
 
 function Shop() {
   const selectProduct = useSelector((state) => state.Products);
@@ -19,10 +20,10 @@ function Shop() {
     dispatch(getAllProducts());
   }, [dispatch]);
   return (
-    <div>
+    <div className="background">
       {currentPosts?.map((e) => {
         return (
-          <div key={e.id}>
+          <div className="card-container" key={e.id}>
             <ShopCard
               id={e.id}
               name={e.name}

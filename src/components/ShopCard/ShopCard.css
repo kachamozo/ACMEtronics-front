@@ -1,0 +1,82 @@
+.shop-card {
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  text-align: center;
+  align-content: center;
+  font-family: "Raleway";
+  justify-content: space-between;
+  display: cover;
+  position: relative;
+  padding: 10px;
+  flex: auto;
+  flex-wrap: wrap;
+  flex-direction: row;
+  height: 28rem;
+  width: 22rem;
+  margin-right: 20px;
+  margin-left: 20px;
+  margin-top: 20px;
+}
+
+.buy-button,
+.add-to-cart-button {
+  display: inline-block;
+  padding: 10px 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  color: #333;
+  transition: all 0.3s ease-in-out;
+}
+
+.buy-button:hover,
+.add-to-cart-button:hover {
+  background-color: #eee;
+}
+
+.buy-button.active,
+.add-to-cart-button.active {
+  background-color: #333;
+  color: white;
+}
+
+.product-quantity {
+  display: inline-block;
+  width: 80px;
+  height: 32px;
+  padding: 0 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  color: #333;
+}
+
+.product-quantity:focus {
+  outline: none;
+  border-color: #333;
+}
+
+.product-quantity select {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  padding: 10px 20px;
+  border: none;
+  background-color: transparent;
+  color: #333;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.product-quantity select:focus {
+  outline: none;
+}
