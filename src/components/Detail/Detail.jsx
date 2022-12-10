@@ -1,5 +1,5 @@
 import React from "react";
-import detail from '../Detail/detail.module.css'
+import d from '../Detail/detail.module.css'
 //import { useSelector } from "react-redux";
 
 export default function Detail(){
@@ -16,39 +16,50 @@ export default function Detail(){
     }
     
     //const product = useSelector((state) => state.detail)
-    // if (product.length)
+     if (product)
      return (
-       <div className={detail.container}>
-         <div className={detail.img}>
-           <img src={product.image} height="250" />
+      <div className={d.detail}>
+       <div className={d.container}>
+         <div className={d.img}>
+           <img src={product.image}  />
          </div>
-         <div>
-           <div className={detail.content}></div>
-           <h1>{product.title}</h1>
+           <div className={d.content}>
+           <h1>{product.title} <a href="#">
+            <span class="material-symbols-outlined"> favorite
+</span></a> </h1> 
            <p>Rating: {product.rating}</p>
            <h2>${product.price}</h2>
            <h3>{product.description}</h3>
-           <button> Add to cart </button>
-           <h2>Reviews: </h2>
+           <div className={d.button}>
+           <button> Add to cart 
+            <span class="material-symbols-outlined"> shopping_cart </span>
+            </button>
+           </div>
+         </div>
+         </div>
+       <div className={d.reviews}>
+       <h2>Reviews: </h2>
            {product.reviews ? (
              product.reviews.map((r) => (
-               <div>
+               <div className={d.reviewsContent}>
                  <h3> {r} </h3>
                </div>
              ))
            ) : (
-             <div>
+             <div className={d.reviewsContent} >
                {" "}
                <h3> This product does not have reviews yet. </h3>
              </div>
            )}
-           <button> Add review </button>
-         </div>
+           <div className={d.reviewsBtn}>
+           <button > Add review </button>
+           </div>
        </div>
+      </div>
      );
-   /*  else return (
+    else return (
         <div>
             Loading...
         </div>
-    ) */
+    )
 }
