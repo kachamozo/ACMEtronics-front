@@ -1,5 +1,7 @@
 import React from "react";
 import "./ShopCard.css";
+import Rating from "react-rating";
+import { BsStarFill, BsStar, BsStarHalf } from "react-icons/bs";
 
 function ShopCard(props) {
   return (
@@ -20,7 +22,14 @@ function ShopCard(props) {
         </h5>
         <h5>
           {" "}
-          Calificación: <p>{props.rating}</p>{" "}
+          Calificación:{" "}
+          <Rating
+            initialRating={props.rating}
+            emptySymbol={<BsStar />}
+            fullSymbol={<BsStarFill />}
+            halfSymbol={<BsStarHalf />}
+            readonly={true}
+          />
         </h5>{" "}
         <img
           src={props.image}
