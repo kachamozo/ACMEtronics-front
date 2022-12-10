@@ -2,7 +2,7 @@ import { GET_ALL_PRODUCTS, GET_PRODUCT_DETAIL, SEARCH_NAME } from "../actions";
 const initialState = {
 	Products: [], 
 	detail: [],
-	search: []
+	copyProducts: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -10,7 +10,8 @@ function rootReducer(state = initialState, action) {
 		case GET_ALL_PRODUCTS:
 			return {
 				...state,
-				Products: action.payload
+				Products: action.payload,
+				copyProducts: action.payload
 			}
 		/* case GET_PRODUCT_DETAIL: 
 			return {
@@ -18,13 +19,12 @@ function rootReducer(state = initialState, action) {
 				detail: action.payload
 			} */
 		case SEARCH_NAME: {
-			const search = state.payload === ""
-			? state.Products
-			: state.Products.filter(f => f.name.toLowerCase().includes(action.payload.toLowerCase()))
-			console.log(state.payload)
+			const all = state.Products
+			const search = all.filter(f => f.name.toLowerCase().includes(action.payload.toLowerCase()))
+			//console.log(state.copy)
 			return {
 				...state,
-				Products: search
+				copyProducts: search
 			}
 		}
 		default:

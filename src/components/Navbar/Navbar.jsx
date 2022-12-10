@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { searchName } from '../../redux/actions';
@@ -13,8 +13,10 @@ import './Navbar.css';
 function Navbar() {
 
     const dispatch = useDispatch()
+    const [name, setName] = useState('')
    const handleSearch = (e) => {
     dispatch(searchName(e))
+    setName(e)
    }
     return ( 
         <div className='nav-bar' >
@@ -25,9 +27,18 @@ function Navbar() {
     
         <div className='search-bar'>
               <input
+              id='search'
               className="bar-btn"
               name="search"
               placeholder="Search..."
+
+              value={name}
+              onChange={(e) => handleSearch(e.target.value)}
+            ></input>
+            
+            <button className="btn" >
+
+
 
               <img src="https://img.icons8.com/ios/50/000000/search--v1.png" width={"30px"} height={"30px"}/>
             </button>

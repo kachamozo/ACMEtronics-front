@@ -6,11 +6,12 @@ import Card from "../components/Card/Card";
 import "./Home.css";
 
 function Home() {
-  const allProducts = useSelector((state) => state.Products);
+  const allProducts = useSelector((state) => state.copyProducts);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(getAllProducts());
+    document.getElementById('search').value = ''   
   }, [dispatch]);
 
   return (

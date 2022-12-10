@@ -7,7 +7,7 @@ import Pagination from "../Pagination/Pagination";
 import "./Shop.css";
 
 function Shop() {
-  const selectProduct = useSelector((state) => state.Products);
+  const selectProduct = useSelector((state) => state.copyProducts);
   const dispatch = useDispatch();
   const [currentPage, setCurrentPage] = useState(1);
   const [postPerPage] = useState(8);
@@ -16,8 +16,10 @@ function Shop() {
   const currentPosts = selectProduct.slice(indexOfFirstPost, indexOfLastPost);
   const paginate = (pageNumber) => setCurrentPage(pageNumber);
 
+ 
   useEffect(() => {
     dispatch(getAllProducts());
+    document.getElementById('search').value = ''   
   }, [dispatch]);
   return (
     <div className="background">
