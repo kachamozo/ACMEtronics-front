@@ -16,52 +16,6 @@ function Carousel() {
     <>
     <Glider
       slidesToShow={1}
-      slidesToScroll={1}
-      draggable={false}
-      dots={".dots"}
-      scrollLock={true}
-
-
-      autoPlay="true"
-      duration={0.5}
-      hasArrows={true}
-
-
-      
-
-      responsive={[
-        {
-          breakpoint: 800,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1
-          }
-        },
-        {
-          breakpoint: 1200,
-          settings: {
-            slidesToShow: 1,
-            slidesToScroll: 1
-          }
-        }
-      ]}
-
-    >
-        <div className="item0" >
-      <img src={img} alt="Slide " width="100%" height="40%"/>
-      </div>
-      <div className="item1">
-      <img src={img1} alt="Slide 1" width="100%" height="40%" />
-      </div>
-      <div className="item2">
-      <img src={img2} alt="Slide 2" width="100%" height="40%"/>
-      </div>
-      <div className="item3">
-      <img src={img3} alt="Slide 3" width="100%" height="40%"/>
-      </div>
-      <div className="item4">
-      <img src={img4} alt="slides 4"width="100%" height="40%" />
-      </div>
 
     </Glider>
  
