@@ -1,7 +1,8 @@
-import { GET_ALL_PRODUCTS, GET_PRODUCT_DETAIL } from "../actions";
+import { GET_ALL_PRODUCTS, GET_PRODUCT_DETAIL, SEARCH_NAME } from "../actions";
 const initialState = {
 	Products: [], 
-	detail: []
+	detail: [],
+	search: []
 };
 
 function rootReducer(state = initialState, action) {
@@ -16,6 +17,16 @@ function rootReducer(state = initialState, action) {
 				...state,
 				detail: action.payload
 			} */
+		case SEARCH_NAME: {
+			const search = state.payload === ""
+			? state.Products
+			: state.Products.filter(f => f.name.toLowerCase().includes(action.payload.toLowerCase()))
+			console.log(state.payload)
+			return {
+				...state,
+				Products: search
+			}
+		}
 		default:
 			return {...state}
 	}
