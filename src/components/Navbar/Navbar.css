@@ -40,6 +40,10 @@
     text-decoration: underline;
 }
 
+
+.logo{
+    width:150px
+}
 .search-bar {
     display: flex;
     justify-content: space-around;
@@ -48,8 +52,8 @@
     width: 30%;
     height: 50px;
     border-radius: 10px;
-    background-color: beige;
-    color: bisque;
+    background-color: #E8E8E8;
+    color: #E8E8E8;
     font-family: 'Raleway';
     font-style: normal;
     font-weight: 500;
@@ -78,7 +82,7 @@
     
 .search-bar input {
 border: none;
-background-color: beige;
+background-color: #E8E8E8;
 color: black;
 font-family: 'Raleway';
 font-style: normal;
@@ -95,10 +99,12 @@ height:88%;
     background-color:#319795;
     color: white;
     font-family: 'Raleway';
+    width: 46px;
+    height: 49px;
 }
 
 .btn:hover {
-    background-color: yellowgreen;
+    background-color: #38B2AC;
     color: #319795;
     border: 2px solid #319795;
     cursor: pointer;
@@ -108,7 +114,7 @@ height:88%;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 10%;
+    width: 12%;
     height: 60px;
     border-radius: 20px;
     font-family: 'Raleway';    
@@ -138,8 +144,7 @@ height:88%;
     
 }
 .btnes:hover {
-    background-color: yellowgreen;
-    color: #319795;
+    background-color: #319795;
     border: 2px solid #319795;
     cursor: pointer;
 }

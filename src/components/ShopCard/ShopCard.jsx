@@ -14,7 +14,7 @@ function ShopCard(props) {
         </h5>
         <h5 className="card-price">
           {" "}
-          Precio: <p>{props.price}</p>
+          Precio: <p>${props.price}</p>
         </h5>
         <h5>
           {" "}
