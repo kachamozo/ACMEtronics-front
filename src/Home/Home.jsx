@@ -4,11 +4,13 @@ import { getAllProducts } from "../redux/actions";
 import Carousel from "../components/Carousel/Carousel";
 import Card from "../components/Card/Card";
 import "./Home.css";
+import Filter from "../components/Filter/Filter"
 
 function Home() {
   const allProducts = useSelector((state) => state.copyProducts);
   const dispatch = useDispatch();
 
+  
   useEffect(() => {
     dispatch(getAllProducts());
     document.getElementById('search').value = ''   
@@ -16,9 +18,10 @@ function Home() {
 
   return (
     <div className="background">
-      <Carousel />{" "}
+      <Filter />
+      <Carousel />
       <div className="card-container">
-        {allProducts?.slice(0, 12).map((e) => {
+        {  allProducts?.slice(0, 12).map((e) => {
           return (
             <div className="product-card" key={e.id}>
               <Card
