@@ -1,35 +1,35 @@
-import React from "react";
+import React, { useEffect } from "react";
 import d from '../Detail/detail.module.css'
-//import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { clean } from "../../redux/actions";
+import { useParams } from "react-router-dom";
+import { getProductDetail } from "../../redux/actions";
 
 export default function Detail(){
-    const product = {
-        id: 1,
-        title: "iPhone 13 Pro Max",
-        description: "An ultra-wide angle sensor of 12 megapixels and an angle of 120 °; An improved 12-megapixel telephoto lens also with X3 Optical Zoom and optical stabilization.",
-        brand: "Apple",
-        price: 908,
-        stock: 94,
-        rating: 4.69,
-        category: "Smartphones",
-        image: "https://m.media-amazon.com/images/I/61FZC+6hDFL._AC_SL1500_.jpg"
-    }
+    const dispatch = useDispatch()
+    const product = useSelector((state) => state.detail)
+    const {id} = useParams()
     
-    //const product = useSelector((state) => state.detail)
-     if (product)
+    useEffect(()=> {
+      dispatch(getProductDetail(id))
+      return () => {dispatch(clean())}
+  }, [dispatch, id])
+
+
+     if (product.length !== 0)
      return (
       <div className={d.detail}>
        <div className={d.container}>
          <div className={d.img}>
-           <img src={product.image}  />
+           <img src={product.product.image}  />
          </div>
            <div className={d.content}>
-           <h1>{product.title} <a href="#">
+           <h1>{product.product.name} <a href="#">
             <span class="material-symbols-outlined"> favorite
 </span></a> </h1> 
-           <p>Rating: {product.rating}</p>
-           <h2>${product.price}</h2>
-           <h3>{product.description}</h3>
+           <p>Rating: {product.product.rating}</p>
+           <h2>${product.product.price}</h2>
+           <h3>{product.product.description}</h3>
            <div className={d.button}>
            <button> Add to cart 
             <span class="material-symbols-outlined"> shopping_cart </span>
@@ -39,8 +39,8 @@ export default function Detail(){
          </div>
        <div className={d.reviews}>
        <h2>Reviews: </h2>
-           {product.reviews ? (
-             product.reviews.map((r) => (
+           {product.product.reviews ? (
+             product.product.reviews.map((r) => (
                <div className={d.reviewsContent}>
                  <h3> {r} </h3>
                </div>

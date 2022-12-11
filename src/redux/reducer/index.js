@@ -13,11 +13,11 @@ function rootReducer(state = initialState, action) {
 				Products: action.payload,
 				copyProducts: action.payload
 			}
-		/* case GET_PRODUCT_DETAIL: 
+		case GET_PRODUCT_DETAIL: 
 			return {
 				...state,
 				detail: action.payload
-			} */
+			}
 		case SEARCH_NAME: {
 			const all = state.Products
 			const search = all.filter(f => f.name.toLowerCase().includes(action.payload.toLowerCase()))
