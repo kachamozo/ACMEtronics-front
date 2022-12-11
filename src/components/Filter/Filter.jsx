@@ -7,12 +7,12 @@ function Filter() {
     return(
         <div className="container">
             <div className="textini">
-            <h1>List of Articles</h1>
+            <h1>Lista de Artículos</h1>
             </div>
 
             <div className="section">
                 <div className="filter">
-                    <h2>Filter by:</h2>
+                    <h2>Elegir categoría :</h2>
                     <div className="filter-container">
                         <div className="filter-item">
                             <div className="filter-item-container">
@@ -34,10 +34,7 @@ function Filter() {
 
                                     <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"/>
                                     <label for="vehicle3"> Smartphones</label><br/>
-
-
-
-              
+                                    
             </div>
         </div>
     </div>
