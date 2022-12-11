@@ -16,3 +16,10 @@
   flex-wrap: wrap;
   background-color: #f8f9fa;
 }
+.shop-card:hover {
+  border: solid 0.5px #319795;
+}
+a {
+  text-decoration: none;
+  color: inherit;
+}
