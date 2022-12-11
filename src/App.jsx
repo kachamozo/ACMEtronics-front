@@ -5,17 +5,19 @@ import About from "./components/About/About";
 import Shop from "./components/Shop/Shop";
 import Detail from "./components/Detail/Detail";
 import Carousel from "./components/Carousel/Carousel";
-import Filter  from "./components/Filter/Filter";
+import Filter from "./components/Filter/Filter";
+import Form from "./components/Form/Form";
 
 function App() {
   return (
     <div>
       <Navbar />
-       <Routes>
+      <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/shop/:id" element={<Detail />} />
+        <Route path="/shop/form" element={<Form />} />
       </Routes>
     </div>
   );
