@@ -1,4 +1,4 @@
-import { CLEAN, GET_ALL_PRODUCTS, GET_PRODUCT_DETAIL, SEARCH_NAME } from "../actions";
+import { CLEAN, GET_ALL_PRODUCTS, GET_PRODUCT_DETAIL, ORDERBYAZ, SEARCH_NAME } from "../actions";
 const initialState = {
 	Products: [], 
 	detail: [],
@@ -26,6 +26,29 @@ function rootReducer(state = initialState, action) {
 				...state,
 				copyProducts: search
 			}
+		}
+		case ORDERBYAZ: {
+			let filterorder = [...state.Products]
+			let filterproduct = [...state.copyProducts]
+			if (action.payload === "all") {
+                return {
+                    ...state,
+                    countries: filterorder
+                }
+            }
+            if (action.payload === 'asc') {
+                const data =  filterproduct.sort((a, b) => (a.name?.toUpperCase() > b.name?.toUpperCase() ? 1 : -1))
+                return {
+                    ...state,
+                    countries: data
+                }
+            }
+
+            const data = filterproduct.sort((a, b) => (a.name?.toUpperCase() > b.name?.toUpperCase() ? -1 : 1))
+            return {
+                ...state,
+                countries: data,
+            }
 		}
 		case CLEAN:
 			return{
