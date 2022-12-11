@@ -6,26 +6,43 @@ import { BsStarFill, BsStar, BsStarHalf } from "react-icons/bs";
 function Card(props) {
   return (
     <div className="card">
-      <h3 className="card-title">{props.name}</h3>
-      <h5 className="card-price">
-        {" "}
-        Precio: <p>{props.price}</p>
-      </h5>
-      <img
-        src={props.image}
-        alt="image not found"
-        width={"120px"}
-        height={"160px"}
-      />{" "}
-      <h5>
-        <Rating
+      <div className="imagen">
+        <img
+          src={props.image}
+          alt="image not found"
+          width={"120px"}
+          height={"170px"}
+        />
+
+      </div>
+      <div className='item1'>
+        <div className="title-stars">
+          <h1>{props.name}</h1>
+          <Rating
           initialRating={props.rating}
           emptySymbol={<BsStar />}
           fullSymbol={<BsStarFill />}
           halfSymbol={<BsStarHalf />}
           readonly={true}
         />
-      </h5>
+        </div>
+          <div className="inStock">
+            <span>In stock</span>
+          </div>
+      </div>
+      <div className='item2'>
+        <h2>${props.price}</h2>
+          <div className='cantProducts'>
+            <button>-</button>
+            <span>0</span>
+            <button>+</button>
+          </div>
+      </div>
+      <div className='item3'>
+        <button className="addCart">Add to cart</button>
+        <button className="fav">♡</button>
+      </div>
+      
     </div>
   );
 }
