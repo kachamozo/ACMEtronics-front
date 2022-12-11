@@ -21,16 +21,16 @@ function Navbar() {
     return ( 
         <div className='nav-bar' >
             <img className='logo' src={logo} alt='logo' width={"100px"} height={"100px"}/>
-            <NavLink to="/home">Home</NavLink>
-            <NavLink to="/shop">Shop</NavLink>
-            <NavLink to="/about">About</NavLink>
+            <NavLink to="/home">Inicio</NavLink>
+            <NavLink to="/shop">Tienda</NavLink>
+            <NavLink to="/about">Nosotros</NavLink>
     
         <div className='search-bar'>
               <input
               id='search'
               className="bar-btn"
               name="search"
-              placeholder="Search..."
+              placeholder="Buscar..."
 
               value={name}
               onChange={(e) => handleSearch(e.target.value)}
