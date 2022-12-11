@@ -5,6 +5,7 @@ import { getAllProducts } from "../../redux/actions";
 import ShopCard from "../ShopCard/ShopCard";
 import Pagination from "../Pagination/Pagination";
 import "./Shop.css";
+import Filter from "../Filter/Filter"
 
 function Shop() {
   const selectProduct = useSelector((state) => state.copyProducts);
@@ -23,6 +24,7 @@ function Shop() {
   }, [dispatch]);
   return (
     <div className="shop-background">
+      <Filter />
       {currentPosts?.map((e) => {
         return (
           <div className="card-container" key={e.id}>
