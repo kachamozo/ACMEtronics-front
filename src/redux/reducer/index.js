@@ -1,4 +1,4 @@
-import { GET_ALL_PRODUCTS, GET_PRODUCT_DETAIL, SEARCH_NAME } from "../actions";
+import { CLEAN, GET_ALL_PRODUCTS, GET_PRODUCT_DETAIL, SEARCH_NAME } from "../actions";
 const initialState = {
 	Products: [], 
 	detail: [],
@@ -27,6 +27,11 @@ function rootReducer(state = initialState, action) {
 				copyProducts: search
 			}
 		}
+		case CLEAN:
+			return{
+				...state,
+				detail:[]
+			}
 		default:
 			return {...state}
 	}
