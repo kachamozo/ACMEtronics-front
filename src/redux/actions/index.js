@@ -1,8 +1,11 @@
+
 import axios from "axios";
 export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
 export const GET_PRODUCT_DETAIL = "GET_PRODUCT_DETAIL";
 export const SEARCH_NAME = "SEARCH_NAME";
 export const GET_CATEGORIES = "GET_CATEGORIES";
+
+
 
 export const getAllProducts = () => {
   return async function (dispatch) {
@@ -41,6 +44,7 @@ export const getProductDetail = (id) => {
 
 export const ClearDetail = () => {
   return {
+
     type: "CLEAR_DETAIL",
   };
 };
@@ -64,3 +68,6 @@ export const searchName = (name) => {
       });
   };
 };
+
+
+

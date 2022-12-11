@@ -1,4 +1,4 @@
-import React, { useCallback, useRef, useEffect } from "react";
+
 import Glider from "react-glider";
 import './Carousel.css';
 import "glider-js/glider.min.css";

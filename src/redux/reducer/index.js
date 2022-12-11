@@ -1,4 +1,4 @@
-import { GET_ALL_PRODUCTS, GET_PRODUCT_DETAIL, SEARCH_NAME } from "../actions";
+import { CLEAN, GET_ALL_PRODUCTS, GET_PRODUCT_DETAIL, SEARCH_NAME } from "../actions";
 const initialState = {
   Products: [],
   detail: [],
@@ -18,17 +18,8 @@ function rootReducer(state = initialState, action) {
 				...state,
 				detail: action.payload
 			} */
-    case SEARCH_NAME: {
-      const all = state.Products;
-      const search = all.filter((f) =>
-        f.name.toLowerCase().includes(action.payload.toLowerCase())
-      );
-      //console.log(state.copy)
-      return {
-        ...state,
-        copyProducts: search,
-      };
-    }
+
+ 
 
     case CREATE_PRODUCT:
       return { ...state };
@@ -42,6 +33,21 @@ function rootReducer(state = initialState, action) {
     default:
       return { ...state };
   }
+
+		case SEARCH_NAME: {
+			const all = state.Products
+			const search = all.filter(f => f.name.toLowerCase().includes(action.payload.toLowerCase()))
+			//console.log(state.copy)
+			return {
+				...state,
+				copyProducts: search
+			}
+		}
+
+		default:
+			return {...state}
+	}
+
 }
 
 export default rootReducer;

@@ -3,7 +3,7 @@ import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { searchName } from '../../redux/actions';
 import './Navbar.css';
-
+import logo from '../../Assets/logo1.jpg'
 
 // crear un navbar con react-glider con 3 links a las paginas home, shop y about 
 // y con un input de busqueda y con un boton de busqueda 
@@ -20,7 +20,7 @@ function Navbar() {
    }
     return ( 
         <div className='nav-bar' >
-            <img src=" http://2.bp.blogspot.com/-ZvSCu9_e0Hg/UeZhqLBiDWI/AAAAAAAAC2k/7bK8lY5KwPY/s1600/Imagen1+(1).png" alt='logo' width={"100px"} height={"100px"}/>
+            <img className='logo' src={logo} alt='logo' width={"100px"} height={"100px"}/>
             <NavLink to="/home">Home</NavLink>
             <NavLink to="/shop">Shop</NavLink>
             <NavLink to="/about">About</NavLink>
