@@ -51,7 +51,6 @@ const AddProduct = () => {
 
   function handleSubmit(event) {
     event.preventDefault();
-
     if (Object.keys(errors).length === 0) {
       alert("El producto fue creado satisfactoriamente");
       dispatch(createProduct(input));
@@ -105,18 +104,15 @@ const AddProduct = () => {
       errors.image = "Debes ingresar la imágen del producto.";
     }
 
+    if (input.image.length > 200) {
+      errors.image = "Debes ingresar un enlace más corto";
+    }
+
     if (!input.description) {
       errors.description = "Debes ingresar una descripción del producto.";
     }
 
     return errors;
-  }
-
-  function handleDelete(event) {
-    setInput({
-      ...input,
-      categories: input.categories.filter((category) => category !== event),
-    });
   }
 
   return (
@@ -178,20 +174,30 @@ const AddProduct = () => {
             {errors.price && <p className="error">{errors.price}</p>}
           </div>
           <div>
-            <label htmlFor="image">Imagen del producto: </label>
+            <label htmlFor="image">Imágen del producto: </label>
             <input
               type="text"
               id="image"
               name="image"
-              placeholder="Imagen del producto"
+              placeholder="Enlace de la imágen"
               value={input.image}
               onChange={(e) => handleChange(e)}
             />
 
             {errors.image && <p className="error">{errors.image}</p>}
           </div>
+          {input.image && (
+            <img
+              src={input.image}
+              alt="Imagen del producto"
+              height="200px"
+              width="300px"
+            />
+          )}
 
           <div>
+            <label htmlFor="image">Descripción del producto: </label>
+
             <textarea
               type="text"
               id="description"
@@ -207,7 +213,6 @@ const AddProduct = () => {
               <p className="error">{errors.description}</p>
             )}
           </div>
-
           <div>
             <select
               className="select"
@@ -215,33 +220,18 @@ const AddProduct = () => {
               name="categories"
               onChange={(e) => handleSelect(e)}
             >
-              <option value="" hidden>
-                Select Categories
-              </option>
+              <option value="">Select Categories</option>
 
               {allCategories.map((category) => (
                 <option
-                  value={category.name}
+                  value={category.id}
                   key={category.id}
-                  name={category.name}
+                  name={category.id}
                 >
-                  {category.name[0].toUpperCase() + category.name.substring(1)}
+                  {category.name}
                 </option>
               ))}
             </select>
-
-            {input.categories.map((category) => (
-              <div>
-                {category}
-                <button
-                  className="btnX"
-                  type="button"
-                  onClick={() => handleDelete(category)}
-                >
-                  X
-                </button>
-              </div>
-            ))}
           </div>
           <button type="submit">Agregar producto</button>
         </form>
