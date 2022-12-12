@@ -27,7 +27,7 @@ function rootReducer(state = initialState, action) {
         detail: action.payload,
       };
     case SEARCH_NAME: {
-      const all = state.Products;
+      const all = state.products;
       const search = all.filter((f) =>
         f.name.toLowerCase().includes(action.payload.toLowerCase())
       );
