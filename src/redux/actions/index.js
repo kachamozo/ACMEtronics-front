@@ -25,16 +25,17 @@ export const getCategories = () => {
   };
 };
 
-/* ---- GET PRODUCT BY ID - descomentar cuando esté la ruta -------
-export const getProductDetail = (id) =>{
-  return async function(dispatch){
-    const response = await axios.get('http://localhost:3001/product/:'+id)
+//  ---- GET PRODUCT BY ID - descomentar cuando esté la ruta -------
+
+export const getProductDetail = (id) => {
+  return async function (dispatch) {
+    const response = await axios.get("http://localhost:3001/product/" + id);
     return dispatch({
       type: GET_PRODUCT_DETAIL,
-      payload: response.data
-    })
-  }
-} */
+      payload: response.data,
+    });
+  };
+};
 
 export const searchName = (name) => {
   return {
