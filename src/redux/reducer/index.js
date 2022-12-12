@@ -3,9 +3,11 @@ import {
   GET_ALL_PRODUCTS,
   GET_PRODUCT_DETAIL,
   SEARCH_NAME,
+  GET_CATEGORIES,
 } from "../actions";
+
 const initialState = {
-  Products: [],
+  products: [],
   detail: [],
   copyProducts: [],
   categories: [],
@@ -16,7 +18,7 @@ function rootReducer(state = initialState, action) {
     case GET_ALL_PRODUCTS:
       return {
         ...state,
-        Products: action.payload,
+        products: action.payload,
         copyProducts: action.payload,
       };
     case GET_PRODUCT_DETAIL:
@@ -44,9 +46,7 @@ function rootReducer(state = initialState, action) {
     case "CREATE_PRODUCT":
       return { ...state };
 
-  
-
-    case "GET_CATEGORIES":
+    case GET_CATEGORIES:
       return { ...state, categories: action.payload };
 
     default:

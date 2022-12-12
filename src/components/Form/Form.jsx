@@ -1,15 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { createProduct, getCategories } from "../../redux/actions/index";
-import { useNavigate } from "react-router-dom";
+import {
+  getAllProducts,
+  createProduct,
+  getCategories,
+} from "../../redux/actions/index";
+
 import { useDispatch, useSelector } from "react-redux";
 import "./Form.css";
 
 const AddProduct = () => {
   const dispatch = useDispatch();
-  const history = useNavigate();
 
-  const categories = useSelector((state) => state.categories);
-  const products = useSelector((state) => state.Products);
+  const allCategories = useSelector((state) => state.categories);
+  const allProducts = useSelector((state) => state.copyProducts);
 
   const [errors, setErrors] = useState({});
 
@@ -20,7 +23,7 @@ const AddProduct = () => {
     price: "",
     stock: "",
     image: "",
-    category: [],
+    categories: [],
   });
 
   function handleChange(event) {
@@ -38,10 +41,10 @@ const AddProduct = () => {
   }
 
   function handleSelect(event) {
-    if (!input.category.includes(event.target.value)) {
+    if (!input.categories.includes(event.target.value)) {
       setInput({
         ...input,
-        category: [...input.category, event.target.value],
+        categories: [...input.categories, event.target.value],
       });
     }
   }
@@ -60,9 +63,8 @@ const AddProduct = () => {
         price: "",
         stock: "",
         image: "",
-        category: [],
+        categories: [],
       });
-      history.push("/home");
     } else {
       alert("Debe completar la informacion para crear el producto");
     }
@@ -70,6 +72,7 @@ const AddProduct = () => {
 
   useEffect(() => {
     dispatch(getCategories());
+    dispatch(getAllProducts());
   }, [dispatch]);
 
   function validation(input) {
@@ -80,7 +83,7 @@ const AddProduct = () => {
     }
 
     if (
-      products.find(
+      allProducts.find(
         (product) => product.name.toLowerCase() === input.name.toLowerCase()
       )
     )
@@ -112,7 +115,7 @@ const AddProduct = () => {
   function handleDelete(event) {
     setInput({
       ...input,
-      category: input.category.filter((category) => category !== event),
+      categories: input.categories.filter((category) => category !== event),
     });
   }
 
@@ -133,7 +136,7 @@ const AddProduct = () => {
               onChange={(e) => handleChange(e)}
             />
 
-            {errors.name && <p className="error">{errors.name}</p>}
+            {errors.name ? <p className="error">{errors.name}</p> : null}
           </div>
           <div>
             <label htmlFor="brand">Marca: </label>
@@ -187,12 +190,14 @@ const AddProduct = () => {
 
             {errors.image && <p className="error">{errors.image}</p>}
           </div>
+
           <div>
-            <label htmlFor="description">Descripción: </label>
-            <input
-              type="text-area"
+            <textarea
+              type="text"
               id="description"
               name="description"
+              cols="23"
+              rows="10"
               placeholder="Descripción del producto"
               value={input.description}
               onChange={(e) => handleChange(e)}
@@ -213,15 +218,19 @@ const AddProduct = () => {
               <option value="" hidden>
                 Select Categories
               </option>
-              <option value="1">Smartphones</option>
-              <option value="2">Laptops</option>
-              <option value="3">Tablets</option>
-              <option value="4">E-readers</option>
-              <option value="5">Smartwatches</option>
-              <option value="6">Headphones</option>
+
+              {allCategories.map((category) => (
+                <option
+                  value={category.name}
+                  key={category.id}
+                  name={category.name}
+                >
+                  {category.name[0].toUpperCase() + category.name.substring(1)}
+                </option>
+              ))}
             </select>
 
-            {input.category.map((category) => (
+            {input.categories.map((category) => (
               <div>
                 {category}
                 <button
