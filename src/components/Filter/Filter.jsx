@@ -5,7 +5,7 @@ import "./Filter.css";
 function Filter() {
 
     return(
-        <div className="container">
+        <div className="componentContainer">
             <div className="textini">
             <h1>Lista de Artículos</h1>
             </div>

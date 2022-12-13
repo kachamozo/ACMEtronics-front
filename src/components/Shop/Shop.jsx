@@ -24,11 +24,12 @@ function Shop() {
     document.getElementById('search').value = ''   
   }, [dispatch]);
   return (
+    <>
     <div className="shop-background">
       <Filter />
       {currentPosts?.map((e) => {
         return (
-        <Link to={'/shop/'+e.id} >
+        <Link to={'/shop/'+e.id} className="cardLink" >
           <div className="card-container" key={e.id}>
             <ShopCard
               id={e.id}
@@ -43,7 +44,8 @@ function Shop() {
         </Link>
         );
       })}
-      <div>
+    </div>
+      <div className="pagination-container">
         <Pagination
           paginate={paginate}
           currentPage={currentPage}
@@ -51,7 +53,7 @@ function Shop() {
           totalPost={selectProduct.length}
         />
       </div>
-    </div>
+    </>
   );
 }
 

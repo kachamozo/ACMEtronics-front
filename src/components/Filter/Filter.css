@@ -1,4 +1,4 @@
-.container {
+.componentContainer {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -8,7 +8,7 @@
 }
 
 @media screen and (max-width: 768px) {
-    .container {
+    .componentContainer {
         display: flex;
         flex-direction: column;
         align-items: center;
