@@ -37,6 +37,8 @@ export const getProductDetail = (id) => {
   };
 };
 
+
+
 export const searchName = (name) => {
   return {
     type: SEARCH_NAME,

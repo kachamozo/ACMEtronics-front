@@ -1,17 +1,138 @@
-.Glider {
-    display: flex;
-    flex-wrap: nowrap;
-    overflow: hidden;
+.carousel-inner img {
+    width: 100%;
+    height: 100%;
+}
+
+.carousel-slide {
     position: relative;
+    overflow: hidden;
     width: 100%;
     height: 100%;
     margin: 0;
     padding: 0;
     list-style: none;
-    cursor: grab;
-    touch-action: pan-y;
 }
 
+
+.carousel__slide {
+    position: absolute;
+    overflow: hidden;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+
+.carousel-indicators {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding-left: 0;
+    margin-left: 0;
+    list-style: none;
+    text-align: center;
+    background-color: #319795;
+    height: 20px;
+    
+}
+
+
+.carousel-indicators :active {
+    background-color: #fff;
+    
+}
+
+
+.carousel-indicators li {
+    background-color: #fff;
+    height: 5px;
+    top: 8px;
+    cursor: pointer;
+}
+.carousel-indicators li:active {
+    background-color: #fff;
+    height: 5px;
+    top: 8px;
+    cursor: pointer;
+}
+
+
+.carousel-inner {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    background-color: #319795;
+}
+
+
+.carousel-inner :active {
+    display: block;
+}
+
+
+.carousel-item {
+    position: relative;
+    display: none;
+    float: left;
+    width: 100%;
+    margin-right: -100%;
+    background-color: #319795;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transition: -webkit-transform .6s ease-in-out;
+    transition: transform .6s ease-in-out;
+    transition: transform .6s ease-in-out,-webkit-transform .6s ease-in-out;
+}
+
+
+.carousel-item :active {
+    display: block;
+}
+
+
+.carousel-item img {
+    width: 40%;
+    height: 500px;
+    display: block;
+    margin: 0 auto;
+    
+}
+
+
+.carousel-item-next, .carousel-item-prev {
+    position: absolute;
+    top: 0;
+    z-index: 1;
+    display: block;
+    width: 100%;
+}
+
+
+.carousel-control-prev, .carousel-control-next {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 15%;
+    color:black;
+    text-align: center;
+    opacity: .5;
+    transition: opacity .15s ease;
+}
+
+span.carousel-control-next-icon, span.carousel-control-prev-icon {
+    display: inline-block;
+    width: 30%;
+    height: 10%;
+    background-repeat: no-repeat; 
+    background-position: center;
+    background-size: 100% 100%;
+}
 
 
 

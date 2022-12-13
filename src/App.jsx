@@ -18,6 +18,7 @@ function App() {
         <Route path="/shop" element={<Shop />} />
         <Route path="/shop/:id" element={<Detail />} />
         <Route path="/shop/form" element={<Form />} />
+        <Route path="/shop/filter" element={<Filter />} />
       </Routes>
     </div>
   );
