@@ -33,21 +33,21 @@ function rootReducer(state = initialState, action) {
 			if (action.payload === "all") {
                 return {
                     ...state,
-                    countries: filterorder
+					copyProducts: filterorder
                 }
             }
             if (action.payload === 'asc') {
                 const data =  filterproduct.sort((a, b) => (a.name?.toUpperCase() > b.name?.toUpperCase() ? 1 : -1))
                 return {
                     ...state,
-                    countries: data
+                    copyProducts: data
                 }
             }
 
             const data = filterproduct.sort((a, b) => (a.name?.toUpperCase() > b.name?.toUpperCase() ? -1 : 1))
             return {
                 ...state,
-                countries: data,
+                copyProducts: data,
             }
 		}
 		case CLEAN:

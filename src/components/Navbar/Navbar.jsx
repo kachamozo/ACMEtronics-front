@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import { searchName } from '../../redux/actions';
 import './Navbar.css';
 import logo from '../../Assets/logo1.jpg'
+import OrderName from '../Order/OrderA-Z';
 
 // crear un navbar con react-glider con 3 links a las paginas home, shop y about 
 // y con un input de busqueda y con un boton de busqueda 
@@ -58,7 +59,7 @@ function Navbar() {
             <button className="btnes" >
                 <img src="https://img.icons8.com/ios/50/000000/user--v1.png" width={"30px"} height={"30px"}/>
             </button>
-
+       <OrderName/>
             </div>
     
                 
