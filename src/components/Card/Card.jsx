@@ -5,7 +5,7 @@ import { BsStarFill, BsStar, BsStarHalf } from "react-icons/bs";
 
 function Card(props) {
   return (
-    <div className="card">
+    <div className="homeCard">
       <div className="imagen">
         <img
           src={props.image}

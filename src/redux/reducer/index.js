@@ -1,11 +1,23 @@
-import { CLEAN, GET_ALL_PRODUCTS, GET_PRODUCT_DETAIL, ORDERBYAZ, SEARCH_NAME } from "../actions";
+
+import {
+  CLEAN,
+  GET_ALL_PRODUCTS,
+  GET_PRODUCT_DETAIL,
+  SEARCH_NAME,
+  ORDERBYAZ,
+  GET_CATEGORIES,
+} from "../actions";
+
+
 const initialState = {
-	Products: [], 
-	detail: [],
-	copyProducts: []
+  products: [],
+  detail: [],
+  copyProducts: [],
+  categories: [],
 };
 
 function rootReducer(state = initialState, action) {
+
 	switch (action.type) {
 		case GET_ALL_PRODUCTS:
 			return {
@@ -58,6 +70,7 @@ function rootReducer(state = initialState, action) {
 		default:
 			return {...state}
 	}
+
 }
 
 export default rootReducer;

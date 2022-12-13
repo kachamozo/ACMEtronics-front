@@ -6,6 +6,7 @@ import ShopCard from "../ShopCard/ShopCard";
 import Pagination from "../Pagination/Pagination";
 import "./Shop.css";
 import Filter from "../Filter/Filter"
+import { Link } from "react-router-dom";
 
 function Shop() {
   const selectProduct = useSelector((state) => state.copyProducts);
@@ -23,10 +24,12 @@ function Shop() {
     document.getElementById('search').value = ''   
   }, [dispatch]);
   return (
+    <>
     <div className="shop-background">
       <Filter />
       {currentPosts?.map((e) => {
         return (
+        <Link to={'/shop/'+e.id} className="cardLink" >
           <div className="card-container" key={e.id}>
             <ShopCard
               id={e.id}
@@ -38,9 +41,11 @@ function Shop() {
               image={e.image}
             />
           </div>
+        </Link>
         );
       })}
-      <div>
+    </div>
+      <div className="pagination-container">
         <Pagination
           paginate={paginate}
           currentPage={currentPage}
@@ -48,7 +53,7 @@ function Shop() {
           totalPost={selectProduct.length}
         />
       </div>
-    </div>
+    </>
   );
 }
 

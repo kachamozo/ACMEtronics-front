@@ -5,10 +5,10 @@ export const SEARCH_NAME = 'SEARCH_NAME'
 export const CLEAN = "CLEAN"
 export const ORDERBYAZ = "ORDERBYAZ"
 
+
 export const getAllProducts = () => {
   return async function (dispatch) {
-    const response = await axios.get('http://localhost:3001/product');
-
+    const response = await axios.get("http://localhost:3001/product");
     return dispatch({
       type: GET_ALL_PRODUCTS,
       payload: response.data.products,
@@ -16,16 +16,29 @@ export const getAllProducts = () => {
   };
 };
 
-/* ---- GET PRODUCT BY ID - descomentar cuando esté la ruta -------
-export const getProductDetail = (id) =>{
-  return async function(dispatch){
-    const response = await axios.get('http://localhost:3001/product/:'+id)
+export const getCategories = () => {
+  return async function (dispatch) {
+    const response = await axios.get("http://localhost:3001/category");
+    return dispatch({
+      type: GET_CATEGORIES,
+      payload: response.data.categories,
+    });
+  };
+};
+
+//  ---- GET PRODUCT BY ID - descomentar cuando esté la ruta -------
+
+export const getProductDetail = (id) => {
+  return async function (dispatch) {
+    const response = await axios.get("http://localhost:3001/product/" + id);
     return dispatch({
       type: GET_PRODUCT_DETAIL,
-      payload: response.data
-    })
-  }
-} */
+      payload: response.data,
+    });
+  };
+};
+
+
 
 export const searchName = (name) => {
   return {
@@ -41,9 +54,26 @@ export const orderaz = (payload) => {
   }
 }
 
+    payload: name,
+  };
+};
+
 export const clean = (payload) => {
   return {
     type: CLEAN,
     payload,
-  }
-}
+  };
+};
+
+export const ClearDetail = () => {
+  return {
+    type: "CLEAR_DETAIL",
+  };
+};
+
+export const createProduct = (payload) => {
+  return async function (dispatch) {
+    const response = await axios.post("http://localhost:3001/product", payload);
+    return response;
+  };
+};

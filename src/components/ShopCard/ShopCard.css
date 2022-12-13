@@ -13,8 +13,8 @@
   flex: auto;
   flex-wrap: wrap;
   flex-direction: row;
-  height: 28rem;
-  width: 22rem;
+  max-height: 40rem;
+  max-width: 25rem;
   margin-right: 20px;
   margin-left: 20px;
   margin-top: 20px;
@@ -80,3 +80,4 @@
 .product-quantity select:focus {
   outline: none;
 }
+
