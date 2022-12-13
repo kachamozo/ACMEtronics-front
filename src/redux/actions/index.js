@@ -4,6 +4,7 @@ export const GET_PRODUCT_DETAIL = "GET_PRODUCT_DETAIL";
 export const SEARCH_NAME = "SEARCH_NAME";
 export const CLEAN = "CLEAN";
 export const GET_CATEGORIES = "GET_CATEGORIES";
+export const ORDERBYAZ = "ORDERBYAZ";
 
 export const getAllProducts = () => {
   return async function (dispatch) {
@@ -64,3 +65,10 @@ export const createProduct = (payload) => {
     return response;
   };
 };
+
+export const orderaz = (payload) => {
+  return {
+    type: ORDERBYAZ,
+    payload: payload
+  }
+}

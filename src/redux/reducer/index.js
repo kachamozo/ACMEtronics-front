@@ -4,6 +4,7 @@ import {
   GET_PRODUCT_DETAIL,
   SEARCH_NAME,
   GET_CATEGORIES,
+  ORDERBYAZ,
 } from "../actions";
 
 const initialState = {
@@ -48,6 +49,30 @@ function rootReducer(state = initialState, action) {
 
     case GET_CATEGORIES:
       return { ...state, categories: action.payload };
+
+    case ORDERBYAZ: {
+        let filterorder = [...state.products]
+        let filterproduct = [...state.copyProducts]
+        if (action.payload === "all") {
+                  return {
+                      ...state,
+            copyProducts: filterorder
+                  }
+              }
+              if (action.payload === 'asc') {
+                  const data =  filterproduct.sort((a, b) => (a.name?.toUpperCase() > b.name?.toUpperCase() ? 1 : -1))
+                  return {
+                      ...state,
+                      copyProducts: data
+                  }
+              }
+  
+              const data = filterproduct.sort((a, b) => (a.name?.toUpperCase() > b.name?.toUpperCase() ? -1 : 1))
+              return {
+                  ...state,
+                  copyProducts: data,
+              }
+      }
 
     default:
       return { ...state };
