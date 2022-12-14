@@ -1,9 +1,17 @@
+
 import React from "react";
+import { useDispatch } from "react-redux";
+import { filterCategory } from "../../redux/actions";
 import "./Filter.css";
 
 
 function Filter() {
-
+    const dispatch = useDispatch()
+    
+    const handleCategory = (e) => {
+        e.preventDefault()
+        dispatch(filterCategory(e.target.value))
+    }
     return(
         <div className="componentContainer">
             <div className="textini">
@@ -17,23 +25,23 @@ function Filter() {
                         <div className="filter-item">
                             <div className="filter-item-container">
                                 <div className="filter-item-item">
-                                    <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike"/>
-                                    <label for="vehicle1">Headphones </label><br/>
+                                    <input onChange={handleCategory} type="radio" name="category" value='Headphones'/>
+                                    <label for="Headphones">Headphones </label><br/>
 
-                                    <input type="checkbox" id="vehicle2" name="vehicle2" value="Car"/>
-                                    <label for="vehicle2"> SmartWatch</label><br/>
+                                    <input onChange={handleCategory} type="radio" name="category" value="SmartWatch"/>
+                                    <label for="SmartWatch"> SmartWatch</label><br/>
 
-                                    <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"/>
-                                    <label for="vehicle3"> E-readers</label><br/>
+                                    <input onChange={handleCategory} type="radio" name="category" value="E-readers"/>
+                                    <label for="E-readers"> E-readers</label><br/>
 
-                                    <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"/>
-                                    <label for="vehicle3"> Tablets</label><br/>
+                                    <input onChange={handleCategory} type="radio" name="category" value="Tablets"/>
+                                    <label for="Tablets"> Tablets</label><br/>
 
-                                    <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"/>
-                                    <label for="vehicle3"> Laptops</label><br/>
+                                    <input onChange={handleCategory} type="radio" name="category" value="Laptops"/>
+                                    <label for="Laptops"> Laptops</label><br/>
 
-                                    <input type="checkbox" id="vehicle3" name="vehicle3" value="Boat"/>
-                                    <label for="vehicle3"> Smartphones</label><br/>
+                                    <input onChange={handleCategory} type="radio" name="category" value="Smartphones"/>
+                                    <label for="Smartphones"> Smartphones</label><br/>
                                     
             </div>
         </div>

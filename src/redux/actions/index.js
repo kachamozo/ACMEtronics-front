@@ -5,6 +5,7 @@ export const SEARCH_NAME = "SEARCH_NAME";
 export const CLEAN = "CLEAN";
 export const GET_CATEGORIES = "GET_CATEGORIES";
 export const ORDERBYAZ = "ORDERBYAZ";
+export const FILTER_CATEGORY = 'FILTER_CATEGORY'
 
 export const getAllProducts = () => {
   return async function (dispatch) {
@@ -70,5 +71,12 @@ export const orderaz = (payload) => {
   return {
     type: ORDERBYAZ,
     payload: payload
+  }
+}
+
+export const filterCategory = (payload) => {
+  return{
+    type: FILTER_CATEGORY,
+    payload
   }
 }
