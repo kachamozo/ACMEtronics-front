@@ -20,7 +20,9 @@ function Home() {
   return (
     <div className="background">
       <Carousel />
-      <Filter />
+      <div className  ="container">
+        <h2> Most selled products </h2>
+        </div>
       <div className="card-container">
         {  allProducts?.slice(0, 12).map((e) => {
           return (

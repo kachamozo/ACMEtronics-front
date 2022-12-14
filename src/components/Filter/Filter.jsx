@@ -15,12 +15,12 @@ function Filter() {
     return(
         <div className="componentContainer">
             <div className="textini">
-            <h1>Lista de Artículos</h1>
+            <h1>List of Products</h1>
             </div>
 
             <div className="section">
                 <div className="filter">
-                    <h2>Elegir categoría :</h2>
+                    <h2>Choose category :</h2>
                     <div className="filter-container">
                         <div className="filter-item">
                             <div className="filter-item-container">
