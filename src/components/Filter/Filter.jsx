@@ -1,4 +1,3 @@
-
 import React from "react";
 import { useDispatch } from "react-redux";
 import { filterCategory } from "../../redux/actions";
@@ -42,16 +41,13 @@ function Filter() {
 
                                     <input onChange={handleCategory} type="radio" name="category" value="Smartphones"/>
                                     <label for="Smartphones"> Smartphones</label><br/>
-                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
-</div>
-</div>
-</div>
-
-
-            </div>
     )
 
 }

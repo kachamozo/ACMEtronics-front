@@ -7,6 +7,7 @@ import Pagination from "../Pagination/Pagination";
 import "./Shop.css";
 import Filter from "../Filter/Filter"
 import { Link } from "react-router-dom";
+import { Orderaz } from "../Order/Orderaz";
 
 function Shop() {
   const selectProduct = useSelector((state) => state.copyProducts);
@@ -27,6 +28,8 @@ function Shop() {
     <>
     <div className="shop-background">
       <Filter />
+      <Orderaz />
+  
       {currentPosts?.map((e) => {
         return (
         <Link to={'/shop/'+e.id} className="cardLink" >
