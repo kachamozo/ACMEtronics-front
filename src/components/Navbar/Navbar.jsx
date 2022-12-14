@@ -4,7 +4,6 @@ import { NavLink } from 'react-router-dom';
 import { searchName } from '../../redux/actions';
 import './Navbar.css';
 import logo from '../../Assets/logo1.jpg'
-import { Orderaz } from '../Order/Orderaz';
 
 
 
@@ -56,7 +55,7 @@ function Navbar() {
             <button className="btnes" >
                 <img src="https://img.icons8.com/ios/50/000000/user--v1.png" width={"30px"} height={"30px"}/>
             </button>
-<Orderaz/>
+
             </div>
     
                 
