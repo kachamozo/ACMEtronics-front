@@ -5,6 +5,7 @@ import {
   SEARCH_NAME,
   GET_CATEGORIES,
   ORDERBYAZ,
+  FILTER_CATEGORY,
 } from "../actions";
 
 const initialState = {
@@ -73,7 +74,14 @@ function rootReducer(state = initialState, action) {
                   copyProducts: data,
               }
       }
-
+    
+    case FILTER_CATEGORY:{
+      const filterCat = state.products.filter(e => e.CategoryProduct[0].name?.includes(action.payload))
+      return {
+        ...state,
+        copyProducts: filterCat
+      }
+    }
     default:
       return { ...state };
   }
