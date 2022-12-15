@@ -4,6 +4,8 @@ import {
   GET_PRODUCT_DETAIL,
   SEARCH_NAME,
   GET_CATEGORIES,
+  UPDATE_PRODUCT,
+  DELETE_PRODUCT,
 } from "../actions";
 
 const initialState = {
@@ -48,6 +50,12 @@ function rootReducer(state = initialState, action) {
 
     case GET_CATEGORIES:
       return { ...state, categories: action.payload };
+
+    case UPDATE_PRODUCT:
+      return action.payload;
+
+    case DELETE_PRODUCT:
+      return action.payload;
 
     default:
       return { ...state };
