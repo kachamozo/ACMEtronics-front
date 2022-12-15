@@ -8,6 +8,7 @@ import Carousel from "./components/Carousel/Carousel";
 import Filter from "./components/Filter/Filter";
 import Form from "./components/Form/Form";
 import UpdateProduct from "./components/UpdateProductForm/UpdateProduct";
+import WishList from "./components/WishList/WishList.jsx";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <Route path="/shop/form" element={<Form />} />
         <Route path="/shop/filter" element={<Filter />} />
         <Route path="/shop/updateproduct" element={<UpdateProduct />} />
+        <Route path="/home/wishList" element={<WishList />} />
       </Routes>
     </div>
   );

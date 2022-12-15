@@ -4,15 +4,16 @@ import {
   GET_PRODUCT_DETAIL,
   SEARCH_NAME,
   GET_CATEGORIES,
-
   UPDATE_PRODUCT,
   DELETE_PRODUCT,
-
   ORDERBYAZ,
   FILTER_CATEGORY,
   GET_PRODUCT_RATING,
   PRICE_FILTER,
-
+  ADD_FAVORITE,
+  REMOVE_FAVORITE,
+  GET_ALL_USERS,
+  GET_USER_BY_ID,
 } from "../actions";
 
 const initialState = {
@@ -21,6 +22,9 @@ const initialState = {
   copyProducts: [],
   categories: [],
   rating: [],
+  favorites: [],
+  users: [],
+  userDetail: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -41,7 +45,7 @@ function rootReducer(state = initialState, action) {
       const search = all.filter((f) =>
         f.name.toLowerCase().includes(action.payload.toLowerCase())
       );
-      
+
       return {
         ...state,
         copyProducts: search,
@@ -59,82 +63,79 @@ function rootReducer(state = initialState, action) {
     case GET_CATEGORIES:
       return { ...state, categories: action.payload };
 
-
     case UPDATE_PRODUCT:
       return action.payload;
 
     case DELETE_PRODUCT:
       return action.payload;
 
-    
-    // CASE para traer el rating desde el reduce/index y poder ordenarlos de mayor a menor y de menor a mayor 
+    // CASE para traer el rating desde el reduce/index y poder ordenarlos de mayor a menor y de menor a mayor
     case GET_PRODUCT_RATING: {
-      let filterorderrating = [...state.products]
-      let filterproductrating = [...state.copyProducts]
+      let filterorderrating = [...state.products];
+      let filterproductrating = [...state.copyProducts];
       if (action.payload === "all") {
-                return {
-                    ...state,
-          copyProducts: filterorderrating
-                }
-            }
-            if (action.payload === 'asc') {
-                const data =  filterproductrating.sort((a, b) => (a.rating > b.rating ? 1 : -1))
-                return {
-                    ...state,
-                    copyProducts: data
-                }
-            }
+        return {
+          ...state,
+          copyProducts: filterorderrating,
+        };
+      }
+      if (action.payload === "asc") {
+        const data = filterproductrating.sort((a, b) =>
+          a.rating > b.rating ? 1 : -1
+        );
+        return {
+          ...state,
+          copyProducts: data,
+        };
+      }
 
-            const data = filterproductrating.sort((a, b) => (a.rating > b.rating ? -1 : 1))
-            return {
-                ...state,
-                copyProducts: data
-            }
-        }
+      const data = filterproductrating.sort((a, b) =>
+        a.rating > b.rating ? -1 : 1
+      );
+      return {
+        ...state,
+        copyProducts: data,
+      };
+    }
 
-  // CASE para traer el precio desde el reduce/index y poder ordenarlos de mayor a menor y de menor a mayor 
+    // CASE para traer el precio desde el reduce/index y poder ordenarlos de mayor a menor y de menor a mayor
     case PRICE_FILTER: {
-      let filterorderprice = [...state.products]
-      let filterproductprice = [...state.copyProducts]
+      let filterorderprice = [...state.products];
+      let filterproductprice = [...state.copyProducts];
       if (action.payload === "all") {
+        return {
+          ...state,
+          copyProducts: filterorderprice,
+        };
+      }
+      if (action.payload === "asc") {
+        const data = filterproductprice.sort((a, b) => {
+          let priceA = parseInt(a.price);
+          let priceB = parseInt(b.price);
+          if (priceA > priceB) return 1;
+          if (priceA < priceB) return -1;
+          else return 0;
+        });
+        return {
+          ...state,
+          copyProducts: data,
+        };
+      }
 
-                return {
-                    ...state,
-          copyProducts: filterorderprice
-                  
-                }
-            }
-            if (action.payload === 'asc') {
-                const data =  filterproductprice.sort((a, b) => {
-                  let priceA = parseInt(a.price);
-                  let priceB = parseInt(b.price);
-                  if (priceA > priceB) return 1;
-                  if (priceA < priceB) return -1;
-                  else return 0;
-              })
-                return {
-                    ...state,
-                    copyProducts: data
-                }
-            }
+      const data = filterproductprice.sort((a, b) => {
+        let pesoA = parseInt(a.price);
+        let pesoB = parseInt(b.price);
+        if (pesoA > pesoB) return -1;
+        if (pesoA < pesoB) return 1;
+        else return 0;
+      });
+      return {
+        ...state,
+        copyProducts: data,
+      };
+    }
 
-            const data = filterproductprice.sort((a, b) => {
-              let pesoA = parseInt(a.price);
-              let pesoB = parseInt(b.price);
-              if (pesoA > pesoB) return -1;
-              if (pesoA < pesoB) return 1;
-              else return 0;
-          })
-            return {
-                ...state,
-                copyProducts: data
-            }
-        }
-
-        
-  
-  
-  /* case PRICE_FILTER: {
+    /* case PRICE_FILTER: {
       let filterorder = [...state.products]
       let filterproduct = [...state.copyProducts]
       if (action.payload === "all") {
@@ -158,42 +159,72 @@ function rootReducer(state = initialState, action) {
             }
         }  */
 
-
     case ORDERBYAZ: {
-        let filterorder = [...state.products]
-        let filterproduct = [...state.copyProducts]
-        if (action.payload === "all") {
-                  return {
-                      ...state,
-            copyProducts: filterorder
-                  }
-              }
-              if (action.payload === 'asc') {
-                  const data =  filterproduct.sort((a, b) => (a.name?.toUpperCase() > b.name?.toUpperCase() ? 1 : -1))
-                  return {
-                      ...state,
-                      copyProducts: data
-                  }
-              }
-  
-              const data = filterproduct.sort((a, b) => (a.name?.toUpperCase() > b.name?.toUpperCase() ? -1 : 1))
-              return {
-                  ...state,
-                  copyProducts: data,
-              }
+      let filterorder = [...state.products];
+      let filterproduct = [...state.copyProducts];
+      if (action.payload === "all") {
+        return {
+          ...state,
+          copyProducts: filterorder,
+        };
       }
-    
-    case FILTER_CATEGORY:{
-      const filterCat = state.products.filter(e => e.CategoryProduct[0].name?.includes(action.payload))
+      if (action.payload === "asc") {
+        const data = filterproduct.sort((a, b) =>
+          a.name?.toUpperCase() > b.name?.toUpperCase() ? 1 : -1
+        );
+        return {
+          ...state,
+          copyProducts: data,
+        };
+      }
+
+      const data = filterproduct.sort((a, b) =>
+        a.name?.toUpperCase() > b.name?.toUpperCase() ? -1 : 1
+      );
       return {
         ...state,
-        copyProducts: filterCat
-      }
+        copyProducts: data,
+      };
     }
 
+    case FILTER_CATEGORY: {
+      const filterCat = state.products.filter((e) =>
+        e.CategoryProduct[0].name?.includes(action.payload)
+      );
+      return {
+        ...state,
+        copyProducts: filterCat,
+      };
+    }
+
+    case ADD_FAVORITE: {
+      return {
+        ...state,
+        favorites: action.payload.favorites,
+      };
+    }
+    case REMOVE_FAVORITE: {
+      return {
+        ...state,
+        favorites: action.payload,
+      };
+    }
+
+    case GET_ALL_USERS: {
+      return {
+        ...state,
+        users: action.payload,
+      };
+    }
+
+    case GET_USER_BY_ID: {
+      return {
+        ...state,
+        userDetail: action.payload,
+      };
+    }
     default:
       return { ...state };
-      
   }
 }
 
