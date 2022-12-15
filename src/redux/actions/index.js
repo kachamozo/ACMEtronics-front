@@ -1,12 +1,19 @@
-import { Info } from "@mui/icons-material";
+
 import axios from "axios";
 export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
 export const GET_PRODUCT_DETAIL = "GET_PRODUCT_DETAIL";
 export const SEARCH_NAME = "SEARCH_NAME";
 export const CLEAN = "CLEAN";
 export const GET_CATEGORIES = "GET_CATEGORIES";
+
 export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
+
+export const ORDERBYAZ = "ORDERBYAZ";
+export const FILTER_CATEGORY = 'FILTER_CATEGORY'
+export const GET_PRODUCT_RATING = 'GET_PRODUCT_RATING'
+export const PRICE_FILTER = 'PRICE_FILTER'
+
 
 export const getAllProducts = () => {
   return async function (dispatch) {
@@ -35,10 +42,44 @@ export const getProductDetail = (id) => {
     const response = await axios.get("http://localhost:3001/product/" + id);
     return dispatch({
       type: GET_PRODUCT_DETAIL,
-      payload: response.data,
+      payload: response.data.product,
     });
   };
 };
+
+
+
+
+// GET PRODUCT BY PRICE MIN AND MAX
+
+export const priceFilter = (price) => {
+  return async function (dispatch) {
+    const response = await axios.get("http://localhost:3001/product/price/" + price);
+    return dispatch({
+      type: PRICE_FILTER,
+      payload: response.data.products,
+    });
+  };
+};
+
+/* export const priceFilter = (price) => {
+  return {
+    type: PRICE_FILTER,
+    payload: price,
+  };
+}; */
+
+
+// GET PRODUCT BY RATING
+
+export const getProductRating = (rating) => {
+  return {
+    type: GET_PRODUCT_RATING,
+    payload: rating,
+  };
+};
+  
+
 
 export const searchName = (name) => {
   return {
@@ -65,6 +106,7 @@ export const createProduct = (payload) => {
     return response;
   };
 };
+
 
 export const updateProduct = (payload) => {
   let id = payload.id;
@@ -119,3 +161,18 @@ export const deleteProduct = (id) => {
 //     });
 //   };
 // };
+
+export const orderaz = (payload) => {
+  return {
+    type: ORDERBYAZ,
+    payload: payload
+  }
+}
+
+export const filterCategory = (payload) => {
+  return{
+    type: FILTER_CATEGORY,
+    payload
+  }
+}
+

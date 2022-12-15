@@ -5,10 +5,7 @@ import { searchName } from '../../redux/actions';
 import './Navbar.css';
 import logo from '../../Assets/logo1.jpg'
 
-// crear un navbar con react-glider con 3 links a las paginas home, shop y about 
-// y con un input de busqueda y con un boton de busqueda 
-//y con un boton de carrito de compras y con un boton de wishlist y con un boton de login y con un boton de registro 
-// y con un boton de menu hamburguesa para dispositivos moviles
+
 
 function Navbar() {
 
@@ -21,16 +18,16 @@ function Navbar() {
     return ( 
         <div className='nav-bar' >
             <img className='logo' src={logo} alt='logo' width={"100px"} height={"100px"}/>
-            <NavLink to="/home">Inicio</NavLink>
-            <NavLink to="/shop">Tienda</NavLink>
-            <NavLink to="/about">Nosotros</NavLink>
+            <NavLink to="/home">Home</NavLink>
+            <NavLink to="/shop">Shop</NavLink>
+            <NavLink to="/about">About</NavLink>
     
         <div className='search-bar'>
               <input
               id='search'
               className="bar-btn"
               name="search"
-              placeholder="Buscar..."
+              placeholder="Search..."
 
               value={name}
               onChange={(e) => handleSearch(e.target.value)}

@@ -6,61 +6,61 @@ function About() {
   return (
     <div className="background">
       <div className="about-container">
-        <h1 className="about-title">Acerca de Nosotros </h1>
+        <h1 className="about-title">About us </h1>
         <p className="about-description">
-          Somos una tienda online de tecnología que distribuye sus productos a
-          compradores de toda Latino América. Ofrecemos garantía y seguridad en
-          la compra.
+        We are an online technology store that distributes its products to
+          buyers from all over Latin America. We offer guarantee and security in
+          the purchase.
         </p>
-        <h2 className="about-faq-title">Preguntas Frecuentes</h2>
+        <h2 className="about-faq-title">Frequently asked questions</h2>
         <ul className="about-faq-list">
           <li className="about-faq-item">
             <h3 className="about-faq-question">
-              ¿Cuál es nuestra política de devolución
+            What is our return policy?
             </h3>
             <p className="about-faq-answer">
-              Ofrecemos reembolso y/o cambio dentro de los primeros 30 días de
-              tu compra. Si han transcurrido 30 días desde tu compra, no se te
-              ofrecerá un reembolso y/o cambio de ningún tipo. Elegibilidad para
-              reembolsos y cambios Tu artículo debe estar sin usar y en las
-              mismas condiciones en que lo recibió. El artículo debe estar en el
-              embalaje original. Para completar tu devolución, requerimos un
-              recibo o comprobante de compra. Solo se pueden reembolsar los
-              artículos de precio regular; los artículos de venta no se pueden
-              reembolsar. Si el artículo en cuestión fue marcado como un regalo
-              cuando fue comprado y se envió directamente a ti, recibirás un
-              crédito de regalo por el valor de tu devolución. Cambios (si es
-              aplicable) Solo reemplazamos los artículos si están defectuosos o
-              dañados. Si necesitas cambiarlo por el mismo artículo, envíanos un
-              email a (Agrega dirección de correo electrónico relevante) y envía
-              tu artículo a: (Dirección relevante).
+            We offer refund and/or exchange within the first 30 days of
+              your purchase. If 30 days have passed since your purchase, you will not be
+              will offer a refund and/or exchange of any kind. Eligibility for
+              refunds and exchanges Your item must be unused and in the
+              same condition in which you received it. The item must be in the
+              original packaging. To complete your return, we require a
+              receipt or proof of purchase. You can only refund
+              regular priced items; sale items cannot be
+              reimburse. If the item in question was marked as a gift
+              when it was purchased and shipped directly to you, you will receive a
+              gift credit for the value of your return. changes (if
+              applicable) We only replace items if they are defective or
+              damaged. If you need to exchange it for the same item, send us a
+              email to (Add relevant email address) and send
+              your item to: (Relevant Address).
             </p>
           </li>
           <li className="about-faq-item">
             <h3 className="about-faq-question">
-              ¿Cuáles métodos de pago aceptamos?
+            What payment methods do we accept?
             </h3>
-            <p className="about-faq-answer">A definiirrrrr......</p>
+            <p className="about-faq-answer">To define......</p>
           </li>
         </ul>
-        <h2 className="about-contact-title">Contacténos</h2>
+        <h2 className="about-contact-title">Contact Us</h2>
         <p className="about-contact-info">
-          Dirección: Ni aquí ni allá 22215
+          Direction: Nobody 22215
           <br />
-          Telefono: (+54) 456-7890
+          Telephone: (+54) 456-789023
           <br />
           Email: acmetronics@gmail.com
         </p>
         <h2 className="about-links-title">Links</h2>
         <ul className="about-links-list">
           <li className="about-links-item">
-            <Link to="/privacy-policy">Politica de Privacidad</Link>
+            <Link to="/privacy-policy">Privacy Policy</Link>
           </li>
           <li className="about-links-item">
-            <Link to="/terms-and-conditions">Términos y Condiciones</Link>
+            <Link to="/terms-and-conditions">Terms and Conditions</Link>
           </li>
         </ul>
-        <h2 className="about-social-title">Siguenos</h2>
+        <h2 className="about-social-title">Follow us</h2>
         <ul className="about-social-list">
           <li className="about-social-item">
             <a href="https://facebook.com/acmetronicstore">Facebook</a>
@@ -70,7 +70,7 @@ function About() {
           </li>
         </ul>
         <h2 className="about-subscribe-title">
-          Suscribete a nuestro Newsletter
+        Subscribe to our newsletter
         </h2>
         <div />{" "}
       </div>
