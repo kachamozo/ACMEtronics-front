@@ -81,3 +81,10 @@
   outline: none;
 }
 
+.shop-card-link:hover {
+  text-decoration: none;
+  color: inherit;
+}
+.shop-card-link {
+  color: black;
+}
