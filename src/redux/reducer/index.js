@@ -57,23 +57,23 @@ function rootReducer(state = initialState, action) {
     
     // CASE para traer el rating desde el reduce/index y poder ordenarlos de mayor a menor y de menor a mayor 
     case GET_PRODUCT_RATING: {
-      let filterorder = [...state.products]
-      let filterproduct = [...state.copyProducts]
+      let filterorderrating = [...state.products]
+      let filterproductrating = [...state.copyProducts]
       if (action.payload === "all") {
                 return {
                     ...state,
-          copyProducts: filterorder
+          copyProducts: filterorderrating
                 }
             }
             if (action.payload === 'asc') {
-                const data =  filterproduct.sort((a, b) => (a.rating > b.rating ? 1 : -1))
+                const data =  filterproductrating.sort((a, b) => (a.rating > b.rating ? 1 : -1))
                 return {
                     ...state,
                     copyProducts: data
                 }
             }
 
-            const data = filterproduct.sort((a, b) => (a.rating > b.rating ? -1 : 1))
+            const data = filterproductrating.sort((a, b) => (a.rating > b.rating ? -1 : 1))
             return {
                 ...state,
                 copyProducts: data
@@ -82,25 +82,37 @@ function rootReducer(state = initialState, action) {
 
   // CASE para traer el precio desde el reduce/index y poder ordenarlos de mayor a menor y de menor a mayor 
     case PRICE_FILTER: {
-      let filterorder = [...state.products]
-      let filterproduct = [...state.copyProducts]
+      let filterorderprice = [...state.products]
+      let filterproductprice = [...state.copyProducts]
       if (action.payload === "all") {
 
                 return {
                     ...state,
-          copyProducts: filterorder
+          copyProducts: filterorderprice
                   
                 }
             }
             if (action.payload === 'asc') {
-                const data =  filterproduct.sort((a, b) => (a.price > b.price ? 1 : -1))
+                const data =  filterproductprice.sort((a, b) => {
+                  let priceA = parseInt(a.price);
+                  let priceB = parseInt(b.price);
+                  if (priceA > priceB) return 1;
+                  if (priceA < priceB) return -1;
+                  else return 0;
+              })
                 return {
                     ...state,
                     copyProducts: data
                 }
             }
 
-            const data = filterproduct.sort((a, b) => (a.price > b.price ? -1 : 1))
+            const data = filterproductprice.sort((a, b) => {
+              let pesoA = parseInt(a.price);
+              let pesoB = parseInt(b.price);
+              if (pesoA > pesoB) return -1;
+              if (pesoA < pesoB) return 1;
+              else return 0;
+          })
             return {
                 ...state,
                 copyProducts: data
