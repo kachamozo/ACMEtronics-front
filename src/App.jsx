@@ -7,6 +7,7 @@ import Detail from "./components/Detail/Detail";
 import Carousel from "./components/Carousel/Carousel";
 import Filter from "./components/Filter/Filter";
 import Form from "./components/Form/Form";
+import UpdateProduct from "./components/UpdateProductForm/UpdateProduct";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         <Route path="/shop/:id" element={<Detail />} />
         <Route path="/shop/form" element={<Form />} />
         <Route path="/shop/filter" element={<Filter />} />
+        <Route path="/shop/updateproduct" element={<UpdateProduct />} />
       </Routes>
     </div>
   );

@@ -4,10 +4,15 @@ import {
   GET_PRODUCT_DETAIL,
   SEARCH_NAME,
   GET_CATEGORIES,
+
+  UPDATE_PRODUCT,
+  DELETE_PRODUCT,
+
   ORDERBYAZ,
   FILTER_CATEGORY,
   GET_PRODUCT_RATING,
   PRICE_FILTER,
+
 } from "../actions";
 
 const initialState = {
@@ -53,6 +58,13 @@ function rootReducer(state = initialState, action) {
 
     case GET_CATEGORIES:
       return { ...state, categories: action.payload };
+
+
+    case UPDATE_PRODUCT:
+      return action.payload;
+
+    case DELETE_PRODUCT:
+      return action.payload;
 
     
     // CASE para traer el rating desde el reduce/index y poder ordenarlos de mayor a menor y de menor a mayor 
@@ -178,6 +190,7 @@ function rootReducer(state = initialState, action) {
         copyProducts: filterCat
       }
     }
+
     default:
       return { ...state };
       
