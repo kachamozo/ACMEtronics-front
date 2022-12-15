@@ -7,7 +7,6 @@
   max-width: 30rem;
   height: auto;
   gap: 1rem;
-  align-items: center;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
   padding: 1rem;
   font-family: 'Raleway'
@@ -16,11 +15,11 @@
   border: solid 0.5px #319795;
   color: black;
 }
-a {
+.homeCard > a {
   text-decoration: none;
   color: inherit;
 }
-a:hover{
+.homeCard > a:hover{
   text-decoration: none;
 }
 
@@ -114,6 +113,7 @@ a:hover{
 
   justify-content: flex-end;
   width: 30%;
+ 
   
 }
 

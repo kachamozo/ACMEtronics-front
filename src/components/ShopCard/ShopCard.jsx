@@ -2,11 +2,13 @@ import React from "react";
 import "./ShopCard.css";
 import Rating from "react-rating";
 import { BsStarFill, BsStar, BsStarHalf } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 function ShopCard(props) {
   return (
     <div className="shop-card">
       <div>
+      <Link className="shop-card-link" to={'/shop/'+props.id}>
         <h3 className="card-title">{props.name}</h3>
         <h5>
           {" "}
@@ -37,6 +39,7 @@ function ShopCard(props) {
           width={"80px"}
           height={"120px"}
         />{" "}
+        </Link>
         <select className="product-quantity">
           <option value="All">1</option>
           <option value="+">+</option>

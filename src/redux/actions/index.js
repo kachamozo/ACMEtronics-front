@@ -35,8 +35,6 @@ export const getCategories = () => {
   };
 };
 
-//  ---- GET PRODUCT BY ID - descomentar cuando esté la ruta -------
-
 export const getProductDetail = (id) => {
   return async function (dispatch) {
     const response = await axios.get("http://localhost:3001/product/" + id);

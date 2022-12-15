@@ -32,7 +32,6 @@ function Shop() {
   
       {currentPosts?.map((e) => {
         return (
-        <Link to={'/shop/'+e.id} className="cardLink" >
           <div className="card-container" key={e.id}>
             <ShopCard
               id={e.id}
@@ -44,7 +43,6 @@ function Shop() {
               image={e.image}
             />
           </div>
-        </Link>
         );
       })}
     </div>
