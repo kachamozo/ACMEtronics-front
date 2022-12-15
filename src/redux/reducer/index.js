@@ -184,6 +184,13 @@ function rootReducer(state = initialState, action) {
       }
     
     case FILTER_CATEGORY:{
+      let allcategory = [...state.products]
+      if (action.payload === "all") {
+        return {
+            ...state,
+  copyProducts: allcategory
+        }
+    }
       const filterCat = state.products.filter(e => e.CategoryProduct[0].name?.includes(action.payload))
       return {
         ...state,
