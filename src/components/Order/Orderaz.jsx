@@ -1,6 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux'
-import { orderaz } from '../../redux/actions'
+import { getPrice, orderaz } from '../../redux/actions'
 import {getProductRating } from '../../redux/actions'
 import './Orderaz.css'
 
@@ -10,7 +10,15 @@ export const Orderaz = () => {
   function handleOrdenar(e) {
     e.preventDefault()
     dispatch(orderaz(e.target.value))
+  }
+
+  function handleRating(e){
+    e.preventDefault()
     dispatch(getProductRating(e.target.value))
+  }
+  function handlePrice(e){
+    e.preventDefault()
+    dispatch(getPrice(e.target.value))
   }
 // generar un select con las opciones de ordenar por nombre, por precio, por rating
   return (
@@ -27,7 +35,7 @@ export const Orderaz = () => {
 
       <div className='containerb'>
         <h5>By price</h5>
-      <select onChange={(e) => handleOrdenar(e)}>
+      <select onChange={(e) => handlePrice(e)}>
         <option value='all'>All</option>
         <option value='asc'> Minor to Major  </option>
         <option value='desc'> Major to Minor  </option>
@@ -36,7 +44,7 @@ export const Orderaz = () => {
 
       <div className='containerc'>
         <h5>By rating</h5>
-      <select onChange={(e) => handleOrdenar(e)}>
+      <select onChange={(e) => handleRating(e)}>
         <option value='all'>All</option>
         <option value='asc'> Minor to Major  </option>
         <option value='desc'> Major to Minor  </option>

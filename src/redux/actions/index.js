@@ -37,7 +37,7 @@ export const getProductDetail = (id) => {
     const response = await axios.get("http://localhost:3001/product/" + id);
     return dispatch({
       type: GET_PRODUCT_DETAIL,
-      payload: response.data.product,
+      payload: response.data,
     });
   };
 };
@@ -45,15 +45,15 @@ export const getProductDetail = (id) => {
 
 // GET PRODUCT BY PRICE MIN AND MAX
 
-export const priceFilter = (price) => {
-  return async function (dispatch) {
-    const response = await axios.get("http://localhost:3001/product/price/" + price);
-    return dispatch({
-      type: PRICE_FILTER,
-      payload: response.data.products,
-    });
-  };
-};
+// export const priceFilter = (price) => {
+//   return async function (dispatch) {
+//     const response = await axios.get("http://localhost:3001/product/price/" + price);
+//     return dispatch({
+//       type: PRICE_FILTER,
+//       payload: response.data.products,
+//     });
+//   };
+// };
 
 /* export const priceFilter = (price) => {
   return {
@@ -69,6 +69,12 @@ export const getProductRating = (rating) => {
   return {
     type: GET_PRODUCT_RATING,
     payload: rating,
+  };
+};
+export const getPrice = (price) => {
+  return {
+    type: PRICE_FILTER,
+    payload: price,
   };
 };
   
