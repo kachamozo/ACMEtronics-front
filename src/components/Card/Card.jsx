@@ -2,10 +2,12 @@ import React from "react";
 import "./Card.css";
 import Rating from "react-rating";
 import { BsStarFill, BsStar, BsStarHalf } from "react-icons/bs";
+import { Link } from "react-router-dom";
 
 function Card(props) {
   return (
     <div className="homeCard">
+      <Link to={'/shop/'+props.id}>
       <div className="imagen">
         <img
           src={props.image}
@@ -13,7 +15,6 @@ function Card(props) {
           width={"120px"}
           height={"170px"}
         />
-
       </div>
       <div className='item1'>
         <div className="title-stars">
@@ -30,6 +31,7 @@ function Card(props) {
             <span>In stock</span>
           </div>
       </div>
+      </Link>
       <div className='item2'>
         <h2>${props.price}</h2>
           <div className='cantProducts'>
@@ -37,7 +39,7 @@ function Card(props) {
             <span>0</span>
             <button>+</button>
           </div>
-      </div>
+      </div> 
       <div className='item3'>
         <button className="addCart">Add to cart</button>
         <button className="fav">♡</button>

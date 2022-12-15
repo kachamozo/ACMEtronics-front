@@ -24,6 +24,10 @@ function Filter() {
                         <div className="filter-item">
                             <div className="filter-item-container">
                                 <div className="filter-item-item">
+                                    <input type="radio" name="category" value="all" onChange={handleCategory}></input>
+                                    <label for="All">All</label><br/>
+                                    
+
                                     <input onChange={handleCategory} type="radio" name="category" value='Headphones'/>
                                     <label for="Headphones">Headphones </label><br/>
 
