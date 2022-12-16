@@ -10,6 +10,12 @@
   flex-wrap: wrap;
   background-color: #f8f9fa;
 } 
+
+@media screen and (max-width: 768px) {
+  .shop-background {
+    flex-direction: column;
+  }
+}
 .shop-card:hover {
   border: solid 0.5px #319795;
   text-decoration: none;
@@ -24,3 +30,11 @@
   align-items: center;
   justify-content: center;
 }
+@media screen and (max-width: 768px) {
+  .pagination-container {
+    flex-direction: column;
+  }
+  
+}
+
+  

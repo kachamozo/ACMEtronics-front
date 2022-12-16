@@ -8,12 +8,17 @@ import Carousel from "./components/Carousel/Carousel";
 import Filter from "./components/Filter/Filter";
 import Form from "./components/Form/Form";
 import UpdateProduct from "./components/UpdateProductForm/UpdateProduct";
+
 import WishList from "./components/WishList/WishList.jsx";
+
+import Footer from "./components/Footer/Footer";
+
 
 function App() {
   return (
     <div>
       <Navbar />
+      
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -24,7 +29,10 @@ function App() {
         <Route path="/shop/updateproduct" element={<UpdateProduct />} />
         <Route path="/home/wishList" element={<WishList />} />
       </Routes>
+      <Footer />
+      
     </div>
+    
   );
 }
 

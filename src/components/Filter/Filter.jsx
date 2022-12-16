@@ -29,22 +29,22 @@ function Filter() {
                                     
 
                                     <input onChange={handleCategory} type="radio" name="category" value='Headphones'/>
-                                    <label for="Headphones">Headphones </label><br/>
+                                    <label htmlFor="Headphones">Headphones </label><br/>
 
                                     <input onChange={handleCategory} type="radio" name="category" value="SmartWatch"/>
-                                    <label for="SmartWatch"> SmartWatch</label><br/>
+                                    <label htmlFor="SmartWatch"> SmartWatch</label><br/>
 
                                     <input onChange={handleCategory} type="radio" name="category" value="E-readers"/>
-                                    <label for="E-readers"> E-readers</label><br/>
+                                    <label htmlFor="E-readers"> E-readers</label><br/>
 
                                     <input onChange={handleCategory} type="radio" name="category" value="Tablets"/>
-                                    <label for="Tablets"> Tablets</label><br/>
+                                    <label htmlFor="Tablets"> Tablets</label><br/>
 
                                     <input onChange={handleCategory} type="radio" name="category" value="Laptops"/>
-                                    <label for="Laptops"> Laptops</label><br/>
+                                    <label htmlFor="Laptops"> Laptops</label><br/>
 
                                     <input onChange={handleCategory} type="radio" name="category" value="Smartphones"/>
-                                    <label for="Smartphones"> Smartphones</label><br/>
+                                    <label htmlFor="Smartphones"> Smartphones</label><br/>
                                 </div>
                             </div>
                         </div>

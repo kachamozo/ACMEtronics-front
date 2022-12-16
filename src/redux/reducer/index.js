@@ -135,6 +135,7 @@ function rootReducer(state = initialState, action) {
       };
     }
 
+
     /* case PRICE_FILTER: {
       let filterorder = [...state.products]
       let filterproduct = [...state.copyProducts]
@@ -158,6 +159,8 @@ function rootReducer(state = initialState, action) {
                 copyProducts: data
             }
         }  */
+
+
 
     case ORDERBYAZ: {
       let filterorder = [...state.products];
