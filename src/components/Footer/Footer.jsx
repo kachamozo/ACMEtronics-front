@@ -63,7 +63,8 @@ function Footer() {
     </div>
         
         <Nav className="auto">
-        <Nav.Link href="https://facebook.com/ACMEtronics">Follow us : <img src={face}/></Nav.Link>
+          <h5>Follow us :</h5>
+        <Nav.Link href="https://facebook.com/ACMEtronics"><img src={face}/></Nav.Link>
         <Nav.Link href="https://instagram.com/ACMEtronics"><img src={instagram}/></Nav.Link>
         <Nav.Link href="https://twitter.com/ACMEtronics"><img src={twitter}/></Nav.Link>
       </Nav>
