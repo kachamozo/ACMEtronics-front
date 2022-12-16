@@ -135,7 +135,6 @@ function rootReducer(state = initialState, action) {
       };
     }
 
-
     /* case PRICE_FILTER: {
       let filterorder = [...state.products]
       let filterproduct = [...state.copyProducts]
@@ -160,8 +159,6 @@ function rootReducer(state = initialState, action) {
             }
         }  */
 
-
-
     case ORDERBYAZ: {
       let filterorder = [...state.products];
       let filterproduct = [...state.copyProducts];
@@ -185,22 +182,6 @@ function rootReducer(state = initialState, action) {
       const data = filterproduct.sort((a, b) =>
         a.name?.toUpperCase() > b.name?.toUpperCase() ? -1 : 1
       );
-
-    
-    case FILTER_CATEGORY:{
-      let allcategory = [...state.products]
-      if (action.payload === "all") {
-        return {
-            ...state,
-  copyProducts: allcategory
-        }
-    }
-      const filterCat = state.products.filter(e => e.CategoryProduct[0].name?.includes(action.payload))
-
-      return {
-        ...state,
-        copyProducts: data,
-      };
     }
 
     case FILTER_CATEGORY: {
