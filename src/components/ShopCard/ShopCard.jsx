@@ -12,19 +12,19 @@ function ShopCard(props) {
         <h3 className="card-title">{props.name}</h3>
         <h5>
           {" "}
-          Marca: <p>{props.brand}</p>
+          Mark: <p>{props.brand}</p>
         </h5>
         <h5 className="card-price">
           {" "}
-          Precio: <p>${props.price}</p>
+          Price: <p>${props.price}</p>
         </h5>
         <h5>
           {" "}
-          Disponibles: <p>{props.stock} Unidades</p>
+          Available: <p>{props.stock} Unidades</p>
         </h5>
         <h5>
           {" "}
-          Calificación:{" "}
+          Qualification:{" "}
           <Rating
             initialRating={props.rating}
             emptySymbol={<BsStar />}
@@ -45,8 +45,8 @@ function ShopCard(props) {
           <option value="+">+</option>
           <option value="-">-</option>
         </select>
-        <button className="buy-button">Comprar</button>{" "}
-        <button className="add-to-cart-button">Agregar</button>
+        <button className="buy-button">Purchase</button>{" "}
+        <button className="add-to-cart-button">Add</button>
       </div>
     </div>
   );
