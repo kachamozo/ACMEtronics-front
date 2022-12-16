@@ -4,6 +4,10 @@ import { NavLink, Link } from "react-router-dom";
 import { searchName } from "../../redux/actions";
 import "./Navbar.css";
 import logo from "../../Assets/logo1.jpg";
+import Userlogout from "../userlogut/userlogout";
+import { Login } from "@mui/icons-material";
+
+
 
 function Navbar() {
   const dispatch = useDispatch();
@@ -14,6 +18,7 @@ function Navbar() {
   };
   return (
     <div className="nav-bar">
+    <Userlogout/>
       <img
         className="logo"
         src={logo}
