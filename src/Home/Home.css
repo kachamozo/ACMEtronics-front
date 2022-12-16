@@ -20,8 +20,23 @@
   grid-gap: 30px;
   margin-top: 50px;
   margin-left: 30px;
+ 
 }
 
 .background {
   background-color: #f8f9fa;
+}
+
+.product-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 2 2 20px #319795(0, 0, 0, 0.15);
+  overflow: hidden;
+  position: relative;
+  transition: all 0.3s ease;
+}
+.product-card:hover {
+  box-shadow: 4px 3px 4px 2px #319795;
+  transform: translateY(-5px);
+  background-color: #319795;
 }

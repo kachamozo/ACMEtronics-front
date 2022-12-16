@@ -131,33 +131,6 @@ function rootReducer(state = initialState, action) {
             }
         }
 
-        
-  
-  
-  /* case PRICE_FILTER: {
-      let filterorder = [...state.products]
-      let filterproduct = [...state.copyProducts]
-      if (action.payload === "all") {
-                return {
-                    ...state,
-          copyProducts: filterorder 
-                }
-            }
-            if (action.payload === 'asc') {
-                const data =  filterproduct.sort((a, b) => (a.price > b.price ? 1 : -1))
-                return {
-                    ...state,
-                    copyProducts: data
-                }
-            }
-
-            const data = filterproduct.sort((a, b) => (a.price > b.price ? -1 : 1))
-            return {
-                ...state,
-                copyProducts: data
-            }
-        }  */
-
 
     case ORDERBYAZ: {
         let filterorder = [...state.products]

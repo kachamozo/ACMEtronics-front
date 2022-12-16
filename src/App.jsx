@@ -8,11 +8,13 @@ import Carousel from "./components/Carousel/Carousel";
 import Filter from "./components/Filter/Filter";
 import Form from "./components/Form/Form";
 import UpdateProduct from "./components/UpdateProductForm/UpdateProduct";
+import Footer from "./components/Footer/Footer";
 
 function App() {
   return (
     <div>
       <Navbar />
+      
       <Routes>
         <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -22,7 +24,10 @@ function App() {
         <Route path="/shop/filter" element={<Filter />} />
         <Route path="/shop/updateproduct" element={<UpdateProduct />} />
       </Routes>
+      <Footer />
+      
     </div>
+    
   );
 }
 

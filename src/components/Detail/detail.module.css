@@ -8,6 +8,12 @@
     justify-content: center;
     width: 100%;
 }
+@media screen and (min-width: 768px) {
+    .detail {
+        flex-direction: row;
+    }
+    
+}
 
 .container {
     display: flex;
@@ -16,15 +22,41 @@
     justify-content: space-around;
     margin-top: 10rem;
 }
+@media screen and (min-width: 768px) {
+    .container {
+        flex-direction: row;
+    }
+    
+}
+
 
 .img {
     display: flex;
     flex-wrap: wrap;
     max-width: 50%;
+    border-radius: 1rem;
+    border-radius: 10px;
+    box-shadow: 4px 8px 20px 8px #319795;
+}
+
+@media screen and (min-width: 768px) {
+    .img {
+        flex-direction: column;
+        max-width: 50%;
+    }
+    
 }
 
 .img>img {
-    max-height: 250px;
+    max-height: 350px;
+    border-radius: 10%;
+}
+
+@media screen and (min-width: 768px) {
+    .img>img {
+        max-height: 350px;
+    }
+    
 }
 
 .content {
@@ -32,6 +64,13 @@
     flex-direction: column;
     flex-wrap: wrap;
     max-width: 50%;
+}
+@media screen and (min-width: 768px) {
+    .content {
+        flex-direction: column;
+        max-width: 50%;
+    }
+    
 }
 
 .content>h1,
@@ -60,6 +99,12 @@
     letter-spacing: 1px;
     transition: all 0.15s linear;
 }
+@media screen and (min-width: 768px) {
+    .button>button {
+        font-size: 1rem;
+    }
+    
+}
 
 .button>button:hover {
     background-color: rgba(29, 201, 160, 0.08);
@@ -84,9 +129,19 @@
 
 .reviews {
     margin-top: 3rem;
+    box-shadow: 2px 4px 10px 4px gray;
+
     border: solid 1px rgb(219, 219, 219);
     border-radius: 1rem;
 
+}
+@media screen and (min-width: 768px) {
+    .reviews {
+        margin-top: 3rem;
+        border: solid 1px rgb(219, 219, 219);
+        border-radius: 1rem;
+    }
+    
 }
 
 .reviews>h2,
@@ -123,3 +178,13 @@
         padding: 2rem;
     }
 }
+@media screen and (min-width: 768px) {
+    .container {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-top: 3rem;
+    }
+    
+}
+    
