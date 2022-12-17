@@ -66,8 +66,6 @@ export const getProductDetail = (id) => {
   };
 }; */
 
-
-
 // GET PRODUCT BY RATING
 
 export const getProductRating = (rating) => {
@@ -175,7 +173,7 @@ export const orderaz = (payload) => {
 export const filterCategory = (payload) => {
   return {
     type: FILTER_CATEGORY,
-    payload,
+    payload: payload,
   };
 };
 

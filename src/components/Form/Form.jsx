@@ -4,13 +4,13 @@ import {
   createProduct,
   getCategories,
 } from "../../redux/actions/index";
-
+import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./Form.css";
 
 const AddProduct = () => {
   const dispatch = useDispatch();
-
+  const navigate = useNavigate();
   const allCategories = useSelector((state) => state.categories);
   const allProducts = useSelector((state) => state.copyProducts);
 
@@ -64,6 +64,7 @@ const AddProduct = () => {
         image: "",
         categories: [],
       });
+      navigate("/shop/updateproduct");
     } else {
       alert("Debe completar la informacion para crear el producto");
     }
@@ -71,7 +72,6 @@ const AddProduct = () => {
 
   useEffect(() => {
     dispatch(getCategories());
-    dispatch(getAllProducts());
   }, [dispatch]);
 
   function validation(input) {
@@ -218,9 +218,11 @@ const AddProduct = () => {
               className="select"
               id="categories"
               name="categories"
-              onChange={(e) => handleSelect(e)}
+              onChange={(event) => handleSelect(event)}
             >
-              <option value="">Select Categories</option>
+              <option value="" hidden>
+                Select Categories
+              </option>
 
               {allCategories.map((category) => (
                 <option
