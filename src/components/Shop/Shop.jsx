@@ -24,6 +24,8 @@ function Shop() {
     dispatch(getAllProducts());
     document.getElementById('search').value = ''   
   }, [dispatch]);
+
+  
   return (
     <>
     <div className="shop-background">

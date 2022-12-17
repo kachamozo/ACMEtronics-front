@@ -1,6 +1,7 @@
 import axios from "axios";
 export const GET_ALL_PRODUCTS = "GET_ALL_PRODUCTS";
 export const GET_PRODUCT_DETAIL = "GET_PRODUCT_DETAIL";
+export const CLEAR_DETAIL = "CLEAR_DETAIL";
 export const SEARCH_NAME = "SEARCH_NAME";
 export const CLEAN = "CLEAN";
 export const GET_CATEGORIES = "GET_CATEGORIES";
@@ -16,6 +17,8 @@ export const ADD_FAVORITE = "ADD_FAVORITE";
 export const REMOVE_FAVORITE = "REMOVE_FAVORITE";
 export const GET_ALL_USERS = "GET_ALL_USERS";
 export const GET_USER_BY_ID = "GET_USER_BY_ID";
+
+export const ADD_TO_CART = "ADD_TO_CART"
 
 export const getAllProducts = () => {
   return async function (dispatch) {
@@ -100,7 +103,7 @@ export const clean = (payload) => {
 
 export const ClearDetail = () => {
   return {
-    type: "CLEAR_DETAIL",
+    type: CLEAR_DETAIL,
   };
 };
 
@@ -223,3 +226,11 @@ export const getUserById = (id) => {
     });
   };
 };
+
+export const addToCart = (id) => {
+  return {
+    type : ADD_TO_CART, 
+    payload: id,
+  }
+  
+}

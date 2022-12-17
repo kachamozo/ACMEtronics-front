@@ -14,7 +14,10 @@ import {
   REMOVE_FAVORITE,
   GET_ALL_USERS,
   GET_USER_BY_ID,
+  ADD_TO_CART,
 } from "../actions";
+
+
 
 const initialState = {
   products: [],
@@ -25,6 +28,7 @@ const initialState = {
   favorites: [],
   users: [],
   userDetail: [],
+  cart: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -220,6 +224,15 @@ function rootReducer(state = initialState, action) {
         userDetail: action.payload,
       };
     }
+    case ADD_TO_CART:{
+      let newItem = state.copyProducts.find(product => product.id === action.payload)
+      console.log(newItem)
+      return {
+        ...state,
+        cart: [...state.cart, newItem],
+      }
+
+    } 
     default:
       return { ...state };
   }

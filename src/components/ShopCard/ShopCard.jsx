@@ -3,8 +3,19 @@ import "./ShopCard.css";
 import Rating from "react-rating";
 import { BsStarFill, BsStar, BsStarHalf } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { addToCart } from "../../redux/actions";
 
 function ShopCard(props) {
+const dispatch = useDispatch()
+let itemId = props.id
+
+
+const handleAddToCart= () => {
+  dispatch(addToCart(itemId))
+  }
+
+
   return (
     <div className="shop-card">
       <div>
@@ -46,7 +57,7 @@ function ShopCard(props) {
           <option value="-">-</option>
         </select>
         <button className="buy-button">Purchase</button>{" "}
-        <button className="add-to-cart-button">Add</button>
+        <button className="add-to-cart-button" onClick={()=> handleAddToCart()} >Add</button>
       </div>
     </div>
   );
