@@ -28,7 +28,7 @@ const initialState = {
   favorites: [],
   users: [],
   userDetail: [],
-  cart: [],
+  cart: JSON.parse(localStorage.getItem("items")) || [],
 };
 
 function rootReducer(state = initialState, action) {

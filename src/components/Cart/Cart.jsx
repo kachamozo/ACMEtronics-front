@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
-import CartItem from '../CartItem/CartItem'
 
 export default function Cart() {
 
 const cart = useSelector((state) => state.cart)
-
-/* let [items, setItems] = useState(JSON.parse(localStorage.getItem("items"))) || [] */
 
 
 // -- el item se guarda en el carrito ---
@@ -15,12 +12,15 @@ useEffect(()=> {
 }, [cart])
 
 
-
   return (
     <div>
-      <h1>Carrito</h1>
-      {cart.map(item => <div> <CartItem key={item.id} /> </div>)}
-     
+      <h1> Cart </h1>
+      {cart.map(item => <div>
+        <h3>{item.name}</h3> 
+        <h4>${item.price}</h4>
+      <img src={item.image} width='100px' />
+      <button> Eliminar </button>
+      </div>)}
     </div>
     
   )
