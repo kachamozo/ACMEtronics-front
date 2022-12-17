@@ -8,6 +8,7 @@ import {
   deleteProduct,
 } from "../../redux/actions/index";
 import { Edit, Delete } from "@mui/icons-material";
+import { useNavigate } from "react-router-dom";
 
 import {
   Table,
@@ -23,6 +24,7 @@ import {
 
 function UpdateProduct() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const allProducts = useSelector((state) => state.products);
 
@@ -51,7 +53,7 @@ function UpdateProduct() {
     );
     dispatch(getAllProducts());
     reload();
-
+    // navigate("/shop/updateproduct");
     modalEdit();
 
     window.scroll(0, 0);
