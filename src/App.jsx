@@ -12,14 +12,19 @@ import UpdateProduct from "./components/UpdateProductForm/UpdateProduct";
 import WishList from "./components/WishList/WishList.jsx";
 
 import Footer from "./components/Footer/Footer";
+import Landing from "./components/Landing/Landing";
+
 
 
 function App() {
   return (
+    
     <div>
       <Navbar />
       
-      <Routes>
+      <Routes>    
+
+        <Route path="/" element={<Landing />} />
         <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/shop" element={<Shop />} />
@@ -30,10 +35,11 @@ function App() {
         <Route path="/home/wishList" element={<WishList />} />
       </Routes>
       <Footer />
-      
+       
     </div>
-    
+
   );
 }
 
 export default App;
+

@@ -3,6 +3,10 @@
     height: 100%;
 }
 
+.carousel-item {
+    height: 700px;
+}
+
 .carousel-slide {
     position: relative;
     overflow: hidden;
@@ -11,6 +15,7 @@
     margin: 0;
     padding: 0;
     list-style: none;
+   
 }
 
 
@@ -21,6 +26,8 @@
     left: 0;
     opacity: 0;
     transition: opacity 0.5s ease-in-out;
+    height: 80%;
+   
 }
 
 
@@ -123,7 +130,11 @@ span.carousel-control-next-icon, span.carousel-control-prev-icon {
     background-repeat: no-repeat; 
     background-position: center;
     background-size: 100% 100%;
+    
 }
+
+
+
 
 
 

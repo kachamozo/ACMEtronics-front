@@ -21,7 +21,7 @@ function Home() {
         <h2> Most selled products </h2>
         </div>
       <div className="card-container">
-        {  allProducts?.slice(0, 12).map((e) => {
+        {  allProducts?.slice(0, 10).map((e) => {
           return (
               <div className="product-card" key={e.id}>
                 <Card
