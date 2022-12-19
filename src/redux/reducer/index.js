@@ -14,6 +14,7 @@ import {
   REMOVE_FAVORITE,
   GET_ALL_USERS,
   GET_USER_BY_ID,
+  PAYMENT_STRIPE,
 } from "../actions";
 
 const initialState = {
@@ -25,6 +26,7 @@ const initialState = {
   favorites: [],
   users: [],
   userDetail: [],
+  stripe: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -218,6 +220,13 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         userDetail: action.payload,
+      };
+    }
+
+    case PAYMENT_STRIPE: {
+      return {
+        ...state,
+        stripe: action.payload,
       };
     }
     default:

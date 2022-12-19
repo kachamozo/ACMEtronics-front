@@ -16,6 +16,7 @@ export const ADD_FAVORITE = "ADD_FAVORITE";
 export const REMOVE_FAVORITE = "REMOVE_FAVORITE";
 export const GET_ALL_USERS = "GET_ALL_USERS";
 export const GET_USER_BY_ID = "GET_USER_BY_ID";
+export const PAYMENT_STRIPE = "PAYMENT_STRIPE";
 
 export const getAllProducts = () => {
   return async function (dispatch) {
@@ -217,6 +218,16 @@ export const getUserById = (id) => {
     const response = await axios.get(`http://localhost:3001/user/${id}`);
     return dispatch({
       type: GET_USER_BY_ID,
+      payload: response.data,
+    });
+  };
+};
+
+export const checkout = (payload) => {
+  return async function (dispatch) {
+    const response = await axios.post("http://localhost:3001/stripe", payload);
+    return dispatch({
+      type: PAYMENT_STRIPE,
       payload: response.data,
     });
   };
