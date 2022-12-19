@@ -4,10 +4,8 @@ export const GET_PRODUCT_DETAIL = "GET_PRODUCT_DETAIL";
 export const SEARCH_NAME = "SEARCH_NAME";
 export const CLEAN = "CLEAN";
 export const GET_CATEGORIES = "GET_CATEGORIES";
-
 export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
-
 export const ORDERBYAZ = "ORDERBYAZ";
 export const FILTER_CATEGORY = "FILTER_CATEGORY";
 export const GET_PRODUCT_RATING = "GET_PRODUCT_RATING";
@@ -16,6 +14,10 @@ export const ADD_FAVORITE = "ADD_FAVORITE";
 export const REMOVE_FAVORITE = "REMOVE_FAVORITE";
 export const GET_ALL_USERS = "GET_ALL_USERS";
 export const GET_USER_BY_ID = "GET_USER_BY_ID";
+export const ADD_TO_CART = "ADD_TO_CART"
+export const REMOVE_ALL_CART = "REMOVE_ALL_CART";
+export const INCREASE_QUANTITY = 'INCREASE_QUANTITY';
+export const DECREASE_QUANTITY = 'DECREASE_QUANTITY';
 
 export const getAllProducts = () => {
   return async function (dispatch) {
@@ -221,3 +223,28 @@ export const getUserById = (id) => {
     });
   };
 };
+export const addToCart = (id) => {
+  return {
+    type : ADD_TO_CART, 
+    payload: id,
+  }
+  
+}
+export function increaseQuantity(payload){
+  return{
+      type:'INCREASE_QUANTITY',
+      payload
+  }
+}
+export function decreaseQuantity(payload){
+  return{
+      type:'DECREASE_QUANTITY',
+      payload
+  }
+}
+export const removeCart = (id) => {
+return{
+type: REMOVE_ALL_CART,
+payload: id
+}
+}

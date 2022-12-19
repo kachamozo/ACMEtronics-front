@@ -57,11 +57,13 @@ function Navbar() {
         </button>
 
         <button className="btnes">
+        <Link to={'/shop/cart'}>
           <img
             src="https://img.icons8.com/ios/50/000000/shopping-cart--v1.png"
             width={"30px"}
             height={"30px"}
           />
+          </Link>
         </button>
 
         <button className="btnes">
