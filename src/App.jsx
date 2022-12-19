@@ -9,13 +9,18 @@ import Filter from "./components/Filter/Filter";
 import Form from "./components/Form/Form";
 import UpdateProduct from "./components/UpdateProductForm/UpdateProduct";
 import Footer from "./components/Footer/Footer";
+import Landing from "./components/Landing/Landing";
+
 
 function App() {
   return (
+    
     <div>
       <Navbar />
       
-      <Routes>
+      <Routes>    
+
+        <Route path="/" element={<Landing />} />
         <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
         <Route path="/shop" element={<Shop />} />
@@ -25,10 +30,11 @@ function App() {
         <Route path="/shop/updateproduct" element={<UpdateProduct />} />
       </Routes>
       <Footer />
-      
+       
     </div>
-    
+
   );
 }
 
 export default App;
+
