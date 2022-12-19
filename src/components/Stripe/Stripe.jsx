@@ -15,12 +15,30 @@ const stripePromise = loadStripe(
   "pk_test_51MGiEBJf3Ra7t0LIpbXGmuheCzm64uisAtUjjerxb3LCv7AEkdcfVfUWRlVRWcScZU5oLKXKRHSP45u6LIPRS66y00oG54GCjY"
 );
 
-function Stripe() {
+function CheckoutForm() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const stripe = useStripe();
+  const elements = useElements();
 
-  return <div>Stripe</div>;
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const { error, paymentMethod } = await stripe.createPaymentMethod({
+      type: "card",
+      card: elements.getElement(CardElement),
+    });
+  };
+
+  return <form onSubmit={handleSubmit}></form>;
+}
+
+function Stripe() {
+  return (
+    <Elements stripe={stripePromise}>
+      <CheckoutForm />
+    </Elements>
+  );
 }
 
 export default Stripe;
