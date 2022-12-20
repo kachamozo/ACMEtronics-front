@@ -18,8 +18,8 @@ export default function Cart() {
   const dispatch = useDispatch();
   // -- el item se guarda en el carrito ---
   useEffect(() => {
-    localStorage.setItem("items", JSON.stringify(cart));
-  }, [cart]);
+    localStorage.setItem("cart", JSON.stringify(ListCart));
+  }, [ListCart ]);
   const handleDelete = () => {
     dispatch(removeCart());
   };
@@ -53,7 +53,7 @@ export default function Cart() {
                 <button
                   className="btn btn-primary"
                   style={{ margin: "2px" }}
-                  onClick={ handleDescrease}
+                  onClick={()  => handleDescrease(item.id)}
                 >
                   -
                   </button>

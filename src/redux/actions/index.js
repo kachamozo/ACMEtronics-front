@@ -243,16 +243,16 @@ export const addToCart = (id) => {
   }
   
 }
-export function increaseQuantity(payload){
+export function increaseQuantity(id){
   return{
       type:'INCREASE_QUANTITY',
-      payload
+      payload: id
   }
 }
-export function decreaseQuantity(payload){
+export function decreaseQuantity(id){
   return{
       type:'DECREASE_QUANTITY',
-      payload
+      payload:id
   }
 }
 export const removeCart = (id) => {

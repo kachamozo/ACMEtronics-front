@@ -21,6 +21,7 @@ import {
   REMOVE_ALL_CART,
 } from "../actions";
 
+
 const initialState = {
   products: [],
   detail: [],
@@ -31,7 +32,7 @@ const initialState = {
   users: [],
   userDetail: [],
   stripe: [],
-  cart:[]
+  cart:JSON.parse(localStorage.getItem('cart')) || []
 };
 
 function rootReducer(state = initialState, action) {
@@ -238,7 +239,7 @@ function rootReducer(state = initialState, action) {
       let newItem = state.products.find((product) => product.id === action.payload);
       console.log(newItem, 'En el reducer.')
       let itemInCart = state.cart.find((item) => item.id == newItem.id);
-      // localStorage.setItem('cart', JSON.stringify([...state.cart, {...action.payload, quantity: 1}]))
+      localStorage.setItem('cart', JSON.stringify([...state.cart, {...action.payload, quantity: 1}]))
       return itemInCart
         ? {
             ...state,
@@ -251,23 +252,31 @@ function rootReducer(state = initialState, action) {
             // subtotal: state.subtotal + action.payload.precio
           };
     }
-    case INCREASE_QUANTITY:
+    case INCREASE_QUANTITY:{
+      return {
+        ...state,
+     cart: state.cart.map((item) => { 
+        if(item.product === action.payload){
+          return {...item, quantity:item.quantity+1} 
+        }return item 
+      })
+      }
+    }
+     
       
-      state.cart[action.payload].quantity++;
+   
+  case DECREASE_QUANTITY:{
+    return {
+      ...state,
+    cart: state.cart.map((item) => { 
+      if(item.product === action.payload){
+        return {...item, quantity:item.quantity-1} 
+      }return item 
+    })
+  }
+  
+  }
     
-     return{
-         ...state
-     }
-  case DECREASE_QUANTITY:
-      let quantity = state.cart[action.payload].quantity;
-      if(quantity>1){
-         
-          state.cart[action.payload].quantity--;
-      }
-    
-      return{
-          ...state
-      }
     case REMOVE_ALL_CART:{
       return {
         ...state,
