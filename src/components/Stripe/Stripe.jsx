@@ -34,7 +34,7 @@ function CheckoutForm() {
     } else {
       try {
         const { id } = paymentMethod;
-        dispatch(checkout(id));
+        dispatch(checkout({ id, amount: 250 }));
       } catch (error) {
         console.log(error);
       }
@@ -46,6 +46,7 @@ function CheckoutForm() {
         src="https://http2.mlstatic.com/D_NQ_NP_2X_702914-MLA47249717122_082021-F.webp"
         alt="pic"
       />
+      <h2 className="text-center my-2">Amazon Kindle Oasis</h2>
       <h3 className="text-center my-2">Price: $250</h3>
       <CardElement />
       <button>Buy</button>
