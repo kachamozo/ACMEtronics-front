@@ -2,9 +2,19 @@
     width: 100%;
     height: 100%;
 }
-
+@media screen and (max-width: 768px) {
+    .carousel-control-prev-icon, .carousel-control-next-icon {
+        width: 40px;
+        height: 40px;
+    }
+}
 .carousel-item {
     height: 700px;
+}
+@media screen and (max-width: 768px) {
+    .carousel-item {
+        height: 200px;
+    }
 }
 
 .carousel-slide {
@@ -18,6 +28,20 @@
    
 }
 
+.container h2{
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #000;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-family: "raleway", sans-serif;
+    margin-top: 40px;
+}
+@media screen and (max-width: 768px) {
+    .container h2 {
+        font-size: 1.5rem;
+    }
+}
 
 .carousel__slide {
     position: absolute;
@@ -29,8 +53,6 @@
     height: 80%;
    
 }
-
-
 .carousel-indicators {
     position: absolute;
     bottom: 0;
@@ -71,6 +93,17 @@
     width: 100%;
     overflow: hidden;
     background-color: #319795;
+    height: 80%;
+}
+@media screen and (max-width: 768px) {
+    .carousel-inner {
+        position: relative;
+        width: 100%;
+        overflow: hidden;
+        background-color: #319795;
+        height: 100%;
+    }
+    
 }
 
 
@@ -92,8 +125,22 @@
     transition: transform .6s ease-in-out;
     transition: transform .6s ease-in-out,-webkit-transform .6s ease-in-out;
 }
-
-
+@media screen and (max-width: 768px) {
+    .carousel-item {
+        position: relative;
+        display: none;
+        float: left;
+        width: 100%;
+        margin-right: -100%;
+        background-color: #319795;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        transition: -webkit-transform .6s ease-in-out;
+        transition: transform .6s ease-in-out;
+        transition: transform .6s ease-in-out,-webkit-transform .6s ease-in-out;
+    }
+    
+}
 .carousel-item :active {
     display: block;
 }
@@ -132,6 +179,8 @@ span.carousel-control-next-icon, span.carousel-control-prev-icon {
     background-size: 100% 100%;
     
 }
+
+
 
 
 

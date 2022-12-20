@@ -8,6 +8,7 @@ import "./Shop.css";
 import Filter from "../Filter/Filter"
 import { Link } from "react-router-dom";
 import { Orderaz } from "../Order/Orderaz";
+import Brands from "../Brands/Brands";
 
 function Shop() {
   const selectProduct = useSelector((state) => state.copyProducts);
@@ -27,6 +28,7 @@ function Shop() {
   return (
     <>
     <div className="shop-background">
+      <Brands />
       <Filter />
       <Orderaz />
   

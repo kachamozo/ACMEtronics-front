@@ -1,0 +1,47 @@
+.carousel h2{
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #000;
+    text-align: center;
+    margin-bottom: 2rem;
+    font-family: "raleway", sans-serif;
+    margin-top: 40px;
+}
+@media screen and (max-width: 768px) {
+    .carousel h2 {
+        font-size: 1.5rem;
+        text-align: center;
+    }
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+    width: 40px;
+    height: 40px;
+    
+}
+
+.carousel {
+    margin-top: 40px;
+}
+
+.carousel-inner{
+    box-shadow: 4px 8px 20px 8px #319795;
+}
+
+@media screen and (max-width: 768px) {
+    .carousel-inner {
+        height: auto;
+    }
+}
+
+
+
+ 
+
+
+
+
+
+
+
+
