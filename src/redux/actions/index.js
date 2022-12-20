@@ -236,6 +236,7 @@ export const checkout = (payload) => {
     });
   };
 };
+
 export const addToCart = (id) => {
   return {
     type: ADD_TO_CART,
