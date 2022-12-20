@@ -1,39 +1,54 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { increaseQuantity, removeCart,decreaseQuantity } from "../../redux/actions";
+import { Link } from "react-router-dom";
+import { clearCart } from "../../redux/actions";
+import CartItem from "../CartItem/CartItem";
+import cart from "../Cart/Cart.module.css"
 
 export default function Cart() {
   const cart = useSelector((state) => state.cart);
-
-  let ListCart = [];
-  console.log(ListCart);
+  const dispatch = useDispatch();
+  
   let TotalCart = 0;
   Object.keys(cart).forEach(function (item) {
     TotalCart += cart[item].quantity * cart[item].price;
-    ListCart.push(cart[item]);
   });
   function TotalPrice(price, tonggia) {
     return Number(price * tonggia).toLocaleString("en-US");
   }
-  const dispatch = useDispatch();
+
   // -- el item se guarda en el carrito ---
   useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(ListCart));
-  }, [ListCart ]);
-  const handleDelete = () => {
-    dispatch(removeCart());
-  };
-  const handleIncrease = () => {
-    dispatch(increaseQuantity())
-  }
-  const handleDescrease = () => {
-    dispatch(decreaseQuantity())
-  }
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
+  const handleClear = () => {
+    dispatch(clearCart());
+  };
+
+  if(!cart.length)
+  return (
+    <div>
+      <h1>Cart</h1>
+      <h2> Your cart is empty. </h2>
+      <Link to={'/shop/'}><button> See products </button></Link>
+      </div>
+  )
+
+  if(cart.length)
   return (
     <div>
       <h1> Cart </h1>
-      <table className="table mx-auto" style={{ maxWidth: "1200px" }}>
+      {cart.map(item => <div className="card">
+         <CartItem key={item.id} item={item} /> </div> )}
+      {<div><p> Items : {cart.length}</p></div>}
+      <p>Total: $ {TotalCart} </p>
+      <button> Buy now </button>
+      <button onClick={() => handleClear()}> Clear cart </button>
+      <Link to={'/shop/'}>Continue shopping</Link>
+
+
+      {/* <table className="table mx-auto" style={{ maxWidth: "1200px" }}>
         <thead>
           <tr>
             <th scope="col">name</th>
@@ -72,7 +87,7 @@ export default function Cart() {
           ))}
         </tbody>
         <p>{Number(TotalCart).toLocaleString("en-US")} $</p>
-      </table>
+      </table> */}
     </div>
   );
 }

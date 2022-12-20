@@ -16,10 +16,15 @@ export const ADD_FAVORITE = "ADD_FAVORITE";
 export const REMOVE_FAVORITE = "REMOVE_FAVORITE";
 export const GET_ALL_USERS = "GET_ALL_USERS";
 export const GET_USER_BY_ID = "GET_USER_BY_ID";
+
+// ------- CART ACTIONS ----------------
 export const ADD_TO_CART = "ADD_TO_CART"
-export const REMOVE_ALL_CART = "REMOVE_ALL_CART";
+export const DELETE_ONE_FROM_CART = "DELETE_ONE_FROM_CART"
+export const  DELETE_ALL_FROM_CART = " DELETE_ALL_FROM_CART"
+export const CLEAR_CART = "CLEAR_CART";
 export const INCREASE_QUANTITY = 'INCREASE_QUANTITY';
 export const DECREASE_QUANTITY = 'DECREASE_QUANTITY';
+
 export const PAYMENT_STRIPE = "PAYMENT_STRIPE";
 
 export const getAllProducts = () => {
@@ -241,8 +246,23 @@ export const addToCart = (id) => {
     type : ADD_TO_CART, 
     payload: id,
   }
-  
 }
+
+export const deleteOneFromCart = (id) => {
+  return {
+    type: DELETE_ONE_FROM_CART,
+    payload: id,
+  }
+}
+
+export const deleteAllFromCart = (id) => {
+  return {
+    type: DELETE_ALL_FROM_CART,
+    payload: id
+  }
+}
+
+
 export function increaseQuantity(id){
   return{
       type:'INCREASE_QUANTITY',
@@ -255,9 +275,9 @@ export function decreaseQuantity(id){
       payload:id
   }
 }
-export const removeCart = (id) => {
+export const clearCart = (id) => {
 return{
-type: REMOVE_ALL_CART,
+type: CLEAR_CART,
 payload: id
 }
 }
