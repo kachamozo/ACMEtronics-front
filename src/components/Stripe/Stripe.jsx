@@ -7,7 +7,7 @@ import {
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
-import checkout from "../../redux/actions/index";
+//import checkout from "../../redux/actions/index";
 import { useNavigate } from "react-router-dom";
 import "./Stripe.css";
 
@@ -30,7 +30,12 @@ function CheckoutForm() {
     });
   };
 
-  return <form onSubmit={handleSubmit}></form>;
+  return (
+    <form onSubmit={handleSubmit} className="card card-body gap-1">
+      <CardElement />
+      <button>Buy</button>
+    </form>
+  );
 }
 
 function Stripe() {
