@@ -253,25 +253,27 @@ function rootReducer(state = initialState, action) {
           };
     }
     case INCREASE_QUANTITY:{
-      let index = state.cart.findIndex(
-        (item) => item.id === action.payload,
-      )
-      state.cart[index].quantity += 1
-    
+      return {
+        ...state,
+     cart: state.cart.map((item) => { 
+        if(item.product === action.payload){
+          return {...item, quantity:item.quantity+1} 
+        }return item 
+      })
+      }
     }
      
       
    
   case DECREASE_QUANTITY:{
-    
-    let index = state.cart.findIndex(
-      (item) => item.id === action.payload,
-    )
-    if (state.cart[index].quantity <= 0) {
-      state.cart[index].quantity = 0
-    } else {
-      state.cart[index].quantity -= 1
-    }
+    return {
+      ...state,
+    cart: state.cart.map((item) => { 
+      if(item.product === action.payload){
+        return {...item, quantity:item.quantity-1} 
+      }return item 
+    })
+  }
   
   }
     
