@@ -60,13 +60,10 @@ function Carousel1() {
   <a className="carousel-control-next" href="#demo" data-slide="next">
     <span className="carousel-control-next-icon" ></span>
   </a>
+
 </div>
-        
-    );
+    )
 }
-
-
-
 
 
 export default Carousel1;
