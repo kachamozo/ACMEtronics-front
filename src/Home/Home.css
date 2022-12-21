@@ -22,6 +22,7 @@
   justify-content: center;
   font-family: "Raleway";
   margin-top: 100px;
+  text-decoration:underline cadetblue;
   
 }
 @media screen and (max-width: 768px) {
@@ -43,7 +44,7 @@
   background-color: #f8f9fa;
   width: 80%;
   margin: auto;
- 
+  margin-top: -20px; 
 }
 
 .product-card {

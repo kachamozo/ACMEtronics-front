@@ -5,6 +5,7 @@ import Carousel from "../components/Carousel/Carousel";
 import Card from "../components/Card/Card";
 import "./Home.css";
 
+
 function Home() {
   const allProducts = useSelector((state) => state.copyProducts);
   const dispatch = useDispatch();
@@ -17,23 +18,30 @@ function Home() {
   return (
     <div className="background">
       <Carousel />
+
       <div className  ="container">
-        <h2> Most selled products </h2>
+        <h2> Top 5 rated products </h2>
         </div>
       <div className="card-container">
-        {  allProducts?.slice(0, 10).map((e) => {
+        {  allProducts?.slice(0, 5).map((e) => {
+          // se mappea los 10 primeros productos pero se muestra solo 5
           return (
+            
               <div className="product-card" key={e.id}>
-                <Card
+                <Card 
+
                   id={e.id}
                   name={e.name}
                   price={e.price}
-                  rating={e.rating}
+                  rating={e.rating > 3 ? e.rating : 3}
                   image={e.image}
-                />
+                /> 
               </div>
           );
+          
         })}
+        <div className="next">
+        </div>
       </div>
     </div>
   );

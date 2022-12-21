@@ -15,10 +15,8 @@ function App() {
   return (
     
     <div>
-      <Navbar />
-      
+      <Navbar/>
       <Routes>    
-
         <Route path="/" element={<Landing />} />
         <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -28,7 +26,7 @@ function App() {
         <Route path="/shop/filter" element={<Filter />} />
         <Route path="/shop/updateproduct" element={<UpdateProduct />} />
       </Routes>
-      <Footer />
+      <Footer/>
        
     </div>
 
