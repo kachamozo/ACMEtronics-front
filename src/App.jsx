@@ -9,6 +9,7 @@ import Form from "./components/Form/Form";
 import UpdateProduct from "./components/UpdateProductForm/UpdateProduct";
 import Footer from "./components/Footer/Footer";
 import Landing from "./components/Landing/Landing";
+import Reviews from "./components/Reviews/Reviews";
 
 
 function App() {
@@ -25,6 +26,7 @@ function App() {
         <Route path="/shop/form" element={<Form />} />
         <Route path="/shop/filter" element={<Filter />} />
         <Route path="/shop/updateproduct" element={<UpdateProduct />} />
+        <Route path="/reviews/:id" element={<Reviews />} />
       </Routes>
       <Footer/>
        

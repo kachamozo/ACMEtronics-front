@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import d from '../Detail/detail.module.css'
 import { useDispatch, useSelector } from "react-redux";
 import { clean } from "../../redux/actions";
-import { useParams } from "react-router-dom";
+import { NavLink, useParams } from "react-router-dom";
 import { getProductDetail } from "../../redux/actions";
 
 export default function Detail(){
@@ -52,13 +52,15 @@ export default function Detail(){
              </div>
            )}
            <div className={d.reviewsBtn}>
-           <button > Add review </button>
+            <button> Add a review </button>
            </div>
        </div>
       </div>
      );
     else return (
         <div>
+          <NavLink to='/reviews'>Reviews</NavLink>
+
             Loading...
         </div>
     )
