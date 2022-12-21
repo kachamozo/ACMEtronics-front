@@ -7,6 +7,7 @@ import Pagination from "../Pagination/Pagination";
 import "./Shop.css";
 import Filter from "../Filter/Filter"
 import { Orderaz } from "../Order/Orderaz";
+import Brands from "../Brands/Brands";
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
@@ -28,6 +29,7 @@ function Shop() {
   return (
     <>
     <div className="shop-background">
+    <Brands />
       <Filter />
       <Orderaz />
   
