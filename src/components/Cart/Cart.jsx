@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { clearCart } from "../../redux/actions";
 import CartItem from "../CartItem/CartItem";
-import cart from "../Cart/Cart.module.css"
+import cartStyles from "../Cart/Cart.module.css"
 
 export default function Cart() {
   const cart = useSelector((state) => state.cart);
@@ -37,57 +37,21 @@ export default function Cart() {
 
   if(cart.length)
   return (
-    <div>
+    <div className={cartStyles.cartContainer}>
       <h1> Cart </h1>
-      {cart.map(item => <div className="card">
+      <div className="d-flex justify-content-center"><p> You have {cart.length} items in your cart </p></div>
+      {cart.map(item => <div className={cartStyles.card}>
          <CartItem key={item.id} item={item} /> </div> )}
-      {<div><p> Items : {cart.length}</p></div>}
-      <p>Total: $ {TotalCart} </p>
-      <button> Buy now </button>
+        <div className={cartStyles.total}><h4>Total: $ {TotalCart} </h4></div>
+      <div  className={cartStyles.buyBtn}>
+      <button> BUY NOW </button>
+      </div>
+      <div className={cartStyles.clear}>
       <button onClick={() => handleClear()}> Clear cart </button>
-      <Link to={'/shop/'}>Continue shopping</Link>
-
-
-      {/* <table className="table mx-auto" style={{ maxWidth: "1200px" }}>
-        <thead>
-          <tr>
-            <th scope="col">name</th>
-            <th scope="col">price</th>
-            <th scope="col">image</th>
-            <th scope="col">quantity</th>
-            <th scope="col">Final price</th>
-          </tr>
-        </thead>
-        <tbody className="table-group-divider">
-          {ListCart?.map((item, index) => (
-            <div key={index}>
-              <h3>{item.name}</h3>
-              <h4>${item.price}</h4>
-              <img src={item.image} width="100px" />
-              <td>
-                <button
-                  className="btn btn-primary"
-                  style={{ margin: "2px" }}
-                  onClick={()  => handleDescrease(item.id)}
-                >
-                  -
-                  </button>
-                <span className="btn btn-info">{item.quantity}</span>
-                <button
-                  className="btn btn-primary"
-                  style={{ margin: "2px" }}
-                  onClick={handleIncrease }
-                >
-                  +
-                  </button>
-              </td>
-              <button onClick={handleDelete}> Eliminar </button>
-              <p>{TotalPrice(item.price, item.quantity)} $</p>
-            </div>
-          ))}
-        </tbody>
-        <p>{Number(TotalCart).toLocaleString("en-US")} $</p>
-      </table> */}
+      </div>
+      <div className={cartStyles.continue}>
+      <Link to={'/shop/'}>« Continue shopping</Link>
+      </div>
     </div>
   );
 }

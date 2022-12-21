@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Link } from "react-router-dom";
 import { searchName } from "../../redux/actions";
 import "./Navbar.css";
 import logo from "../../Assets/logo1.jpg";
 
 function Navbar() {
+  const cart = useSelector((state)=> state.cart)
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   const handleSearch = (e) => {
@@ -62,7 +63,7 @@ function Navbar() {
             src="https://img.icons8.com/ios/50/000000/shopping-cart--v1.png"
             width={"30px"}
             height={"30px"}
-          />
+          />{cart.length}
           </Link>
         </button>
 
