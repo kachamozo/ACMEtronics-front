@@ -5,7 +5,7 @@ import { BsStarFill, BsStar, BsStarHalf } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { addToCart } from "../../redux/actions";
 import { useDispatch } from "react-redux";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 function ShopCard(props) {
@@ -18,7 +18,7 @@ const handleAddToCart= () => {
   dispatch(addToCart(itemId))
   notify()
   }
-  
+
   return (
     <div className="shop-card">
       <div>

@@ -6,9 +6,8 @@ import ShopCard from "../ShopCard/ShopCard";
 import Pagination from "../Pagination/Pagination";
 import "./Shop.css";
 import Filter from "../Filter/Filter"
-import { Link } from "react-router-dom";
 import { Orderaz } from "../Order/Orderaz";
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.min.css';
 
 function Shop() {
