@@ -3,7 +3,9 @@ import d from '../Detail/detail.module.css'
 import { useDispatch, useSelector } from "react-redux";
 import { clean } from "../../redux/actions";
 import { useParams } from "react-router-dom";
-import { getProductDetail } from "../../redux/actions";
+import { getProductDetail, addToCart } from "../../redux/actions";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default function Detail(){
     const dispatch = useDispatch()
@@ -14,6 +16,13 @@ export default function Detail(){
       dispatch(getProductDetail(id))
       return () => {dispatch(clean())}
   }, [dispatch, id])
+
+  const notify = () => toast.success("Item added to cart");
+    
+    const handleAddToCart= () => {
+      dispatch(addToCart(product.product.id))
+      notify()
+      }
 
 
      if (product.length !== 0)
@@ -31,7 +40,7 @@ export default function Detail(){
            <h2>${product.product.price}</h2>
            <h3>{product.product.description}</h3>
            <div className={d.button}>
-           <button> Add to cart 
+           <button onClick={()=> handleAddToCart()}> Add to cart 
             <span class="material-symbols-outlined"> shopping_cart </span>
             </button>
            </div>
@@ -55,6 +64,18 @@ export default function Detail(){
            <button > Add review </button>
            </div>
        </div>
+       <ToastContainer
+          position="bottom-right"
+          autoClose={5000}
+          hideProgressBar
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
       </div>
      );
     else return (

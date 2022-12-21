@@ -1,0 +1,46 @@
+.cartContainer {
+    background-color: #fafafa;
+    font-family: 'Raleway';
+}
+.cartContainer h1 {
+    text-align: center;
+    padding-top: 1rem;
+    font-weight: 600;
+}
+.total {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+}
+.buyBtn, .clear, .continue{
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+}
+.buyBtn > button {
+    border: 1px solid white;
+    padding: 18px 28px;
+    border-radius: 0.4rem;
+    background-color: #319795;
+    color: #fafafa;
+    font-size: 1rem;
+}
+.buyBtn > button:hover {
+    cursor: pointer;
+}
+
+.continue > a {
+    text-decoration: none;
+}
+.clear > button {
+    color: #319795;
+    background-color: transparent;
+    outline: none;
+    border: solid 1px transparent;
+    font-size: 1rem;
+}
+.clear > button:hover {
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 1rem;
+}
