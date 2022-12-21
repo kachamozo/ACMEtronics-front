@@ -14,7 +14,7 @@
     background-position: center;
 
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 668px) {
     .landing{
         background-image: url("../../assets/ecommerce.gif");
         background-repeat: no-repeat;
@@ -23,6 +23,7 @@
     }
     
 }
+
 
 .landing h1{
     font-size: 3rem;
