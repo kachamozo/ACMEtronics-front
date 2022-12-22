@@ -10,7 +10,7 @@ import UpdateProduct from "./components/UpdateProductForm/UpdateProduct";
 import WishList from "./components/WishList/WishList.jsx";
 import Footer from "./components/Footer/Footer";
 import Landing from "./components/Landing/Landing";
-develop
+import Cart from "./components/Cart/Cart";
 
 function App() {
   return (
@@ -25,6 +25,7 @@ function App() {
         <Route path="/shop/form" element={<Form />} />
         <Route path="/shop/filter" element={<Filter />} />
         <Route path="/shop/updateproduct" element={<UpdateProduct />} />
+        <Route path="/shop/cart" element={<Cart />} />
 
       </Routes>
 <Footer/>
