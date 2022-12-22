@@ -11,6 +11,7 @@ import { Logout } from '../Auth0/Logout';
 function Navbar() {
 	const dispatch = useDispatch();
 	const [name, setName] = useState('');
+	const cart = useSelector((state)=> state.cart)
 
 	const { isAuthenticated } = useAuth0();
 	const handleSearch = (e) => {
@@ -68,6 +69,7 @@ function Navbar() {
 							width={'30px'}
 							height={'30px'}
 						/>
+						{cart.length}
 					</Link>
 				</button>
 

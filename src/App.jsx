@@ -16,7 +16,7 @@ import Stripe from "./components/Stripe/Stripe";
 function App() {
   return (
     <div>
-
+ <Routes>  
         <Route path="/" element={<Landing />} />
         <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />

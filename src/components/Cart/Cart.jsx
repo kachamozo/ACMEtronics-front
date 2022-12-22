@@ -1,78 +1,57 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { increaseQuantity, removeCart,decreaseQuantity } from "../../redux/actions";
+import { Link } from "react-router-dom";
+import { clearCart } from "../../redux/actions";
+import CartItem from "../CartItem/CartItem";
+import cartStyles from "../Cart/Cart.module.css"
 
 export default function Cart() {
   const cart = useSelector((state) => state.cart);
-
-  let ListCart = [];
-  console.log(ListCart);
+  const dispatch = useDispatch();
+  
   let TotalCart = 0;
   Object.keys(cart).forEach(function (item) {
     TotalCart += cart[item].quantity * cart[item].price;
-    ListCart.push(cart[item]);
   });
   function TotalPrice(price, tonggia) {
     return Number(price * tonggia).toLocaleString("en-US");
   }
-  const dispatch = useDispatch();
+
   // -- el item se guarda en el carrito ---
   useEffect(() => {
-    localStorage.setItem("cart", JSON.stringify(ListCart));
-  }, [ListCart ]);
-  const handleDelete = () => {
-    dispatch(removeCart());
-  };
-  const handleIncrease = () => {
-    dispatch(increaseQuantity())
-  }
-  const handleDescrease = () => {
-    dispatch(decreaseQuantity())
-  }
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
+  const handleClear = () => {
+    dispatch(clearCart());
+  };
+
+  if(!cart.length)
   return (
     <div>
+      <h1>Cart</h1>
+      <h2> Your cart is empty. </h2>
+      <Link to={'/shop/'}><button> See products </button></Link>
+      </div>
+  )
+
+  if(cart.length)
+  return (
+    <div className={cartStyles.cartContainer}>
       <h1> Cart </h1>
-      <table className="table mx-auto" style={{ maxWidth: "1200px" }}>
-        <thead>
-          <tr>
-            <th scope="col">name</th>
-            <th scope="col">price</th>
-            <th scope="col">image</th>
-            <th scope="col">quantity</th>
-            <th scope="col">Final price</th>
-          </tr>
-        </thead>
-        <tbody className="table-group-divider">
-          {ListCart?.map((item, index) => (
-            <div key={index}>
-              <h3>{item.name}</h3>
-              <h4>${item.price}</h4>
-              <img src={item.image} width="100px" />
-              <td>
-                <button
-                  className="btn btn-primary"
-                  style={{ margin: "2px" }}
-                  onClick={()  => handleDescrease(item.id)}
-                >
-                  -
-                  </button>
-                <span className="btn btn-info">{item.quantity}</span>
-                <button
-                  className="btn btn-primary"
-                  style={{ margin: "2px" }}
-                  onClick={handleIncrease }
-                >
-                  +
-                  </button>
-              </td>
-              <button onClick={handleDelete}> Eliminar </button>
-              <p>{TotalPrice(item.price, item.quantity)} $</p>
-            </div>
-          ))}
-        </tbody>
-        <p>{Number(TotalCart).toLocaleString("en-US")} $</p>
-      </table>
+      <div className="d-flex justify-content-center"><p> You have {cart.length} items in your cart </p></div>
+      {cart.map(item => <div className={cartStyles.card}>
+         <CartItem key={item.id} item={item} /> </div> )}
+        <div className={cartStyles.total}><h4>Total: $ {TotalCart} </h4></div>
+      <div  className={cartStyles.buyBtn}>
+      <button> BUY NOW </button>
+      </div>
+      <div className={cartStyles.clear}>
+      <button onClick={() => handleClear()}> Clear cart </button>
+      </div>
+      <div className={cartStyles.continue}>
+      <Link to={'/shop/'}>« Continue shopping</Link>
+      </div>
     </div>
   );
 }

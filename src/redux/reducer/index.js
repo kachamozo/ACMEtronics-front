@@ -17,8 +17,9 @@ import {
   PAYMENT_STRIPE,
   ADD_TO_CART,
   INCREASE_QUANTITY,
-  DECREASE_QUANTITY,
-  REMOVE_ALL_CART,
+  DELETE_ONE_FROM_CART,
+  DELETE_ALL_FROM_CART,
+  CLEAR_CART,
 } from "../actions";
 
 const initialState = {
@@ -239,61 +240,50 @@ function rootReducer(state = initialState, action) {
         stripe: action.payload,
       };
     }
-    case ADD_TO_CART: {
-      let newItem = state.products.find(
-        (product) => product.id === action.payload
-      );
-      console.log(newItem, "En el reducer.");
+    case ADD_TO_CART:{
+      let newItem = state.products.find((product) => product.id === action.payload);
       let itemInCart = state.cart.find((item) => item.id == newItem.id);
-      localStorage.setItem(
-        "cart",
-        JSON.stringify([...state.cart, { ...action.payload, quantity: 1 }])
-      );
       return itemInCart
         ? {
             ...state,
-            cart: state.cart.map((item) =>
-              item.id === newItem.id
-                ? { ...item, quantity: item.quantity + 1 }
-                : item
-            ),
-            // subtotal: state.subtotal + action.payload.precio
+            cart: state.cart.map((item) => (item.id === newItem.id ? { ...item, quantity: item.quantity + 1 } : item)),
           }
         : {
             ...state,
             cart: [...state.cart, { ...newItem, quantity: 1 }],
-            // subtotal: state.subtotal + action.payload.precio
           };
     }
-    case INCREASE_QUANTITY: {
-      return {
+    case DELETE_ONE_FROM_CART:{
+      let itemToDelete = state.cart.find((item) => item.id === action.payload);
+      return itemToDelete.quantity > 1 ? {
+        ...state, 
+        cart: state.cart.map((item) => item.id === action.payload ? {...item, quantity: item.quantity-1} : item)
+      }
+      : {
         ...state,
-        cart: state.cart.map((item) => {
-          if (item.product === action.payload) {
-            return { ...item, quantity: item.quantity + 1 };
-          }
-          return item;
-        }),
+        cart: state.cart.filter((item) => item.id !== action.payload)
       };
     }
 
-    case DECREASE_QUANTITY: {
+    case DELETE_ALL_FROM_CART : {
       return {
         ...state,
-        cart: state.cart.map((item) => {
-          if (item.product === action.payload) {
-            return { ...item, quantity: item.quantity - 1 };
-          }
-          return item;
-        }),
-      };
+        cart: state.cart.filter((item) => item.id !== action.payload)
+      }
     }
 
-    case REMOVE_ALL_CART: {
+    case INCREASE_QUANTITY:{
       return {
         ...state,
-        cart: state.cart.filter((item) => item.id === action.payload),
-      };
+            cart: state.cart.map((item) => (item.id === action.payload ? { ...item, quantity: item.quantity + 1 } : item))
+      }
+    }
+    
+    case CLEAR_CART:{
+      return {
+        ...state,
+        cart : []
+      }
     }
     default:
       return { ...state };
