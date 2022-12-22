@@ -1,7 +1,10 @@
 import React, { useEffect } from "react";
 import d from '../Detail/detail.module.css'
 import { useDispatch, useSelector } from "react-redux";
-import { clean } from "../../redux/actions";
+import { useParams  } from "react-router";
+import { NavLink } from "react-router-dom";
+import { getProductDetail, clean, addToCart } from "../../redux/actions";
+import { ToastContainer, toast } from "react-toastify";
 
 
 export default function Detail(){
