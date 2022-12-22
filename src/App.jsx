@@ -11,12 +11,14 @@ import WishList from "./components/WishList/WishList.jsx";
 import Footer from "./components/Footer/Footer";
 import Landing from "./components/Landing/Landing";
 import Cart from "./components/Cart/Cart";
+import Login from "./components/Login/Login";
+import SignUp from "./components/SignUp/SignUp";
 
 function App() {
   return (
     <div>
-      <Navbar/>
- <Routes>  
+      <Navbar />
+      <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/home" element={<Home />} />
         <Route path="/about" element={<About />} />
@@ -26,9 +28,10 @@ function App() {
         <Route path="/shop/filter" element={<Filter />} />
         <Route path="/shop/updateproduct" element={<UpdateProduct />} />
         <Route path="/shop/cart" element={<Cart />} />
-
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
       </Routes>
-<Footer/>
+      <Footer />
     </div>
   );
 }
