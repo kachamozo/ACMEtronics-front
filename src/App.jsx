@@ -10,7 +10,6 @@ import UpdateProduct from "./components/UpdateProductForm/UpdateProduct";
 import WishList from "./components/WishList/WishList.jsx";
 import Footer from "./components/Footer/Footer";
 import Landing from "./components/Landing/Landing";
-develop
 
 function App() {
   return (
