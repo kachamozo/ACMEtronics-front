@@ -15,6 +15,7 @@ develop
 function App() {
   return (
     <div>
+      <Navbar/>
  <Routes>  
         <Route path="/" element={<Landing />} />
         <Route path="/home" element={<Home />} />
@@ -26,7 +27,7 @@ function App() {
         <Route path="/shop/updateproduct" element={<UpdateProduct />} />
 
       </Routes>
-
+<Footer/>
     </div>
   );
 }
