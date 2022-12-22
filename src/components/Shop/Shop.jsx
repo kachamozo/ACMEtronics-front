@@ -6,9 +6,10 @@ import ShopCard from "../ShopCard/ShopCard";
 import Pagination from "../Pagination/Pagination";
 import "./Shop.css";
 import Filter from "../Filter/Filter"
-import { Link } from "react-router-dom";
 import { Orderaz } from "../Order/Orderaz";
 import Brands from "../Brands/Brands";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 
 function Shop() {
   const selectProduct = useSelector((state) => state.copyProducts);
@@ -48,6 +49,18 @@ function Shop() {
         );
       })}
     </div>
+    <ToastContainer
+position="bottom-right"
+autoClose={5000}
+hideProgressBar
+newestOnTop={false}
+closeOnClick
+rtl={false}
+pauseOnFocusLoss
+draggable
+pauseOnHover
+theme="light"
+/>
       <div className="pagination-container">
         <Pagination
           paginate={paginate}

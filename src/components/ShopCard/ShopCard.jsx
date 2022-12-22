@@ -3,8 +3,20 @@ import "./ShopCard.css";
 import Rating from "react-rating";
 import { BsStarFill, BsStar, BsStarHalf } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import { addToCart } from "../../redux/actions";
+import { useDispatch } from "react-redux";
+import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function ShopCard(props) {
+  const dispatch = useDispatch()
+let itemId = props.id
+const notify = () => toast.success("Item added to cart");
+
+const handleAddToCart= () => {
+  dispatch(addToCart(itemId))
+  notify()
+  }
   return (
     <div className="shop-card">
       <div>
@@ -12,7 +24,7 @@ function ShopCard(props) {
         <h3 className="card-title">{props.name}</h3>
         <h5>
           {" "}
-          Mark: <p>{props.brand}</p>
+          Brand: <p>{props.brand}</p>
         </h5>
         <h5 className="card-price">
           {" "}
@@ -46,7 +58,7 @@ function ShopCard(props) {
           <option value="-">-</option>
         </select>
         <button className="buy-button">Purchase</button>{" "}
-        <button className="add-to-cart-button">Add</button>
+        <button onClick={()=> handleAddToCart()} className="add-to-cart-button">Add</button>
       </div>
     </div>
   );
