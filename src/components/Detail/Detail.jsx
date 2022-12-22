@@ -2,10 +2,7 @@ import React, { useEffect } from "react";
 import d from '../Detail/detail.module.css'
 import { useDispatch, useSelector } from "react-redux";
 import { clean } from "../../redux/actions";
-import { useParams } from "react-router-dom";
-import { getProductDetail, addToCart } from "../../redux/actions";
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+
 
 export default function Detail(){
     const dispatch = useDispatch()
@@ -61,7 +58,7 @@ export default function Detail(){
              </div>
            )}
            <div className={d.reviewsBtn}>
-           <button > Add review </button>
+            <button> Add a review </button>
            </div>
        </div>
        <ToastContainer
@@ -80,6 +77,8 @@ export default function Detail(){
      );
     else return (
         <div>
+          <NavLink to='/reviews'>Reviews</NavLink>
+
             Loading...
         </div>
     )
