@@ -12,7 +12,7 @@ function Home() {
 
   useEffect(() => {
     dispatch(getAllProducts());
-    document.getElementById('search').value = ''   
+    // document.getElementById('search').value = ''   
   }, [dispatch]);
 
   return (

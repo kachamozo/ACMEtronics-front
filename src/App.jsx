@@ -16,6 +16,7 @@ import Stripe from "./components/Stripe/Stripe";
 function App() {
   return (
     <div>
+      <Navbar/>
  <Routes>  
         <Route path="/" element={<Landing />} />
         <Route path="/home" element={<Home />} />
@@ -29,7 +30,7 @@ function App() {
         <Route path="/shop/cart" element={<Cart />} />
         <Route path="/shop/stripe" element={<Stripe />} />
       </Routes>
-
+<Footer/>
     </div>
   );
 }
