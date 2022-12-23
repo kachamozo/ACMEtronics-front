@@ -20,6 +20,7 @@ import {
   DELETE_ONE_FROM_CART,
   DELETE_ALL_FROM_CART,
   CLEAR_CART,
+  CREATE_USERS,
 } from "../actions";
 
 const initialState = {
@@ -33,6 +34,7 @@ const initialState = {
   userDetail: [],
   stripe: [],
   cart: JSON.parse(localStorage.getItem("cart")) || [],
+  createUser:[]
 };
 
 function rootReducer(state = initialState, action) {
@@ -285,6 +287,11 @@ function rootReducer(state = initialState, action) {
         cart : []
       }
     }
+    // case CREATE_USERS:
+    //         return {
+    //             ...state,
+    //           createUser: action.payload 
+    //         }
     default:
       return { ...state };
   }
