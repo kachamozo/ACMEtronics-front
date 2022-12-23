@@ -20,9 +20,6 @@ import {
   DELETE_ONE_FROM_CART,
   DELETE_ALL_FROM_CART,
   CLEAR_CART,
-
- 
-=======
   LOGIN_USER,
 
 } from "../actions";
@@ -38,10 +35,7 @@ const initialState = {
   userDetail: [],
   stripe: [],
   cart: JSON.parse(localStorage.getItem("cart")) || [],
-
-
   loginUser: [],
-
 };
 
 function rootReducer(state = initialState, action) {
