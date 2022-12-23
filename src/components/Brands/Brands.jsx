@@ -9,7 +9,7 @@ import img3 from '../../Assets/21.png';
 
 function nyCarousel() {
   return (
-      <div id="demo" className="carousel slide" data-ride="carousel" style={{width: '80%', height:'100%', }}>
+      <div id="demo" className="carousel slide" data-ride="carousel" style={{width: '80%', height:'100%', margin:"auto"}}>
               <h2>We work with the best brands</h2>
 
 
@@ -31,10 +31,10 @@ function nyCarousel() {
   </div>
 
 <a className="carousel-control-prev" href="#demo"  data-slide="prev">
-  <span className="carousel-control-prev-icon" style={{marginTop:"120px", marginRight:"80px"}}></span>
+  <span className="carousel-control-prev-icon" style={{marginTop:"250px", marginRight:"80px"}}></span>
 </a>
 <a className="carousel-control-next" href="#demo" data-slide="next">
-  <span className="carousel-control-next-icon" style={{marginTop:"120px", marginLeft:"80px"}}></span>
+  <span className="carousel-control-next-icon" style={{marginTop:"250px", marginLeft:"80px"}}></span>
 </a>
 </div>
       
