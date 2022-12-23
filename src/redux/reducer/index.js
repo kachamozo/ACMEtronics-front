@@ -20,7 +20,7 @@ import {
   DELETE_ONE_FROM_CART,
   DELETE_ALL_FROM_CART,
   CLEAR_CART,
-  CREATE_USERS,
+ 
 } from "../actions";
 
 const initialState = {
@@ -287,11 +287,6 @@ function rootReducer(state = initialState, action) {
         cart : []
       }
     }
-    // case CREATE_USERS:
-    //         return {
-    //             ...state,
-    //           createUser: action.payload 
-    //         }
     default:
       return { ...state };
   }
