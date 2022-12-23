@@ -3,8 +3,11 @@ import "./Card.css";
 import Rating from "react-rating";
 import { BsStarFill, BsStar, BsStarHalf } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import { addFavorite } from "../../redux/actions/index";
+import { addFavorite, addToCart } from "../../redux/actions/index";
 import { useDispatch, useSelector } from "react-redux";
+import { ToastContainer, toast } from "react-toastify"
+
+
 
 function Card(props) {
   const dispatch = useDispatch();
@@ -47,6 +50,13 @@ function Card(props) {
     dispatch(addFavorite({ productId: id, userId }));
   };
 
+  const notify = () => toast.success("Item added to cart");
+    
+  const handleAddToCart= () => {
+    dispatch(addToCart(props.id))
+    notify()
+    }
+
   return (
     <div className="homeCard">
       <Link to={"/shop/" + props.id}>
@@ -83,7 +93,7 @@ function Card(props) {
         </div>
       </div>
       <div className="item3">
-        <button className="addCart">Add to cart</button>
+        <button className="addCart" onClick={()=> handleAddToCart()}>Add to cart</button>
         <button
           className="fav"
           onClick={(event) => addProductToFavorites(event, user.id)}

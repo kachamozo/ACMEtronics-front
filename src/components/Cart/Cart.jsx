@@ -28,10 +28,10 @@ export default function Cart() {
 
   if(!cart.length)
   return (
-    <div>
+    <div className={cartStyles.empty}>
       <h1>Cart</h1>
       <h2> Your cart is empty. </h2>
-      <Link to={'/shop/'}><button> See products </button></Link>
+      <Link to={'/shop/'}><button className={cartStyles.seeBtn} > See products </button></Link>
       </div>
   )
 
