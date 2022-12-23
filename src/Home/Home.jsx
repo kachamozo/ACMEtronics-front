@@ -4,12 +4,18 @@ import { getAllProducts } from "../redux/actions";
 import Carousel from "../components/Carousel/Carousel";
 import Card from "../components/Card/Card";
 import "./Home.css";
-
-
+import Ranking from "../components/Ranking/Ranking";
 function Home() {
   const allProducts = useSelector((state) => state.copyProducts);
   const dispatch = useDispatch();
-
+  
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 5,
+    slidesToScroll: 3
+  };
   useEffect(() => {
     dispatch(getAllProducts());
     // document.getElementById('search').value = ''   
@@ -22,28 +28,12 @@ function Home() {
       <div className  ="container">
         <h2> Top 5 rated products </h2>
         </div>
-      <div className="card-container">
-        {  allProducts?.slice(0, 5).map((e) => {
-          // se mappea los 10 primeros productos pero se muestra solo 5
-          return (
-            
-              <div className="product-card" key={e.id}>
-                <Card 
-
-                  id={e.id}
-                  name={e.name}
-                  price={e.price}
-                  rating={e.rating > 3 ? e.rating : 3}
-                  image={e.image}
-                /> 
-              </div>
-          );
-          
-        })}
-        <div className="next">
-        </div>
+      <Ranking allProducts={allProducts} />
+      <div>    
       </div>
+ 
     </div>
+    
   );
 }
 

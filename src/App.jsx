@@ -13,6 +13,8 @@ import Landing from "./components/Landing/Landing";
 import Cart from "./components/Cart/Cart";
 import Login from "./components/Login/Login";
 import SignUp from "./components/SignUp/SignUp";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 function App() {
   return (

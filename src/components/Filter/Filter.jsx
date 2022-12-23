@@ -25,26 +25,25 @@ function Filter() {
                             <div className="filter-item-container">
                                 <div className="filter-item-item">
                                     <input type="radio" name="category" value="all" onChange={handleCategory}></input>
-                                    <label for="All">All</label><br/>
+                                    <label for="All">All</label>
                                     
-
                                     <input onChange={handleCategory} type="radio" name="category" value='Headphones'/>
-                                    <label htmlFor="Headphones">Headphones </label><br/>
+                                    <label htmlFor="Headphones">Headphones </label>
 
                                     <input onChange={handleCategory} type="radio" name="category" value="SmartWatch"/>
-                                    <label htmlFor="SmartWatch"> SmartWatch</label><br/>
+                                    <label htmlFor="SmartWatch"> SmartWatch</label>
 
                                     <input onChange={handleCategory} type="radio" name="category" value="E-readers"/>
-                                    <label htmlFor="E-readers"> E-readers</label><br/>
+                                    <label htmlFor="E-readers"> E-readers</label>
 
                                     <input onChange={handleCategory} type="radio" name="category" value="Tablets"/>
-                                    <label htmlFor="Tablets"> Tablets</label><br/>
+                                    <label htmlFor="Tablets"> Tablets</label>
 
                                     <input onChange={handleCategory} type="radio" name="category" value="Laptops"/>
-                                    <label htmlFor="Laptops"> Laptops</label><br/>
+                                    <label htmlFor="Laptops"> Laptops</label>
 
                                     <input onChange={handleCategory} type="radio" name="category" value="Smartphones"/>
-                                    <label htmlFor="Smartphones"> Smartphones</label><br/>
+                                    <label htmlFor="Smartphones"> Smartphones</label>
                                 </div>
                             </div>
                         </div>

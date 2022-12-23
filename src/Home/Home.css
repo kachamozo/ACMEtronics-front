@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  margin-top: 50px;
 
 }
 
@@ -44,7 +45,7 @@
   background-color: #f8f9fa;
   width: 80%;
   margin: auto;
-  margin-top: -20px; 
+  margin-top: 120px; 
 }
 
 .product-card {
@@ -54,9 +55,4 @@
   overflow: hidden;
   position: relative;
   transition: all 0.3s ease;
-}
-.product-card:hover {
-  box-shadow: 4px 3px 4px 2px #319795;
-  transform: translateY(-5px);
-  background-color: #319795;
 }

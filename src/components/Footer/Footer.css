@@ -9,16 +9,26 @@
     font-weight: 500;
     font-size: 18px;
     line-height: 100%;  
-    color: white
+    color: white;
     margin-top: 100px;
     
 }
 
+@media screen and (max-width: 768px) {
+    .footer {
+        flex-direction: column;
+        height: 100%;
+        width: 100%;
+    }
+}
+
 .footer li {
     list-style: none;
-    height: 90px;
+    height: 60px;
     width: 100px;
     margin-top: 40px;
+    margin-bottom: 20px;
+    
 
 }
 
@@ -33,9 +43,23 @@
     color: white;
 }
 
+@media screen and (max-width: 768px) {
+    .footer li a {
+        text-decoration: none;
+        color: white;
+    }
+    
+}
+
 .footer li a:hover {
     text-decoration: underline;
 
+}
+@media screen and (max-width: 768px) {
+    .footer li a:hover {
+        text-decoration: underline;
+    }
+    
 }
 
 .footerText {
@@ -44,6 +68,7 @@
     margin-right: 20px;
     margin-bottom: 40px;
 }
+
 @media screen and (max-width: 768px) {
     .footerText {
         margin-top: 10px;

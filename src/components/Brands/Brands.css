@@ -5,7 +5,7 @@
     text-align: center;
     margin-bottom: 2rem;
     font-family: "raleway", sans-serif;
-    margin-top: 40px;
+    margin-top: 180px;
 }
 @media screen and (max-width: 768px) {
     .carousel h2 {
@@ -22,10 +22,19 @@
 
 .carousel {
     margin-top: 40px;
+    width: 100%;
 }
-
+@media screen and (max-width: 768px) {
+    .carousel {
+        margin-top: 40px;
+        height: auto;
+    }
+}
 .carousel-inner{
     box-shadow: 4px 8px 20px 8px #319795;
+    width: 100%;
+    height: auto;
+    margin: auto;
 }
 
 @media screen and (max-width: 768px) {

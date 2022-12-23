@@ -9,11 +9,13 @@
   gap: 1rem;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
   padding: 1rem;
-  font-family: 'Raleway'
+  font-family: 'Raleway', sans-serif;
+  margin:10px;
+  transition: 0.2s ease-in;
 }
 .homeCard:hover{
-  border: solid 0.5px #319795;
-  color: black;
+  box-shadow: 4px 3px 4px 2px #319795;
+  transform: translateY(-5px);
 }
 .homeCard > a {
   text-decoration: none;
