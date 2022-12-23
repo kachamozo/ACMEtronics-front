@@ -16,6 +16,7 @@ export const ADD_FAVORITE = "ADD_FAVORITE";
 export const REMOVE_FAVORITE = "REMOVE_FAVORITE";
 export const GET_ALL_USERS = "GET_ALL_USERS";
 export const GET_USER_BY_ID = "GET_USER_BY_ID";
+export const CREATE_USERS = "CREATE_USERS"
 // ------- CART ACTIONS ----------------
 export const ADD_TO_CART = "ADD_TO_CART";
 export const DELETE_ONE_FROM_CART = "DELETE_ONE_FROM_CART";
@@ -229,6 +230,12 @@ export const getUserById = (id) => {
     });
   };
 };
+export function createUser(payload) {
+  return async function (dispatch) {
+      const info = await axios.post('http://localhost:3001/user', payload)
+    return info;
+  }
+}
 
 export const checkout = (payload) => {
   return async function (dispatch) {
