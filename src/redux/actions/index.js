@@ -17,12 +17,13 @@ export const REMOVE_FAVORITE = "REMOVE_FAVORITE";
 export const GET_ALL_USERS = "GET_ALL_USERS";
 export const GET_USER_BY_ID = "GET_USER_BY_ID";
 // ------- CART ACTIONS ----------------
-export const ADD_TO_CART = "ADD_TO_CART"
-export const DELETE_ONE_FROM_CART = "DELETE_ONE_FROM_CART"
-export const DELETE_ALL_FROM_CART = " DELETE_ALL_FROM_CART"
+export const ADD_TO_CART = "ADD_TO_CART";
+export const DELETE_ONE_FROM_CART = "DELETE_ONE_FROM_CART";
+export const DELETE_ALL_FROM_CART = " DELETE_ALL_FROM_CART";
 export const CLEAR_CART = "CLEAR_CART";
-export const INCREASE_QUANTITY = 'INCREASE_QUANTITY';
+export const INCREASE_QUANTITY = "INCREASE_QUANTITY";
 export const PAYMENT_STRIPE = "PAYMENT_STRIPE";
+export const LOGIN_USER = "LOGIN_USER";
 
 export const getAllProducts = () => {
   return async function (dispatch) {
@@ -241,36 +242,73 @@ export const checkout = (payload) => {
 
 export const addToCart = (id) => {
   return {
-    type : ADD_TO_CART, 
+    type: ADD_TO_CART,
     payload: id,
-  }
-}
+  };
+};
 
 export const deleteOneFromCart = (id) => {
   return {
     type: DELETE_ONE_FROM_CART,
     payload: id,
-  }
-}
+  };
+};
 
 export const deleteAllFromCart = (id) => {
   return {
     type: DELETE_ALL_FROM_CART,
-    payload: id
-  }
-}
+    payload: id,
+  };
+};
 
-
-export function increaseQuantity(id){
-  return{
-      type:'INCREASE_QUANTITY',
-      payload: id
-  }
+export function increaseQuantity(id) {
+  return {
+    type: "INCREASE_QUANTITY",
+    payload: id,
+  };
 }
 
 export const clearCart = (id) => {
-return{
-type: CLEAR_CART,
-payload: id
-}
-}
+  return {
+    type: CLEAR_CART,
+    payload: id,
+  };
+};
+
+export const loginUser = (payload) => {
+  return async function (dispatch) {
+    const response = await axios.post(
+      "http://localhost:3001/user/login",
+      payload
+    );
+    localStorage.setItem("token", response.data.token);
+    return dispatch({
+      type: LOGIN_USER,
+      payload: response.data,
+    });
+  };
+};
+
+//ROLY SI PUEDES REVISAR ESTA ACTION PARA GUARDAR EL TOKEN EN UNA COOKIE, AL PRINCIPIO ME FUNCIONO, LUEGO ME EMPEZO A DAR ERROR CON EL CORS.. PUEDES DESCOMENTARLA Y COMENTAR LA DE ARRIBA QUE GUARDA EL TOKEN EN EL LOCALSTORAGE PARA MIRAR Q SUCEDE, EN LA CONSOLA DE GOOGLE APARECE EL ERROR
+
+// export const loginUser = (payload) => {
+//   return async function (dispatch) {
+//     try {
+//       const response = await axios.post(
+//         "http://localhost:3001/login",
+//         payload,
+//         {
+//           withCredentials: true,
+//         }
+//       );
+//       document.cookie = `token=${response.data.token}; path=/; expires=${response.data.expires}; HttpOnly`;
+//       dispatch({
+//         type: LOGIN_USER,
+//         payload: response.data,
+//       });
+//       return true; // login was successful
+//     } catch (error) {
+//       return false; // login was not successful
+//     }
+//   };
+// };
