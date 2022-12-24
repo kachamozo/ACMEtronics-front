@@ -4,8 +4,10 @@ import { Link } from "react-router-dom";
 import { loginUser } from "../../redux/actions/index";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function Login() {
+  const { loginWithRedirect } = useAuth0();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -82,6 +84,13 @@ function Login() {
             {errors.password && <p className="error_msg">{errors.password}</p>}
             <button type="submit" className="green_btn">
               Sing In
+            </button>
+            <button
+              type="submit"
+              className="green_btn"
+              onClick={() => loginWithRedirect()}
+            >
+              Sing In with Google
             </button>
           </form>
         </div>

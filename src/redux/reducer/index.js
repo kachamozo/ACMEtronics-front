@@ -21,7 +21,6 @@ import {
   DELETE_ALL_FROM_CART,
   CLEAR_CART,
   LOGIN_USER,
-
 } from "../actions";
 
 const initialState = {
