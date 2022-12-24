@@ -34,7 +34,6 @@ const initialState = {
   userDetail: [],
   stripe: [],
   cart: JSON.parse(localStorage.getItem("cart")) || [],
-
   loginUser: [],
 };
 
