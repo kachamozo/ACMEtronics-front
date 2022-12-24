@@ -6,13 +6,19 @@ import { Link } from "react-router-dom";
 import { addFavorite, addToCart } from "../../redux/actions/index";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify"
-
-
-
+import 'react-toastify/dist/ReactToastify.css';
+import { addToCart } from "../../redux/actions";
 function Card(props) {
   const dispatch = useDispatch();
+  let itemId = props.id
   const user = useSelector((state) => state.userDetail);
   const favorites = useSelector((state) => state.favorites);
+  const notify = () => toast.success("Item added to cart");
+
+const handleAddToCart= () => {
+  dispatch(addToCart(itemId))
+  notify()
+  }
 
   // const addProductToFavorites = async (event, userId) => {
   //   event.preventDefault();
@@ -93,7 +99,9 @@ function Card(props) {
         </div>
       </div>
       <div className="item3">
+
         <button className="addCart" onClick={()=> handleAddToCart()}>Add to cart</button>
+
         <button
           className="fav"
           onClick={(event) => addProductToFavorites(event, user.id)}
