@@ -91,3 +91,8 @@
 .about-social-item > a:hover {
   background-color: #444;
 }
+@media screen and (max-width: 768px) {
+  .about-container {
+    margin-top: 320px;
+  }
+}

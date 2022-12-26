@@ -16,7 +16,6 @@
 .imgAndName {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
     align-items: center;
     width: 40%;
     grid-gap: 5px;
@@ -76,3 +75,21 @@
 .quantity > h4 {
     padding: 0 1rem;
 }
+@media screen and (max-width: 768px) {
+    .itemContainer {
+     padding: 0.5rem;
+     gap: 15px;
+    }
+    .imgAndName {
+        justify-content: center;
+        width: 100%;
+        padding: 0.3rem;
+    }
+    .itImg {
+        padding: 0.5rem;
+    }
+    .deleteBtn > button {
+        padding: 0;
+        height: 58px;
+    }
+ }
