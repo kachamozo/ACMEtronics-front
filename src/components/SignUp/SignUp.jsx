@@ -3,6 +3,7 @@ import "./SignUp.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { createUser, getAllUsers } from "../../redux/actions";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function SignUp() {
   const { loginWithRedirect } = useAuth0();
