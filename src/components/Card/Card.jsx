@@ -37,7 +37,7 @@ function Card(props) {
   const addProductToFavorites = async (event, userId) => {
     event.preventDefault();
 
-    const { id, name, price, image } = props;
+    const { id, name, price, image, } = props;
     const product = { id, name, price, image };
 
     const isAFavorite = await favorites.find((p) => p.id === Number(id));
@@ -56,7 +56,7 @@ function Card(props) {
     dispatch(addToCart(props.id))
     notify()
     }
-
+     
   return (
     <div className="homeCard">
       <Link to={"/shop/" + props.id}>
@@ -80,7 +80,12 @@ function Card(props) {
             />
           </div>
           <div className="inStock">
-            <span>In stock</span>
+            
+            <span>{
+            props.stock > 0 
+              ? 'In stock'
+              : 'No stock'}</span>
+            
           </div>
         </div>
       </Link>
