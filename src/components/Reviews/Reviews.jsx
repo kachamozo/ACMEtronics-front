@@ -1,65 +1,138 @@
-import React, { useState } from 'react';
+import React from "react";
+import "./Reviews.css";
+import image from "../../Assets/rate.png";
 
-function AddReviewForm() {
-    const [review, setReview] = useState('');
-    const [rating, setRating] = useState(0);
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        // console.log(review, rating);
+function Reviews() {
+  return (
+   
 
-        // verifica que el usuario está logueado
-        // si no está logueado, redirige a la página de login
-        // si está logueado, hace un post a la ruta /products/:id/reviews
-        // con el body { review, rating }
-        // y luego hace un dispatch a la acción getProductDetail(id)
-    }
-    if(!isLoggedIn()) {
-      // muestra un mensaje de que debe estar logueado para enviar una reseña
-        alert('You must be logged in to send a review');
-        // redirige a la página de login
-        return;
+      <div className="modal fade" id="form" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div className="modal-dialog modal-dialog-centered" role="document">
+        <div className="modal-content">
+            <div className="text-right cross"> <i class="fa fa-times mr-2"></i> </div>
+            <div className="card-body text-center"> <img src={image} height="100" width="100"/>
+                <div className="comment-box text-center">
+                <h4>Add a comment</h4>
+                <div className="rating"> <input type="radio" name="rating" value="5" id="5"/><label for="5">☆</label> <input type="radio" name="rating" value="4" id="4"/><label for="4">☆</label> <input type="radio" name="rating" value="3" id="3"/><label for="3">☆</label> <input type="radio" name="rating" value="2" id="2"/><label for="2">☆</label> <input type="radio" name="rating" value="1" id="1"/><label for="1">☆</label> </div>
+                <div className="comment-area"> <textarea className="form-control" placeholder="what is your view?" rows="4"></textarea> </div>
+                    
+                    <div className="text-center mt-4"> <button className="btn btn-success send px-5" style={{width:"100%"}}>Send message <i className="fa fa-long-arrow-right ml-2"></i></button>
+                        <p>By clicking on the button, you agree to our <a href="#">Terms and Conditions</a></p>
+                        <br></br>
+                        <button style={{width:"100%", height:"100%", fontSize:"20px"}}><a href='/shop'>Back to Shop</a></button>
+
+
+
+            </div>
+            </div>
+            </div>
+        </div>
+    </div>
+</div>
 
     
-    }
- 
-
-    // guarda la reseña y la calificacion en el almacenamiento local
-    localStorage.setItem('review', review);
-    localStorage.setItem('rating', rating);
-
-    // muestra un mensaje de que la reseña se ha enviado
-    alert('Review sent!');
-
-    // redirige a la página de detalle del producto
-
-
-return (
-    <form onSubmit={handleSubmit}>
-        <label>
-            Review:
-            <textarea value={review} onChange={(e) => setReview(e.target.value)} />
-        </label>
-<br />
-        <label>
-            Rating:
-            <input type='number' value={rating} onChange={(e) => setRating(e.target.value)} />
-        </label>
-<br />
-        <button type='submit'>Submit</button>
-    </form>
-);
+  );
 }
 
+export default Reviews;
 
 
 
 
 
-export default AddReviewForm;
 
 
-  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* import React from "react";
+import {
+  MDBBtn,
+  MDBCard,
+  MDBCardBody,
+  MDBCardImage,
+  MDBCol,
+  MDBContainer,
+  MDBIcon,
+  MDBRow,
+  MDBTextArea,
+  MDBTypography,
+} from "mdb-react-ui-kit";
+
+export default function Add() {
+  return (
+    <section className="vh-100" style={{ backgroundColor: "#d94125" }}>
+      <MDBContainer className="py-5" style={{ maxWidth: "1000px" }}>
+        <MDBRow className="justify-content-center">
+          <MDBCol md="40" lg="38" xl="36">
+            <MDBCard>
+              <MDBCardBody className="p-4">
+                <div className="d-flex flex-start w-100">
+                  <MDBCardImage
+                    className="rounded-circle shadow-1-strong me-3"
+                    src="https://mdbcdn.b-cdn.net/img/Photos/Avatars/img%20(21).webp"
+                    alt="avatar"
+                    width="65"
+                    height="65"
+                  />
+
+                  <div className="w-100">
+                    <MDBTypography tag="h5">Add a comment</MDBTypography>
+                    <div>
+                      <a href="">
+                        <MDBIcon far icon="star text-danger me-1" />
+                        <MDBIcon far icon="star text-danger me-1" />
+                        <MDBIcon far icon="star text-danger me-1" />
+                        <MDBIcon far icon="star text-danger me-1" />
+                        <MDBIcon far icon="star text-danger me-1" />
+                      </a>
+                    </div>
+                    <MDBTextArea label="What is your view?" rows={4} />
+
+                    <div className="d-flex justify-content-between mt-3">
+                      <MDBBtn color="success">Danger</MDBBtn>
+                      <MDBBtn color="danger">
+                        Send <MDBIcon fas icon="long-arrow-alt-right ms-1" />
+                      </MDBBtn>
+                    </div>
+                  </div>
+                </div>
+              </MDBCardBody>
+            </MDBCard>
+          </MDBCol>
+        </MDBRow>
+      </MDBContainer>
+    </section>
+  );
+}
+*/
+
+
+
+
+
+
+
+
+
+
 
 
 /* import React, {useState} from 'react';

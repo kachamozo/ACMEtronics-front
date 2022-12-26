@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import d from '../Detail/detail.module.css'
 import { useDispatch, useSelector } from "react-redux";
 import { useParams  } from "react-router";
-import { NavLink, Link } from "react-router-dom";
 import { getProductDetail, clean, addToCart } from "../../redux/actions";
 import { ToastContainer, toast } from "react-toastify";
+import { Reviews } from "@mui/icons-material";
 
 
 export default function Detail(){
@@ -61,9 +61,12 @@ export default function Detail(){
                <h3> This product does not have reviews yet. </h3>
              </div>
            )}
-           <div className={d.reviewsBtn}>
-            <button> Add a review </button>
-           </div>
+          <div className={d.reviewsBtn}>
+            
+          <Link to="/reviews"> <button type="button" class="btn btn-danger" style={{width:"30%"}} data-toggle="modal" data-target="#form">Add reviews</button>
+          </Link>
+
+          </div>
        </div>
        <ToastContainer
           position="bottom-right"
