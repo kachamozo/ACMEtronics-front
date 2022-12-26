@@ -13,10 +13,11 @@ function Navbar() {
   const cart = useSelector((state) => state.cart);
 
   //   const { isAuthenticated } = useAuth0();
-  //   const handleSearch = (e) => {
-  //     dispatch(searchName(e));
-  //     setName(e);
-  //   };
+
+  const handleSearch = (e) => {
+    dispatch(searchName(e));
+    setName(e);
+  };
   return (
     <div className="nav-bar">
       <img
