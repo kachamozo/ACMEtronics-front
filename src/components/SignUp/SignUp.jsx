@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { createUser, getAllUsers } from "../../redux/actions";
 
 function SignUp() {
+  const { loginWithRedirect } = useAuth0();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const allUser = useSelector((state) => state.users);
@@ -108,6 +109,13 @@ function SignUp() {
            {errors.password ? <p className="error">{errors.password}</p> : null}
             <button type="submit" className="green_btn">
               Sing Up
+            </button>
+            <button
+              type="submit"
+              className="green_btn"
+              onClick={() => loginWithRedirect()}
+            >
+              Sing In with Google
             </button>
           </form>
         </div>
