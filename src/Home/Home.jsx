@@ -5,6 +5,9 @@ import Carousel from "../components/Carousel/Carousel";
 import Card from "../components/Card/Card";
 import "./Home.css";
 import Ranking from "../components/Ranking/Ranking";
+import { ToastContainer } from "react-toastify";
+
+
 function Home() {
   const allProducts = useSelector((state) => state.copyProducts);
   const dispatch = useDispatch();
@@ -31,6 +34,18 @@ function Home() {
       <Ranking allProducts={allProducts} />
       <div>    
       </div>
+      <ToastContainer
+          position="bottom-right"
+          autoClose={5000}
+          hideProgressBar
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
  
     </div>
     

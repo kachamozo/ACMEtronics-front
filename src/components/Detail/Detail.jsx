@@ -2,7 +2,6 @@ import React, { useEffect } from "react";
 import d from '../Detail/detail.module.css'
 import { useDispatch, useSelector } from "react-redux";
 import { useParams  } from "react-router";
-import { Link, NavLink } from "react-router-dom";
 import { getProductDetail, clean, addToCart } from "../../redux/actions";
 import { ToastContainer, toast } from "react-toastify";
 import { Reviews } from "@mui/icons-material";
@@ -30,6 +29,7 @@ export default function Detail(){
      return (
       <div className={d.detail}>
        <div className={d.container}>
+        <div className={d.backLink}><Link to={'/shop/'}>« Continue shopping</Link></div>
          <div className={d.img}>
            <img src={product.product.image}  />
          </div>

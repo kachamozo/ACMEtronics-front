@@ -12,6 +12,7 @@
 @media screen and (min-width: 768px) {
     .detail {
         flex-direction: row;
+        
     }
     
 }
@@ -21,11 +22,11 @@
     flex-wrap: wrap;
     align-items: flex-start;
     justify-content: space-around;
-    margin-top: 10rem;
 }
 @media screen and (min-width: 768px) {
     .container {
         flex-direction: row;
+        
     }
     
 }
@@ -64,14 +65,12 @@
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
-    max-width: 50%;
 }
 @media screen and (min-width: 768px) {
     .content {
         flex-direction: column;
         max-width: 50%;
     }
-    
 }
 
 .content>h1,
@@ -167,16 +166,28 @@
     color: white;
 }
 
+.backLink > a {
+    color:#319795;
+    
+}
+.backLink > a:hover{
+    color:#319795;
+    cursor: pointer;
+}
+
 @media screen and (max-width: 600px) {
     .container {
         display: flex;
         flex-direction: column;
         align-items: center;
-        margin-top: 3rem;
+        margin-top: 340px;
     }
 
     .content {
         padding: 2rem;
+    }
+    .backLink {
+        padding-bottom: 20px;
     }
 }
 @media screen and (min-width: 768px) {
@@ -184,8 +195,8 @@
         display: flex;
         flex-direction: row;
         align-items: center;
-        margin-top: 3rem;
+        margin-top: 150px;
     }
+
     
 }
-    
