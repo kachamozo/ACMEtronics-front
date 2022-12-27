@@ -200,12 +200,16 @@ function rootReducer(state = initialState, action) {
     }
 
     case FILTER_CATEGORY: {
-      const filterCat = state.products.filter((e) =>
-        e.CategoryProduct[0].name?.includes(action.payload)
-      );
+      let allTemperaments = state.products;
+      let aux2 =
+        action.payload === "all"
+          ? allTemperaments
+          : allTemperaments.filter((el) =>
+              el.CategoryProduct[0].name?.includes(action.payload)
+            );
       return {
         ...state,
-        copyProducts: filterCat,
+        copyProducts: aux2,
       };
     }
 
