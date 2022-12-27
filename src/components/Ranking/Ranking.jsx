@@ -85,6 +85,7 @@ export const Ranking = ({allProducts}) => {
                   price={e.price}
                   rating={e.rating > 3 ? e.rating : 3}
                   image={e.image}
+                  stock={e.stock}
                 /> 
               </div>
           );

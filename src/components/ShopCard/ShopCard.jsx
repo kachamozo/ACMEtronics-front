@@ -32,7 +32,9 @@ const handleAddToCart= () => {
         </h5>
         <h5>
           {" "}
-          Available: <p>{props.stock} Unidades</p>
+          <p> Available: {props.stock > 0 
+              ? props.stock
+              : 'No stock'}</p>
         </h5>
         <h5>
           {" "}
