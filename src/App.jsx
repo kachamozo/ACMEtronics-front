@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Router } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./Home/Home";
 import About from "./components/About/About";
@@ -16,12 +16,17 @@ import SignUp from "./components/SignUp/SignUp";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Reviews from "./components/Reviews/Reviews";
-
+import PrivateRoute from "./components/PrivateRoute";
+import { useSelector } from "react-redux";
 
 function App() {
+  const actualUser = useSelector((state) => state.userDetail);
+  const isAllowed = !!actualUser.name;
+
   return (
     <div>
       <Navbar />
+
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/home" element={<Home />} />
@@ -30,11 +35,29 @@ function App() {
         <Route path="/shop/:id" element={<Detail />} />
         <Route path="/shop/form" element={<Form />} />
         <Route path="/shop/filter" element={<Filter />} />
-        <Route path="/shop/updateproduct" element={<UpdateProduct />} />
+
         <Route path="/shop/cart" element={<Cart />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/reviews" element={<Reviews />} />
+
+        <Route
+          path="/createproduct/*"
+          element={
+            <PrivateRoute user={actualUser.admin}>
+              <Form />
+            </PrivateRoute>
+          }
+        />
+
+        <Route
+          path="/updateproduct"
+          element={
+            <PrivateRoute user={actualUser.admin}>
+              <UpdateProduct />
+            </PrivateRoute>
+          }
+        />
       </Routes>
       <Footer />
     </div>
