@@ -16,7 +16,7 @@ export const ADD_FAVORITE = "ADD_FAVORITE";
 export const REMOVE_FAVORITE = "REMOVE_FAVORITE";
 export const GET_ALL_USERS = "GET_ALL_USERS";
 export const GET_USER_BY_ID = "GET_USER_BY_ID";
-export const CREATE_USERS = "CREATE_USERS"
+export const CREATE_USERS = "CREATE_USERS";
 // ------- CART ACTIONS ----------------
 export const ADD_TO_CART = "ADD_TO_CART";
 export const DELETE_ONE_FROM_CART = "DELETE_ONE_FROM_CART";
@@ -232,9 +232,9 @@ export const getUserById = (id) => {
 };
 export function createUser(payload) {
   return async function (dispatch) {
-      const info = await axios.post('http://localhost:3001/user', payload)
+    const info = await axios.post("http://localhost:3001/user", payload);
     return info;
-  }
+  };
 }
 
 export const checkout = (payload) => {
@@ -288,10 +288,14 @@ export const loginUser = (payload) => {
       "http://localhost:3001/user/login",
       payload
     );
-    localStorage.setItem("token", response.data.token);
-    return dispatch({
+    window.localStorage.setItem(
+      "loggedUser",
+      JSON.stringify({ email: payload.email, password: payload.password })
+    );
+
+    dispatch({
       type: LOGIN_USER,
-      payload: response.data,
+      payload: response,
     });
   };
 };
