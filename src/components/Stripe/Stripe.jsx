@@ -1,15 +1,11 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadStripe } from "@stripe/stripe-js";
-import {
-  Elements,
-  CardElement,
-  useStripe,
-  useElements,
-} from "@stripe/react-stripe-js";
+import {Elements, CardElement, useStripe, useElements,} from "@stripe/react-stripe-js";
 import { checkout } from "../../redux/actions/index.js";
 import { useNavigate } from "react-router-dom";
 import "./Stripe.css";
+import Cart from "../Cart/Cart.jsx";
 
 const stripePromise = loadStripe(
   "pk_test_51MGiEBJf3Ra7t0LIpbXGmuheCzm64uisAtUjjerxb3LCv7AEkdcfVfUWRlVRWcScZU5oLKXKRHSP45u6LIPRS66y00oG54GCjY"
@@ -20,6 +16,15 @@ function CheckoutForm() {
   const navigate = useNavigate();
   const stripe = useStripe();
   const elements = useElements();
+  const cart = useSelector((state) => state.cart);
+
+  const getCartItems = () => Object.keys(cart).map((item) => (
+    <span style={{color:'#319795'}}>{cart[item].quantity} ({cart[item].price} c/u): {cart[item].quantity * cart[item].price}</span>
+  ));
+
+  const getTotal = () => Object.values(cart).reduce((sum, { quantity, price }) => {
+    return sum + quantity * price;
+  }, 0);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -34,7 +39,7 @@ function CheckoutForm() {
     } else {
       try {
         const { id } = paymentMethod;
-        dispatch(checkout({ id, amount: 250 }));
+        dispatch(checkout({ id, amount: getTotal() }));
       } catch (error) {
         console.log(error);
       }
@@ -42,15 +47,33 @@ function CheckoutForm() {
   };
   return (
     <form onSubmit={handleSubmit} className="card card-body ">
-      <img
-        src="https://http2.mlstatic.com/D_NQ_NP_2X_702914-MLA47249717122_082021-F.webp"
-        alt="pic"
+      
+      <Cart />
+      {getCartItems()}
+      <br />
+      
+      <div className="form-group">
+      <h4>Enter your card details</h4>
+      <CardElement 
+        options={{
+          style: {
+            base: {
+              fontSize: "20px",
+              color: "#424770",
+              "::placeholder": {
+                color: "#aab7c4",
+              },
+            },
+            invalid: {
+              color: "#9e2146",
+            },
+          },
+        }}
       />
-      <h2 className="text-center my-2">Amazon Kindle Oasis</h2>
-      <h3 className="text-center my-2">Price: $250</h3>
-      <CardElement />
-      <button>Buy</button>
-    </form>
+       <button type="submit" className="btn btn-primary"
+       >Buy</button>
+      </div>
+     </form>
   );
 }
 
@@ -59,13 +82,17 @@ function Stripe() {
     <Elements stripe={stripePromise}>
       <div className="container p-6">
         <div className="row">
-          <div className="col-md-6 offset-md-4">
-            <CheckoutForm />
-          </div>
+            <CheckoutForm  
+            />
+            
         </div>
       </div>
     </Elements>
   );
 }
 
+
+
+
 export default Stripe;
+
