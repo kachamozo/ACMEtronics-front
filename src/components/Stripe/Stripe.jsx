@@ -32,6 +32,8 @@ function CheckoutForm() {
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
       card: elements.getElement(CardElement),
+     
+      
     });
 
     if (error) {
@@ -40,39 +42,39 @@ function CheckoutForm() {
       try {
         const { id } = paymentMethod;
         dispatch(checkout({ id, amount: getTotal() }));
-      } catch (error) {
+      } catch (error) { 
         console.log(error);
       }
     }
   };
   return (
     <form onSubmit={handleSubmit} className="card card-body ">
-      
+
       <Cart />
       {getCartItems()}
-      <br />
+      <br/>
+
+      <div className="form-group">
+        <h4>Enter your account information</h4>
+        <label>Card details</label>
+        <CardElement className="form-control" />
+      </div>
+     
+      <div className="form-group">
+        <label>Card holder name</label>
+        <input type="text" className="form-control" />
+      </div>
+      <div className="form-group">
+        <label>Email</label>
+        <input type="email" className="form-control" />
+      </div>
       
       <div className="form-group">
-      <h4>Enter your card details</h4>
-      <CardElement 
-        options={{
-          style: {
-            base: {
-              fontSize: "20px",
-              color: "#424770",
-              "::placeholder": {
-                color: "#aab7c4",
-              },
-            },
-            invalid: {
-              color: "#9e2146",
-            },
-          },
-        }}
-      />
        <button type="submit" className="btn btn-primary"
        >Buy</button>
       </div>
+
+
      </form>
   );
 }
