@@ -25,6 +25,7 @@ import {
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
+  LOGOUT,
 } from "../actions";
 
 const initialState = {
@@ -362,6 +363,12 @@ function rootReducer(state = initialState, action) {
         ...state,
         isLoading: false,
         error: action.error,
+      };
+    case LOGOUT:
+      return {
+        ...state,
+        isAuthenticated: false,
+        user: {},
       };
 
     default:
