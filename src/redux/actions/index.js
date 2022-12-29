@@ -13,7 +13,7 @@ export const FILTER_CATEGORY = "FILTER_CATEGORY";
 export const GET_PRODUCT_RATING = "GET_PRODUCT_RATING";
 export const PRICE_FILTER = "PRICE_FILTER";
 
-export const GET_FAVORITES = "GET_FAVORITES"
+export const GET_FAVORITES = "GET_FAVORITES";
 export const ADD_FAVORITE = "ADD_FAVORITE";
 export const REMOVE_FAVORITE = "REMOVE_FAVORITE";
 
@@ -28,6 +28,9 @@ export const CLEAR_CART = "CLEAR_CART";
 export const INCREASE_QUANTITY = "INCREASE_QUANTITY";
 export const PAYMENT_STRIPE = "PAYMENT_STRIPE";
 export const LOGIN_USER = "LOGIN_USER";
+export const LOGIN_REQUEST = "LOGIN_REQUEST";
+export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
+export const LOGIN_FAILURE = "LOGIN_FAILURE";
 
 export const getAllProducts = () => {
   return async function (dispatch) {
@@ -190,18 +193,22 @@ export const filterCategory = (payload) => {
 };
 
 export const getFavorites = (userId) => {
-  return async function(dispatch){
-    const response = await axios.get(`http://localhost:3001/favorites/?userId=${userId}`)
+  return async function (dispatch) {
+    const response = await axios.get(
+      `http://localhost:3001/favorites/?userId=${userId}`
+    );
     return dispatch({
       type: GET_FAVORITES,
-      payload: response.data
-    })
-  }
-}
+      payload: response.data,
+    });
+  };
+};
 
 export const addFavorite = (userId, productId) => {
   return async function (dispatch) {
-    const response = await axios.post(`http://localhost:3001/favorites/?userId=${userId}&productId=${productId}`);
+    const response = await axios.post(
+      `http://localhost:3001/favorites/?userId=${userId}&productId=${productId}`
+    );
     return dispatch({
       type: ADD_FAVORITE,
       payload: response.data,
@@ -211,7 +218,9 @@ export const addFavorite = (userId, productId) => {
 
 export const removeFavorite = (userId, productId) => {
   return async function (dispatch) {
-    const response = await axios.delete(`http://localhost:3001/favorites/?userId=${userId}&productId=${productId}`);
+    const response = await axios.delete(
+      `http://localhost:3001/favorites/?userId=${userId}&productId=${productId}`
+    );
     return dispatch({
       type: REMOVE_FAVORITE,
       payload: response.data,
@@ -290,44 +299,48 @@ export const clearCart = (id) => {
   };
 };
 
-export const loginUser = (payload) => {
-  return async function (dispatch) {
-    const response = await axios.post(
-      "http://localhost:3001/user/login",
-      payload
-    );
-    window.localStorage.setItem(
-      "loggedUser",
-      JSON.stringify({ email: payload.email, password: payload.password })
-    );
-
-    dispatch({
-      type: LOGIN_USER,
-      payload: response,
-    });
-  };
-};
-
-//ROLY SI PUEDES REVISAR ESTA ACTION PARA GUARDAR EL TOKEN EN UNA COOKIE, AL PRINCIPIO ME FUNCIONO, LUEGO ME EMPEZO A DAR ERROR CON EL CORS.. PUEDES DESCOMENTARLA Y COMENTAR LA DE ARRIBA QUE GUARDA EL TOKEN EN EL LOCALSTORAGE PARA MIRAR Q SUCEDE, EN LA CONSOLA DE GOOGLE APARECE EL ERROR
-
 // export const loginUser = (payload) => {
 //   return async function (dispatch) {
-//     try {
-//       const response = await axios.post(
-//         "http://localhost:3001/login",
-//         payload,
-//         {
-//           withCredentials: true,
-//         }
-//       );
-//       document.cookie = `token=${response.data.token}; path=/; expires=${response.data.expires}; HttpOnly`;
-//       dispatch({
-//         type: LOGIN_USER,
-//         payload: response.data,
-//       });
-//       return true; // login was successful
-//     } catch (error) {
-//       return false; // login was not successful
-//     }
+//     const response = await axios.post(
+//       "http://localhost:3001/login/login",
+//       payload
+//     );
+//     window.localStorage.setItem(
+//       "loggedUser",
+//       JSON.stringify({ email: payload.email, password: payload.password })
+//     );
+
+//     dispatch({
+//       type: LOGIN_USER,
+//       payload: response,
+//     });
 //   };
 // };
+
+export const loginUser = (payload) => {
+  return async function (dispatch) {
+    dispatch({ type: LOGIN_REQUEST });
+
+    try {
+      const response = await axios.post(
+        "http://localhost:3001/login/login",
+        payload
+      );
+
+      window.localStorage.setItem(
+        "loggedUser",
+        JSON.stringify({ email: payload.email, password: payload.password })
+      );
+
+      dispatch({
+        type: LOGIN_SUCCESS,
+        payload: response,
+      });
+    } catch (error) {
+      dispatch({
+        type: LOGIN_FAILURE,
+        error: error,
+      });
+    }
+  };
+};

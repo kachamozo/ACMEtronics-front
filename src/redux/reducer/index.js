@@ -22,6 +22,9 @@ import {
   CLEAR_CART,
   LOGIN_USER,
   GET_FAVORITES,
+  LOGIN_REQUEST,
+  LOGIN_SUCCESS,
+  LOGIN_FAILURE,
 } from "../actions";
 
 const initialState = {
@@ -35,7 +38,11 @@ const initialState = {
   userDetail: [],
   stripe: [],
   cart: JSON.parse(localStorage.getItem("cart")) || [],
-  loginUser: [],
+  login: [],
+  user: {},
+  isLoading: false,
+  isAuthenticated: false,
+  error: "",
 };
 
 function rootReducer(state = initialState, action) {
@@ -216,8 +223,8 @@ function rootReducer(state = initialState, action) {
     case GET_FAVORITES: {
       return {
         ...state,
-        favorites: action.payload
-      }
+        favorites: action.payload,
+      };
     }
 
     case ADD_FAVORITE: {
@@ -314,12 +321,49 @@ function rootReducer(state = initialState, action) {
       };
     }
 
-    case LOGIN_USER: {
+    // case LOGIN_USER:
+    //   let user = action.payload.data.user;
+    //   let loginUser = action.payload.data.jwt || action.payload.data;
+    //   let name;
+    //   if (user) {
+    //     name = user.firstname + " " + user.lastname;
+    //     return {
+    //       ...state,
+    //       login: loginUser,
+    //       user: {
+    //         id: user.id,
+    //         username: user.username,
+    //         name: name,
+    //         email: user.email,
+    //         admin: user.admin,
+    //       },
+    //     };
+    //   } else {
+    //     return {
+    //       ...state,
+    //       login: loginUser,
+    //     };
+    //   }
+
+    case LOGIN_REQUEST:
       return {
         ...state,
-        loginUser: action.payload,
+        isLoading: true,
       };
-    }
+    case LOGIN_SUCCESS:
+      return {
+        ...state,
+        isLoading: false,
+        isAuthenticated: true,
+        user: action.payload,
+      };
+    case LOGIN_FAILURE:
+      return {
+        ...state,
+        isLoading: false,
+        error: action.error,
+      };
+
     default:
       return { ...state };
   }
