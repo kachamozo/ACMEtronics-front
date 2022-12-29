@@ -44,7 +44,9 @@ export default function Cart() {
          <CartItem key={item.id} item={item} /> </div> )}
         <div className={cartStyles.total}><h4>Total: $ {TotalCart} </h4></div>
       <div  className={cartStyles.buyBtn}>
-      <button> BUY NOW </button>
+
+      <Link to={'/stripe/'}><button> Confirm Payment </button></Link>
+
       </div>
       <div className={cartStyles.clear}>
       <button onClick={() => handleClear()}> Clear cart </button>
