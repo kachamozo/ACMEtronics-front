@@ -35,6 +35,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/reviews" element={<Reviews />} />
+        <Route path="/wishlist" element={<WishList/>} />
       </Routes>
       <Footer />
     </div>

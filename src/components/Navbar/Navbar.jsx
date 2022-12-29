@@ -54,7 +54,7 @@ function Navbar() {
       <div className="cart">
         <button className="btnes">
           {" "}
-          <Link to={"/home/wishlist"}>
+          <Link to={"/wishlist"}>
             <img
               src="https://img.icons8.com/ios/50/000000/like--v1.png"
               width={"30px"}

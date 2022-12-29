@@ -97,17 +97,15 @@
 }
 
 .fav{
-  width: 40px;
+
   background-color: transparent;
-  border: 1.5px solid #319795;
+
   border-radius: 4px;
   color: #319795;
-  font-size: 25px;
 }
 
 .fav:hover{
-  background-color: #319795 ;
-  color: white;
+  
   cursor:pointer;
 }
 

@@ -12,8 +12,11 @@ export const ORDERBYAZ = "ORDERBYAZ";
 export const FILTER_CATEGORY = "FILTER_CATEGORY";
 export const GET_PRODUCT_RATING = "GET_PRODUCT_RATING";
 export const PRICE_FILTER = "PRICE_FILTER";
+
+export const GET_FAVORITES = "GET_FAVORITES"
 export const ADD_FAVORITE = "ADD_FAVORITE";
 export const REMOVE_FAVORITE = "REMOVE_FAVORITE";
+
 export const GET_ALL_USERS = "GET_ALL_USERS";
 export const GET_USER_BY_ID = "GET_USER_BY_ID";
 export const CREATE_USERS = "CREATE_USERS"
@@ -186,12 +189,19 @@ export const filterCategory = (payload) => {
   };
 };
 
-export const addFavorite = (payload) => {
+export const getFavorites = (userId) => {
+  return async function(dispatch){
+    const response = await axios.get(`http://localhost:3001/favorites/?userId=${userId}`)
+    return dispatch({
+      type: GET_FAVORITES,
+      payload: response.data
+    })
+  }
+}
+
+export const addFavorite = (userId, productId) => {
   return async function (dispatch) {
-    const response = await axios.post(
-      "http://localhost:3001/favorites/",
-      payload
-    );
+    const response = await axios.post(`http://localhost:3001/favorites/?userId=${userId}&productId=${productId}`);
     return dispatch({
       type: ADD_FAVORITE,
       payload: response.data,
@@ -201,9 +211,7 @@ export const addFavorite = (payload) => {
 
 export const removeFavorite = (userId, productId) => {
   return async function (dispatch) {
-    const response = await axios.delete(
-      `http://localhost:3001/favorites/${userId}/${productId}`
-    );
+    const response = await axios.delete(`http://localhost:3001/favorites/?userId=${userId}&productId=${productId}`);
     return dispatch({
       type: REMOVE_FAVORITE,
       payload: response.data,
@@ -270,7 +278,7 @@ export const deleteAllFromCart = (id) => {
 
 export function increaseQuantity(id) {
   return {
-    type: "INCREASE_QUANTITY",
+    type: INCREASE_QUANTITY,
     payload: id,
   };
 }

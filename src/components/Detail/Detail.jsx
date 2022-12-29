@@ -2,22 +2,28 @@ import React, { useEffect } from "react";
 import d from "../Detail/detail.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-import { getProductDetail, clean, addToCart } from "../../redux/actions";
+import { getProductDetail, clean, addToCart, addFavorite, removeFavorite, getFavorites } from "../../redux/actions";
 import { ToastContainer, toast } from "react-toastify";
 import { Reviews } from "@mui/icons-material";
 import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
+import { HiOutlineHeart, HiHeart } from 'react-icons/hi'
 
 export default function Detail() {
   const dispatch = useDispatch();
   const product = useSelector((state) => state.detail);
+  const favs = useSelector((state)=> state.favorites)
   const { id } = useParams();
 
+
+  // después se modifica para traer el user que está logueado
+  let userId = 1
+  
   useEffect(() => {
     dispatch(getProductDetail(id));
+    dispatch(getFavorites(userId))
     return () => {
-      dispatch(clean());
-    };
+      dispatch(clean())};
   }, [dispatch, id]);
 
   const notify = () => toast.success("Item added to cart");
@@ -26,6 +32,18 @@ export default function Detail() {
     dispatch(addToCart(product.product.id));
     notify();
   };
+  
+  const handleAddToFavorites= () => {
+    dispatch(addFavorite(userId, parseInt(id)))
+    alert('Item added to your wishlist')
+    dispatch(getFavorites(userId))
+    }
+    const handleDeleteFavorite = () => {
+      dispatch(removeFavorite(userId, parseInt(id)))
+      alert('Product deleted from your wishlist')
+      dispatch(getFavorites(userId))
+      }
+      
 
   if (product.length !== 0)
     return (
@@ -38,12 +56,10 @@ export default function Detail() {
             <img src={product.product.image} />
           </div>
           <div className={d.content}>
-            <h1>
-              {product.product.name}{" "}
-              <a href="#">
-                <span class="material-symbols-outlined"> favorite</span>
-              </a>{" "}
-            </h1>
+            <h1>{product.product.name}</h1>
+            {favs["Favorites"] && favs["Favorites"].find(el => el.id === product.product.id) ? 
+            (<div className={d.favIcons}><a onClick={()=> handleDeleteFavorite()} ><HiHeart size={'2em'} /></a></div>) : 
+            (<div className={d.favIcons}><a onClick={()=>handleAddToFavorites()}><HiOutlineHeart size={'2em'} /></a></div>  )}
             <p>Rating: {product.product.rating}</p>
             <h2>${product.product.price}</h2>
             <h3>{product.product.description}</h3>
