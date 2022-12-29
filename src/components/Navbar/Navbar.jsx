@@ -1,7 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Link } from "react-router-dom";
-import { searchName } from "../../redux/actions";
+import { getFavorites, searchName } from "../../redux/actions";
 import "./Navbar.css";
 import logo from "../../Assets/logo1.jpg";
 import Login from "../Login/Login";
@@ -11,7 +11,14 @@ function Navbar() {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   const cart = useSelector((state) => state.cart);
-
+  const favorites = useSelector((state)=> state.favorites)
+  let userId = 1
+  
+  useEffect(()=>{
+    dispatch(getFavorites(userId))
+  }, [])
+  
+  let myFavs = favorites["Favorites"] !== undefined ? favorites["Favorites"].length : '...'
   //   const { isAuthenticated } = useAuth0();
 
   const handleSearch = (e) => {
@@ -60,6 +67,7 @@ function Navbar() {
               width={"30px"}
               height={"30px"}
             />
+            <p> <p>{myFavs}</p></p>
           </Link>
         </button>
 
@@ -70,7 +78,7 @@ function Navbar() {
               width={"30px"}
               height={"30px"}
             />
-            {cart.length}
+            <p>{cart.length}</p>
           </Link>
         </button>
 
