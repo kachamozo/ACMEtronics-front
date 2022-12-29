@@ -1,8 +1,8 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadStripe } from "@stripe/stripe-js";
-import {Elements, CardElement, useStripe, useElements,} from "@stripe/react-stripe-js";
-import { checkout } from "../../redux/actions/index.js";
+import { Elements, CardElement, useStripe, useElements, } from "@stripe/react-stripe-js";
+import { checkout, updateProduct } from "../../redux/actions/index.js";
 import { useNavigate } from "react-router-dom";
 import "./Stripe.css";
 import Cart from "../Cart/Cart.jsx";
@@ -19,7 +19,7 @@ function CheckoutForm() {
   const cart = useSelector((state) => state.cart);
 
   const getCartItems = () => Object.keys(cart).map((item) => (
-    <span style={{color:'#319795'}}>{cart[item].quantity} ({cart[item].price} c/u): {cart[item].quantity * cart[item].price}</span>
+    <span style={{ color: '#319795' }}>{cart[item].quantity} ({cart[item].price} c/u): {cart[item].quantity * cart[item].price}</span>
   ));
 
   const getTotal = () => Object.values(cart).reduce((sum, { quantity, price }) => {
@@ -33,13 +33,14 @@ function CheckoutForm() {
       type: "card",
       card: elements.getElement(CardElement),
     });
-
+    // name, brand, price, stockQt, image, description
     if (error) {
       console.log(error);
     } else {
       try {
         const { id } = paymentMethod;
-        dispatch(checkout({ id, amount: getTotal() }));
+        dispatch(checkout({ id, amount: getTotal() }))
+        dispatch(updateProduct(null, null, null, cart[item].quantity, null, null, id));
       } catch (error) {
         console.log(error);
       }
@@ -47,33 +48,33 @@ function CheckoutForm() {
   };
   return (
     <form onSubmit={handleSubmit} className="card card-body ">
-      
+
       <Cart />
       {getCartItems()}
       <br />
-      
+
       <div className="form-group">
-      <h4>Enter your card details</h4>
-      <CardElement 
-        options={{
-          style: {
-            base: {
-              fontSize: "20px",
-              color: "#424770",
-              "::placeholder": {
-                color: "#aab7c4",
+        <h4>Enter your card details</h4>
+        <CardElement
+          options={{
+            style: {
+              base: {
+                fontSize: "20px",
+                color: "#424770",
+                "::placeholder": {
+                  color: "#aab7c4",
+                },
+              },
+              invalid: {
+                color: "#9e2146",
               },
             },
-            invalid: {
-              color: "#9e2146",
-            },
-          },
-        }}
-      />
-       <button type="submit" className="btn btn-primary"
-       >Buy</button>
+          }}
+        />
+        <button type="submit" className="btn btn-primary"
+        >Buy</button>
       </div>
-     </form>
+    </form>
   );
 }
 
@@ -82,9 +83,9 @@ function Stripe() {
     <Elements stripe={stripePromise}>
       <div className="container p-6">
         <div className="row">
-            <CheckoutForm  
-            />
-            
+          <CheckoutForm
+          />
+
         </div>
       </div>
     </Elements>
