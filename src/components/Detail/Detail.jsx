@@ -8,6 +8,7 @@ import { Reviews } from "@mui/icons-material";
 import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { HiOutlineHeart, HiHeart } from 'react-icons/hi'
+import Swal from "sweetalert2";
 
 export default function Detail() {
   const dispatch = useDispatch();
@@ -34,15 +35,46 @@ export default function Detail() {
   };
   
   const handleAddToFavorites= () => {
-    dispatch(addFavorite(userId, parseInt(id)))
-    alert('Item added to your wishlist')
-    dispatch(getFavorites(userId))
+    Swal.fire({
+      title: 'Add to wishlist',
+      text: "Do you want to add this product to your wishlist?",
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(addFavorite(userId, parseInt(id)))
+        Swal.fire(
+          'Added!',
+          'The product has been added to your wishlist.',
+          'success'
+          )
+          dispatch(getFavorites(userId))
+      }})
     }
+
     const handleDeleteFavorite = () => {
-      dispatch(removeFavorite(userId, parseInt(id)))
-      alert('Product deleted from your wishlist')
-      dispatch(getFavorites(userId))
-      }
+      Swal.fire({
+        title: 'Removing from wishlist',
+        text: "Do you want to delete this product from your wishlist?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          dispatch(removeFavorite(userId, parseInt(id)))
+          Swal.fire(
+            'Deleted!',
+            'The product has been deleted.',
+            'success'
+            )
+            dispatch(getFavorites(userId))
+        }})
+      } 
       
 
   if (product.length !== 0)

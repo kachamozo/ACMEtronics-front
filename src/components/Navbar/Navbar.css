@@ -154,6 +154,21 @@ height:88%;
     color: #319795;
     
 }
+
+.btnes > a  {
+    color: black;
+    display: flex;
+    align-items: center;
+    font-size: 1.3rem;
+    text-decoration: none;
+    align-self: stretch;
+}
+
+.btnes > a:hover  {
+    color: black;
+    text-decoration: none;
+    
+}
 .btnes:hover {
     background-color: #319795;
     border: 2px solid #319795;

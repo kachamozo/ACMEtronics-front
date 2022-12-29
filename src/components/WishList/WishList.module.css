@@ -4,9 +4,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    height: 65vh;
 }
 .wCont > h1 {
     text-align: center;
+    font-weight: 600;
+    padding-top: 0.5rem;
 }
 .wItem {
     display: flex;

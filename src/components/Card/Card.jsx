@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css';
 import { HiOutlineHeart, HiHeart } from 'react-icons/hi'
+import Swal from "sweetalert2";
 
 function Card(props) {
   const dispatch = useDispatch();
@@ -19,16 +20,45 @@ function Card(props) {
   let productId = props.id
 
   const handleAddToFavorites= () => {
-    dispatch(addFavorite(userId, productId))
-    alert('Item added to your wishlist')
-    dispatch(getFavorites(userId))
+    Swal.fire({
+      title: 'Add to wishlist',
+      text: "Do you want to add this product to your wishlist?",
+      icon: 'question',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes!'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(addFavorite(userId, productId))
+        Swal.fire(
+          'Added!',
+          'The product has been added to your wishlist.',
+          'success'
+          )
+          dispatch(getFavorites(userId))
+      }})
     }
-    const handleDeleteFavorite = () => {
-      dispatch(removeFavorite(userId, productId))
-      alert('Product deleted from your wishlist')
-      dispatch(getFavorites(userId))
-      }
 
+    const handleDeleteFavorite = () => {
+      Swal.fire({
+        title: 'Removing from wishlist',
+        text: "Do you want to delete this product from your wishlist?",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Yes, delete it!'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          dispatch(removeFavorite(userId, productId))
+          Swal.fire(
+            'Deleted!',
+            'The product has been deleted.',
+            'success'
+            )
+            dispatch(getFavorites(userId))
+        }})}
 
   const notify = () => toast.success("Item added to cart");
     
