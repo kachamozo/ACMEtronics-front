@@ -6,11 +6,13 @@ import "./Navbar.css";
 import logo from "../../Assets/logo1.jpg";
 import Login from "../Login/Login";
 import { Nav } from "react-bootstrap";
+import ProfileStatus from "../ProfileStatus/ProfileStatus";
 
 function Navbar() {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   const cart = useSelector((state) => state.cart);
+
   const favorites = useSelector((state)=> state.favorites)
   let userId = 1
   
@@ -19,11 +21,19 @@ function Navbar() {
   }, [])
   
   let myFavs = favorites["Favorites"] !== undefined ? favorites["Favorites"].length : '...'
+
+  const [showModal, setShowModal] = useState(false);
+
+
   //   const { isAuthenticated } = useAuth0();
 
   const handleSearch = (e) => {
     dispatch(searchName(e));
     setName(e);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
   };
   return (
     <div className="nav-bar">
@@ -82,13 +92,22 @@ function Navbar() {
           </Link>
         </button>
 
-        <button className="btnes">
+        <button
+          className="btnes"
+          onClick={() => {
+            setShowModal(true);
+          }}
+        >
           <img
             src="https://img.icons8.com/ios/50/000000/user--v1.png"
             width={"30px"}
             height={"30px"}
           />
         </button>
+        {<ProfileStatus />}
+        {showModal ? (
+          <ProfileStatus showModal={showModal} closeModal={closeModal} />
+        ) : null}
       </div>
     </div>
   );
