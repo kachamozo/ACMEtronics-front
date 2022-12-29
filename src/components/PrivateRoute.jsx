@@ -1,7 +1,12 @@
 import React from "react";
 import { Routes, useNavigate } from "react-router-dom";
 
-const PrivateRoute = ({ component: Component, children, ...rest }) => {
+const PrivateRoute = ({
+  component: Component,
+  isAuthenticated,
+  children,
+  ...rest
+}) => {
   const navigate = useNavigate();
   return (
     <Routes

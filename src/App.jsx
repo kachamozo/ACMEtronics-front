@@ -1,4 +1,4 @@
-import { Routes, Route, Router } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar/Navbar";
 import Home from "./Home/Home";
 import About from "./components/About/About";
@@ -6,7 +6,7 @@ import Shop from "./components/Shop/Shop";
 import Detail from "./components/Detail/Detail";
 import Filter from "./components/Filter/Filter";
 import Form from "./components/Form/Form";
-// import UpdateProduct from "./components/UpdateProductForm/UpdateProduct";
+import UpdateProduct from "./components/UpdateProductForm/UpdateProduct";
 import WishList from "./components/WishList/WishList.jsx";
 import Footer from "./components/Footer/Footer";
 import Landing from "./components/Landing/Landing";
@@ -16,12 +16,14 @@ import SignUp from "./components/SignUp/SignUp";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Reviews from "./components/Reviews/Reviews";
-// import PrivateRoute from "./components/PrivateRoute";
-// import { useSelector } from "react-redux";
+import PrivateRoute from "./components/PrivateRoute";
+import { useSelector } from "react-redux";
 import Stripe from "./components/Stripe/Stripe";
+
 function App() {
-  // const actualUser = useSelector((state) => state.userDetail);
-  // const isAllowed = !!actualUser.name;
+  const user = useSelector((state) => state.user);
+
+  const isAuthenticated = !!user.name;
 
   return (
     <div>
@@ -41,28 +43,33 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/reviews" element={<Reviews />} />
 
-        <Route path="/wishlist" element={<WishList/>} />
+        <Route path="/wishlist" element={<WishList />} />
 
         <Route path="/stripe" element={<Stripe />} />
 
-        {/* <Route
+        <Route
           path="/createproduct/*"
           element={
-            <PrivateRoute user={actualUser.admin}>
+            <PrivateRoute isAuthenticated={isAuthenticated && user.admin}>
               <Form />
             </PrivateRoute>
           }
-        /> */}
-        {/* 
-        <Route
+        />
+
+        {/* <Route
           path="/updateproduct"
           element={
             <PrivateRoute user={actualUser.admin}>
               <UpdateProduct />
             </PrivateRoute>
-          }
+          } 
         /> */}
 
+        {/* <PrivateRoute
+          path="/updateproduct"
+          component={UpdateProduct}
+          isAllowed={actualUser.admn}
+        /> */}
       </Routes>
       <Footer />
     </div>
