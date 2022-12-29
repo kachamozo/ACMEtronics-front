@@ -40,6 +40,9 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/reviews" element={<Reviews />} />
+
+        <Route path="/wishlist" element={<WishList/>} />
+
         <Route path="/stripe" element={<Stripe />} />
 
         {/* <Route
@@ -59,6 +62,7 @@ function App() {
             </PrivateRoute>
           }
         /> */}
+
       </Routes>
       <Footer />
     </div>

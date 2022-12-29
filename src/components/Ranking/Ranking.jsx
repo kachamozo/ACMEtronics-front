@@ -1,8 +1,21 @@
-import React from "react";
+import React, {useEffect} from "react";
+import { useDispatch } from "react-redux";
 import Slider from "react-slick";
 import Card from "../Card/Card";
+import { getFavorites } from "../../redux/actions";
 
 export const Ranking = ({allProducts}) => {
+
+  const dispatch = useDispatch()
+  
+  // después se modifica para traer el user que está logueado
+  let userId = 1
+  
+  // actualiza el componente para cargar los iconos de favoritos
+  useEffect(() => {
+    dispatch(getFavorites(userId))
+  }, [dispatch]);
+
     function NextArrow(props) {
         const { className, style, onClick } = props;
         return (

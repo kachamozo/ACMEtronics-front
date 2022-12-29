@@ -1,0 +1,56 @@
+.wCont{
+    font-family: "Raleway";
+    margin-top: 120px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.wCont > h1 {
+    text-align: center;
+}
+.wItem {
+    display: flex;
+    flex-direction: row;
+    margin: 1.5em;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    box-shadow: 0 0 1px grey;
+    width: 70%;
+}
+.wItem > img {
+    object-fit: cover;
+}
+.productName {
+    padding: 1rem;
+    width: 60%;
+}
+.likeBtn > button {
+   color: red;
+   background-color: transparent;
+   border: 1px transparent;
+   padding: 1rem;
+}
+.likeBtn > button:hover{
+    cursor: pointer;
+}
+
+@media screen and (max-width: 600px) {
+    .wCont{
+        margin-top: 340px;
+    }
+    .wItem{
+        width: 90%;
+    }
+    .productName {
+        padding: 0.5rem;
+        width: 50%;
+    }
+    .likeBtn {
+        padding: 0.5rem;
+    }
+    .wItem > img {
+        width: 80px;
+        object-fit: contain;
+    }
+}

@@ -21,6 +21,7 @@ import {
   DELETE_ALL_FROM_CART,
   CLEAR_CART,
   LOGIN_USER,
+  GET_FAVORITES,
 } from "../actions";
 
 const initialState = {
@@ -212,11 +213,17 @@ function rootReducer(state = initialState, action) {
         copyProducts: aux2,
       };
     }
+    case GET_FAVORITES: {
+      return {
+        ...state,
+        favorites: action.payload
+      }
+    }
 
     case ADD_FAVORITE: {
       return {
         ...state,
-        favorites: action.payload.favorites,
+        favorites: action.payload,
       };
     }
     case REMOVE_FAVORITE: {

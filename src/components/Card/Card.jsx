@@ -1,54 +1,34 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Card.css";
 import Rating from "react-rating";
 import { BsStarFill, BsStar, BsStarHalf } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import { addFavorite, addToCart } from "../../redux/actions/index";
+import { addFavorite, addToCart, removeFavorite, getFavorites } from "../../redux/actions/index";
 import { useDispatch, useSelector } from "react-redux";
 import { ToastContainer, toast } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css';
+import { HiOutlineHeart, HiHeart } from 'react-icons/hi'
 
 function Card(props) {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.userDetail);
   const favorites = useSelector((state) => state.favorites);
 
+  // después se modifica para traer el user que está logueado
+  let userId = 1
+  let productId = props.id
 
-  // const addProductToFavorites = async (event, userId) => {
-  //   event.preventDefault();
+  const handleAddToFavorites= () => {
+    dispatch(addFavorite(userId, productId))
+    alert('Item added to your wishlist')
+    dispatch(getFavorites(userId))
+    }
+    const handleDeleteFavorite = () => {
+      dispatch(removeFavorite(userId, productId))
+      alert('Product deleted from your wishlist')
+      dispatch(getFavorites(userId))
+      }
 
-  //   let product = {
-  //     id: props.id,
-  //     name: props.name,
-  //     price: props.price,
-  //     image: props.image,
-  //   };
-
-  //   let isAFavorite = await favorites.find((p) => p.id === Number(props.id));
-
-  //   if (isAFavorite) return alert("The product is already on your wishlist");
-
-  //   if (!userId)
-  //     return alert("You must login to add the product to your wishlist");
-
-  //   dispatch(addFavorite({ productId: product.id, userId: 3 }));
-  // };
-
-  const addProductToFavorites = async (event, userId) => {
-    event.preventDefault();
-
-    const { id, name, price, image, } = props;
-    const product = { id, name, price, image };
-
-    const isAFavorite = await favorites.find((p) => p.id === Number(id));
-
-    if (isAFavorite) return alert("The product is already on your wishlist");
-
-    if (!userId)
-      return alert("You must login to add the product to your wishlist");
-
-    dispatch(addFavorite({ productId: id, userId }));
-  };
 
   const notify = () => toast.success("Item added to cart");
     
@@ -98,15 +78,11 @@ function Card(props) {
         </div>
       </div>
       <div className="item3">
-
         <button className="addCart" onClick={()=> handleAddToCart()}>Add to cart</button>
-
-        <button
-          className="fav"
-          onClick={(event) => addProductToFavorites(event, user.id)}
-        >
-          ♡
-        </button>
+        {favorites["Favorites"] && favorites["Favorites"].find(el => el.id === props.id) ? 
+            (<div className="fav"><a onClick={()=> handleDeleteFavorite()} ><HiHeart size={'2em'}/></a></div>) : 
+            (<div className="fav" ><a onClick={()=>handleAddToFavorites()}><HiOutlineHeart size={'2em'}/></a></div>
+            )}
       </div>
     </div>
   );
