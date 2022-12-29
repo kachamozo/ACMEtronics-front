@@ -29,13 +29,14 @@ function Card(props) {
       dispatch(getFavorites(userId))
       }
 
+
   const notify = () => toast.success("Item added to cart");
     
   const handleAddToCart= () => {
     dispatch(addToCart(props.id))
     notify()
     }
-
+     
   return (
     <div className="homeCard">
       <Link to={"/shop/" + props.id}>
@@ -59,7 +60,12 @@ function Card(props) {
             />
           </div>
           <div className="inStock">
-            <span>In stock</span>
+            
+            <span>{
+            props.stock > 0 
+              ? 'In stock'
+              : 'No stock'}</span>
+            
           </div>
         </div>
       </Link>

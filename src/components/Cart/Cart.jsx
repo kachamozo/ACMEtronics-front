@@ -40,7 +40,7 @@ export default function Cart() {
     <div className={cartStyles.cartContainer}>
       <h1> Cart </h1>
       <div className="d-flex justify-content-center"><p> You have {cart.length} items in your cart </p></div>
-      {cart.map(item => <div className={cartStyles.card}>
+      {cart.map(item => <div key={item.id} className={cartStyles.card}>
          <CartItem key={item.id} item={item} /> </div> )}
         <div className={cartStyles.total}><h4>Total: $ {TotalCart} </h4></div>
       <div  className={cartStyles.buyBtn}>
