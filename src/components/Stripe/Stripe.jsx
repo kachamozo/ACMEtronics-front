@@ -18,6 +18,13 @@ function CheckoutForm() {
   const elements = useElements();
   const cart = useSelector((state) => state.cart);
 
+  
+  const handleClick = () => {
+    alert("Your payment has been processed");
+    navigate("/shop");
+  };
+
+
   const getCartItems = () => Object.keys(cart).map((item) => (
     <span style={{color:'#319795'}}>{cart[item].quantity} ({cart[item].price} c/u): {cart[item].quantity * cart[item].price}</span>
   ));
@@ -70,7 +77,7 @@ function CheckoutForm() {
       </div>
       
       <div className="form-group">
-       <button type="submit" className="btn btn-primary"
+       <button type="submit" className="btn btn-primary" onClick={handleClick}
        >Buy</button>
       </div>
 
