@@ -7,7 +7,7 @@ import Detail from "./components/Detail/Detail";
 import Filter from "./components/Filter/Filter";
 import Form from "./components/Form/Form";
 // import UpdateProduct from "./components/UpdateProductForm/UpdateProduct";
-// import WishList from "./components/WishList/WishList.jsx";
+import WishList from "./components/WishList/WishList.jsx";
 import Footer from "./components/Footer/Footer";
 import Landing from "./components/Landing/Landing";
 import Cart from "./components/Cart/Cart";
