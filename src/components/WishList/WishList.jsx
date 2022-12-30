@@ -9,14 +9,11 @@ import Swal from "sweetalert2";
 
 function WishList() {
   const dispatch = useDispatch();
-  //let user = useSelector((state) => state.users);
   let favorites = useSelector((state) => state.favorites);
-  
-  // después se modifica para traer el user que está logueado
-  const userId = 1
+  let user = JSON.parse(localStorage.getItem("loggedUser"))
 
   useEffect(() => {
-    dispatch(getFavorites(userId))
+    dispatch(getFavorites(user.email))
   }, [dispatch]);
   
   let favs = favorites["Favorites"]
@@ -32,13 +29,13 @@ function WishList() {
   confirmButtonText: 'Yes, delete it!'
 }).then((result) => {
   if (result.isConfirmed) {
-    dispatch(removeFavorite(userId, productId))
+    dispatch(removeFavorite(user.email, productId))
     Swal.fire(
       'Deleted!',
       'The product has been deleted.',
       'success'
       )
-      dispatch(getFavorites(userId))
+      dispatch(getFavorites(user.email))
   }})
 }
 
@@ -49,7 +46,7 @@ function WishList() {
       <h1>Loading...</h1>
     </div>
   )  
-if(userId)
+if(user.email)
   return(
     <div className={w.wCont}> 
     <h1> My wishlist</h1>
@@ -62,11 +59,10 @@ if(userId)
          <div className={w.likeBtn}>
            <button onClick={()=> handleDeleteFavorite(el.id)}> <HiHeart size={'2em'} /> </button>
          </div>
-        
-        
-         </div>)) : <div>
-          <h1> Your wishlist is empty. </h1>
-      <button><Link to='/shop'>Search products</Link></button>
+         </div>)) : 
+         <div className={w.empty}>
+          <h2> Your wishlist is empty. </h2>
+          <Link to='/shop'><button className={w.searchBtn}>Search products</button></Link>
          </div>
          }
     </div>

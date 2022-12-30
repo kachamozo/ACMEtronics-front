@@ -5,18 +5,15 @@ import { BsStarFill, BsStar, BsStarHalf } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { addFavorite, addToCart, removeFavorite, getFavorites } from "../../redux/actions/index";
 import { useDispatch, useSelector } from "react-redux";
-import { ToastContainer, toast } from "react-toastify"
+import { toast } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css';
 import { HiOutlineHeart, HiHeart } from 'react-icons/hi'
 import Swal from "sweetalert2";
 
 function Card(props) {
   const dispatch = useDispatch();
-  const user = useSelector((state) => state.userDetail);
   const favorites = useSelector((state) => state.favorites);
-
-  // después se modifica para traer el user que está logueado
-  let userId = 1
+  let user = JSON.parse(localStorage.getItem("loggedUser"))
   let productId = props.id
 
   const handleAddToFavorites= () => {
@@ -30,13 +27,13 @@ function Card(props) {
       confirmButtonText: 'Yes!'
     }).then((result) => {
       if (result.isConfirmed) {
-        dispatch(addFavorite(userId, productId))
+        dispatch(addFavorite(user.email, productId))
         Swal.fire(
           'Added!',
           'The product has been added to your wishlist.',
           'success'
           )
-          dispatch(getFavorites(userId))
+          dispatch(getFavorites(user.email))
       }})
     }
 
@@ -51,13 +48,13 @@ function Card(props) {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.isConfirmed) {
-          dispatch(removeFavorite(userId, productId))
+          dispatch(removeFavorite(user.email, productId))
           Swal.fire(
             'Deleted!',
             'The product has been deleted.',
             'success'
             )
-            dispatch(getFavorites(userId))
+            dispatch(getFavorites(user.email))
         }})}
 
   const notify = () => toast.success("Item added to cart");

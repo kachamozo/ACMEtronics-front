@@ -12,18 +12,17 @@ function Navbar() {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   const cart = useSelector((state) => state.cart);
-
   const favorites = useSelector((state)=> state.favorites)
-  let userId = 1
-  
+  let user = JSON.parse(localStorage.getItem("loggedUser"))
+
+  // actualiza el componente para cargar el length del array de favoritos cuando agregamos o eliminamos uno
   useEffect(()=>{
-    dispatch(getFavorites(userId))
-  }, [])
+    dispatch(getFavorites(user.email))
+  }, [dispatch])
   
   let myFavs = favorites["Favorites"] !== undefined ? favorites["Favorites"].length : '...'
 
   const [showModal, setShowModal] = useState(false);
-
 
   //   const { isAuthenticated } = useAuth0();
 
