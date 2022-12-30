@@ -1,21 +1,32 @@
 import React from "react";
+import { Modal, Button } from "react-bootstrap";
 import "./ProfileStatus.css";
+import { useSelector } from "react-redux";
 
 function ProfileStatus({ showModal, closeModal }) {
-  if (!showModal) return null;
+  // const user = useSelector((state) => user.state);
 
   return (
-    <div class="modal">
-      <div class="modal-header">
-        <h2>User Information</h2>
-      </div>
-      <div class="modal-body">{/* Add user information here  */}</div>
-      <div class="modal-footer">
-        <button id="logout-button" onClick={closeModal}>
+    <Modal show={showModal} onHide={closeModal}>
+      <Modal.Header closeButton>
+        <Modal.Title>User Information</Modal.Title>
+      </Modal.Header>
+      <Modal.Body>
+        {/* <p>Name: {user.name}</p>
+        <p>Email: {user.email}</p> */}
+      </Modal.Body>
+      <Modal.Footer>
+        <Button className="btn-sucess" variant="secondary" onClick={closeModal}>
+          Close
+        </Button>
+        <Button className="btn-sucess" variant="primary">
+          Edit information
+        </Button>
+        <Button className="btn-sucess" variant="primary">
           Logout
-        </button>
-      </div>
-    </div>
+        </Button>
+      </Modal.Footer>
+    </Modal>
   );
 }
 
