@@ -21,6 +21,10 @@ function Navbar() {
     setName(e);
   };
 
+  const openModal = () => {
+    setShowModal(true);
+  };
+
   const closeModal = () => {
     setShowModal(false);
   };
@@ -83,7 +87,7 @@ function Navbar() {
         <button
           className="btnes"
           onClick={() => {
-            setShowModal(true);
+            openModal();
           }}
         >
           <img
@@ -92,10 +96,12 @@ function Navbar() {
             height={"30px"}
           />
         </button>
-        {<ProfileStatus />}
+        {/* {<ProfileStatus />}
         {showModal ? (
           <ProfileStatus showModal={showModal} closeModal={closeModal} />
-        ) : null}
+        ) : null} */}
+
+        <ProfileStatus showModal={showModal} closeModal={closeModal} />
       </div>
     </div>
   );

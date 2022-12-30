@@ -32,6 +32,7 @@ export const LOGIN_REQUEST = "LOGIN_REQUEST";
 export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAILURE = "LOGIN_FAILURE";
 export const LOGOUT = "LOGOUT";
+export const GET_USER_PROFILE = "GET_USER_PROFILE";
 
 export const getAllProducts = () => {
   return async function (dispatch) {
@@ -350,5 +351,15 @@ export const logout = () => {
   return (dispatch) => {
     window.localStorage.clear();
     dispatch({ type: LOGOUT });
+  };
+};
+
+export const userProfile = () => {
+  return async function (dispatch) {
+    const response = await axios.get("http://localhost:3001/login/profile");
+    dispatch({
+      type: GET_USER_PROFILE,
+      payload: response.data.token,
+    });
   };
 };

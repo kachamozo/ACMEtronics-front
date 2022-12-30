@@ -26,6 +26,7 @@ import {
   LOGIN_SUCCESS,
   LOGIN_FAILURE,
   LOGOUT,
+  GET_USER_PROFILE,
 } from "../actions";
 
 const initialState = {
@@ -44,6 +45,7 @@ const initialState = {
   isLoading: false,
   isAuthenticated: false,
   error: "",
+  userProfile: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -369,6 +371,12 @@ function rootReducer(state = initialState, action) {
         ...state,
         isAuthenticated: false,
         user: {},
+      };
+
+    case GET_USER_PROFILE:
+      return {
+        ...state,
+        userProfile: action.payload,
       };
 
     default:
