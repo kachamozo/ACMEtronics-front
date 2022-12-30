@@ -8,12 +8,11 @@ export const Ranking = ({allProducts}) => {
 
   const dispatch = useDispatch()
   
-  // después se modifica para traer el user que está logueado
-  let userId = 1
+  let user = JSON.parse(localStorage.getItem("loggedUser"))
   
   // actualiza el componente para cargar los iconos de favoritos
   useEffect(() => {
-    dispatch(getFavorites(userId))
+    dispatch(getFavorites(user.email))
   }, [dispatch]);
 
     function NextArrow(props) {

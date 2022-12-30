@@ -37,6 +37,27 @@
 .likeBtn > button:hover{
     cursor: pointer;
 }
+.empty {
+    display: flex;
+    flex-direction: column; 
+    align-items: center;
+    font-family: 'Raleway';
+    padding: 2rem;
+}
+.searchBtn {
+    padding: 1rem;
+    border: 1px solid white;
+    border-radius: 15px;
+    background-color:  #319795;
+    color: white;
+}
+
+.empty > h2 {
+    padding: 3rem;
+}
+.searchBtn:hover {
+    cursor: pointer;
+}
 
 @media screen and (max-width: 600px) {
     .wCont{

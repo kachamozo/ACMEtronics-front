@@ -15,14 +15,11 @@ export default function Detail() {
   const product = useSelector((state) => state.detail);
   const favs = useSelector((state)=> state.favorites)
   const { id } = useParams();
-
-
-  // después se modifica para traer el user que está logueado
-  let userId = 1
+  let user = JSON.parse(localStorage.getItem("loggedUser"))
   
   useEffect(() => {
     dispatch(getProductDetail(id));
-    dispatch(getFavorites(userId))
+    dispatch(getFavorites(user.email))
     return () => {
       dispatch(clean())};
   }, [dispatch, id]);
@@ -45,13 +42,13 @@ export default function Detail() {
       confirmButtonText: 'Yes!'
     }).then((result) => {
       if (result.isConfirmed) {
-        dispatch(addFavorite(userId, parseInt(id)))
+        dispatch(addFavorite(user.email, parseInt(id)))
         Swal.fire(
           'Added!',
           'The product has been added to your wishlist.',
           'success'
           )
-          dispatch(getFavorites(userId))
+          dispatch(getFavorites(user.email))
       }})
     }
 
@@ -66,13 +63,13 @@ export default function Detail() {
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
         if (result.isConfirmed) {
-          dispatch(removeFavorite(userId, parseInt(id)))
+          dispatch(removeFavorite(user.email, parseInt(id)))
           Swal.fire(
             'Deleted!',
             'The product has been deleted.',
             'success'
             )
-            dispatch(getFavorites(userId))
+            dispatch(getFavorites(user.email))
         }})
       } 
       

@@ -194,10 +194,10 @@ export const filterCategory = (payload) => {
   };
 };
 
-export const getFavorites = (userId) => {
+export const getFavorites = (userEmail) => {
   return async function (dispatch) {
     const response = await axios.get(
-      `http://localhost:3001/favorites/?userId=${userId}`
+      `http://localhost:3001/favorites/?userEmail=${userEmail}`
     );
     return dispatch({
       type: GET_FAVORITES,
@@ -206,10 +206,10 @@ export const getFavorites = (userId) => {
   };
 };
 
-export const addFavorite = (userId, productId) => {
+export const addFavorite = (userEmail, productId) => {
   return async function (dispatch) {
     const response = await axios.post(
-      `http://localhost:3001/favorites/?userId=${userId}&productId=${productId}`
+      `http://localhost:3001/favorites/?userEmail=${userEmail}&productId=${productId}`
     );
     return dispatch({
       type: ADD_FAVORITE,
@@ -218,10 +218,10 @@ export const addFavorite = (userId, productId) => {
   };
 };
 
-export const removeFavorite = (userId, productId) => {
+export const removeFavorite = (userEmail, productId) => {
   return async function (dispatch) {
     const response = await axios.delete(
-      `http://localhost:3001/favorites/?userId=${userId}&productId=${productId}`
+      `http://localhost:3001/favorites/?userEmail=${userEmail}&productId=${productId}`
     );
     return dispatch({
       type: REMOVE_FAVORITE,
@@ -346,7 +346,7 @@ export const loginUser = (payload) => {
     }
   };
 };
-
+  
 export const logout = () => {
   return (dispatch) => {
     window.localStorage.clear();
