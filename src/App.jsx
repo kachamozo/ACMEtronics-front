@@ -35,7 +35,7 @@ function App() {
         <Route path="/about" element={<About />} />
         <Route path="/shop" element={<Shop />} />
         <Route path="/shop/:id" element={<Detail />} />
-        <Route path="/shop/form" element={<Form />} />
+        <Route path="/form" element={<Form />} />
         <Route path="/shop/filter" element={<Filter />} />
 
         <Route path="/shop/cart" element={<Cart />} />
@@ -47,14 +47,16 @@ function App() {
 
         <Route path="/stripe" element={<Stripe />} />
 
-        <Route
+        <Route path="/updateproduct" element={<UpdateProduct />} />
+
+        {/* <Route
           path="/createproduct/*"
           element={
             <PrivateRoute isAuthenticated={isAuthenticated && user.admin}>
               <Form />
             </PrivateRoute>
           }
-        />
+        /> */}
 
         {/* <Route
           path="/updateproduct"
