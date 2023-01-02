@@ -19,7 +19,7 @@ export default function Detail() {
   
   useEffect(() => {
     dispatch(getProductDetail(id));
-    dispatch(getFavorites(user.email))
+    if(user)dispatch(getFavorites(user.email))
     return () => {
       dispatch(clean())};
   }, [dispatch, id]);
@@ -32,7 +32,8 @@ export default function Detail() {
   };
   
   const handleAddToFavorites= () => {
-    Swal.fire({
+    if(user){
+      Swal.fire({
       title: 'Add to wishlist',
       text: "Do you want to add this product to your wishlist?",
       icon: 'question',
@@ -50,10 +51,17 @@ export default function Detail() {
           )
           dispatch(getFavorites(user.email))
       }})
+    } else {
+      Swal.fire({
+        title: 'Please log in to see your wishlist',
+        icon: 'warning'
+      })
+    }
     }
 
     const handleDeleteFavorite = () => {
-      Swal.fire({
+      if(user){
+        Swal.fire({
         title: 'Removing from wishlist',
         text: "Do you want to delete this product from your wishlist?",
         icon: 'warning',
@@ -71,6 +79,12 @@ export default function Detail() {
             )
             dispatch(getFavorites(user.email))
         }})
+      } else {
+        Swal.fire({
+          title: 'Please log in to see your wishlist',
+          icon: 'warning'
+        })
+      }
       } 
       
 

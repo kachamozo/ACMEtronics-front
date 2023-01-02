@@ -12,7 +12,7 @@ export const Ranking = ({allProducts}) => {
   
   // actualiza el componente para cargar los iconos de favoritos
   useEffect(() => {
-    dispatch(getFavorites(user.email))
+    if(user) dispatch(getFavorites(user.email))
   }, [dispatch]);
 
     function NextArrow(props) {

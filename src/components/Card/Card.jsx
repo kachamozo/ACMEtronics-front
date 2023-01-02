@@ -17,7 +17,8 @@ function Card(props) {
   let productId = props.id
 
   const handleAddToFavorites= () => {
-    Swal.fire({
+    if(user){
+      Swal.fire({
       title: 'Add to wishlist',
       text: "Do you want to add this product to your wishlist?",
       icon: 'question',
@@ -36,26 +37,42 @@ function Card(props) {
           dispatch(getFavorites(user.email))
       }})
     }
+    else {
+      Swal.fire({
+        title: 'Please log in to see your wishlist',
+        icon: 'warning'
+      })
+    }
+    }
 
     const handleDeleteFavorite = () => {
-      Swal.fire({
-        title: 'Removing from wishlist',
-        text: "Do you want to delete this product from your wishlist?",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Yes, delete it!'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          dispatch(removeFavorite(user.email, productId))
-          Swal.fire(
-            'Deleted!',
-            'The product has been deleted.',
-            'success'
-            )
-            dispatch(getFavorites(user.email))
-        }})}
+      if(user){
+        Swal.fire({
+                title: 'Removing from wishlist',
+                text: "Do you want to delete this product from your wishlist?",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  dispatch(removeFavorite(user.email, productId))
+                  Swal.fire(
+                    'Deleted!',
+                    'The product has been deleted.',
+                    'success'
+                    )
+                    dispatch(getFavorites(user.email))
+                }})
+      } else {
+          Swal.fire({
+            title: 'Please log in to see your wishlist',
+            icon: 'warning'
+          })
+      }
+      
+      }
 
   const notify = () => toast.success("Item added to cart");
     
