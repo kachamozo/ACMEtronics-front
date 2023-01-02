@@ -6,6 +6,7 @@ import { checkout, clearCart } from "../../redux/actions/index.js";
 import { useNavigate } from "react-router-dom";
 import "./Stripe.css";
 import Cart from "../Cart/Cart.jsx";
+import Swal from "sweetalert2";
 
 
 const stripePromise = loadStripe(
@@ -57,7 +58,10 @@ function CheckoutForm() {
     }
 
     dispatch(clearCart())
-    alert("Your payment has been processed");
+    Swal.fire({
+      title: "Your payment has been processed",
+      icon: "success"
+    })
     navigate("/shop");
     
   };
