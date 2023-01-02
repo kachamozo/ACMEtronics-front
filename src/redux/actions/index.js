@@ -33,6 +33,7 @@ export const LOGIN_SUCCESS = "LOGIN_SUCCESS";
 export const LOGIN_FAILURE = "LOGIN_FAILURE";
 export const LOGOUT = "LOGOUT";
 export const GET_USER_PROFILE = "GET_USER_PROFILE";
+export const DECREMENT_STOCK = "DECREMENT_STOCK";
 
 export const getAllProducts = () => {
   return async function (dispatch) {
@@ -361,5 +362,12 @@ export const userProfile = () => {
       type: GET_USER_PROFILE,
       payload: response.data.token,
     });
+  };
+};
+
+export const decrementStock = (productId) => {
+  return {
+    type: DECREMENT_STOCK,
+    productId,
   };
 };

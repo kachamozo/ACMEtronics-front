@@ -27,6 +27,7 @@ import {
   LOGIN_FAILURE,
   LOGOUT,
   GET_USER_PROFILE,
+  DECREMENT_STOCK,
 } from "../actions";
 
 const initialState = {
@@ -322,6 +323,9 @@ function rootReducer(state = initialState, action) {
         ...state,
         cart: [],
       };
+    }
+
+    case DECREMENT_STOCK: {
     }
 
     // case LOGIN_USER:

@@ -4,7 +4,7 @@ import "./ProfileStatus.css";
 import { useSelector } from "react-redux";
 
 function ProfileStatus({ showModal, closeModal }) {
-  // const user = useSelector((state) => user.state);
+  // const user = useSelector((state) => userProfile.state);
 
   return (
     <Modal show={showModal} onHide={closeModal}>
