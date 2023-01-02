@@ -18,12 +18,7 @@ function CheckoutForm() {
   const elements = useElements();
   const cart = useSelector((state) => state.cart);
 
-  
-  const handleClick = () => {
-    alert("Your payment has been processed");
-    navigate("/shop");
-  };
-
+ 
 
   const getCartItems = () => Object.keys(cart).map((item) => (
     <span style={{color:'#319795'}}>{cart[item].quantity} ({cart[item].price} c/u): {cart[item].quantity * cart[item].price}</span>
@@ -59,25 +54,27 @@ function CheckoutForm() {
 
       <Cart />
       {getCartItems()}
-      <br/>
-
-      <div className="form-group">
-        <h4>Enter your account information</h4>
-        <label>Card details</label>
-        <CardElement className="form-control" />
-      </div>
-     
-      <div className="form-group">
-        <label>Card holder name</label>
-        <input type="text" className="form-control" />
-      </div>
-      <div className="form-group">
-        <label>Email</label>
-        <input type="email" className="form-control" />
-      </div>
+      <br />
       
       <div className="form-group">
-       <button type="submit" className="btn btn-primary" onClick={handleClick}
+      <h4>Enter your card details</h4>
+      <CardElement 
+        options={{
+          style: {
+            base: {
+              fontSize: "20px",
+              color: "#424770",
+              "::placeholder": {
+                color: "#aab7c4",
+              },
+            },
+            invalid: {
+              color: "#9e2146",
+            },
+          },
+        }}
+      />
+       <button type="submit" className="btn btn-primary"
        >Buy</button>
       </div>
 
