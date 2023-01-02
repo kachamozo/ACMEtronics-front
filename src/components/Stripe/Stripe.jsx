@@ -19,7 +19,11 @@ function CheckoutForm() {
   const elements = useElements();
   const cart = useSelector((state) => state.cart);
 
-
+  /* const handleClick = () => {
+    dispatch(clearCart())
+    alert("Your payment has been processed");
+    navigate("/shop");
+  }; */
 
   const getCartItems = () => Object.keys(cart).map((item) => (
     <span style={{color:'#319795'}}>{cart[item].quantity} ({cart[item].price} c/u): {cart[item].quantity * cart[item].price}</span>
@@ -31,6 +35,8 @@ function CheckoutForm() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+
 
     const { error, paymentMethod } = await stripe.createPaymentMethod({
       type: "card",
@@ -49,6 +55,11 @@ function CheckoutForm() {
         console.log(error);
       }
     }
+
+    dispatch(clearCart())
+    alert("Your payment has been processed");
+    navigate("/shop");
+    
   };
   return (
     <form onSubmit={handleSubmit} className="card card-body ">
@@ -75,7 +86,7 @@ function CheckoutForm() {
           },
         }}
       />
-       <button type="submit" className="btn btn-primary"
+       <button type="submit" className="btn btn-primary" 
        >Buy</button>
       </div>
 
