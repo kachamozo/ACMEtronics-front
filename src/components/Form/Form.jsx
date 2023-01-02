@@ -52,7 +52,7 @@ const AddProduct = () => {
   function handleSubmit(event) {
     event.preventDefault();
     if (Object.keys(errors).length === 0) {
-      alert("El producto fue creado satisfactoriamente");
+      alert("The product was created succesfully");
       dispatch(createProduct(input));
 
       setInput({
@@ -64,9 +64,9 @@ const AddProduct = () => {
         image: "",
         categories: [],
       });
-      navigate("/shop/updateproduct");
+      navigate("/updateproduct");
     } else {
-      alert("Debe completar la informacion para crear el producto");
+      alert("Must complete all the information to upload the product");
     }
   }
 
@@ -78,7 +78,7 @@ const AddProduct = () => {
     let errors = {};
 
     if (!input.name) {
-      errors.name = "Debes ingresar el nombre del producto.";
+      errors.name = "Must insert the name of the product";
     }
 
     if (
@@ -86,30 +86,30 @@ const AddProduct = () => {
         (product) => product.name.toLowerCase() === input.name.toLowerCase()
       )
     )
-      errors.name = "El producto ya existe en la base de datos.";
+      errors.name = "The product already exists in the database";
 
     if (!input.brand) {
-      errors.brand = "Debes ingresar la marca del producto.";
+      errors.brand = "Must insert the brand of the product";
     }
 
     if (!input.price) {
-      errors.price = "Debes ingresar el precio del producto.";
+      errors.price = "Must insert the price of the product";
     }
 
     if (!input.stock) {
-      errors.stock = "Debes ingresar las cantidades disponibles. ";
+      errors.stock = "Must insert the stock.";
     }
 
     if (!input.image) {
-      errors.image = "Debes ingresar la imágen del producto.";
+      errors.image = "Must insert a link with the image of the product.";
     }
 
     if (input.image.length > 200) {
-      errors.image = "Debes ingresar un enlace más corto";
+      errors.image = "Must insert a short link";
     }
 
     if (!input.description) {
-      errors.description = "Debes ingresar una descripción del producto.";
+      errors.description = "Must provide a description of the product";
     }
 
     return errors;
@@ -117,17 +117,15 @@ const AddProduct = () => {
 
   return (
     <>
-      <h1 className="title">Agregar Productos</h1>
-
       <div className="form">
         <form onSubmit={(e) => handleSubmit(e)}>
           <div>
-            <label htmlFor="name">Nombre: </label>
+            <label htmlFor="name">Name: </label>
             <input
               type="text"
               id="name"
               name="name"
-              placeholder="Nombre del producto"
+              placeholder="Name"
               value={input.name}
               onChange={(e) => handleChange(e)}
             />
@@ -135,12 +133,12 @@ const AddProduct = () => {
             {errors.name ? <p className="error">{errors.name}</p> : null}
           </div>
           <div>
-            <label htmlFor="brand">Marca: </label>
+            <label htmlFor="brand">Brand: </label>
             <input
               type="text"
               id="brand"
               name="brand"
-              placeholder="Marca del producto"
+              placeholder="Brand"
               value={input.brand}
               onChange={(e) => handleChange(e)}
             />
@@ -148,12 +146,12 @@ const AddProduct = () => {
             {errors.brand && <p className="error">{errors.brand}</p>}
           </div>
           <div>
-            <label htmlFor="stock">Cantidades Disponibles: </label>
+            <label htmlFor="stock">Stock: </label>
             <input
               type="number"
               id="stock"
               name="stock"
-              placeholder="Cantidades Disponibles"
+              placeholder="Stock"
               value={input.stock}
               onChange={(e) => handleChange(e)}
             />
@@ -161,12 +159,12 @@ const AddProduct = () => {
             {errors.stock && <p className="error">{errors.stock}</p>}
           </div>
           <div>
-            <label htmlFor="price">Precio: </label>
+            <label htmlFor="price">Price: </label>
             <input
               type="number"
               id="price"
               name="price"
-              placeholder="Precio del producto"
+              placeholder="Price"
               value={input.price}
               onChange={(e) => handleChange(e)}
             />
@@ -174,12 +172,12 @@ const AddProduct = () => {
             {errors.price && <p className="error">{errors.price}</p>}
           </div>
           <div>
-            <label htmlFor="image">Imágen del producto: </label>
+            <label htmlFor="image">Image: </label>
             <input
               type="text"
               id="image"
               name="image"
-              placeholder="Enlace de la imágen"
+              placeholder="Image"
               value={input.image}
               onChange={(e) => handleChange(e)}
             />
@@ -196,7 +194,7 @@ const AddProduct = () => {
           )}
 
           <div>
-            <label htmlFor="image">Descripción del producto: </label>
+            <label htmlFor="image">Description: </label>
 
             <textarea
               type="text"
@@ -204,7 +202,7 @@ const AddProduct = () => {
               name="description"
               cols="23"
               rows="10"
-              placeholder="Descripción del producto"
+              placeholder="Description"
               value={input.description}
               onChange={(e) => handleChange(e)}
             />
@@ -235,7 +233,7 @@ const AddProduct = () => {
               ))}
             </select>
           </div>
-          <button type="submit">Agregar producto</button>
+          <button type="submit">Add product</button>
         </form>
       </div>
     </>
