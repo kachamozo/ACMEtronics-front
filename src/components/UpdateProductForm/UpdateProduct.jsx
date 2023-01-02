@@ -191,7 +191,7 @@ function UpdateProduct() {
 
         <Button variant="outlined">
           {" "}
-          <Link to="/shop/form">Add Product</Link>
+          <Link to="/form">Add Product</Link>
         </Button>
         <TableContainer>
           <Table className="table">
