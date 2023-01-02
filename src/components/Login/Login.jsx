@@ -83,14 +83,14 @@ function Login() {
             />
             {errors.password && <p className="error_msg">{errors.password}</p>}
             <button type="submit" className="green_btn">
-              Sing In
+              Sign In
             </button>
             <button
               type="submit"
               className="green_btn"
               onClick={() => loginWithRedirect()}
             >
-              Sing In with Google
+              Sign In with Google
             </button>
           </form>
         </div>
@@ -98,7 +98,7 @@ function Login() {
           <h1>New Here ?</h1>
           <Link to="/signup">
             <button type="button" className="white_btn">
-              Sing Up
+              Sign Up
             </button>
           </Link>
         </div>
