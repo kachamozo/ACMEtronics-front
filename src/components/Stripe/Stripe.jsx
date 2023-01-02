@@ -2,10 +2,11 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadStripe } from "@stripe/stripe-js";
 import {Elements, CardElement, useStripe, useElements,} from "@stripe/react-stripe-js";
-import { checkout } from "../../redux/actions/index.js";
+import { checkout, clearCart } from "../../redux/actions/index.js";
 import { useNavigate } from "react-router-dom";
 import "./Stripe.css";
 import Cart from "../Cart/Cart.jsx";
+
 
 const stripePromise = loadStripe(
   "pk_test_51MGiEBJf3Ra7t0LIpbXGmuheCzm64uisAtUjjerxb3LCv7AEkdcfVfUWRlVRWcScZU5oLKXKRHSP45u6LIPRS66y00oG54GCjY"
@@ -18,7 +19,7 @@ function CheckoutForm() {
   const elements = useElements();
   const cart = useSelector((state) => state.cart);
 
- 
+
 
   const getCartItems = () => Object.keys(cart).map((item) => (
     <span style={{color:'#319795'}}>{cart[item].quantity} ({cart[item].price} c/u): {cart[item].quantity * cart[item].price}</span>
