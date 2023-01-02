@@ -22,6 +22,13 @@ export default function Cart() {
     localStorage.setItem("cart", JSON.stringify(cart));
   }, [cart]);
 
+  // cuando el item se guarda en el carrito se debe actualizar el stock de los productos en la base de datos 
+  useEffect(() => {
+    localStorage.setItem("stock", JSON.stringify(cart));
+  }, [cart]);
+
+  
+
   const handleClear = () => {
     dispatch(clearCart());
   };
