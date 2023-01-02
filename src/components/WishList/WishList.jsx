@@ -13,7 +13,7 @@ function WishList() {
   let user = JSON.parse(localStorage.getItem("loggedUser"))
 
   useEffect(() => {
-    dispatch(getFavorites(user.email))
+    if(user) dispatch(getFavorites(user.email))
   }, [dispatch]);
   
   let favs = favorites["Favorites"]
@@ -38,15 +38,8 @@ function WishList() {
       dispatch(getFavorites(user.email))
   }})
 }
-
-
- if(favs === undefined)
-  return (
-    <div className={w.wCont}>
-      <h1>Loading...</h1>
-    </div>
-  )  
-if(user.email)
+ 
+if(user)
   return(
     <div className={w.wCont}> 
     <h1> My wishlist</h1>
@@ -70,7 +63,7 @@ if(user.email)
   else 
   return (
     <div className={w.wCont}>
-      <h1>Loading...</h1>
+      <h1> Please Log in to see your wishlist </h1>
     </div>
   )
  

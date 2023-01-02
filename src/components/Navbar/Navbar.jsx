@@ -17,10 +17,10 @@ function Navbar() {
 
   // actualiza el componente para cargar el length del array de favoritos cuando agregamos o eliminamos uno
   useEffect(()=>{
-    dispatch(getFavorites(user.email))
+    if(user)dispatch(getFavorites(user.email))
   }, [dispatch])
   
-  let myFavs = favorites["Favorites"] !== undefined ? favorites["Favorites"].length : '...'
+  let myFavs = favorites["Favorites"] !== undefined ? favorites["Favorites"].length : '0'
 
   const [showModal, setShowModal] = useState(false);
 
@@ -80,7 +80,7 @@ function Navbar() {
               width={"30px"}
               height={"30px"}
             />
-            <p> <p>{myFavs}</p></p>
+            <p>{myFavs}</p>
           </Link>
         </button>
 
