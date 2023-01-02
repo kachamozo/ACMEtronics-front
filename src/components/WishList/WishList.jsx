@@ -5,12 +5,15 @@ import w from "../WishList/WishList.module.css";
 import { Link } from "react-router-dom";
 import { HiHeart } from "react-icons/hi"
 import Swal from "sweetalert2";
+import { useAuth0 } from "@auth0/auth0-react";
 
 
 function WishList() {
   const dispatch = useDispatch();
   let favorites = useSelector((state) => state.favorites);
   let user = JSON.parse(localStorage.getItem("loggedUser"))
+
+  const { isAuthenticated } = useAuth0();
 
   useEffect(() => {
     if(user) dispatch(getFavorites(user.email))
@@ -39,7 +42,7 @@ function WishList() {
   }})
 }
  
-if(user)
+if(user || isAuthenticated)
   return(
     <div className={w.wCont}> 
     <h1> My wishlist</h1>
