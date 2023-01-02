@@ -7,6 +7,7 @@ import {
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import "./Form.css";
+import Swal from "sweetalert2";
 
 const AddProduct = () => {
   const dispatch = useDispatch();
@@ -52,7 +53,10 @@ const AddProduct = () => {
   function handleSubmit(event) {
     event.preventDefault();
     if (Object.keys(errors).length === 0) {
-      alert("The product was created succesfully");
+      Swal.fire({
+        title:"The product was created succesfully",
+        icon: "success"
+      })
       dispatch(createProduct(input));
 
       setInput({
@@ -66,7 +70,10 @@ const AddProduct = () => {
       });
       navigate("/updateproduct");
     } else {
-      alert("Must complete all the information to upload the product");
+      Swal.fire({
+        title:"Must complete all the information to upload the product",
+        icon: "error"
+      })
     }
   }
 
