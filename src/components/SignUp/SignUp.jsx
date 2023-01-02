@@ -71,7 +71,7 @@ function SignUp() {
           <h1>Welcome Back</h1>
           <Link to="/login">
             <button type="button" className="white_btn">
-              Sing in
+              Sign in
             </button>
           </Link>
         </div>
@@ -87,7 +87,9 @@ function SignUp() {
               value={create.userName}
               onChange={(e) => handleChange(e)}
             />
-            {errors.userName ? <p className="error">{errors.userName}</p> : null}
+            {errors.userName ? (
+              <p className="error">{errors.userName}</p>
+            ) : null}
             <input
               type="email"
               placeholder="Email"
@@ -107,16 +109,18 @@ function SignUp() {
               value={create.password}
               onChange={(e) => handleChange(e)}
             />
-           {errors.password ? <p className="error">{errors.password}</p> : null}
+            {errors.password ? (
+              <p className="error">{errors.password}</p>
+            ) : null}
             <button type="submit" className="green_btn">
-              Sing Up
+              Sign Up
             </button>
             <button
               type="submit"
               className="green_btn"
               onClick={() => loginWithRedirect()}
             >
-              Sing In with Google
+              Sign In with Google
             </button>
           </form>
         </div>
