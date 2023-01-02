@@ -61,3 +61,13 @@
     margin-top: 340px;
   }
 }
+
+.container h2{
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #000;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-family: "raleway", sans-serif;
+  margin-top: 40px;
+}

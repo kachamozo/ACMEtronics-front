@@ -77,8 +77,8 @@ function Navbar() {
           <Link to={"/wishlist"}>
             <img
               src="https://img.icons8.com/ios/50/000000/like--v1.png"
-              width={"30px"}
-              height={"30px"}
+              width={"25px"}
+              height={"25px"}
             />
             <p>{myFavs}</p>
           </Link>
@@ -88,8 +88,8 @@ function Navbar() {
           <Link to="/shop/cart">
             <img
               src="https://img.icons8.com/ios/50/000000/shopping-cart--v1.png"
-              width={"30px"}
-              height={"30px"}
+              width={"25px"}
+              height={"25px"}
             />
             <p>{cart.length}</p>
           </Link>
@@ -103,8 +103,8 @@ function Navbar() {
         >
           <img
             src="https://img.icons8.com/ios/50/000000/user--v1.png"
-            width={"30px"}
-            height={"30px"}
+            width={"25px"}
+            height={"25px"}
           />
         </button>
         {/* {<ProfileStatus />}
