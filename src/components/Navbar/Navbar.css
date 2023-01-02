@@ -124,6 +124,7 @@ height:88%;
 .cart {
     display: flex;
     justify-content: space-around;
+    column-gap: 0.1rem;
     align-items: center;
     width: 12%;
     height: 60px;
@@ -146,7 +147,7 @@ height:88%;
     display: flex;
     justify-content: space-around;
     align-items: center;
-    width: 30%;
+    width: 40%;
     height: 50px;
     border-radius: 10px;
     font-family: 'Raleway';
@@ -197,5 +198,7 @@ height:88%;
     }
 }
 
-
-
+.search-bar .btn img {
+    width: 20px;
+    height: 20px;
+}
