@@ -8,6 +8,10 @@ import cartStyles from "../Cart/Cart.module.css"
 export default function Cart() {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
+
+  // crear una funcion para que el usuario no pueda comprar si no esta logueado
+  
+
   
   let TotalCart = 0;
   Object.keys(cart).forEach(function (item) {
@@ -45,7 +49,10 @@ export default function Cart() {
         <div className={cartStyles.total}><h4>Total: $ {TotalCart} </h4></div>
       <div  className={cartStyles.buyBtn}>
 
+
       <Link to={'/stripe/'}><button> Confirm Payment </button></Link>
+
+
 
       </div>
       <div className={cartStyles.clear}>

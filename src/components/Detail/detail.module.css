@@ -39,6 +39,7 @@
     border-radius: 1rem;
     border-radius: 10px;
     box-shadow: 4px 8px 20px 8px #319795;
+    orientation: portrait;
 }
 
 @media screen and (min-width: 768px) {
@@ -168,6 +169,7 @@
 
 .backLink > a {
     color:#319795;
+    font-size: 2rem;
     
 }
 .backLink > a:hover{

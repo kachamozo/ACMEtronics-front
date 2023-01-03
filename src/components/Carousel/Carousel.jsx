@@ -1,13 +1,14 @@
 import React from 'react';
 import './Carousel.css';
-import img from '../../Assets/auri.jpg';
-import img1 from '../../Assets/iphone.jpeg';
-import img2 from '../../Assets/laptop.jpg';
-import img3 from '../../Assets/samsumg.jpg';
-import img7 from '../../Assets/smart2.jpg';
-import img4 from '../../Assets/iphone14.jpg';
-import img5 from '../../Assets/template.jpg';
-import img6 from '../../Assets/smart.jpg';
+import img from '../../Assets/a.jpeg';
+import img1 from '../../Assets/b.jpeg';
+import img2 from '../../Assets/c.jpeg';
+import img3 from '../../Assets/d.jpeg';
+import img7 from '../../Assets/e.jpeg';
+import img4 from '../../Assets/f.jpeg';
+import img5 from '../../Assets/j.jpeg';
+import img6 from '../../Assets/i.jpeg';
+import img8 from '../../Assets/g.jpeg';
 
 
 
@@ -25,6 +26,7 @@ function Carousel1() {
     <li data-target="#demo" data-slide-to="5"></li>
     <li data-target="#demo" data-slide-to="6"></li>
     <li data-target="#demo" data-slide-to="7"></li>
+    <li data-target="#demo" data-slide-to="8"></li>
   </ul>
   
   <div className="carousel-inner">
@@ -51,6 +53,9 @@ function Carousel1() {
       </div>
       <div className="carousel-item">
       <img src={img7} />
+      </div>
+      <div className="carousel-item">
+      <img src={img8} />
       </div>
   </div>
 
