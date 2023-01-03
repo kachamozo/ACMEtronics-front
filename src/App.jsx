@@ -19,6 +19,7 @@ import Reviews from "./components/Reviews/Reviews";
 import PrivateRoute from "./components/PrivateRoute";
 import { useSelector } from "react-redux";
 import Stripe from "./components/Stripe/Stripe";
+import EditProfile from "./components/EditProfile/EditProfile";
 
 function App() {
   const user = useSelector((state) => state.user);
@@ -48,6 +49,8 @@ function App() {
         <Route path="/stripe" element={<Stripe />} />
 
         <Route path="/updateproduct" element={<UpdateProduct />} />
+
+        <Route path="/editprofile" element={<EditProfile />} />
 
         {/* <Route
           path="/createproduct/*"

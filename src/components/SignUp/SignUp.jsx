@@ -118,9 +118,11 @@ function SignUp() {
             <button
               type="submit"
               className="green_btn"
-              onClick={() => loginWithRedirect()}
+              onClick={() =>
+                loginWithRedirect({ prompt: "login", screen_hint: "signup" })
+              }
             >
-              Sign In with Google
+              Sign Up with Google
             </button>
           </form>
         </div>
