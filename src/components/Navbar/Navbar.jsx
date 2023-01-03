@@ -12,15 +12,16 @@ function Navbar() {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   const cart = useSelector((state) => state.cart);
-  const favorites = useSelector((state)=> state.favorites)
-  let user = JSON.parse(localStorage.getItem("loggedUser"))
+  const favorites = useSelector((state) => state.favorites);
+  let user = JSON.parse(localStorage.getItem("loggedUser"));
 
   // actualiza el componente para cargar el length del array de favoritos cuando agregamos o eliminamos uno
-  useEffect(()=>{
-    if(user)dispatch(getFavorites(user.email))
-  }, [dispatch])
-  
-  let myFavs = favorites["Favorites"] !== undefined ? favorites["Favorites"].length : '0'
+  useEffect(() => {
+    if (user) dispatch(getFavorites(user.email));
+  }, [dispatch]);
+
+  let myFavs =
+    favorites["Favorites"] !== undefined ? favorites["Favorites"].length : "0";
 
   const [showModal, setShowModal] = useState(false);
 
@@ -50,7 +51,6 @@ function Navbar() {
       <NavLink to="/home">Home</NavLink>
       <NavLink to="/shop">Shop</NavLink>
       <NavLink to="/about">About</NavLink>
-      <NavLink to="/login">Login</NavLink>
 
       <div className="search-bar">
         <input
