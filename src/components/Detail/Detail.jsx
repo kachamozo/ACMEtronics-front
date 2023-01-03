@@ -58,7 +58,7 @@ export default function Detail() {
       })
     }
     }
-
+    
     const handleDeleteFavorite = () => {
       if(user){
         Swal.fire({
@@ -92,9 +92,7 @@ export default function Detail() {
     return (
       <div className={d.detail}>
         <div className={d.container}>
-          <div className={d.backLink}>
-            <Link to={"/shop/"}>« Continue shopping</Link>
-          </div>
+          
           <div className={d.img}>
             <img src={product.product.image} />
           </div>
@@ -112,6 +110,11 @@ export default function Detail() {
                 Add to cart
                 <span class="material-symbols-outlined"> shopping_cart </span>
               </button>
+              <div className={d.backLink}>
+            <Link to={"/shop/"}>« Continue shopping</Link>
+            </div>
+              
+              
             </div>
           </div>
         </div>
