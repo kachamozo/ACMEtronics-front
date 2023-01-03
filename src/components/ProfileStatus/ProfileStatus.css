@@ -1,19 +1,35 @@
 .modal {
   background-color: #f5f5f5;
+  width: 100px;
+  height: 300px;
 }
 
 .modal-header {
   color: #319795;
 }
 
-.modal {
-  /* Add your desired styles here */
-  width: 800px;
-  height: 800px;
+.link-to {
+  color: white;
+  font-family: "Raleway";
+  font-size: 14px;
 }
-.btn-sucess {
-  /* Add your styles here */
+
+.white_btn,
+.green_btn {
+  border: none;
+  outline: none;
+  padding: 12px 12px 12px 12px;
+  background-color: white;
+  border-radius: 20px;
+  width: 180px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+  align-items: center;
+}
+
+/* .green_btn {
   background-color: #319795;
-  width: 30%;
-  height: 100%;
-}
+  color: white;
+  margin: 10px;
+} */

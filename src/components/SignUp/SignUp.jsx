@@ -80,7 +80,7 @@ function SignUp() {
             <h1>Create Account</h1>
             <input
               type="text"
-              placeholder="userName"
+              placeholder="Username"
               name="userName"
               required
               className="input"
