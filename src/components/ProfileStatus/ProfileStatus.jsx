@@ -1,17 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import "./ProfileStatus.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
+import EditProfile from "../EditProfile/EditProfile";
 
 function ProfileStatus({ showModal, closeModal }) {
   const { user, isAuthenticated, logout } = useAuth0();
+
+  const [editProfileModalVisible, setEditProfileModalVisible] = useState(false);
+
+  function toggleEditProfileModal() {
+    setEditProfileModalVisible(!editProfileModalVisible);
+  }
 
   if (isAuthenticated) {
     return (
       <Modal show={showModal} onHide={closeModal}>
         <Modal.Header closeButton>
-          <Modal.Title>User Information</Modal.Title>
+          <Modal.Title>User Profile</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <div>
@@ -28,8 +35,13 @@ function ProfileStatus({ showModal, closeModal }) {
           >
             Close
           </Button>
-          <Button className="green_btn" variant="primary">
-            Edit information
+
+          <Button
+            className="green_btn"
+            variant="primary"
+            onClick={toggleEditProfileModal}
+          >
+            Edit Profile
           </Button>
           <Button
             className="green_btn"
@@ -39,6 +51,12 @@ function ProfileStatus({ showModal, closeModal }) {
             Logout
           </Button>
         </Modal.Footer>
+        {editProfileModalVisible && (
+          <EditProfile
+            showModal={editProfileModalVisible}
+            closeModal={toggleEditProfileModal}
+          />
+        )}
       </Modal>
     );
   } else {
