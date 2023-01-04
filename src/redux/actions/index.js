@@ -19,7 +19,7 @@ export const REMOVE_FAVORITE = "REMOVE_FAVORITE";
 
 export const GET_ALL_USERS = "GET_ALL_USERS";
 export const GET_USER_BY_ID = "GET_USER_BY_ID";
-export const CREATE_USERS = "CREATE_USERS";
+export const CREATE_USER = "CREATE_USER";
 // ------- CART ACTIONS ----------------
 export const ADD_TO_CART = "ADD_TO_CART";
 export const DELETE_ONE_FROM_CART = "DELETE_ONE_FROM_CART";
@@ -34,6 +34,9 @@ export const LOGIN_FAILURE = "LOGIN_FAILURE";
 export const LOGOUT = "LOGOUT";
 export const GET_USER_PROFILE = "GET_USER_PROFILE";
 export const DECREMENT_STOCK = "DECREMENT_STOCK";
+export const UPDATE_CATEGORY = "UPDATE_CATEGORY";
+export const DELETE_CATEGORY = "DELETE_CATEGORY";
+export const CREATE_CATEGORIES = "CREATE_CATEGORIES";
 
 export const getAllProducts = () => {
   return async function (dispatch) {
@@ -253,7 +256,10 @@ export const getUserById = (id) => {
 export function createUser(payload) {
   return async function (dispatch) {
     const info = await axios.post("http://localhost:3001/user", payload);
-    return info;
+    dispatch({
+      type: CREATE_USER,
+      payload: info.data,
+    });
   };
 }
 
@@ -347,7 +353,7 @@ export const loginUser = (payload) => {
     }
   };
 };
-  
+
 export const logout = () => {
   return (dispatch) => {
     window.localStorage.clear();
@@ -369,5 +375,39 @@ export const decrementStock = (productId) => {
   return {
     type: DECREMENT_STOCK,
     productId,
+  };
+};
+
+export const createCategory = (payload) => {
+  return async function (dispatch) {
+    const response = await axios.post(
+      "http://localhost:3001/category",
+      payload
+    );
+    dispatch({
+      type: CREATE_CATEGORIES,
+      payload: response.data,
+    });
+  };
+};
+
+export const updateCategory = (payload) => {
+  let id = payload.id;
+  return async function (dispatch) {
+    const response = await axios.put(`/category/${id}`, payload);
+    dispatch({
+      type: UPDATE_CATEGORY,
+      payload: response.data,
+    });
+  };
+};
+
+export const deleteCategory = (id) => {
+  return async function (dispatch) {
+    const response = await axios.delete(`/category/${id}`);
+    dispatch({
+      type: DELETE_CATEGORY,
+      payload: response.data,
+    });
   };
 };
