@@ -51,10 +51,24 @@ function CheckoutForm() {
       // Muestra el mensaje de error
       setError(result.error.message);
     } else {
-      // Envía el token al servidor
-      // ...
-      clearCart();
-  
+
+      try {
+        const { id } = paymentMethod;
+        dispatch(checkout({ id, amount: getTotal() }));
+
+      } catch (error) {
+        console.log(error);
+      }
+    
+    //update stock
+    dispatch(updateProduct({ id: cart[0].id, name: null, brand: null, image: null, description: null, price: null, quantity: cart[0].quantity }))
+
+    // Envía el token al servidor
+    // ...
+    clearCart();
+
+    
+
      
     dispatch(clearCart())
     Swal.fire({
