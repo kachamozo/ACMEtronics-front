@@ -46,7 +46,7 @@ const initialState = {
   stripe: [],
   cart: JSON.parse(localStorage.getItem("cart")) || [],
   login: [],
-  user: {},
+  user: JSON.parse(localStorage.getItem("user")) || [],
   isLoading: false,
   isAuthenticated: false,
   error: "",
