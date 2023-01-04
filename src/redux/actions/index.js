@@ -355,7 +355,7 @@ export const loginUser = (payload) => {
   };
 };
 
-export const logout = () => {
+export const logoutUser = () => {
   return (dispatch) => {
     window.localStorage.clear();
     dispatch({ type: LOGOUT });

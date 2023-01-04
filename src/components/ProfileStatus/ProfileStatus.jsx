@@ -4,17 +4,25 @@ import "./ProfileStatus.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
 import EditProfile from "../EditProfile/EditProfile";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { logoutUser } from "../../redux/actions";
 
 function ProfileStatus({ showModal, closeModal }) {
   const { user, isAuthenticated, logout } = useAuth0();
-
+const dispatch = useDispatch()
   const actualUser = useSelector((state) => state.user);
+  useEffect(() => {
+    localStorage.setItem("user", JSON.stringify(actualUser));
+  },[actualUser])
 
   const [editProfileModalVisible, setEditProfileModalVisible] = useState(false);
 
   function toggleEditProfileModal() {
     setEditProfileModalVisible(!editProfileModalVisible);
+  }
+  const logoutu = () => {
+    dispatch(logoutUser())
   }
 
   console.log(actualUser);
@@ -96,7 +104,7 @@ function ProfileStatus({ showModal, closeModal }) {
           <Button
             className="green_btn"
             variant="primary"
-            onClick={() => logout()}
+            onClick={() => logoutu()}
           >
             Logout
           </Button>
