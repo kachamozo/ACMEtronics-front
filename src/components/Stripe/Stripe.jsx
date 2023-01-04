@@ -58,6 +58,12 @@ function CheckoutForm() {
     }
     //update stock
     dispatch(updateProduct({ id: cart[0].id, name: null, brand: null, image: null, description: null, price: null, quantity: cart[0].quantity }))
+
+    // Envía el token al servidor
+    // ...
+    clearCart();
+
+    
     dispatch(clearCart())
     Swal.fire({
       title: "Your payment has been processed",
