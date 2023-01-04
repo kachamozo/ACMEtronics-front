@@ -20,6 +20,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import { useSelector } from "react-redux";
 import Stripe from "./components/Stripe/Stripe";
 import EditProfile from "./components/EditProfile/EditProfile";
+import Category from "./components/CategoryTable/Category.jsx";
 
 function App() {
   const user = useSelector((state) => state.user);
@@ -51,6 +52,7 @@ function App() {
         <Route path="/updateproduct" element={<UpdateProduct />} />
 
         <Route path="/editprofile" element={<EditProfile />} />
+        <Route path="/category" element={<Category />} />
 
         {/* <Route
           path="/createproduct/*"

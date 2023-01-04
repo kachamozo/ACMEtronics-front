@@ -28,6 +28,10 @@ import {
   LOGOUT,
   GET_USER_PROFILE,
   DECREMENT_STOCK,
+  UPDATE_CATEGORY,
+  DELETE_CATEGORY,
+  CREATE_CATEGORIES,
+  CREATE_USER,
 } from "../actions";
 
 const initialState = {
@@ -383,6 +387,25 @@ function rootReducer(state = initialState, action) {
         ...state,
         userProfile: action.payload,
       };
+
+    case UPDATE_CATEGORY:
+      return action.payload;
+
+    case DELETE_CATEGORY:
+      return action.payload;
+
+    case CREATE_CATEGORIES:
+      return {
+        ...state,
+        categories: action.payload,
+      };
+
+    case CREATE_USER: {
+      return {
+        ...state,
+        users: [...users, action.payload],
+      };
+    }
 
     default:
       return { ...state };

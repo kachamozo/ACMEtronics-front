@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Login.css";
 import { Link } from "react-router-dom";
 import { loginUser } from "../../redux/actions/index";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -10,6 +10,8 @@ function Login() {
   const { loginWithRedirect } = useAuth0();
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  const actualUser = useSelector((state) => state.user);
 
   const [input, setInput] = useState({ email: "", password: "" });
 
@@ -28,6 +30,12 @@ function Login() {
       })
     );
   };
+
+  useEffect(() => {
+    if (Object.keys(actualUser).length !== 0) {
+      navigate("/shop");
+    }
+  });
 
   const handleSubmit = async (event) => {
     event.preventDefault();
