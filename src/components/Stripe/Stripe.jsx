@@ -56,9 +56,8 @@ function CheckoutForm() {
         console.log(error);
       }
     }
-    console.log(cart, 22)
-    // name, brand, price, stock, image, description
-     dispatch(updateProduct({ id: cart[0].id, name: null, brand: null, image: null, description: null, price: null, quantity: cart[0].quantity }))
+    //update stock
+    dispatch(updateProduct({ id: cart[0].id, name: null, brand: null, image: null, description: null, price: null, quantity: cart[0].quantity }))
     dispatch(clearCart())
     Swal.fire({
       title: "Your payment has been processed",
