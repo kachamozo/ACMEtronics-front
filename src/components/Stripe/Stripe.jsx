@@ -1,8 +1,8 @@
 import React, { useContext } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadStripe } from "@stripe/stripe-js";
-import {Elements, CardElement, useStripe, useElements,} from "@stripe/react-stripe-js";
-import { checkout, clearCart } from "../../redux/actions/index.js";
+import { Elements, CardElement, useStripe, useElements, } from "@stripe/react-stripe-js";
+import { checkout, clearCart, updateProduct } from "../../redux/actions/index.js";
 import { useNavigate } from "react-router-dom";
 import "./Stripe.css";
 import Cart from "../Cart/Cart.jsx";
@@ -26,7 +26,7 @@ function CheckoutForm() {
 
 
   const getCartItems = () => Object.keys(cart).map((item) => (
-    <span style={{color:'#319795'}}>{cart[item].quantity} ({cart[item].price} c/u): {cart[item].quantity * cart[item].price}</span>
+    <span style={{ color: '#319795' }}>{cart[item].quantity} ({cart[item].price} c/u): {cart[item].quantity * cart[item].price}</span>
   ));
   
   const getTotal = () => Object.values(cart).reduce((sum, { quantity, price }) => {
@@ -130,86 +130,7 @@ export default Stripe;
 
   
 
-  /* const handleSubmit = async (event) => {
-    event.preventDefault();
-    
-    
-    
-    const { error, paymentMethod } = await stripe.createPaymentMethod({
-    type: "card",
-    card: elements.getElement(CardElement),
-     
-      
-    });
-
-    if (error) {
-      console.log(error);
-    } else {
-      try {
-        const { id } = paymentMethod;
-        dispatch(checkout({ id, amount: getTotal() }));
-      } catch (error) { 
-        console.log(error);
-      }
-    }
-
-    dispatch(clearCart())
-    alert("Your payment has been processed");
-    navigate("/shop");
-    
-  };
-  return (
-    <form onSubmit={handleSubmit} className="card card-body ">
-     
-      <Cart />
-      {getCartItems()}
-      <br />
-      
-      <div className="form-group">
-      <h4>Enter your card details</h4>
-      <CardElement 
-        options={{
-          style: {
-            base: {
-              fontSize: "20px",
-              color: "#424770",
-              "::placeholder": {
-                color: "#aab7c4",
-              },
-            },
-            invalid: {
-              color: "#9e2146",
-            },
-          },
-        }}
-      />
-       <button type="submit" className="btn btn-primary" 
-       >Buy</button>
-      </div>
-
-
-     </form>
-  );
-} */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+ 
 
 
 

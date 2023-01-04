@@ -2,19 +2,14 @@
   background-color: #f5f5f5;
   width: 100px;
   height: 300px;
+  font-family: "Raleway";
 }
 
 .modal-header {
   color: #319795;
-}
-
-.link-to {
-  color: white;
   font-family: "Raleway";
-  font-size: 14px;
 }
 
-.white_btn,
 .green_btn {
   border: none;
   outline: none;
@@ -27,9 +22,3 @@
   cursor: pointer;
   align-items: center;
 }
-
-/* .green_btn {
-  background-color: #319795;
-  color: white;
-  margin: 10px;
-} */

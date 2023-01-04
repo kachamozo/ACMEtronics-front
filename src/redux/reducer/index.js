@@ -86,7 +86,8 @@ function rootReducer(state = initialState, action) {
       return { ...state, categories: action.payload };
 
     case UPDATE_PRODUCT:
-      return action.payload;
+      console.log(action.payload.product,24)
+      return {...state}
 
     case DELETE_PRODUCT:
       return action.payload;

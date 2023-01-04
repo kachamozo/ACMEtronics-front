@@ -12,7 +12,9 @@ function SignUp() {
   const allUser = useSelector((state) => state.users);
   const [errors, setErrors] = useState({});
   const [create, setCreate] = useState({
-    userName: "",
+    firstname: "",
+    lastname: "",
+    username: "",
     email: "",
     password: "",
   });
@@ -35,7 +37,9 @@ function SignUp() {
       alert("Usuario fue creado satisfactoriamente");
       dispatch(createUser(create));
       setCreate({
-        userName: "",
+        firstname: "",
+        lastname: "",
+        username: "",
         email: "",
         password: "",
       });
@@ -50,8 +54,8 @@ function SignUp() {
   function validation(create) {
     let errors = {};
 
-    if (!create.userName) {
-      errors.userName = "Debes ingresar el nombre.";
+    if (!create.username) {
+      errors.username = "Debes ingresar el nombre.";
     }
 
     if (!create.email) {
@@ -80,15 +84,33 @@ function SignUp() {
             <h1>Create Account</h1>
             <input
               type="text"
-              placeholder="userName"
-              name="userName"
+              placeholder="First Name"
+              name="firstname"
               required
               className="input"
-              value={create.userName}
+              value={create.firstname}
               onChange={(e) => handleChange(e)}
             />
-            {errors.userName ? (
-              <p className="error">{errors.userName}</p>
+            <input
+              type="text"
+              placeholder="Last Name"
+              name="lastname"
+              required
+              className="input"
+              value={create.lastname}
+              onChange={(e) => handleChange(e)}
+            />
+            <input
+              type="text"
+              placeholder="Username"
+              name="username"
+              required
+              className="input"
+              value={create.username}
+              onChange={(e) => handleChange(e)}
+            />
+            {errors.username ? (
+              <p className="error">{errors.username}</p>
             ) : null}
             <input
               type="email"
@@ -118,9 +140,11 @@ function SignUp() {
             <button
               type="submit"
               className="green_btn"
-              onClick={() => loginWithRedirect()}
+              onClick={() =>
+                loginWithRedirect({ prompt: "login", screen_hint: "signup" })
+              }
             >
-              Sign In with Google
+              Sign Up with Google
             </button>
           </form>
         </div>
