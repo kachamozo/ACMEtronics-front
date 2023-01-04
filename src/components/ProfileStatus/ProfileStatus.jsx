@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import EditProfile from "../EditProfile/EditProfile";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import { logoutUser } from "../../redux/actions";
+import { clearCart, logoutUser } from "../../redux/actions";
 
 function ProfileStatus({ showModal, closeModal }) {
   const { user, isAuthenticated, logout } = useAuth0();
@@ -23,6 +23,12 @@ const dispatch = useDispatch()
   }
   const logoutu = () => {
     dispatch(logoutUser())
+    dispatch(clearCart())
+  }
+
+  const handleLogOut = () => {
+    logout()
+    dispatch(clearCart())
   }
 
   console.log(actualUser);
@@ -59,7 +65,7 @@ const dispatch = useDispatch()
           <Button
             className="green_btn"
             variant="primary"
-            onClick={() => logout()}
+            onClick={() => handleLogOut()}
           >
             Logout
           </Button>
