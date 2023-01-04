@@ -4,15 +4,28 @@ import "./ProfileStatus.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
 import EditProfile from "../EditProfile/EditProfile";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { logoutUser } from "../../redux/actions";
 
 function ProfileStatus({ showModal, closeModal }) {
   const { user, isAuthenticated, logout } = useAuth0();
+const dispatch = useDispatch()
+  const actualUser = useSelector((state) => state.user);
+  useEffect(() => {
+    localStorage.setItem("user", JSON.stringify(actualUser));
+  },[actualUser])
 
   const [editProfileModalVisible, setEditProfileModalVisible] = useState(false);
 
   function toggleEditProfileModal() {
     setEditProfileModalVisible(!editProfileModalVisible);
   }
+  const logoutu = () => {
+    dispatch(logoutUser())
+  }
+
+  console.log(actualUser);
 
   if (isAuthenticated) {
     return (
@@ -47,6 +60,51 @@ function ProfileStatus({ showModal, closeModal }) {
             className="green_btn"
             variant="primary"
             onClick={() => logout()}
+          >
+            Logout
+          </Button>
+        </Modal.Footer>
+        {editProfileModalVisible && (
+          <EditProfile
+            showModal={editProfileModalVisible}
+            closeModal={toggleEditProfileModal}
+          />
+        )}
+      </Modal>
+    );
+  } else if (Object.keys(actualUser).length !== 0) {
+    return (
+      <Modal show={showModal} onHide={closeModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>User Profile</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <div>
+            <h2>{actualUser.data.searchUser.firstname}</h2>
+            <h2>{actualUser.data.searchUser.lastname}</h2>
+            <p>{actualUser.data.searchUser.email}</p>
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button
+            className="green_btn"
+            variant="secondary"
+            onClick={closeModal}
+          >
+            Close
+          </Button>
+
+          <Button
+            className="green_btn"
+            variant="primary"
+            onClick={toggleEditProfileModal}
+          >
+            Edit Profile
+          </Button>
+          <Button
+            className="green_btn"
+            variant="primary"
+            onClick={() => logoutu()}
           >
             Logout
           </Button>
