@@ -11,12 +11,12 @@ import { useAuth0 } from "@auth0/auth0-react";
 function WishList() {
   const dispatch = useDispatch();
   let favorites = useSelector((state) => state.favorites);
-  let user = JSON.parse(localStorage.getItem("loggedUser"))
+  let userDb = JSON.parse(localStorage.getItem("loggedUser"))
 
   const { isAuthenticated } = useAuth0();
 
   useEffect(() => {
-    if(user) dispatch(getFavorites(user.email))
+    if(userDb) dispatch(getFavorites(userDb.email))
   }, [dispatch]);
   
   let favs = favorites["Favorites"]
@@ -32,17 +32,17 @@ function WishList() {
   confirmButtonText: 'Yes, delete it!'
 }).then((result) => {
   if (result.isConfirmed) {
-    dispatch(removeFavorite(user.email, productId))
+    dispatch(removeFavorite(userDb.email, productId))
     Swal.fire(
       'Deleted!',
       'The product has been deleted.',
       'success'
       )
-      dispatch(getFavorites(user.email))
+      dispatch(getFavorites(userDb.email))
   }})
 }
  
-if(user || isAuthenticated)
+if(userDb || isAuthenticated === true)
   return(
     <div className={w.wCont}> 
     <h1> My wishlist</h1>
@@ -63,7 +63,7 @@ if(user || isAuthenticated)
          }
     </div>
   )
-  else 
+  else if(!userDb || isAuthenticated === false)
   return (
     <div className={w.wCont}>
       <h1> Please Log in to see your wishlist </h1>

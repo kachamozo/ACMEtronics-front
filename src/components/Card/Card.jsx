@@ -9,15 +9,17 @@ import { toast } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css';
 import { HiOutlineHeart, HiHeart } from 'react-icons/hi'
 import Swal from "sweetalert2";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function Card(props) {
   const dispatch = useDispatch();
+  const { isAuthenticated } = useAuth0();
   const favorites = useSelector((state) => state.favorites);
   let user = JSON.parse(localStorage.getItem("loggedUser"))
   let productId = props.id
 
   const handleAddToFavorites= () => {
-    if(user){
+    if(user || isAuthenticated === true ){
       Swal.fire({
       title: 'Add to wishlist',
       text: "Do you want to add this product to your wishlist?",
@@ -37,7 +39,7 @@ function Card(props) {
           dispatch(getFavorites(user.email))
       }})
     }
-    else {
+    else if(!user || isAuthenticated === false) {
       Swal.fire({
         title: 'Please log in to see your wishlist',
         icon: 'warning'
@@ -46,7 +48,7 @@ function Card(props) {
     }
 
     const handleDeleteFavorite = () => {
-      if(user){
+      if(user || isAuthenticated === true){
         Swal.fire({
                 title: 'Removing from wishlist',
                 text: "Do you want to delete this product from your wishlist?",
@@ -65,7 +67,7 @@ function Card(props) {
                     )
                     dispatch(getFavorites(user.email))
                 }})
-      } else {
+      } else if(!user || isAuthenticated === false){
           Swal.fire({
             title: 'Please log in to see your wishlist',
             icon: 'warning'
