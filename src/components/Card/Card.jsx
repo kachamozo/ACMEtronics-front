@@ -3,7 +3,7 @@ import "./Card.css";
 import Rating from "react-rating";
 import { BsStarFill, BsStar, BsStarHalf } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import { addFavorite, addToCart, removeFavorite, getFavorites } from "../../redux/actions/index";
+import { addFavorite, addToCart, removeFavorite, getFavorites, addFavoriteGmail, removeFavoriteGmail } from "../../redux/actions/index";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css';
@@ -13,13 +13,14 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 function Card(props) {
   const dispatch = useDispatch();
-  const { isAuthenticated } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
   const favorites = useSelector((state) => state.favorites);
-  let user = JSON.parse(localStorage.getItem("loggedUser"))
+  const favoritesGmail = useSelector((state) => state.favoritesGmail);
+  let userDb = JSON.parse(localStorage.getItem("loggedUser"))
   let productId = props.id
 
   const handleAddToFavorites= () => {
-    if(user || isAuthenticated === true ){
+    if(userDb || isAuthenticated === true ){
       Swal.fire({
       title: 'Add to wishlist',
       text: "Do you want to add this product to your wishlist?",
@@ -29,17 +30,24 @@ function Card(props) {
       cancelButtonColor: '#d33',
       confirmButtonText: 'Yes!'
     }).then((result) => {
-      if (result.isConfirmed) {
-        dispatch(addFavorite(user.email, productId))
+      if (result.isConfirmed && userDb) {
+        dispatch(addFavorite(userDb.email, productId))
         Swal.fire(
           'Added!',
           'The product has been added to your wishlist.',
           'success'
           )
-          dispatch(getFavorites(user.email))
+          dispatch(getFavorites(userDb.email))
+      } 
+      else if(result.isConfirmed && user){
+        dispatch(addFavoriteGmail(productId))
+        Swal.fire(
+          'Added!',
+          'The product has been added to your wishlist.',
+          'success'
+          )
       }})
-    }
-    else if(!user || isAuthenticated === false) {
+    } else if(!userDb || isAuthenticated === false) {
       Swal.fire({
         title: 'Please log in to see your wishlist',
         icon: 'warning'
@@ -48,7 +56,7 @@ function Card(props) {
     }
 
     const handleDeleteFavorite = () => {
-      if(user || isAuthenticated === true){
+      if(userDb || isAuthenticated === true){
         Swal.fire({
                 title: 'Removing from wishlist',
                 text: "Do you want to delete this product from your wishlist?",
@@ -58,22 +66,29 @@ function Card(props) {
                 cancelButtonColor: '#d33',
                 confirmButtonText: 'Yes, delete it!'
               }).then((result) => {
-                if (result.isConfirmed) {
-                  dispatch(removeFavorite(user.email, productId))
+                if (result.isConfirmed && userDb) {
+                  dispatch(removeFavorite(userDb.email, productId))
                   Swal.fire(
                     'Deleted!',
                     'The product has been deleted.',
                     'success'
                     )
-                    dispatch(getFavorites(user.email))
-                }})
-      } else if(!user || isAuthenticated === false){
-          Swal.fire({
-            title: 'Please log in to see your wishlist',
-            icon: 'warning'
-          })
+                    dispatch(getFavorites(userDb.email))
+                }  else if(result.isConfirmed && user){
+                  dispatch(removeFavoriteGmail(productId))
+                  Swal.fire(
+                    'Deleted!',
+                    'The product has been deleted to your wishlist.',
+                    'success'
+                    )
+                }
+              })
+      } else if(!userDb || isAuthenticated === false) {
+        Swal.fire({
+          title: 'Please log in to see your wishlist',
+          icon: 'warning'
+        })
       }
-      
       }
 
   const notify = () => toast.success("Item added to cart");
@@ -125,10 +140,13 @@ function Card(props) {
       </div>
       <div className="item3">
         <button className="addCart" onClick={()=> handleAddToCart()}>Add to cart</button>
-        {favorites["Favorites"] && favorites["Favorites"].find(el => el.id === props.id) ? 
+        {userDb ? (!user && favorites["Favorites"] && favorites["Favorites"].find(el => el.id === props.id) ? 
             (<div className="fav"><a onClick={()=> handleDeleteFavorite()} ><HiHeart size={'2em'}/></a></div>) : 
             (<div className="fav" ><a onClick={()=>handleAddToFavorites()}><HiOutlineHeart size={'2em'}/></a></div>
-            )}
+            ) ) : (user && !userDb && favoritesGmail.find(el => el.id === props.id) ? 
+            (<div className="fav"><a onClick={()=> handleDeleteFavorite()} ><HiHeart size={'2em'}/></a></div>) : 
+            (<div className="fav" ><a onClick={()=>handleAddToFavorites()}><HiOutlineHeart size={'2em'}/></a></div>
+            ) )}
       </div>
     </div>
   );

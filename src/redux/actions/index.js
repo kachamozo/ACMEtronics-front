@@ -16,6 +16,8 @@ export const PRICE_FILTER = "PRICE_FILTER";
 export const GET_FAVORITES = "GET_FAVORITES";
 export const ADD_FAVORITE = "ADD_FAVORITE";
 export const REMOVE_FAVORITE = "REMOVE_FAVORITE";
+export const ADD_FAVORITE_GMAIL = "ADD_FAVORITE_GMAIL";
+export const REMOVE_FAVORITE_GMAIL = "REMOVE_FAVORITE_GMAIL";
 
 export const GET_ALL_USERS = "GET_ALL_USERS";
 export const GET_USER_BY_ID = "GET_USER_BY_ID";
@@ -231,6 +233,20 @@ export const removeFavorite = (userEmail, productId) => {
       type: REMOVE_FAVORITE,
       payload: response.data,
     });
+  };
+};
+
+export const addFavoriteGmail = (id) => {
+  return {
+    type: ADD_FAVORITE_GMAIL,
+    payload: id,
+  };
+};
+
+export const removeFavoriteGmail = (id) => {
+  return {
+    type: REMOVE_FAVORITE_GMAIL,
+    payload: id,
   };
 };
 

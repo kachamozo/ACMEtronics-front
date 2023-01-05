@@ -7,21 +7,26 @@ import logo from "../../Assets/logo1.jpg";
 import Login from "../Login/Login";
 import { Nav } from "react-bootstrap";
 import ProfileStatus from "../ProfileStatus/ProfileStatus";
+import { useAuth0 } from "@auth0/auth0-react";
 
 function Navbar() {
   const dispatch = useDispatch();
   const [name, setName] = useState("");
   const cart = useSelector((state) => state.cart);
   const favorites = useSelector((state) => state.favorites);
-  let user = JSON.parse(localStorage.getItem("loggedUser"));
+  const favoritesGmail = useSelector((state) => state.favoritesGmail);
+  let userDb = JSON.parse(localStorage.getItem("loggedUser"));
+  const { user, isAuthenticated } = useAuth0();
 
   // actualiza el componente para cargar el length del array de favoritos cuando agregamos o eliminamos uno
   useEffect(() => {
-    if (user) dispatch(getFavorites(user.email));
+    if(userDb)dispatch(getFavorites(userDb.email));
   }, [dispatch]);
 
   let myFavs =
     favorites["Favorites"] !== undefined ? favorites["Favorites"].length : "0";
+
+  let favsGmail = user && isAuthenticated === true ? favoritesGmail.length : "0"
 
   const [showModal, setShowModal] = useState(false);
 
@@ -81,7 +86,7 @@ function Navbar() {
               width={"25px"}
               height={"25px"}
             />
-            <p>{myFavs}</p>
+            <p>{user ? favsGmail : myFavs}</p>
           </Link>
         </button>
 
