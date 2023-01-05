@@ -54,9 +54,9 @@ const AddProduct = () => {
     event.preventDefault();
     if (Object.keys(errors).length === 0) {
       Swal.fire({
-        title:"The product was created succesfully",
-        icon: "success"
-      })
+        title: "The product was created succesfully",
+        icon: "success",
+      });
       dispatch(createProduct(input));
 
       setInput({
@@ -71,9 +71,9 @@ const AddProduct = () => {
       navigate("/updateproduct");
     } else {
       Swal.fire({
-        title:"Must complete all the information to upload the product",
-        icon: "error"
-      })
+        title: "Must complete all the information to upload the product",
+        icon: "error",
+      });
     }
   }
 
