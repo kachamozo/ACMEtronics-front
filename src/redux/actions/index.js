@@ -4,21 +4,17 @@ export const GET_PRODUCT_DETAIL = "GET_PRODUCT_DETAIL";
 export const SEARCH_NAME = "SEARCH_NAME";
 export const CLEAN = "CLEAN";
 export const GET_CATEGORIES = "GET_CATEGORIES";
-
 export const UPDATE_PRODUCT = "UPDATE_PRODUCT";
 export const DELETE_PRODUCT = "DELETE_PRODUCT";
-
 export const ORDERBYAZ = "ORDERBYAZ";
 export const FILTER_CATEGORY = "FILTER_CATEGORY";
 export const GET_PRODUCT_RATING = "GET_PRODUCT_RATING";
 export const PRICE_FILTER = "PRICE_FILTER";
-
 export const GET_FAVORITES = "GET_FAVORITES";
 export const ADD_FAVORITE = "ADD_FAVORITE";
 export const REMOVE_FAVORITE = "REMOVE_FAVORITE";
 export const ADD_FAVORITE_GMAIL = "ADD_FAVORITE_GMAIL";
 export const REMOVE_FAVORITE_GMAIL = "REMOVE_FAVORITE_GMAIL";
-
 export const GET_ALL_USERS = "GET_ALL_USERS";
 export const GET_USER_BY_ID = "GET_USER_BY_ID";
 export const CREATE_USER = "CREATE_USER";
@@ -146,22 +142,6 @@ export const updateProduct = (payload) => {
   };
 };
 
-///sirve
-
-// export const updateProduct = (payload) => {
-//   let id = payload.id;
-//   return (dispatch) => {
-//     axios
-//       .put(`http://localhost:3001/product/${id}`, payload)
-//       .then((response) => {
-//         dispatch({
-//           type: UPDATE_PRODUCT,
-//           payload: response.data,
-//         });
-//       });
-//   };
-// };
-
 export const deleteProduct = (id) => {
   return async function (dispatch) {
     const response = await axios.delete("http://localhost:3001/product/" + id);
@@ -171,20 +151,6 @@ export const deleteProduct = (id) => {
     });
   };
 };
-
-// export const deleteProduct = (id) => {
-//   return async function (dispatch) {
-//     const response = await axios.delete(`http://localhost:3001/product`, {
-//       params: {
-//         id: id,
-//       },
-//     });
-//     dispatch({
-//       type: DELETE_PRODUCT,
-//       payload: response.data,
-//     });
-//   };
-// };
 
 export const orderaz = (payload) => {
   return {
@@ -325,24 +291,6 @@ export const clearCart = (id) => {
   };
 };
 
-// export const loginUser = (payload) => {
-//   return async function (dispatch) {
-//     const response = await axios.post(
-//       "http://localhost:3001/login/login",
-//       payload
-//     );
-//     window.localStorage.setItem(
-//       "loggedUser",
-//       JSON.stringify({ email: payload.email, password: payload.password })
-//     );
-
-//     dispatch({
-//       type: LOGIN_USER,
-//       payload: response,
-//     });
-//   };
-// };
-
 export const loginUser = (payload) => {
   return async function (dispatch) {
     dispatch({ type: LOGIN_REQUEST });
@@ -396,15 +344,12 @@ export const decrementStock = (productId) => {
 };
 
 export const createCategories = (payload) => {
+  console.log(payload);
   return async function (dispatch) {
-    const response = await axios.post(
-      "http://localhost:3001/category",
-      payload
-    );
-    dispatch({
-      type: CREATE_CATEGORIES,
-      payload: response.data,
+    const response = await axios.post("http://localhost:3001/category", {
+      name: payload.name,
     });
+    return response;
   };
 };
 
