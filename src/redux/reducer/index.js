@@ -87,7 +87,10 @@ function rootReducer(state = initialState, action) {
       return { ...state };
 
     case GET_CATEGORIES:
-      return { ...state, categories: action.payload };
+      return {
+        ...state,
+        categories: action.payload,
+      };
 
     case UPDATE_PRODUCT:
       console.log(action.payload.product,24)

@@ -22,6 +22,7 @@ import Stripe from "./components/Stripe/Stripe";
 import EditProfile from "./components/EditProfile/EditProfile";
 import Category from "./components/CategoryTable/Category.jsx";
 import Dashboard from "./components/Dashboard/Dashboard";
+import UpdateCategory from "./components/CategoryTable/Category.jsx";
 
 
 function App() {
@@ -54,7 +55,7 @@ function App() {
         <Route path="/updateproduct" element={<UpdateProduct />} />
 
         <Route path="/editprofile" element={<EditProfile />} />
-        <Route path="/category" element={<Category />} />
+        <Route path="/category" element={<UpdateCategory />} />
 
         {/* <Route
           path="/createproduct/*"

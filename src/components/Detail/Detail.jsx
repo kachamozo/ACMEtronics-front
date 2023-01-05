@@ -9,12 +9,14 @@ import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { HiOutlineHeart, HiHeart } from 'react-icons/hi'
 import Swal from "sweetalert2";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Detail() {
   const dispatch = useDispatch();
   const product = useSelector((state) => state.detail);
   const favs = useSelector((state)=> state.favorites)
   const { id } = useParams();
+  const { isAuthenticated } = useAuth0();
   let user = JSON.parse(localStorage.getItem("loggedUser"))
   
   useEffect(() => {
@@ -32,7 +34,7 @@ export default function Detail() {
   };
   
   const handleAddToFavorites= () => {
-    if(user){
+    if(user || isAuthenticated === true ){
       Swal.fire({
       title: 'Add to wishlist',
       text: "Do you want to add this product to your wishlist?",
@@ -51,7 +53,7 @@ export default function Detail() {
           )
           dispatch(getFavorites(user.email))
       }})
-    } else {
+    } else if(!user || isAuthenticated === false) {
       Swal.fire({
         title: 'Please log in to see your wishlist',
         icon: 'warning'
@@ -60,7 +62,7 @@ export default function Detail() {
     }
     
     const handleDeleteFavorite = () => {
-      if(user){
+      if(user || isAuthenticated === true ){
         Swal.fire({
         title: 'Removing from wishlist',
         text: "Do you want to delete this product from your wishlist?",
@@ -79,7 +81,7 @@ export default function Detail() {
             )
             dispatch(getFavorites(user.email))
         }})
-      } else {
+      } else if(!user || isAuthenticated === false) {
         Swal.fire({
           title: 'Please log in to see your wishlist',
           icon: 'warning'

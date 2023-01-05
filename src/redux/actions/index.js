@@ -53,7 +53,7 @@ export const getCategories = () => {
     const response = await axios.get("http://localhost:3001/category");
     return dispatch({
       type: GET_CATEGORIES,
-      payload: response.data.categories,
+      payload: response.data,
     });
   };
 };
@@ -379,7 +379,7 @@ export const decrementStock = (productId) => {
   };
 };
 
-export const createCategory = (payload) => {
+export const createCategories = (payload) => {
   return async function (dispatch) {
     const response = await axios.post(
       "http://localhost:3001/category",
@@ -395,7 +395,10 @@ export const createCategory = (payload) => {
 export const updateCategory = (payload) => {
   let id = payload.id;
   return async function (dispatch) {
-    const response = await axios.put(`/category/${id}`, payload);
+    const response = await axios.put(
+      `http://localhost:3001/category/${id}`,
+      payload
+    );
     dispatch({
       type: UPDATE_CATEGORY,
       payload: response.data,
@@ -405,7 +408,7 @@ export const updateCategory = (payload) => {
 
 export const deleteCategory = (id) => {
   return async function (dispatch) {
-    const response = await axios.delete(`/category/${id}`);
+    const response = await axios.delete("http://localhost:3001/category/" + id);
     dispatch({
       type: DELETE_CATEGORY,
       payload: response.data,
