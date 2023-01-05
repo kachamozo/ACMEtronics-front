@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getFavorites, removeFavorite } from "../../redux/actions";
+import { getFavorites, removeFavorite, removeFavoriteGmail } from "../../redux/actions";
 import w from "../WishList/WishList.module.css";
 import { Link } from "react-router-dom";
 import { HiHeart } from "react-icons/hi"
@@ -11,12 +11,14 @@ import { useAuth0 } from "@auth0/auth0-react";
 function WishList() {
   const dispatch = useDispatch();
   let favorites = useSelector((state) => state.favorites);
+  let favoritesGmail = useSelector((state) => state.favoritesGmail);
   let userDb = JSON.parse(localStorage.getItem("loggedUser"))
+  const { isAuthenticated, user } = useAuth0();
 
-  const { isAuthenticated } = useAuth0();
 
   useEffect(() => {
     if(userDb) dispatch(getFavorites(userDb.email))
+    if(user) localStorage.setItem("favoritesGmail", JSON.stringify(favoritesGmail));
   }, [dispatch]);
   
   let favs = favorites["Favorites"]
@@ -31,7 +33,7 @@ function WishList() {
   cancelButtonColor: '#d33',
   confirmButtonText: 'Yes, delete it!'
 }).then((result) => {
-  if (result.isConfirmed) {
+  if (result.isConfirmed && userDb) {
     dispatch(removeFavorite(userDb.email, productId))
     Swal.fire(
       'Deleted!',
@@ -39,10 +41,41 @@ function WishList() {
       'success'
       )
       dispatch(getFavorites(userDb.email))
-  }})
+  } else if(result.isConfirmed && user){
+    dispatch(removeFavoriteGmail(productId))
+    Swal.fire(
+      'Deleted!',
+      'The product has been deleted.',
+      'success'
+      )
+  }
+})
+}
+
+if(user && isAuthenticated === true){
+  return (
+    <div className={w.wCont}>
+      <h1> My wishlist </h1>
+      {favoritesGmail.length? favoritesGmail.map(el => (<div className={w.wItem} key={el.id}>
+         <img src={el.image} height='120px' width='auto' alt={el.name} />
+         <div className={w.productName}>
+          <h3>{el.name}</h3>
+          <Link to={'/shop/'+el.id}> <p>View product details</p> </Link>
+         </div>
+         <div className={w.likeBtn}>
+           <button onClick={()=> handleDeleteFavorite(el.id)}> <HiHeart size={'2em'} /> </button>
+         </div>
+         </div>)) : 
+         <div className={w.empty}>
+          <h2> Your wishlist is empty. </h2>
+          <Link to='/shop'><button className={w.searchBtn}>Search products</button></Link>
+         </div>
+         }
+    </div>
+  )
 }
  
-if(userDb || isAuthenticated === true)
+if(userDb)
   return(
     <div className={w.wCont}> 
     <h1> My wishlist</h1>
