@@ -17,8 +17,6 @@ function ProfileStatus({ showModal, closeModal }) {
     setEditProfileModalVisible(!editProfileModalVisible);
   }
 
-  console.log(actualUser);
-
   if (isAuthenticated) {
     return (
       <Modal show={showModal} onHide={closeModal}>
