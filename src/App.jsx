@@ -20,7 +20,10 @@ import PrivateRoute from "./components/PrivateRoute";
 import { useSelector } from "react-redux";
 import Stripe from "./components/Stripe/Stripe";
 import EditProfile from "./components/EditProfile/EditProfile";
+import Category from "./components/CategoryTable/Category.jsx";
+import Dashboard from "./components/Dashboard/Dashboard";
 import UpdateCategory from "./components/CategoryTable/Category.jsx";
+
 
 function App() {
   const user = useSelector((state) => state.user);
@@ -39,12 +42,12 @@ function App() {
         <Route path="/shop/:id" element={<Detail />} />
         <Route path="/form" element={<Form />} />
         <Route path="/shop/filter" element={<Filter />} />
-
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/shop/cart" element={<Cart />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/reviews" element={<Reviews />} />
-
+        
         <Route path="/wishlist" element={<WishList />} />
 
         <Route path="/stripe" element={<Stripe />} />

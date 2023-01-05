@@ -51,6 +51,7 @@ function Navbar() {
       <NavLink to="/home">Home</NavLink>
       <NavLink to="/shop">Shop</NavLink>
       <NavLink to="/about">About</NavLink>
+      <NavLink to="/dashboard">Dashboard</NavLink>
 
       <div className="search-bar">
         <input

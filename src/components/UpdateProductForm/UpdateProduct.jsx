@@ -83,7 +83,7 @@ function UpdateProduct() {
 
   useEffect(() => {
     dispatch(getAllProducts());
-  }, []);
+  }, []);// acabo de agregar esto para que se actualice la pagina
 
   function modalEdit() {
     setMEdit((prevM) => !prevM);
