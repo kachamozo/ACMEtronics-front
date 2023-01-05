@@ -73,7 +73,7 @@ function UpdateCategory() {
 
   useEffect(() => {
     dispatch(getCategories());
-  }, [dispatch]);
+  }, []);
 
   function modalEdit() {
     setMEdit((prevM) => !prevM);
@@ -135,9 +135,9 @@ function UpdateCategory() {
 
             {/* Marce si se te cae, de aqui hasta donde termine el TableBody lo comentas, guardas y ahi vuelve a recargar */}
 
-            <TableBody className="tb">
+             <TableBody className="tb">
               {allCategories &&
-                allCategories.categories.map((category) => (
+                allCategories.categories?.map((category) => (
                   <TableRow key={category.id}>
                     <TableCell>{category.id}</TableCell>
                     <TableCell>{category.name}</TableCell>
@@ -157,7 +157,7 @@ function UpdateCategory() {
                     </TableCell>
                   </TableRow>
                 ))}
-            </TableBody>
+            </TableBody> 
 
             {/* Hasta aqui */}
           </Table>
