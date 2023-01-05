@@ -84,6 +84,14 @@ const dispatch = useDispatch()
         </Modal.Header>
         <Modal.Body>
           <div>
+            <div>
+          <img
+          src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+          alt="profile-img"
+          className="profile-img-card"
+        />
+        </div>
+        <br/>
             <h2>{actualUser.data.searchUser.firstname}</h2>
             <h2>{actualUser.data.searchUser.lastname}</h2>
             <p>{actualUser.data.searchUser.email}</p>
