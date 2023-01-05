@@ -53,7 +53,7 @@ export const getCategories = () => {
     const response = await axios.get("http://localhost:3001/category");
     return dispatch({
       type: GET_CATEGORIES,
-      payload: response.data,
+      payload: response.data.categories,
     });
   };
 };
@@ -264,7 +264,7 @@ export function createUser(payload) {
 }
 
 export const checkout = (payload) => {
-  console.log(payload,23)
+  console.log(payload, 23);
   return async function (dispatch) {
     const response = await axios.post("http://localhost:3001/stripe", payload);
     return dispatch({
