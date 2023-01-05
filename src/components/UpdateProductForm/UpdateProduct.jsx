@@ -95,7 +95,7 @@ function UpdateProduct() {
 
   const editBody = (
     <div className="modal">
-      <h2>Editar Nuevo Producto</h2>
+      <h2>Edit Product</h2>
 
       <TextField
         type="text"

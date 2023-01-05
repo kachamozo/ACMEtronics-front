@@ -31,8 +31,6 @@ const dispatch = useDispatch()
     dispatch(clearCart())
   }
 
-  console.log(actualUser);
-
   if (isAuthenticated) {
     return (
       <Modal show={showModal} onHide={closeModal}>
