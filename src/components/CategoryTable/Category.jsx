@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Category.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Edit, Delete } from "@mui/icons-material";
+
 import {
   Table,
   TableContainer,
@@ -17,22 +18,24 @@ import {
   getCategories,
   updateCategory,
   deleteCategory,
+  createCategories,
 } from "../../redux/actions/index";
-import { useParams } from "react-router";
 
 function UpdateCategory() {
-  const { id } = useParams();
-
   const dispatch = useDispatch();
 
   const allCategories = useSelector((state) => state.categories);
 
   console.log(allCategories);
 
+  const [mAdd, setMAdd] = useState(false);
   const [mEdit, setMEdit] = useState(false);
   const [input, setInput] = useState(allCategories);
 
+  const [inputAdd, setInputAdd] = useState({ name: "" });
+
   const [modalDel, setModalDel] = useState(false);
+
   const [selectedCategory, setSelectedCategory] = useState({
     name: "",
   });
@@ -44,7 +47,6 @@ function UpdateCategory() {
         category.id === selectedCategory.id ? selectedCategory : category
       )
     );
-    // dispatch(getCategories());
     modalEdit();
     reload();
     window.scroll(0, 0);
@@ -53,15 +55,32 @@ function UpdateCategory() {
   function handleDelete() {
     setInput(input.filter((category) => category.id !== selectedCategory.id));
     dispatch(deleteCategory(selectedCategory.id));
-    // dispatch(getCategories());
     reload();
     modalDelete();
+    window.scroll(0, 0);
+  }
+
+  function handleAdd(event) {
+    event.preventDefault();
+    dispatch(createCategories({ name: inputAdd.name }));
+    setInputAdd({
+      name: "",
+    });
+    reload();
+    modalAdd();
     window.scroll(0, 0);
   }
 
   function handleChange(event) {
     setSelectedCategory({
       ...selectedCategory,
+      [event.target.name]: event.target.value,
+    });
+  }
+
+  function handleChangeAdd(event) {
+    setInputAdd({
+      ...inputAdd,
       [event.target.name]: event.target.value,
     });
   }
@@ -82,6 +101,30 @@ function UpdateCategory() {
   function modalDelete() {
     setModalDel((prevM) => !prevM);
   }
+
+  function modalAdd() {
+    setMAdd((prevM) => !prevM);
+  }
+
+  const addBody = (
+    <div className="modal">
+      <h2>Add New Category</h2>
+      <TextField
+        type="text"
+        className="input"
+        name="name"
+        label="New Category"
+        onChange={(e) => handleChangeAdd(e)}
+        value={inputAdd.name}
+      />
+      <br />
+      <div>
+        <Button onClick={(e) => handleAdd(e)}>Add</Button>
+        <Button onClick={() => modalAdd()}>Cancel</Button>
+      </div>
+      <br />
+    </div>
+  );
 
   const editBody = (
     <div className="modal">
@@ -123,6 +166,10 @@ function UpdateCategory() {
     <>
       <div className="container">
         <h1 className="title">Edit Categories</h1>
+        <br />
+        <Button onClick={() => modalAdd()}>
+          <p>Add a new Category</p>
+        </Button>
         <TableContainer>
           <Table className="table">
             <TableHead className="th">
@@ -132,8 +179,6 @@ function UpdateCategory() {
                 <TableCell className="cell">Actions</TableCell>
               </TableRow>
             </TableHead>
-
-            {/* Marce si se te cae, de aqui hasta donde termine el TableBody lo comentas, guardas y ahi vuelve a recargar */}
 
             <TableBody className="tb">
               {allCategories &&
@@ -147,7 +192,7 @@ function UpdateCategory() {
                         className="button-table"
                       >
                         <Edit />
-                      </Button>
+                      </Button>{" "}
                       <Button
                         onClick={() => selectCategory(category, "Delete")}
                         className="button-table"
@@ -158,10 +203,11 @@ function UpdateCategory() {
                   </TableRow>
                 ))}
             </TableBody>
-
-            {/* Hasta aqui */}
           </Table>
         </TableContainer>
+        <Modal keepMounted open={mAdd} onClose={(e) => modalAdd(e)}>
+          {addBody}
+        </Modal>
         <Modal keepMounted open={mEdit} onClose={(e) => modalEdit(e)}>
           {editBody}
         </Modal>
