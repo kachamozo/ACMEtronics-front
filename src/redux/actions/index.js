@@ -35,6 +35,8 @@ export const DECREMENT_STOCK = "DECREMENT_STOCK";
 export const UPDATE_CATEGORY = "UPDATE_CATEGORY";
 export const DELETE_CATEGORY = "DELETE_CATEGORY";
 export const CREATE_CATEGORIES = "CREATE_CATEGORIES";
+export const UPDATE_USER = "UPDATE_USER";
+export const DELETE_USER = "DELETE_USER";
 
 export const getAllProducts = () => {
   return async function (dispatch) {
@@ -372,6 +374,31 @@ export const deleteCategory = (id) => {
     const response = await axios.delete("http://localhost:3001/category/" + id);
     dispatch({
       type: DELETE_CATEGORY,
+      payload: response.data,
+    });
+  };
+};
+
+//UPDATE USER
+export const updateUser = (id, updatedUser) => {
+  return async function (dispatch) {
+    const response = await axios.put(
+      `http://localhost:3001/user/${id}`,
+      updatedUser
+    );
+    return dispatch({
+      type: UPDATE_USER,
+      payload: response.data,
+    });
+  };
+};
+
+// DELETE USER
+export const deleteUser = (id) => {
+  return async function (dispatch) {
+    const response = await axios.delete(`http://localhost:3001/user/${id}`);
+    return dispatch({
+      type: DELETE_USER,
       payload: response.data,
     });
   };

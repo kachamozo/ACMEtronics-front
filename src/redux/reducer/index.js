@@ -32,11 +32,16 @@ import {
   DELETE_CATEGORY,
   CREATE_CATEGORIES,
   CREATE_USER,
+  UPDATE_USER,
+  DELETE_USER,
+
   ADD_FAVORITE_GMAIL,
   REMOVE_FAVORITE_GMAIL,
+
 } from "../actions";
 
 const initialState = {
+  data: {},
   products: [],
   detail: [],
   copyProducts: [],
@@ -96,8 +101,8 @@ function rootReducer(state = initialState, action) {
       };
 
     case UPDATE_PRODUCT:
-      console.log(action.payload.product,24)
-      return {...state}
+      console.log(action.payload.product, 24);
+      return { ...state };
 
     case DELETE_PRODUCT:
       return action.payload;
@@ -359,30 +364,6 @@ function rootReducer(state = initialState, action) {
     case DECREMENT_STOCK: {
     }
 
-    // case LOGIN_USER:
-    //   let user = action.payload.data.user;
-    //   let loginUser = action.payload.data.jwt || action.payload.data;
-    //   let name;
-    //   if (user) {
-    //     name = user.firstname + " " + user.lastname;
-    //     return {
-    //       ...state,
-    //       login: loginUser,
-    //       user: {
-    //         id: user.id,
-    //         username: user.username,
-    //         name: name,
-    //         email: user.email,
-    //         admin: user.admin,
-    //       },
-    //     };
-    //   } else {
-    //     return {
-    //       ...state,
-    //       login: loginUser,
-    //     };
-    //   }
-
     case LOGIN_REQUEST:
       return {
         ...state,
@@ -432,6 +413,15 @@ function rootReducer(state = initialState, action) {
         users: [...users, action.payload],
       };
     }
+
+    case UPDATE_USER:
+      return {
+        ...state,
+        data: action.payload,
+      };
+
+    case DELETE_USER:
+      return action.payload;
 
     default:
       return { ...state };
