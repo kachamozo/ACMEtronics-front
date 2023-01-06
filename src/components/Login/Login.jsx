@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./Login.css";
 import { Link } from "react-router-dom";
-import { loginUser } from "../../redux/actions/index";
+import { getAllUsers, loginUser } from "../../redux/actions/index";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import Swal from "sweetalert2";
 
 function Login() {
   const { loginWithRedirect } = useAuth0();
@@ -12,6 +13,9 @@ function Login() {
   const navigate = useNavigate();
 
   const actualUser = useSelector((state) => state.user);
+
+  const allUsers = useSelector((state) => state.allUsers);
+  console.log(allUsers);
 
   const [input, setInput] = useState({ email: "", password: "" });
 
@@ -32,15 +36,33 @@ function Login() {
   };
 
   useEffect(() => {
+    dispatch(getAllUsers());
     if (Object.keys(actualUser).length !== 0) {
       navigate("/shop");
     }
-  });
+  }, [actualUser]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    const loginSuccess = await dispatch(loginUser(input));
-    if (loginSuccess) navigate("/shop");
+
+    let wrongPassword = false;
+    for (let user of allUsers) {
+      wrongPassword = true; // update wrongPassword to false before checking for correct password
+      if (user.password == input.password) {
+        wrongPassword = false;
+        break;
+      }
+    }
+
+    if (wrongPassword) {
+      Swal.fire({
+        title: "Could not Login your password is incorrect",
+        icon: "error",
+      });
+    } else {
+      const loginSuccess = await dispatch(loginUser(input));
+      if (loginSuccess) navigate("/shop");
+    }
   };
 
   const validation = (input) => {
