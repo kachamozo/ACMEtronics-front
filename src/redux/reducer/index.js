@@ -251,6 +251,7 @@ function rootReducer(state = initialState, action) {
         favorites: action.payload,
       };
     }
+
     case REMOVE_FAVORITE: {
       return {
         ...state,

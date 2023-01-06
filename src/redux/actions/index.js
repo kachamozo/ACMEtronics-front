@@ -379,20 +379,6 @@ export const deleteCategory = (id) => {
   };
 };
 
-//UPDATE USER  // working
-// export const updateUser = (id, updatedUser) => {
-//   return async function (dispatch) {
-//     const response = await axios.put(
-//       `http://localhost:3001/user/${id}`,
-//       updatedUser
-//     );
-//     return dispatch({
-//       type: UPDATE_USER,
-//       payload: response.data,
-//     });
-//   };
-// };
-
 export const updateUser = (id, updatedUser) => {
   return async function (dispatch) {
     try {

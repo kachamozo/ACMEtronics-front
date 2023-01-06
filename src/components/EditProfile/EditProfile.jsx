@@ -9,10 +9,8 @@ import Swal from "sweetalert2";
 
 function EditProfile({ showModal, closeModal }) {
   const actualUser = useSelector((state) => state.user.data.searchUser);
-
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
   const [userData, setUserData] = useState(actualUser);
 
   useEffect(() => {

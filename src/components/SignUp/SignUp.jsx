@@ -12,6 +12,7 @@ function SignUp() {
   const dispatch = useDispatch();
   const allUsers = useSelector((state) => state.allUsers);
   const [errors, setErrors] = useState({});
+
   const [create, setCreate] = useState({
     firstname: "",
     lastname: "",
@@ -19,6 +20,7 @@ function SignUp() {
     email: "",
     password: "",
   });
+
   function handleChange(event) {
     setCreate({
       ...create,
@@ -31,46 +33,6 @@ function SignUp() {
       })
     );
   }
-
-  // function handleSubmit(event) {
-  //   event.preventDefault();
-
-  //   let emailInUse = false;
-  //   for (let user of allUsers) {
-  //     if (user.email === create.email) {
-  //       emailInUse = true;
-  //       break;
-  //     }
-  //   }
-  //   if (emailInUse) {
-  //     Swal.fire({
-  //       title:
-  //         "The email belongs to another account, you can choose other email.",
-  //       icon: "error",
-  //     });
-  //   } else {
-  //     if (Object.keys(errors).length === 0) {
-  //       Swal.fire({
-  //         title: "The user was created succesfully",
-  //         icon: "success",
-  //       });
-  //       dispatch(createUser(create));
-  //       setCreate({
-  //         firstname: "",
-  //         lastname: "",
-  //         username: "",
-  //         email: "",
-  //         password: "",
-  //       });
-  //       navigate("/login");
-  //     }
-  //    else {
-  //       Swal.fire({
-  //         title: "Must complete all the information to upload the product",
-  //         icon: "error",
-  //       });
-  //     }
-  //   } }
 
   function handleSubmit(event) {
     event.preventDefault();

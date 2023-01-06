@@ -7,13 +7,13 @@ import EditProfile from "../EditProfile/EditProfile";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { clearCart, logoutUser } from "../../redux/actions";
-import { useNavigate } from "react-router-dom";
 
 function ProfileStatus({ showModal, closeModal }) {
   const { user, isAuthenticated, logout } = useAuth0();
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+
   const actualUser = useSelector((state) => state.user);
+
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(actualUser));
   }, [actualUser]);
