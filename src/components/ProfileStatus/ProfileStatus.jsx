@@ -10,11 +10,11 @@ import { clearCart, logoutUser } from "../../redux/actions";
 
 function ProfileStatus({ showModal, closeModal }) {
   const { user, isAuthenticated, logout } = useAuth0();
-const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const actualUser = useSelector((state) => state.user);
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(actualUser));
-  },[actualUser])
+  }, [actualUser]);
 
   const [editProfileModalVisible, setEditProfileModalVisible] = useState(false);
 
@@ -22,14 +22,14 @@ const dispatch = useDispatch()
     setEditProfileModalVisible(!editProfileModalVisible);
   }
   const logoutu = () => {
-    dispatch(logoutUser())
-    dispatch(clearCart())
-  }
+    dispatch(logoutUser());
+    dispatch(clearCart());
+  };
 
   const handleLogOut = () => {
-    logout()
-    dispatch(clearCart())
-  }
+    logout();
+    dispatch(clearCart());
+  };
 
   if (isAuthenticated) {
     return (
@@ -47,33 +47,12 @@ const dispatch = useDispatch()
         <Modal.Footer>
           <Button
             className="green_btn"
-            variant="secondary"
-            onClick={closeModal}
-          >
-            Close
-          </Button>
-
-          <Button
-            className="green_btn"
-            variant="primary"
-            onClick={toggleEditProfileModal}
-          >
-            Edit Profile
-          </Button>
-          <Button
-            className="green_btn"
             variant="primary"
             onClick={() => handleLogOut()}
           >
             Logout
           </Button>
         </Modal.Footer>
-        {editProfileModalVisible && (
-          <EditProfile
-            showModal={editProfileModalVisible}
-            closeModal={toggleEditProfileModal}
-          />
-        )}
       </Modal>
     );
   } else if (Object.keys(actualUser).length !== 0) {
@@ -85,27 +64,25 @@ const dispatch = useDispatch()
         <Modal.Body>
           <div>
             <div>
-          <img
-          src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-          alt="profile-img"
-          className="profile-img-card"
-        />
-        </div>
-        <br/>
-            <h2>{actualUser.data.searchUser.firstname}</h2>
-            <h2>{actualUser.data.searchUser.lastname}</h2>
-            <p>{actualUser.data.searchUser.email}</p>
+              <img
+                src={actualUser.data.searchUser.profileImage}
+                alt="profile-img"
+                className="profile-img-card"
+                width="250px"
+                height="250px"
+              />
+            </div>
+            <br />
+            <h1>Username: {actualUser.data.searchUser.username}</h1>
+            <h3>
+              Name:{actualUser.data.searchUser.firstname}{" "}
+              {actualUser.data.searchUser.lastname}
+            </h3>
+
+            <h4>{actualUser.data.searchUser.email}</h4>
           </div>
         </Modal.Body>
         <Modal.Footer>
-          <Button
-            className="green_btn"
-            variant="secondary"
-            onClick={closeModal}
-          >
-            Close
-          </Button>
-
           <Button
             className="green_btn"
             variant="primary"

@@ -32,9 +32,12 @@ import {
   DELETE_CATEGORY,
   CREATE_CATEGORIES,
   CREATE_USER,
+  UPDATE_USER,
+  DELETE_USER,
 } from "../actions";
 
 const initialState = {
+  data: {},
   products: [],
   detail: [],
   copyProducts: [],
@@ -93,8 +96,8 @@ function rootReducer(state = initialState, action) {
       };
 
     case UPDATE_PRODUCT:
-      console.log(action.payload.product,24)
-      return {...state}
+      console.log(action.payload.product, 24);
+      return { ...state };
 
     case DELETE_PRODUCT:
       return action.payload;
@@ -409,6 +412,15 @@ function rootReducer(state = initialState, action) {
         users: [...users, action.payload],
       };
     }
+
+    case UPDATE_USER:
+      return {
+        ...state,
+        data: action.payload,
+      };
+
+    case DELETE_USER:
+      return action.payload;
 
     default:
       return { ...state };
