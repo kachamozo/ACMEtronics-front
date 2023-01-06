@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import d from "../Detail/detail.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-import { getProductDetail, clean, addToCart, addFavorite, removeFavorite, getFavorites } from "../../redux/actions";
+import { getProductDetail, clean, addToCart, addFavorite, removeFavorite, getFavorites, addFavoriteGmail, removeFavoriteGmail } from "../../redux/actions";
 import { ToastContainer, toast } from "react-toastify";
 import { Reviews } from "@mui/icons-material";
 import { NavLink } from "react-router-dom";
@@ -15,13 +15,15 @@ export default function Detail() {
   const dispatch = useDispatch();
   const product = useSelector((state) => state.detail);
   const favs = useSelector((state)=> state.favorites)
+  const favoritesGmail = useSelector((state)=> state.favoritesGmail)
   const { id } = useParams();
-  const { isAuthenticated } = useAuth0();
-  let user = JSON.parse(localStorage.getItem("loggedUser"))
+  const { user, isAuthenticated } = useAuth0();
+  let userDb = JSON.parse(localStorage.getItem("loggedUser"))
+  
   
   useEffect(() => {
     dispatch(getProductDetail(id));
-    if(user)dispatch(getFavorites(user.email))
+    if(userDb)dispatch(getFavorites(userDb.email))
     return () => {
       dispatch(clean())};
   }, [dispatch, id]);
@@ -29,12 +31,12 @@ export default function Detail() {
   const notify = () => toast.success("Item added to cart");
 
   const handleAddToCart = () => {
-    dispatch(addToCart(product.product.id));
+    if(userDb)dispatch(addToCart(product.product.id));
     notify();
   };
   
   const handleAddToFavorites= () => {
-    if(user || isAuthenticated === true ){
+    if(userDb || isAuthenticated === true  ){
       Swal.fire({
       title: 'Add to wishlist',
       text: "Do you want to add this product to your wishlist?",
@@ -44,16 +46,26 @@ export default function Detail() {
       cancelButtonColor: '#d33',
       confirmButtonText: 'Yes!'
     }).then((result) => {
-      if (result.isConfirmed) {
-        dispatch(addFavorite(user.email, parseInt(id)))
+      if (result.isConfirmed && userDb) {
+        dispatch(addFavorite(userDb.email, parseInt(id)))
         Swal.fire(
           'Added!',
           'The product has been added to your wishlist.',
           'success'
           )
-          dispatch(getFavorites(user.email))
-      }})
-    } else if(!user || isAuthenticated === false) {
+          dispatch(getFavorites(userDb.email))
+      } 
+      else if(result.isConfirmed && user){
+        dispatch(addFavoriteGmail(parseInt(id)))
+        Swal.fire(
+          'Added!',
+          'The product has been added to your wishlist.',
+          'success'
+          )
+      }
+    }
+      )
+    } else if(!userDb || isAuthenticated === false) {
       Swal.fire({
         title: 'Please log in to see your wishlist',
         icon: 'warning'
@@ -62,7 +74,7 @@ export default function Detail() {
     }
     
     const handleDeleteFavorite = () => {
-      if(user || isAuthenticated === true ){
+      if(userDb || user ){
         Swal.fire({
         title: 'Removing from wishlist',
         text: "Do you want to delete this product from your wishlist?",
@@ -72,16 +84,24 @@ export default function Detail() {
         cancelButtonColor: '#d33',
         confirmButtonText: 'Yes, delete it!'
       }).then((result) => {
-        if (result.isConfirmed) {
-          dispatch(removeFavorite(user.email, parseInt(id)))
+        if (result.isConfirmed && userDb) {
+          dispatch(removeFavorite(userDb.email, parseInt(id)))
           Swal.fire(
             'Deleted!',
             'The product has been deleted.',
             'success'
             )
-            dispatch(getFavorites(user.email))
-        }})
-      } else if(!user || isAuthenticated === false) {
+            dispatch(getFavorites(userDb.email))
+        }  else if(result.isConfirmed && user){
+          dispatch(removeFavoriteGmail(parseInt(id)))
+          Swal.fire(
+            'Deleted!',
+            'The product has been deleted to your wishlist.',
+            'success'
+            )
+        }
+      })
+      } else if(!userDb || isAuthenticated === false) {
         Swal.fire({
           title: 'Please log in to see your wishlist',
           icon: 'warning'
@@ -100,9 +120,12 @@ export default function Detail() {
           </div>
           <div className={d.content}>
             <h1>{product.product.name}</h1>
-            {favs["Favorites"] && favs["Favorites"].find(el => el.id === product.product.id) ? 
+            {userDb? (!user && favs["Favorites"] && favs["Favorites"].find(el => el.id === product.product.id) ? 
             (<div className={d.favIcons}><a onClick={()=> handleDeleteFavorite()} ><HiHeart size={'2em'} /></a></div>) : 
-            (<div className={d.favIcons}><a onClick={()=>handleAddToFavorites()}><HiOutlineHeart size={'2em'} /></a></div>  )}
+            (<div className={d.favIcons}><a onClick={()=>handleAddToFavorites()}><HiOutlineHeart size={'2em'} /></a></div>  )) :
+             (user && !userDb && favoritesGmail.find(el => el.id === product.product.id) ? 
+            (<div className={d.favIcons}><a onClick={()=> handleDeleteFavorite()} ><HiHeart size={'2em'} /></a></div>) : 
+            (<div className={d.favIcons}><a onClick={()=>handleAddToFavorites()}><HiOutlineHeart size={'2em'} /></a></div>  ))}
             <p>Rating: {product.product.rating}</p>
             <h2>${product.product.price}</h2>
             <h3>{product.product.description}</h3>

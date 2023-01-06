@@ -34,6 +34,10 @@ import {
   CREATE_USER,
   UPDATE_USER,
   DELETE_USER,
+
+  ADD_FAVORITE_GMAIL,
+  REMOVE_FAVORITE_GMAIL,
+
 } from "../actions";
 
 const initialState = {
@@ -44,6 +48,7 @@ const initialState = {
   categories: [],
   rating: [],
   favorites: [],
+  favoritesGmail: JSON.parse(localStorage.getItem("favoritesGmail")) || [],
   users: [],
   userDetail: [],
   stripe: [],
@@ -253,6 +258,26 @@ function rootReducer(state = initialState, action) {
         ...state,
         favorites: action.payload,
       };
+    }
+    case ADD_FAVORITE_GMAIL: {
+      let newItem = state.products.find((product) => product.id === action.payload);
+      let itemInFavs = state.favoritesGmail.find((item) => item.id === newItem.id);
+      return itemInFavs
+        ? {
+            ...state,
+            favoritesGmail: state.favoritesGmail
+          }
+        : {
+            ...state,
+            favoritesGmail: [...state.favoritesGmail, { ...newItem }],
+          };
+    }
+    case REMOVE_FAVORITE_GMAIL: {
+      let filtrado = state.favoritesGmail.filter(item => item.id !== action.payload)
+      return {
+        ...state,
+        favoritesGmail: filtrado
+      }
     }
 
     case GET_ALL_USERS: {
