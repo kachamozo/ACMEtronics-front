@@ -34,10 +34,8 @@ import {
   CREATE_USER,
   UPDATE_USER,
   DELETE_USER,
-
   ADD_FAVORITE_GMAIL,
   REMOVE_FAVORITE_GMAIL,
-
 } from "../actions";
 
 const initialState = {
@@ -49,7 +47,7 @@ const initialState = {
   rating: [],
   favorites: [],
   favoritesGmail: JSON.parse(localStorage.getItem("favoritesGmail")) || [],
-  users: [],
+  allUsers: [],
   userDetail: [],
   stripe: [],
   cart: JSON.parse(localStorage.getItem("cart")) || [],
@@ -260,12 +258,16 @@ function rootReducer(state = initialState, action) {
       };
     }
     case ADD_FAVORITE_GMAIL: {
-      let newItem = state.products.find((product) => product.id === action.payload);
-      let itemInFavs = state.favoritesGmail.find((item) => item.id === newItem.id);
+      let newItem = state.products.find(
+        (product) => product.id === action.payload
+      );
+      let itemInFavs = state.favoritesGmail.find(
+        (item) => item.id === newItem.id
+      );
       return itemInFavs
         ? {
             ...state,
-            favoritesGmail: state.favoritesGmail
+            favoritesGmail: state.favoritesGmail,
           }
         : {
             ...state,
@@ -273,17 +275,19 @@ function rootReducer(state = initialState, action) {
           };
     }
     case REMOVE_FAVORITE_GMAIL: {
-      let filtrado = state.favoritesGmail.filter(item => item.id !== action.payload)
+      let filtrado = state.favoritesGmail.filter(
+        (item) => item.id !== action.payload
+      );
       return {
         ...state,
-        favoritesGmail: filtrado
-      }
+        favoritesGmail: filtrado,
+      };
     }
 
     case GET_ALL_USERS: {
       return {
         ...state,
-        users: action.payload,
+        allUsers: action.payload,
       };
     }
 
@@ -410,7 +414,7 @@ function rootReducer(state = initialState, action) {
     case CREATE_USER: {
       return {
         ...state,
-        users: [...users, action.payload],
+        allUsers: [...allUsers, action.payload],
       };
     }
 

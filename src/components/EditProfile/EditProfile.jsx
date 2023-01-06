@@ -3,18 +3,17 @@ import { Modal, Button, Form } from "react-bootstrap";
 import "./EditProfile.css";
 import { useSelector, useDispatch } from "react-redux";
 import { useState } from "react";
-import { updateUser, deleteUser } from "../../redux/actions";
+import { updateUser, deleteUser, logoutUser } from "../../redux/actions";
 import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 function EditProfile({ showModal, closeModal }) {
   const actualUser = useSelector((state) => state.user.data.searchUser);
-  console.log(actualUser);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const [userData, setUserData] = useState(actualUser);
-
-  console.log(userData);
 
   useEffect(() => {
     if (
@@ -36,9 +35,21 @@ function EditProfile({ showModal, closeModal }) {
       password: userData.password,
       profileImage: userData.profileImage,
     };
-    console.log(userData.id);
-    // dispatch(updateUser({ id: userData.id, updatedUser }));
-    dispatch(updateUser(userData.id, updatedUser));
+
+    dispatch(updateUser(userData.id, updatedUser))
+      .then(() => {
+        Swal.fire({
+          title:
+            "Your profile information was updated successfully. You will see the changes the next time you login.",
+        });
+        closeModal();
+      })
+      .catch((error) => {
+        Swal.fire({
+          title: "An error occurred while updating your profile.",
+          text: error.message,
+        });
+      });
   };
 
   const handleChange = (event) => {
@@ -51,7 +62,13 @@ function EditProfile({ showModal, closeModal }) {
 
   const handleDelete = () => {
     dispatch(deleteUser(userData.id));
-    navigate("/home");
+    dispatch(logoutUser());
+    Swal.fire({
+      title: "Thank you for trusting us, We hope you come back soon",
+      icon: "success",
+    });
+    window.location.reload();
+    navigate("/signup");
   };
 
   return (
