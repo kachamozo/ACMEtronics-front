@@ -220,7 +220,7 @@ export const removeFavoriteGmail = (id) => {
 
 export const getAllUsers = () => {
   return async function (dispatch) {
-    const response = await axios.get("http://localhost:3001/user");
+    const response = await axios.get("http://localhost:3001/user/");
     return dispatch({
       type: GET_ALL_USERS,
       payload: response.data,
@@ -379,17 +379,21 @@ export const deleteCategory = (id) => {
   };
 };
 
-//UPDATE USER
 export const updateUser = (id, updatedUser) => {
   return async function (dispatch) {
-    const response = await axios.put(
-      `http://localhost:3001/user/${id}`,
-      updatedUser
-    );
-    return dispatch({
-      type: UPDATE_USER,
-      payload: response.data,
-    });
+    try {
+      const response = await axios.put(
+        `http://localhost:3001/user/${id}`,
+        updatedUser
+      );
+      dispatch({
+        type: UPDATE_USER,
+        payload: response.data,
+      });
+      return Promise.resolve();
+    } catch (error) {
+      return Promise.reject(error);
+    }
   };
 };
 

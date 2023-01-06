@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 import "./ProfileStatus.css";
 import { useAuth0 } from "@auth0/auth0-react";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
 import EditProfile from "../EditProfile/EditProfile";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -11,7 +11,9 @@ import { clearCart, logoutUser } from "../../redux/actions";
 function ProfileStatus({ showModal, closeModal }) {
   const { user, isAuthenticated, logout } = useAuth0();
   const dispatch = useDispatch();
+
   const actualUser = useSelector((state) => state.user);
+
   useEffect(() => {
     localStorage.setItem("user", JSON.stringify(actualUser));
   }, [actualUser]);
@@ -39,9 +41,14 @@ function ProfileStatus({ showModal, closeModal }) {
         </Modal.Header>
         <Modal.Body>
           <div>
-            <img src={user.picture} alt={user.name} />
-            <h2>{user.name}</h2>
-            <p>{user.email}</p>
+            <img
+              src={user.picture}
+              alt={user.name}
+              width="240px"
+              height="240px"
+            />
+            <h3>Name: {user.name}</h3>
+            <h4>{user.email}</h4>
           </div>
         </Modal.Body>
         <Modal.Footer>
