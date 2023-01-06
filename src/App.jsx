@@ -49,6 +49,7 @@ function App() {
 
         <Route path="/wishlist" element={<WishList />} />
 
+
         <Route path="/stripe" element={<Stripe />} />
 
         <Route path="/updateproduct" element={<UpdateProduct />} />
