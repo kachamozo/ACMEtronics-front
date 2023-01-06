@@ -1,12 +1,103 @@
 import React from "react";
 import "./Dashboard.css";
+import { getFavorites, searchName } from "../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { useState, useEffect } from "react";
+
+import { Modal, Button } from "react-bootstrap";
+// import "./ProfileStatus.css";
+import { useAuth0 } from "@auth0/auth0-react";
+import { Link } from "react-router-dom";
+import EditProfile from "../EditProfile/EditProfile";
+import { clearCart, logoutUser } from "../../redux/actions";
+import ProfileStatus from "../ProfileStatus/ProfileStatus";
 
 
 
 function Dashboard() {
 
+    const dispatch = useDispatch();
+    const [name, setName] = useState("");
+    const cart = useSelector((state) => state.cart);
+    const favorites = useSelector((state) => state.favorites);
+    let user = JSON.parse(localStorage.getItem("loggedUser"));
+
+    // actualiza el componente para cargar el length del array de favoritos cuando agregamos o eliminamos uno
+    useEffect(() => {
+        if (user) dispatch(getFavorites(user.email, user.name));
+    }, [dispatch]);
+
+    let myFavs =
+        favorites["Favorites"] !== undefined ? favorites["Favorites"].length : "0";
+
+
+
+
+
+
+        const [showModal, setShowModal] = useState(false);
+
+        //   const { isAuthenticated } = useAuth0();
+      
+        const handleSearch = (e) => {
+          dispatch(searchName(e));
+          setName(e);
+        };
+      
+        const openModal = () => {
+          setShowModal(true);
+        };
+      
+        const closeModal = () => {
+          setShowModal(false);
+        };   
+        
+        
+
+
+        const actualUser = useSelector((state) => state.user);
+        useEffect(() => {
+          localStorage.setItem("user", JSON.stringify(actualUser));
+        },[actualUser])
+
+
+
+        
+
+
+
+    
+
     return (
         <div className="container">
+
+
+
+
+
+
+          
+
+
+                  
+
+
+
+
+
+            
+
+
+          
+
+
+
+
+            
+         
+
+
+
       
 
     
@@ -68,8 +159,15 @@ function Dashboard() {
             <div class="col-lg-9 my-lg-0 my-1">
                 <div id="main-content" class="bg-white border">
                     <div class="d-flex flex-column">
-                        <div class="h5">Hello Marcelo,</div>
-                        <div>Logged in as: example@gmail.com</div>
+                        <div className="h5">Hello, <p>{user.name}</p></div>
+                        <img
+                    src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" style={{width:"60px", height:"60px"}}
+                    alt="profile-img"
+                    className="profile-img-card"
+                    />
+                        <h6>{actualUser.data.searchUser.firstname}</h6>
+                        <h6>{actualUser.data.searchUser.lastname}</h6>
+                        <div>Logged in as: <p>{actualUser.data.searchUser.email}</p> </div>
                     </div>
                     <div class="d-flex my-4 flex-wrap" style={{justifyContent:"space-around"}}>
                         <div class="box me-4 my-1 bg-light">
@@ -85,7 +183,9 @@ function Dashboard() {
                                 alt=""/>
                             <div class="d-flex align-items-center mt-2">
                                 <div class="tag">Items in Cart</div>
-                                <div class="ms-auto number">10</div>
+                                <div class="ms-auto number">
+                                <p>{cart.length}</p>
+                                </div>
                             </div>
                         </div>
                         <div class="box me-4 my-1 bg-light">
@@ -93,7 +193,9 @@ function Dashboard() {
                                 alt=""/>
                             <div class="d-flex align-items-center mt-2">
                                 <div class="tag">Wishlist</div>
-                                <div class="ms-auto number">10</div>
+                                <div class="ms-auto number">
+                                <p>{myFavs}</p>
+                                </div>
                             </div>
                         </div>
                     </div>
