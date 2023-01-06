@@ -363,6 +363,7 @@ export const deleteCategory = (id) => {
   };
 };
 
+//UPDATE USER
 export const updateUser = (id, updatedUser) => {
   return async function (dispatch) {
     const response = await axios.put(
@@ -376,6 +377,7 @@ export const updateUser = (id, updatedUser) => {
   };
 };
 
+// DELETE USER
 export const deleteUser = (id) => {
   return async function (dispatch) {
     const response = await axios.delete(`http://localhost:3001/user/${id}`);

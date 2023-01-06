@@ -339,30 +339,6 @@ function rootReducer(state = initialState, action) {
     case DECREMENT_STOCK: {
     }
 
-    // case LOGIN_USER:
-    //   let user = action.payload.data.user;
-    //   let loginUser = action.payload.data.jwt || action.payload.data;
-    //   let name;
-    //   if (user) {
-    //     name = user.firstname + " " + user.lastname;
-    //     return {
-    //       ...state,
-    //       login: loginUser,
-    //       user: {
-    //         id: user.id,
-    //         username: user.username,
-    //         name: name,
-    //         email: user.email,
-    //         admin: user.admin,
-    //       },
-    //     };
-    //   } else {
-    //     return {
-    //       ...state,
-    //       login: loginUser,
-    //     };
-    //   }
-
     case LOGIN_REQUEST:
       return {
         ...state,

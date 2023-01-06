@@ -68,8 +68,8 @@ function ProfileStatus({ showModal, closeModal }) {
                 src={actualUser.data.searchUser.profileImage}
                 alt="profile-img"
                 className="profile-img-card"
-                width="250px"
-                height="250px"
+                width="240px"
+                height="240px"
               />
             </div>
             <br />

@@ -51,7 +51,6 @@ function EditProfile({ showModal, closeModal }) {
 
   const handleDelete = () => {
     dispatch(deleteUser(userData.id));
-    closeModal();
     navigate("/home");
   };
 
