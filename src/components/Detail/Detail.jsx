@@ -31,7 +31,7 @@ export default function Detail() {
   const notify = () => toast.success("Item added to cart");
 
   const handleAddToCart = () => {
-    if(userDb)dispatch(addToCart(product.product.id));
+    dispatch(addToCart(product.product.id));
     notify();
   };
   
