@@ -1,5 +1,3 @@
-// crear una landing page que tenga un boton que diga "start" y que te lleve a la ruta /home
-// y otro boton que te lleve a la landing page
 import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Landing.css';
@@ -27,7 +25,7 @@ function Landing() {
 	}, [isAuthenticated]);
 	return (
 		<>
-			<div className='landing'>
+			<div className='landing' >
 				<div className='landing__container'>
 					<h2>WELCOME TO :</h2>
 					<h1>ACMEtronics</h1>

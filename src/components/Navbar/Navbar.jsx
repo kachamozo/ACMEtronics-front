@@ -5,8 +5,6 @@ import { getFavorites, getUserByEmail, loginUser, searchName, userProfile,getFav
 
 import "./Navbar.css";
 import logo from "../../Assets/logo1.jpg";
-import Login from "../Login/Login";
-import { Nav } from "react-bootstrap";
 import ProfileStatus from "../ProfileStatus/ProfileStatus";
 import { useAuth0 } from "@auth0/auth0-react";
 
@@ -126,10 +124,7 @@ function Navbar() {
             height={"25px"}
           />
         </button>
-        {/* {<ProfileStatus />}
-        {showModal ? (
-          <ProfileStatus showModal={showModal} closeModal={closeModal} />
-        ) : null} */}
+      
 
         <ProfileStatus showModal={showModal} closeModal={closeModal} />
       </div>

@@ -18,6 +18,7 @@
         flex-direction: column;
         height: 100%;
         width: 100%;
+        text-align: justify;
     }
 }
 
@@ -46,6 +47,7 @@
     .footer li a {
         text-decoration: none;
         color: white;
+        font-size: larger;
     }
     
 }

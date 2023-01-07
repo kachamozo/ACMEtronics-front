@@ -20,7 +20,6 @@ export const Orderaz = () => {
     e.preventDefault()
     dispatch(getPrice(e.target.value))
   }
-// generar un select con las opciones de ordenar por nombre, por precio, por rating
   return (
     <div className='orderaz'>
       <h2>Order by:</h2>

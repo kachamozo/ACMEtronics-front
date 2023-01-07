@@ -5,7 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useState, useEffect } from "react";
 
 import { Modal, Button } from "react-bootstrap";
-// import "./ProfileStatus.css";
 import { useAuth0 } from "@auth0/auth0-react";
 import { Link } from "react-router-dom";
 import EditProfile from "../EditProfile/EditProfile";
@@ -32,7 +31,6 @@ function Dashboard() {
 
     const [showModal, setShowModal] = useState(false);
 
-        //   const { isAuthenticated } = useAuth0();
       
         const handleSearch = (e) => {
           dispatch(searchName(e));

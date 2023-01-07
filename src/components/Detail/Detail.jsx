@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { getProductDetail, clean, addToCart, addFavorite, removeFavorite, getFavorites, addFavoriteGmail, removeFavoriteGmail, getFavoritesGmail } from "../../redux/actions";
 import { ToastContainer, toast } from "react-toastify";
-import { Reviews } from "@mui/icons-material";
 import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { HiOutlineHeart, HiHeart } from 'react-icons/hi'
