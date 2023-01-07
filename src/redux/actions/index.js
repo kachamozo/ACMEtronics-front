@@ -37,6 +37,8 @@ export const DELETE_CATEGORY = "DELETE_CATEGORY";
 export const CREATE_CATEGORIES = "CREATE_CATEGORIES";
 export const UPDATE_USER = "UPDATE_USER";
 export const DELETE_USER = "DELETE_USER";
+export const GET_USER_BY_EMAIL = "GET_USER_BY_EMAIL";
+
 
 export const getAllProducts = () => {
   return async function (dispatch) {
@@ -44,6 +46,16 @@ export const getAllProducts = () => {
     return dispatch({
       type: GET_ALL_PRODUCTS,
       payload: response.data.products,
+    });
+  };
+};
+export const getUserByEmail = (payload) => {
+  return async function (dispatch) {
+    console.log(payload,25)
+    const response = await axios.post("http://localhost:3001/user/email",payload);
+    return dispatch({
+      type: GET_USER_BY_EMAIL,
+      payload: response.data,
     });
   };
 };

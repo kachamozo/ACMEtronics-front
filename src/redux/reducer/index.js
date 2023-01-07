@@ -36,6 +36,7 @@ import {
   DELETE_USER,
   ADD_FAVORITE_GMAIL,
   REMOVE_FAVORITE_GMAIL,
+  GET_USER_BY_EMAIL,
 } from "../actions";
 
 const initialState = {
@@ -57,6 +58,7 @@ const initialState = {
   isAuthenticated: false,
   error: "",
   userProfile: [],
+  userEmail: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -398,6 +400,11 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         userProfile: action.payload,
+      };
+    case GET_USER_BY_EMAIL:
+      return {
+        ...state,
+        userEmail: action.payload,
       };
 
     case UPDATE_CATEGORY:
