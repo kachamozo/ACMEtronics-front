@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 import { useAuth0 } from '@auth0/auth0-react';
 import { logged } from '../../redux/actions/index';
 
+
 function Landing() {
 	const { isAuthenticated, user } = useAuth0();
 
