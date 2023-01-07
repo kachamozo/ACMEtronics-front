@@ -1,177 +1,178 @@
 import {
-  CLEAN,
-  GET_ALL_PRODUCTS,
-  GET_PRODUCT_DETAIL,
-  SEARCH_NAME,
-  GET_CATEGORIES,
-  UPDATE_PRODUCT,
-  DELETE_PRODUCT,
-  ORDERBYAZ,
-  FILTER_CATEGORY,
-  GET_PRODUCT_RATING,
-  PRICE_FILTER,
-  ADD_FAVORITE,
-  REMOVE_FAVORITE,
-  GET_ALL_USERS,
-  GET_USER_BY_ID,
-  PAYMENT_STRIPE,
-  ADD_TO_CART,
-  INCREASE_QUANTITY,
-  DELETE_ONE_FROM_CART,
-  DELETE_ALL_FROM_CART,
-  CLEAR_CART,
-  LOGIN_USER,
-  GET_FAVORITES,
-  LOGIN_REQUEST,
-  LOGIN_SUCCESS,
-  LOGIN_FAILURE,
-  LOGOUT,
-  GET_USER_PROFILE,
-  DECREMENT_STOCK,
-  UPDATE_CATEGORY,
-  DELETE_CATEGORY,
-  CREATE_CATEGORIES,
-  CREATE_USER,
-  UPDATE_USER,
-  DELETE_USER,
-  ADD_FAVORITE_GMAIL,
-  REMOVE_FAVORITE_GMAIL,
-} from "../actions";
+	CLEAN,
+	GET_ALL_PRODUCTS,
+	GET_PRODUCT_DETAIL,
+	SEARCH_NAME,
+	GET_CATEGORIES,
+	UPDATE_PRODUCT,
+	DELETE_PRODUCT,
+	ORDERBYAZ,
+	FILTER_CATEGORY,
+	GET_PRODUCT_RATING,
+	PRICE_FILTER,
+	ADD_FAVORITE,
+	REMOVE_FAVORITE,
+	GET_ALL_USERS,
+	GET_USER_BY_ID,
+	PAYMENT_STRIPE,
+	ADD_TO_CART,
+	INCREASE_QUANTITY,
+	DELETE_ONE_FROM_CART,
+	DELETE_ALL_FROM_CART,
+	CLEAR_CART,
+	LOGIN_USER,
+	GET_FAVORITES,
+	LOGIN_REQUEST,
+	LOGIN_SUCCESS,
+	LOGIN_AUTH0,
+	LOGIN_FAILURE,
+	LOGOUT,
+	GET_USER_PROFILE,
+	DECREMENT_STOCK,
+	UPDATE_CATEGORY,
+	DELETE_CATEGORY,
+	CREATE_CATEGORIES,
+	CREATE_USER,
+	UPDATE_USER,
+	DELETE_USER,
+	ADD_FAVORITE_GMAIL,
+	REMOVE_FAVORITE_GMAIL,
+} from '../actions';
 
 const initialState = {
-  data: {},
-  products: [],
-  detail: [],
-  copyProducts: [],
-  categories: [],
-  rating: [],
-  favorites: [],
-  favoritesGmail: JSON.parse(localStorage.getItem("favoritesGmail")) || [],
-  allUsers: [],
-  userDetail: [],
-  stripe: [],
-  cart: JSON.parse(localStorage.getItem("cart")) || [],
-  login: [],
-  user: JSON.parse(localStorage.getItem("user")) || [],
-  isLoading: false,
-  isAuthenticated: false,
-  error: "",
-  userProfile: [],
+	data: {},
+	products: [],
+	detail: [],
+	copyProducts: [],
+	categories: [],
+	rating: [],
+	favorites: [],
+	favoritesGmail: JSON.parse(localStorage.getItem('favoritesGmail')) || [],
+	allUsers: [],
+	userDetail: [],
+	stripe: [],
+	cart: JSON.parse(localStorage.getItem('cart')) || [],
+	login: [],
+	user: JSON.parse(localStorage.getItem('user')) || [],
+	isLoading: false,
+	isAuthenticated: false,
+	error: '',
+	userProfile: [],
 };
 
 function rootReducer(state = initialState, action) {
-  switch (action.type) {
-    case GET_ALL_PRODUCTS:
-      return {
-        ...state,
-        products: action.payload,
-        copyProducts: action.payload,
-      };
-    case GET_PRODUCT_DETAIL:
-      return {
-        ...state,
-        detail: action.payload,
-      };
-    case SEARCH_NAME: {
-      const all = state.products;
-      const search = all.filter((f) =>
-        f.name.toLowerCase().includes(action.payload.toLowerCase())
-      );
+	switch (action.type) {
+		case GET_ALL_PRODUCTS:
+			return {
+				...state,
+				products: action.payload,
+				copyProducts: action.payload,
+			};
+		case GET_PRODUCT_DETAIL:
+			return {
+				...state,
+				detail: action.payload,
+			};
+		case SEARCH_NAME: {
+			const all = state.products;
+			const search = all.filter((f) =>
+				f.name.toLowerCase().includes(action.payload.toLowerCase())
+			);
 
-      return {
-        ...state,
-        copyProducts: search,
-      };
-    }
-    case CLEAN:
-      return {
-        ...state,
-        detail: [],
-      };
+			return {
+				...state,
+				copyProducts: search,
+			};
+		}
+		case CLEAN:
+			return {
+				...state,
+				detail: [],
+			};
 
-    case "CREATE_PRODUCT":
-      return { ...state };
+		case 'CREATE_PRODUCT':
+			return { ...state };
 
-    case GET_CATEGORIES:
-      return {
-        ...state,
-        categories: action.payload,
-      };
+		case GET_CATEGORIES:
+			return {
+				...state,
+				categories: action.payload,
+			};
 
-    case UPDATE_PRODUCT:
-      console.log(action.payload.product, 24);
-      return { ...state };
+		case UPDATE_PRODUCT:
+			console.log(action.payload.product, 24);
+			return { ...state };
 
-    case DELETE_PRODUCT:
-      return action.payload;
+		case DELETE_PRODUCT:
+			return action.payload;
 
-    // CASE para traer el rating desde el reduce/index y poder ordenarlos de mayor a menor y de menor a mayor
-    case GET_PRODUCT_RATING: {
-      let filterorderrating = [...state.products];
-      let filterproductrating = [...state.copyProducts];
-      if (action.payload === "all") {
-        return {
-          ...state,
-          copyProducts: filterorderrating,
-        };
-      }
-      if (action.payload === "asc") {
-        const data = filterproductrating.sort((a, b) =>
-          a.rating > b.rating ? 1 : -1
-        );
-        return {
-          ...state,
-          copyProducts: data,
-        };
-      }
+		// CASE para traer el rating desde el reduce/index y poder ordenarlos de mayor a menor y de menor a mayor
+		case GET_PRODUCT_RATING: {
+			let filterorderrating = [...state.products];
+			let filterproductrating = [...state.copyProducts];
+			if (action.payload === 'all') {
+				return {
+					...state,
+					copyProducts: filterorderrating,
+				};
+			}
+			if (action.payload === 'asc') {
+				const data = filterproductrating.sort((a, b) =>
+					a.rating > b.rating ? 1 : -1
+				);
+				return {
+					...state,
+					copyProducts: data,
+				};
+			}
 
-      const data = filterproductrating.sort((a, b) =>
-        a.rating > b.rating ? -1 : 1
-      );
-      return {
-        ...state,
-        copyProducts: data,
-      };
-    }
+			const data = filterproductrating.sort((a, b) =>
+				a.rating > b.rating ? -1 : 1
+			);
+			return {
+				...state,
+				copyProducts: data,
+			};
+		}
 
-    // CASE para traer el precio desde el reduce/index y poder ordenarlos de mayor a menor y de menor a mayor
-    case PRICE_FILTER: {
-      let filterorderprice = [...state.products];
-      let filterproductprice = [...state.copyProducts];
-      if (action.payload === "all") {
-        return {
-          ...state,
-          copyProducts: filterorderprice,
-        };
-      }
-      if (action.payload === "asc") {
-        const data = filterproductprice.sort((a, b) => {
-          let priceA = parseInt(a.price);
-          let priceB = parseInt(b.price);
-          if (priceA > priceB) return 1;
-          if (priceA < priceB) return -1;
-          else return 0;
-        });
-        return {
-          ...state,
-          copyProducts: data,
-        };
-      }
+		// CASE para traer el precio desde el reduce/index y poder ordenarlos de mayor a menor y de menor a mayor
+		case PRICE_FILTER: {
+			let filterorderprice = [...state.products];
+			let filterproductprice = [...state.copyProducts];
+			if (action.payload === 'all') {
+				return {
+					...state,
+					copyProducts: filterorderprice,
+				};
+			}
+			if (action.payload === 'asc') {
+				const data = filterproductprice.sort((a, b) => {
+					let priceA = parseInt(a.price);
+					let priceB = parseInt(b.price);
+					if (priceA > priceB) return 1;
+					if (priceA < priceB) return -1;
+					else return 0;
+				});
+				return {
+					...state,
+					copyProducts: data,
+				};
+			}
 
-      const data = filterproductprice.sort((a, b) => {
-        let pesoA = parseInt(a.price);
-        let pesoB = parseInt(b.price);
-        if (pesoA > pesoB) return -1;
-        if (pesoA < pesoB) return 1;
-        else return 0;
-      });
-      return {
-        ...state,
-        copyProducts: data,
-      };
-    }
+			const data = filterproductprice.sort((a, b) => {
+				let pesoA = parseInt(a.price);
+				let pesoB = parseInt(b.price);
+				if (pesoA > pesoB) return -1;
+				if (pesoA < pesoB) return 1;
+				else return 0;
+			});
+			return {
+				...state,
+				copyProducts: data,
+			};
+		}
 
-    /* case PRICE_FILTER: {
+		/* case PRICE_FILTER: {
       let filterorder = [...state.products]
       let filterproduct = [...state.copyProducts]
       if (action.payload === "all") {
@@ -195,242 +196,251 @@ function rootReducer(state = initialState, action) {
             }
         }  */
 
-    case ORDERBYAZ: {
-      let filterorder = [...state.products];
-      let filterproduct = [...state.copyProducts];
-      if (action.payload === "all") {
-        return {
-          ...state,
-          copyProducts: filterorder,
-        };
-      }
+		case ORDERBYAZ: {
+			let filterorder = [...state.products];
+			let filterproduct = [...state.copyProducts];
+			if (action.payload === 'all') {
+				return {
+					...state,
+					copyProducts: filterorder,
+				};
+			}
 
-      if (action.payload === "asc") {
-        const data = filterproduct.sort((a, b) =>
-          a.name?.toUpperCase() > b.name?.toUpperCase() ? 1 : -1
-        );
-        return {
-          ...state,
-          copyProducts: data,
-        };
-      }
+			if (action.payload === 'asc') {
+				const data = filterproduct.sort((a, b) =>
+					a.name?.toUpperCase() > b.name?.toUpperCase() ? 1 : -1
+				);
+				return {
+					...state,
+					copyProducts: data,
+				};
+			}
 
-      const data = filterproduct.sort((a, b) =>
-        a.name?.toUpperCase() > b.name?.toUpperCase() ? -1 : 1
-      );
+			const data = filterproduct.sort((a, b) =>
+				a.name?.toUpperCase() > b.name?.toUpperCase() ? -1 : 1
+			);
 
-      return {
-        ...state,
-        copyProducts: data,
-      };
-    }
+			return {
+				...state,
+				copyProducts: data,
+			};
+		}
 
-    case FILTER_CATEGORY: {
-      let allProducts = state.products;
-      let aux2 =
-        action.payload === "all"
-          ? allProducts
-          : allProducts.filter((el) =>
-              el.CategoryProduct[0].name?.includes(action.payload)
-            );
-      return {
-        ...state,
-        copyProducts: aux2,
-      };
-    }
-    case GET_FAVORITES: {
-      return {
-        ...state,
-        favorites: action.payload,
-      };
-    }
+		case FILTER_CATEGORY: {
+			let allProducts = state.products;
+			let aux2 =
+				action.payload === 'all'
+					? allProducts
+					: allProducts.filter((el) =>
+							el.CategoryProduct[0].name?.includes(action.payload)
+					  );
+			return {
+				...state,
+				copyProducts: aux2,
+			};
+		}
+		case GET_FAVORITES: {
+			return {
+				...state,
+				favorites: action.payload,
+			};
+		}
 
-    case ADD_FAVORITE: {
-      return {
-        ...state,
-        favorites: action.payload,
-      };
-    }
+		case ADD_FAVORITE: {
+			return {
+				...state,
+				favorites: action.payload,
+			};
+		}
 
-    case REMOVE_FAVORITE: {
-      return {
-        ...state,
-        favorites: action.payload,
-      };
-    }
-    case ADD_FAVORITE_GMAIL: {
-      let newItem = state.products.find(
-        (product) => product.id === action.payload
-      );
-      let itemInFavs = state.favoritesGmail.find(
-        (item) => item.id === newItem.id
-      );
-      return itemInFavs
-        ? {
-            ...state,
-            favoritesGmail: state.favoritesGmail,
-          }
-        : {
-            ...state,
-            favoritesGmail: [...state.favoritesGmail, { ...newItem }],
-          };
-    }
-    case REMOVE_FAVORITE_GMAIL: {
-      let filtrado = state.favoritesGmail.filter(
-        (item) => item.id !== action.payload
-      );
-      return {
-        ...state,
-        favoritesGmail: filtrado,
-      };
-    }
+		case REMOVE_FAVORITE: {
+			return {
+				...state,
+				favorites: action.payload,
+			};
+		}
+		case ADD_FAVORITE_GMAIL: {
+			let newItem = state.products.find(
+				(product) => product.id === action.payload
+			);
+			let itemInFavs = state.favoritesGmail.find(
+				(item) => item.id === newItem.id
+			);
+			return itemInFavs
+				? {
+						...state,
+						favoritesGmail: state.favoritesGmail,
+				  }
+				: {
+						...state,
+						favoritesGmail: [...state.favoritesGmail, { ...newItem }],
+				  };
+		}
+		case REMOVE_FAVORITE_GMAIL: {
+			let filtrado = state.favoritesGmail.filter(
+				(item) => item.id !== action.payload
+			);
+			return {
+				...state,
+				favoritesGmail: filtrado,
+			};
+		}
 
-    case GET_ALL_USERS: {
-      return {
-        ...state,
-        allUsers: action.payload,
-      };
-    }
+		case GET_ALL_USERS: {
+			return {
+				...state,
+				allUsers: action.payload,
+			};
+		}
 
-    case GET_USER_BY_ID: {
-      return {
-        ...state,
-        userDetail: action.payload,
-      };
-    }
+		case GET_USER_BY_ID: {
+			return {
+				...state,
+				userDetail: action.payload,
+			};
+		}
 
-    case PAYMENT_STRIPE: {
-      return {
-        ...state,
-        stripe: action.payload,
-      };
-    }
-    case ADD_TO_CART: {
-      let newItem = state.products.find(
-        (product) => product.id === action.payload
-      );
-      let itemInCart = state.cart.find((item) => item.id == newItem.id);
-      return itemInCart
-        ? {
-            ...state,
-            cart: state.cart.map((item) =>
-              item.id === newItem.id
-                ? { ...item, quantity: item.quantity + 1 }
-                : item
-            ),
-          }
-        : {
-            ...state,
-            cart: [...state.cart, { ...newItem, quantity: 1 }],
-          };
-    }
-    case DELETE_ONE_FROM_CART: {
-      let itemToDelete = state.cart.find((item) => item.id === action.payload);
-      return itemToDelete.quantity > 1
-        ? {
-            ...state,
-            cart: state.cart.map((item) =>
-              item.id === action.payload
-                ? { ...item, quantity: item.quantity - 1 }
-                : item
-            ),
-          }
-        : {
-            ...state,
-            cart: state.cart.filter((item) => item.id !== action.payload),
-          };
-    }
+		case PAYMENT_STRIPE: {
+			return {
+				...state,
+				stripe: action.payload,
+			};
+		}
+		case ADD_TO_CART: {
+			let newItem = state.products.find(
+				(product) => product.id === action.payload
+			);
+			let itemInCart = state.cart.find((item) => item.id == newItem.id);
+			return itemInCart
+				? {
+						...state,
+						cart: state.cart.map((item) =>
+							item.id === newItem.id
+								? { ...item, quantity: item.quantity + 1 }
+								: item
+						),
+				  }
+				: {
+						...state,
+						cart: [...state.cart, { ...newItem, quantity: 1 }],
+				  };
+		}
+		case DELETE_ONE_FROM_CART: {
+			let itemToDelete = state.cart.find((item) => item.id === action.payload);
+			return itemToDelete.quantity > 1
+				? {
+						...state,
+						cart: state.cart.map((item) =>
+							item.id === action.payload
+								? { ...item, quantity: item.quantity - 1 }
+								: item
+						),
+				  }
+				: {
+						...state,
+						cart: state.cart.filter((item) => item.id !== action.payload),
+				  };
+		}
 
-    case DELETE_ALL_FROM_CART: {
-      return {
-        ...state,
-        cart: state.cart.filter((item) => item.id !== action.payload),
-      };
-    }
+		case DELETE_ALL_FROM_CART: {
+			return {
+				...state,
+				cart: state.cart.filter((item) => item.id !== action.payload),
+			};
+		}
 
-    case INCREASE_QUANTITY: {
-      return {
-        ...state,
-        cart: state.cart.map((item) =>
-          item.id === action.payload
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        ),
-      };
-    }
+		case INCREASE_QUANTITY: {
+			return {
+				...state,
+				cart: state.cart.map((item) =>
+					item.id === action.payload
+						? { ...item, quantity: item.quantity + 1 }
+						: item
+				),
+			};
+		}
 
-    case CLEAR_CART: {
-      return {
-        ...state,
-        cart: [],
-      };
-    }
+		case CLEAR_CART: {
+			return {
+				...state,
+				cart: [],
+			};
+		}
 
-    case DECREMENT_STOCK: {
-    }
+		case DECREMENT_STOCK: {
+		}
 
-    case LOGIN_REQUEST:
-      return {
-        ...state,
-        isLoading: true,
-      };
-    case LOGIN_SUCCESS:
-      return {
-        ...state,
-        isLoading: false,
-        isAuthenticated: true,
-        user: action.payload,
-      };
-    case LOGIN_FAILURE:
-      return {
-        ...state,
-        isLoading: false,
-        error: action.error,
-      };
-    case LOGOUT:
-      return {
-        ...state,
-        isAuthenticated: false,
-        user: {},
-      };
+		case LOGIN_REQUEST:
+			return {
+				...state,
+				isLoading: true,
+			};
+		case LOGIN_SUCCESS:
+			return {
+				...state,
+				isLoading: false,
+				isAuthenticated: true,
+				user: action.payload,
+			};
 
-    case GET_USER_PROFILE:
-      return {
-        ...state,
-        userProfile: action.payload,
-      };
+		case LOGIN_AUTH0:
+			return {
+				...state,
+				isLoading: false,
+				isAuthenticated: true,
+				user: action.payload,
+			};
 
-    case UPDATE_CATEGORY:
-      return action.payload;
+		case LOGIN_FAILURE:
+			return {
+				...state,
+				isLoading: false,
+				error: action.error,
+			};
+		case LOGOUT:
+			return {
+				...state,
+				isAuthenticated: false,
+				user: {},
+			};
 
-    case DELETE_CATEGORY:
-      return action.payload;
+		case GET_USER_PROFILE:
+			return {
+				...state,
+				userProfile: action.payload,
+			};
 
-    case CREATE_CATEGORIES:
-      return {
-        ...state,
-        categories: action.payload,
-      };
+		case UPDATE_CATEGORY:
+			return action.payload;
 
-    case CREATE_USER: {
-      return {
-        ...state,
-        allUsers: [...allUsers, action.payload],
-      };
-    }
+		case DELETE_CATEGORY:
+			return action.payload;
 
-    case UPDATE_USER:
-      return {
-        ...state,
-        data: action.payload,
-      };
+		case CREATE_CATEGORIES:
+			return {
+				...state,
+				categories: action.payload,
+			};
 
-    case DELETE_USER:
-      return action.payload;
+		case CREATE_USER: {
+			return {
+				...state,
+				allUsers: [...allUsers, action.payload],
+			};
+		}
 
-    default:
-      return { ...state };
-  }
+		case UPDATE_USER:
+			return {
+				...state,
+				data: action.payload,
+			};
+
+		case DELETE_USER:
+			return action.payload;
+
+		default:
+			return { ...state };
+	}
 }
 
 export default rootReducer;
