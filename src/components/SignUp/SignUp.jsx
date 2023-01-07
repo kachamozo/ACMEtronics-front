@@ -36,19 +36,13 @@ function SignUp() {
 
   function handleSubmit(event) {
     event.preventDefault();
-
-    // Validate the form
     const errors = validation(create);
     setErrors(errors);
-
-    // Check if there are any errors
     if (Object.keys(errors).length > 0) {
       return;
     }
-
-    // If there are no errors, create the user
     Swal.fire({
-      title: "The user was created succesfully",
+      title: "The user was created succesfully, proceed to login.",
       icon: "success",
     });
     dispatch(createUser(create));
@@ -68,42 +62,30 @@ function SignUp() {
 
   function validation(create) {
     const errors = {};
-
-    if (!create.firstname) {
-      errors.firstname = "First name is required";
-    }
-
-    if (!create.lastname) {
-      errors.lastname = "Last name is required";
-    }
-
-    if (!create.username) {
-      errors.username = "Username is required";
-    }
-
     if (!create.email) {
       errors.email = "Email is required";
     } else if (!/\S+@\S+\.\S+/.test(create.email)) {
       errors.email = "Email is invalid";
     } else {
-      // Check if the email is in use
       let emailInUse = false;
+      let emailBanned = false;
       for (let user of allUsers) {
         if (user.email === create.email) {
           emailInUse = true;
+          if (user.banned) {
+            emailBanned = true;
+          }
           break;
         }
       }
 
       if (emailInUse) {
-        errors.email = "Email is already in use";
+        if (emailBanned) {
+          errors.email = "This email address can't access the website";
+        } else {
+          errors.email = "Email is already in use";
+        }
       }
-    }
-
-    if (!create.password) {
-      errors.password = "Password is required";
-    } else if (create.password.length < 8) {
-      errors.password = "Password must be at least 8 characters long";
     }
 
     return errors;
@@ -176,7 +158,11 @@ function SignUp() {
             {errors.password ? (
               <p className="error">{errors.password}</p>
             ) : null}
-            <button type="submit" className="green_btn">
+            <button
+              type="submit"
+              className="green_btn"
+              disabled={Object.keys(errors).length > 0}
+            >
               Sign Up
             </button>
             <button
