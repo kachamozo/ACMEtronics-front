@@ -3,7 +3,7 @@ import "./Card.css";
 import Rating from "react-rating";
 import { BsStarFill, BsStar, BsStarHalf } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import { addFavorite, addToCart, removeFavorite, getFavorites, addFavoriteGmail, removeFavoriteGmail } from "../../redux/actions/index";
+import { addFavorite, addToCart, removeFavorite, getFavorites, getFavoritesGmail, addFavoriteGmail, removeFavoriteGmail } from "../../redux/actions/index";
 import { useDispatch, useSelector } from "react-redux";
 import { toast } from "react-toastify"
 import 'react-toastify/dist/ReactToastify.css';
@@ -15,9 +15,13 @@ function Card(props) {
   const dispatch = useDispatch();
   const { user, isAuthenticated } = useAuth0();
   const favorites = useSelector((state) => state.favorites);
-  const favoritesGmail = useSelector((state) => state.favoritesGmail);
   let userDb = JSON.parse(localStorage.getItem("loggedUser"))
   let productId = props.id
+
+  useEffect(() => {
+    if(userDb)dispatch(getFavorites(userDb.email));
+    if(user)dispatch(getFavoritesGmail(user.email))
+  }, [dispatch]);
 
   const handleAddToFavorites= () => {
     if(userDb || isAuthenticated === true ){
@@ -40,12 +44,14 @@ function Card(props) {
           dispatch(getFavorites(userDb.email))
       } 
       else if(result.isConfirmed && user){
-        dispatch(addFavoriteGmail(productId))
+        dispatch(addFavoriteGmail(user.email, productId))
+        dispatch(getFavoritesGmail(user.email))
         Swal.fire(
           'Added!',
           'The product has been added to your wishlist.',
           'success'
           )
+          dispatch(getFavoritesGmail(user.email))
       }})
     } else if(!userDb || isAuthenticated === false) {
       Swal.fire({
@@ -75,12 +81,14 @@ function Card(props) {
                     )
                     dispatch(getFavorites(userDb.email))
                 }  else if(result.isConfirmed && user){
-                  dispatch(removeFavoriteGmail(productId))
+                  dispatch(removeFavoriteGmail(user.email,productId))
+                  dispatch(getFavoritesGmail(user.email))
                   Swal.fire(
                     'Deleted!',
                     'The product has been deleted to your wishlist.',
                     'success'
                     )
+                    dispatch(getFavoritesGmail(user.email))
                 }
               })
       } else if(!userDb || isAuthenticated === false) {
@@ -143,7 +151,7 @@ function Card(props) {
         {userDb ? (!user && favorites["Favorites"] && favorites["Favorites"].find(el => el.id === props.id) ? 
             (<div className="fav"><a onClick={()=> handleDeleteFavorite()} ><HiHeart size={'2em'}/></a></div>) : 
             (<div className="fav" ><a onClick={()=>handleAddToFavorites()}><HiOutlineHeart size={'2em'}/></a></div>
-            ) ) : (user && !userDb && favoritesGmail.find(el => el.id === props.id) ? 
+            ) ) : (user && favorites["Gmailfavs"] && favorites["Gmailfavs"].find(el => el.id === props.id) ? 
             (<div className="fav"><a onClick={()=> handleDeleteFavorite()} ><HiHeart size={'2em'}/></a></div>) : 
             (<div className="fav" ><a onClick={()=>handleAddToFavorites()}><HiOutlineHeart size={'2em'}/></a></div>
             ) )}
