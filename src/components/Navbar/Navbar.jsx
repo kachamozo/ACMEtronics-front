@@ -1,13 +1,24 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Link } from "react-router-dom";
-import { getFavorites, searchName } from "../../redux/actions";
+import { getFavorites, getUserByEmail, loginUser, searchName, userProfile } from "../../redux/actions";
 import "./Navbar.css";
 import logo from "../../Assets/logo1.jpg";
 import Login from "../Login/Login";
 import { Nav } from "react-bootstrap";
 import ProfileStatus from "../ProfileStatus/ProfileStatus";
 import { useAuth0 } from "@auth0/auth0-react";
+
+const picture = (user, userDb,isAuthenticated, picture2) => {
+  console.log(user,userDb, picture2, 20)
+  if (user && isAuthenticated) {
+    return user.picture 
+  }
+  if (userDb && userDb.searchUser) {
+    return userDb.searchUser?.profileImage
+  } 
+ return picture2
+}
 
 function Navbar() {
   const dispatch = useDispatch();
@@ -17,10 +28,11 @@ function Navbar() {
   const favoritesGmail = useSelector((state) => state.favoritesGmail);
   let userDb = JSON.parse(localStorage.getItem("loggedUser"));
   const { user, isAuthenticated } = useAuth0();
-
+  const useremail = useSelector(state => state.userEmail)
   // actualiza el componente para cargar el length del array de favoritos cuando agregamos o eliminamos uno
   useEffect(() => {
-    if(userDb)dispatch(getFavorites(userDb.email));
+    if(userDb)dispatch(getFavorites(userDb.email))
+    if(userDb ) dispatch(getUserByEmail(userDb));
   }, [dispatch]);
 
   let myFavs =
@@ -108,7 +120,7 @@ function Navbar() {
           }}
         >
           <img
-            src="https://img.icons8.com/ios/50/000000/user--v1.png"
+            src={picture(user, useremail,isAuthenticated, "https://img.icons8.com/ios/50/000000/user--v1.png")}
             width={"25px"}
             height={"25px"}
           />
