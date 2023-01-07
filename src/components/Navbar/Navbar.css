@@ -6,21 +6,19 @@
     font-family: 'Raleway';
     font-style: normal;
     font-weight: 500;
-    font-size: 24px;
+    font-size: 20px;
     line-height: 100%;  
     color: #319795;
     width: 100%;
-
     position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 110px;
-  width: 100%;
-  background-color: white;
-  z-index: 999;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 110px;
+    width: 100%;
+    background-color: white;
+    z-index: 999;
 }
-
 
 @media screen and (max-width: 768px) {
     .nav-bar {
@@ -32,7 +30,7 @@
         font-family: 'Raleway';
         font-style: normal;
         font-weight: 500;
-        font-size: 24px;
+        font-size: 20px;
         line-height: 100%;  
         color: #319795;
         width: 100%;  

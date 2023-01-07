@@ -2,9 +2,8 @@ import React, { useEffect } from "react";
 import d from "../Detail/detail.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-import { getProductDetail, clean, addToCart, addFavorite, removeFavorite, getFavorites, addFavoriteGmail, removeFavoriteGmail } from "../../redux/actions";
+import { getProductDetail, clean, addToCart, addFavorite, removeFavorite, getFavorites, addFavoriteGmail, removeFavoriteGmail, getFavoritesGmail } from "../../redux/actions";
 import { ToastContainer, toast } from "react-toastify";
-import { Reviews } from "@mui/icons-material";
 import { NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { HiOutlineHeart, HiHeart } from 'react-icons/hi'
@@ -15,7 +14,6 @@ export default function Detail() {
   const dispatch = useDispatch();
   const product = useSelector((state) => state.detail);
   const favs = useSelector((state)=> state.favorites)
-  const favoritesGmail = useSelector((state)=> state.favoritesGmail)
   const { id } = useParams();
   const { user, isAuthenticated } = useAuth0();
   let userDb = JSON.parse(localStorage.getItem("loggedUser"))
@@ -24,6 +22,7 @@ export default function Detail() {
   useEffect(() => {
     dispatch(getProductDetail(id));
     if(userDb)dispatch(getFavorites(userDb.email))
+    if(user) dispatch(getFavoritesGmail(user.email))
     return () => {
       dispatch(clean())};
   }, [dispatch, id]);
@@ -56,12 +55,14 @@ export default function Detail() {
           dispatch(getFavorites(userDb.email))
       } 
       else if(result.isConfirmed && user){
-        dispatch(addFavoriteGmail(parseInt(id)))
+        dispatch(addFavoriteGmail(user.email, parseInt(id)))
+        dispatch(getFavoritesGmail(user.email))
         Swal.fire(
           'Added!',
           'The product has been added to your wishlist.',
           'success'
           )
+          dispatch(getFavoritesGmail(user.email))
       }
     }
       )
@@ -86,19 +87,21 @@ export default function Detail() {
       }).then((result) => {
         if (result.isConfirmed && userDb) {
           dispatch(removeFavorite(userDb.email, parseInt(id)))
+          dispatch(getFavorites(userDb.email))
           Swal.fire(
             'Deleted!',
             'The product has been deleted.',
             'success'
             )
-            dispatch(getFavorites(userDb.email))
         }  else if(result.isConfirmed && user){
-          dispatch(removeFavoriteGmail(parseInt(id)))
+          dispatch(removeFavoriteGmail(user.email, parseInt(id)))
+          dispatch(getFavoritesGmail(user.email))
           Swal.fire(
             'Deleted!',
             'The product has been deleted to your wishlist.',
             'success'
             )
+            dispatch(getFavoritesGmail(user.email))
         }
       })
       } else if(!userDb || isAuthenticated === false) {
@@ -123,7 +126,7 @@ export default function Detail() {
             {userDb? (!user && favs["Favorites"] && favs["Favorites"].find(el => el.id === product.product.id) ? 
             (<div className={d.favIcons}><a onClick={()=> handleDeleteFavorite()} ><HiHeart size={'2em'} /></a></div>) : 
             (<div className={d.favIcons}><a onClick={()=>handleAddToFavorites()}><HiOutlineHeart size={'2em'} /></a></div>  )) :
-             (user && !userDb && favoritesGmail.find(el => el.id === product.product.id) ? 
+             (user && favs["Gmailfavs"] && favs["Gmailfavs"].find(el => el.id === product.product.id) ? 
             (<div className={d.favIcons}><a onClick={()=> handleDeleteFavorite()} ><HiHeart size={'2em'} /></a></div>) : 
             (<div className={d.favIcons}><a onClick={()=>handleAddToFavorites()}><HiOutlineHeart size={'2em'} /></a></div>  ))}
             <p>Rating: {product.product.rating}</p>
@@ -138,8 +141,6 @@ export default function Detail() {
               <div className={d.backLink}>
             <Link to={"/shop/"}>« Continue shopping</Link>
             </div>
-              
-              
             </div>
           </div>
         </div>

@@ -19,7 +19,7 @@ const handleAddToCart= () => {
   }
   return (
     <div className="shop-card">
-      <div>
+      <div className="shop-card-image">
       <Link className="shop-card-link" to={'/shop/'+props.id}>
         <h3 className="card-title">{props.name}</h3>
         <h5>
@@ -47,7 +47,7 @@ const handleAddToCart= () => {
             readonly={true}
           />
         </h5>{" "}
-        <img
+        <img className="card-image" 
           src={props.image}
           alt="image not found"
           width={"80px"}

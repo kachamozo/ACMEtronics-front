@@ -35,8 +35,10 @@ import {
 	CREATE_USER,
 	UPDATE_USER,
 	DELETE_USER,
+	GET_FAVORITES_GMAIL,
 	ADD_FAVORITE_GMAIL,
 	REMOVE_FAVORITE_GMAIL,
+  GET_USER_BY_EMAIL
 } from '../actions';
 
 const initialState = {
@@ -47,7 +49,6 @@ const initialState = {
 	categories: [],
 	rating: [],
 	favorites: [],
-	favoritesGmail: JSON.parse(localStorage.getItem('favoritesGmail')) || [],
 	allUsers: [],
 	userDetail: [],
 	stripe: [],
@@ -58,6 +59,7 @@ const initialState = {
 	isAuthenticated: false,
 	error: '',
 	userProfile: [],
+  userEmail: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -246,7 +248,21 @@ function rootReducer(state = initialState, action) {
 			};
 		}
 
+		case GET_FAVORITES_GMAIL: {
+			return {
+				...state,
+				favorites: action.payload
+			}
+		}
+
 		case ADD_FAVORITE: {
+			return {
+				...state,
+				favorites: action.payload,
+			};
+		}
+
+		case ADD_FAVORITE_GMAIL: {
 			return {
 				...state,
 				favorites: action.payload,
@@ -259,30 +275,11 @@ function rootReducer(state = initialState, action) {
 				favorites: action.payload,
 			};
 		}
-		case ADD_FAVORITE_GMAIL: {
-			let newItem = state.products.find(
-				(product) => product.id === action.payload
-			);
-			let itemInFavs = state.favoritesGmail.find(
-				(item) => item.id === newItem.id
-			);
-			return itemInFavs
-				? {
-						...state,
-						favoritesGmail: state.favoritesGmail,
-				  }
-				: {
-						...state,
-						favoritesGmail: [...state.favoritesGmail, { ...newItem }],
-				  };
-		}
+
 		case REMOVE_FAVORITE_GMAIL: {
-			let filtrado = state.favoritesGmail.filter(
-				(item) => item.id !== action.payload
-			);
 			return {
 				...state,
-				favoritesGmail: filtrado,
+				favorites: action.payload,
 			};
 		}
 
@@ -409,6 +406,12 @@ function rootReducer(state = initialState, action) {
 				...state,
 				userProfile: action.payload,
 			};
+
+    case GET_USER_BY_EMAIL:
+      return {
+        ...state,
+        userEmail: action.payload,
+      };
 
 		case UPDATE_CATEGORY:
 			return action.payload;
