@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Modal, Button, } from 'react-bootstrap';
+import { Modal, Button } from 'react-bootstrap';
 import './ProfileStatus.css';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Link, Navigate } from 'react-router-dom';
@@ -35,14 +35,12 @@ function ProfileStatus({ showModal, closeModal }) {
 	};
 
 	if (isAuthenticated) {
-
 		return (
-
-			<Modal show={showModal} onHide={closeModal}> 
+			<Modal show={showModal} onHide={closeModal}>
 				<Modal.Header closeButton>
 					<Modal.Title>User Profile</Modal.Title>
 				</Modal.Header>
-				<Modal.Body style={{maxHeight:"80%"}}>
+				<Modal.Body style={{ maxHeight: '80%' }}>
 					<div>
 						<img
 							src={user.picture}
@@ -64,15 +62,10 @@ function ProfileStatus({ showModal, closeModal }) {
 					</Button>
 				</Modal.Footer>
 			</Modal>
-
-
 		);
 	} else if (Object.keys(actualUser).length !== 0) {
 		return (
-
-
 			<Modal show={showModal} onHide={closeModal}>
-
 				<Modal.Header closeButton>
 					<Modal.Title>User Profile</Modal.Title>
 				</Modal.Header>
@@ -123,24 +116,22 @@ function ProfileStatus({ showModal, closeModal }) {
 		);
 	} else {
 		return (
-
 			<Modal show={showModal} onHide={closeModal}>
-
 				<Modal.Header closeButton>
 					<Modal.Title>Welcome, Login to your account or Sign Up</Modal.Title>
 				</Modal.Header>
 				<Modal.Body>
 					<div>
-						<Button className='green_btn' onClick={closeModal}>
-							<Link to='/login' className='link-to'>
+						<Link to='/login' className='link-to'>
+							<Button className='green_btn' onClick={closeModal}>
 								Login
-							</Link>
-						</Button>
-						<Button className='green_btn' onClick={closeModal}>
-							<Link to='/signup' className='link-to'>
+							</Button>
+						</Link>
+						<Link to='/signup' className='link-to'>
+							<Button className='green_btn' onClick={closeModal}>
 								Sign Up
-							</Link>
-						</Button>
+							</Button>
+						</Link>
 					</div>
 				</Modal.Body>
 			</Modal>
