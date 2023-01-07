@@ -13,6 +13,7 @@ export const PRICE_FILTER = 'PRICE_FILTER';
 export const GET_FAVORITES = 'GET_FAVORITES';
 export const ADD_FAVORITE = 'ADD_FAVORITE';
 export const REMOVE_FAVORITE = 'REMOVE_FAVORITE';
+export const GET_FAVORITES_GMAIL = 'GET_FAVORITES_GMAIL'
 export const ADD_FAVORITE_GMAIL = 'ADD_FAVORITE_GMAIL';
 export const REMOVE_FAVORITE_GMAIL = 'REMOVE_FAVORITE_GMAIL';
 export const GET_ALL_USERS = 'GET_ALL_USERS';
@@ -180,6 +181,7 @@ export const filterCategory = (payload) => {
 	};
 };
 
+// ------- favoritos users db -----------
 export const getFavorites = (userEmail) => {
 	return async function (dispatch) {
 		const response = await axios.get(
@@ -216,20 +218,44 @@ export const removeFavorite = (userEmail, productId) => {
 	};
 };
 
-export const addFavoriteGmail = (id) => {
-	return {
-		type: ADD_FAVORITE_GMAIL,
-		payload: id,
+// ------- favoritos users gmail -------
+
+export const getFavoritesGmail = (userEmail) => {
+	return async function (dispatch) {
+		const response = await axios.get(
+			`http://localhost:3001/gmailfavs?userEmail=${userEmail}`
+		);
+		return dispatch({
+			type: GET_FAVORITES_GMAIL,
+			payload: response.data,
+		});
 	};
 };
 
-export const removeFavoriteGmail = (id) => {
-	return {
-		type: REMOVE_FAVORITE_GMAIL,
-		payload: id,
+export const addFavoriteGmail = (userEmail, productId) => {
+	return async function (dispatch) {
+		const response = await axios.post(
+			`http://localhost:3001/gmailfavs?userEmail=${userEmail}&productId=${productId}`
+		);
+		return dispatch({
+			type: ADD_FAVORITE_GMAIL,
+			payload: response.data,
+		});
 	};
 };
 
+export const removeFavoriteGmail = (userEmail, productId) => {
+	return async function (dispatch) {
+		const response = await axios.delete(
+			`http://localhost:3001/gmailfavs?userEmail=${userEmail}&productId=${productId}`
+		);
+		return dispatch({
+			type: REMOVE_FAVORITE_GMAIL,
+			payload: response.data,
+		});
+	};
+};
+// ---------------------------
 export const getAllUsers = () => {
 	return async function (dispatch) {
 		const response = await axios.get('http://localhost:3001/user/');
@@ -424,5 +450,12 @@ export const deleteUser = (id) => {
 			type: DELETE_USER,
 			payload: response.data,
 		});
+	};
+};
+
+export const addGmailuser = (payload) => {
+	return async function (dispatch) {
+		const response = await axios.post('http://localhost:3001/gmailuser', payload);
+		return response;
 	};
 };

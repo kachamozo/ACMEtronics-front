@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getFavorites, removeFavorite, removeFavoriteGmail } from "../../redux/actions";
+import { getFavorites, getFavoritesGmail, removeFavorite, removeFavoriteGmail } from "../../redux/actions";
 import w from "../WishList/WishList.module.css";
 import { Link } from "react-router-dom";
 import { HiHeart } from "react-icons/hi"
@@ -11,17 +11,17 @@ import { useAuth0 } from "@auth0/auth0-react";
 function WishList() {
   const dispatch = useDispatch();
   let favorites = useSelector((state) => state.favorites);
-  let favoritesGmail = useSelector((state) => state.favoritesGmail);
   let userDb = JSON.parse(localStorage.getItem("loggedUser"))
   const { isAuthenticated, user } = useAuth0();
 
 
   useEffect(() => {
     if(userDb) dispatch(getFavorites(userDb.email))
-    if(user) localStorage.setItem("favoritesGmail", JSON.stringify(favoritesGmail));
-  }, [dispatch]);
+    if(user)dispatch(getFavoritesGmail(user.email))
+  }, [dispatch, userDb, user]);
   
   let favs = favorites["Favorites"]
+  let favsGmail = favorites["Gmailfavs"]
 
   const handleDeleteFavorite = async(productId) => {
   Swal.fire({
@@ -42,12 +42,13 @@ function WishList() {
       )
       dispatch(getFavorites(userDb.email))
   } else if(result.isConfirmed && user){
-    dispatch(removeFavoriteGmail(productId))
+    dispatch(removeFavoriteGmail(user.email, productId))
     Swal.fire(
       'Deleted!',
       'The product has been deleted.',
       'success'
       )
+      dispatch(getFavoritesGmail(user.email))
   }
 })
 }
@@ -56,7 +57,7 @@ if(user && isAuthenticated === true){
   return (
     <div className={w.wCont}>
       <h1> My wishlist </h1>
-      {favoritesGmail.length? favoritesGmail.map(el => (<div className={w.wItem} key={el.id}>
+      {favsGmail? favsGmail.map(el => (<div className={w.wItem} key={el.id}>
          <img src={el.image} height='120px' width='auto' alt={el.name} />
          <div className={w.productName}>
           <h3>{el.name}</h3>

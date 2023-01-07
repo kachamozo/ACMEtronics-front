@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { NavLink, Link } from "react-router-dom";
-import { getFavorites, getUserByEmail, loginUser, searchName, userProfile } from "../../redux/actions";
+import { getFavorites, getUserByEmail, loginUser, searchName, userProfile,getFavoritesGmail } from "../../redux/actions";
+
 import "./Navbar.css";
 import logo from "../../Assets/logo1.jpg";
 import Login from "../Login/Login";
@@ -25,24 +26,24 @@ function Navbar() {
   const [name, setName] = useState("");
   const cart = useSelector((state) => state.cart);
   const favorites = useSelector((state) => state.favorites);
-  const favoritesGmail = useSelector((state) => state.favoritesGmail);
   let userDb = JSON.parse(localStorage.getItem("loggedUser"));
+
   const { user, isAuthenticated } = useAuth0();
   const useremail = useSelector(state => state.userEmail)
   // actualiza el componente para cargar el length del array de favoritos cuando agregamos o eliminamos uno
   useEffect(() => {
     if(userDb)dispatch(getFavorites(userDb.email))
+    if(user)dispatch(getFavoritesGmail(user.email))
     if(userDb ) dispatch(getUserByEmail(userDb));
-  }, [dispatch]);
+  }, [dispatch, userDb, user]);
 
-  let myFavs =
-    favorites["Favorites"] !== undefined ? favorites["Favorites"].length : "0";
 
-  let favsGmail = user && isAuthenticated === true ? favoritesGmail.length : "0"
+  let myFavs = favorites["Favorites"] !== undefined ? favorites["Favorites"].length : "0";
+
+  let favsGmail = favorites["Gmailfavs"] ? favorites["Gmailfavs"].length : "0"
 
   const [showModal, setShowModal] = useState(false);
 
-  //   const { isAuthenticated } = useAuth0();
 
   const handleSearch = (e) => {
     dispatch(searchName(e));

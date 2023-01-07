@@ -5,7 +5,7 @@ import { NavLink } from 'react-router-dom';
 import './Landing.css';
 import { useDispatch } from 'react-redux';
 import { useAuth0 } from '@auth0/auth0-react';
-import { logged } from '../../redux/actions/index';
+import { addGmailuser, logged } from '../../redux/actions/index';
 
 
 function Landing() {
@@ -16,6 +16,13 @@ function Landing() {
 	useEffect(() => {
 		if (isAuthenticated) {
 			dispatch(logged(user));
+            let data =  {
+                given_name: user.given_name,
+                family_name: user.family_name,
+                email: user.email,
+                nickname: user.nickname,
+              }
+            dispatch(addGmailuser(data))
 		}
 	}, [isAuthenticated]);
 	return (
