@@ -22,6 +22,13 @@
   transition: all 0.3s ease;
 }
 
+@media screen and (max-width: 768px) {
+  .shop-card {
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+
 .shop-card-link{
   text-decoration: none;
   color: inherit;
@@ -50,7 +57,7 @@
 
 @media screen and (max-width: 768px) {
   .shop-card-link img {
-    width: 100%;
+    width: 25%;
   }
 }
 
@@ -150,5 +157,12 @@
 
 }
 
+
+
+
+
+
+
+  
 
 

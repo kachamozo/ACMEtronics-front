@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import Reac from "react";
 import "./Card.css";
 import Rating from "react-rating";
 import { BsStarFill, BsStar, BsStarHalf } from "react-icons/bs";
