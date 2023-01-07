@@ -13,11 +13,11 @@ function Landing() {
 
 	const dispatch = useDispatch();
 
-	if (isAuthenticated) {
-		useEffect(() => {
+	useEffect(() => {
+		if (isAuthenticated) {
 			dispatch(logged(user));
-		}, []);
-	}
+		}
+	}, [isAuthenticated]);
 	return (
 		<>
 			<div className='landing'>
