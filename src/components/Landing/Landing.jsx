@@ -1,6 +1,6 @@
 // crear una landing page que tenga un boton que diga "start" y que te lleve a la ruta /home
 // y otro boton que te lleve a la landing page
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Landing.css';
 import { useDispatch } from 'react-redux';
@@ -13,7 +13,9 @@ function Landing() {
 	const dispatch = useDispatch();
 
 	if (isAuthenticated) {
-		dispatch(logged(user));
+		useEffect(() => {
+			dispatch(logged(user));
+		}, []);
 	}
 	return (
 		<>
