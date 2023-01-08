@@ -469,7 +469,6 @@ function UpdateProduct() {
             transform: " translate(-50%, -50%)",
             overflow: "scroll",
             width: "800px",
-            height: "800px",
           }}
         >
           {addBody}
