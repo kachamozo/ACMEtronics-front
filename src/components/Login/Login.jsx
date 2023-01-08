@@ -58,7 +58,7 @@ function Login() {
       });
     } else {
       const loginSuccess = await dispatch(loginUser(input));
-      if (loginSuccess) navigate(-1);
+      if (loginSuccess) navigate("/shop");
     }
   };
 
