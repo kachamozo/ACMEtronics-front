@@ -40,13 +40,14 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/users" element={<UsersTable />} />
+        <Route path="/updateproduct" element={<UpdateProduct />} />
 
         <Route element={<ProtectedRoutes />}>
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/reviews" element={<Reviews />} />
           <Route path="/stripe" element={<Stripe />} />
           <Route path="/wishlist" element={<WishList />} />
-          <Route path="/updateproduct" element={<UpdateProduct />} />
+
           <Route path="/editprofile" element={<EditProfile />} />
           <Route path="/category" element={<UpdateCategory />} />
         </Route>
