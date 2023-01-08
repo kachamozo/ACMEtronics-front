@@ -16,7 +16,7 @@ import ProfileStatus from '../ProfileStatus/ProfileStatus';
 import { useAuth0 } from '@auth0/auth0-react';
 
 const picture = (user, userDb, isAuthenticated, picture2) => {
-	console.log(user, userDb, picture2, 20);
+	//console.log(user, userDb, picture2, 20);
 	if (user && isAuthenticated) {
 		return user.picture;
 	}
@@ -45,7 +45,7 @@ function Navbar() {
 	let myFavs =
 		favorites['Favorites'] !== undefined ? favorites['Favorites'].length : '0';
 
-	let favsGmail = favorites['Gmailfavs'] ? favorites['Gmailfavs'].length : '0';
+	let favsGmail = favorites['Gmailfavs'] !== undefined ? favorites['Gmailfavs'].length : '0';
 
 	const [showModal, setShowModal] = useState(false);
 

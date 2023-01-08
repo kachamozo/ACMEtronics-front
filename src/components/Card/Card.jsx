@@ -26,11 +26,6 @@ function Card(props) {
 	let userDb = JSON.parse(localStorage.getItem('loggedUser'));
 	let productId = props.id;
 
-	useEffect(() => {
-		if (userDb) dispatch(getFavorites(userDb.email));
-		if (user) dispatch(getFavoritesGmail(user.email));
-	}, [dispatch]);
-
 	const handleAddToFavorites = () => {
 		if (userDb || isAuthenticated === true) {
 			Swal.fire({
