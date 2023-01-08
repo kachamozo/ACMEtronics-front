@@ -56,7 +56,6 @@ export default function Detail() {
       } 
       else if(result.isConfirmed && user){
         dispatch(addFavoriteGmail(user.email, parseInt(id)))
-        dispatch(getFavoritesGmail(user.email))
         Swal.fire(
           'Added!',
           'The product has been added to your wishlist.',
@@ -95,7 +94,6 @@ export default function Detail() {
             )
         }  else if(result.isConfirmed && user){
           dispatch(removeFavoriteGmail(user.email, parseInt(id)))
-          dispatch(getFavoritesGmail(user.email))
           Swal.fire(
             'Deleted!',
             'The product has been deleted to your wishlist.',

@@ -18,7 +18,7 @@ function WishList() {
   useEffect(() => {
     if(userDb) dispatch(getFavorites(userDb.email))
     if(user)dispatch(getFavoritesGmail(user.email))
-  }, [dispatch, userDb, user]);
+  }, [dispatch]);
   
   let favs = favorites["Favorites"]
   let favsGmail = favorites["Gmailfavs"]
