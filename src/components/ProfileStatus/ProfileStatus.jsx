@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React, { useState,useHistory } from "react";
 import { Modal, Button } from "react-bootstrap";
 import "./ProfileStatus.css";
 import { useAuth0 } from "@auth0/auth0-react";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, } from "react-router-dom";
 import EditProfile from "../EditProfile/EditProfile";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -26,6 +26,7 @@ function ProfileStatus({ showModal, closeModal }) {
   const logoutu = () => {
     dispatch(logoutUser());
     dispatch(clearCart());
+    logout({ returnTo: window.location.origin });
   };
 
   const handleLogOut = () => {
