@@ -6,12 +6,14 @@ import { useState } from "react";
 import { updateUser, deleteUser, logoutUser } from "../../redux/actions";
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { AiOutlineEye } from "react-icons/ai";
 
 function EditProfile({ showModal, closeModal }) {
   const actualUser = useSelector((state) => state.user.data.searchUser);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const [userData, setUserData] = useState(actualUser);
+  const [passwordVisible, setPasswordVisible] = useState(false);
 
   useEffect(() => {
     if (
@@ -21,6 +23,10 @@ function EditProfile({ showModal, closeModal }) {
       setUserData(actualUser);
     }
   }, []);
+
+  const togglePasswordVisibility = () => {
+    setPasswordVisible(!passwordVisible);
+  };
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -70,11 +76,11 @@ function EditProfile({ showModal, closeModal }) {
   };
 
   return (
-    <Modal show={showModal} onHide={closeModal}>
+    <Modal show={showModal} onHide={closeModal} style={{ maxWidth: "800px" }}>
       <Modal.Header closeButton>
         <Modal.Title>Edit Profile</Modal.Title>
       </Modal.Header>
-      <Modal.Body>
+      <Modal.Body style={{ maxHeight: "70vh", overflowY: "scroll" }}>
         <Form onSubmit={handleSubmit}>
           <Form.Group>
             <Form.Label>First Name: </Form.Label>
@@ -125,11 +131,15 @@ function EditProfile({ showModal, closeModal }) {
           <Form.Group>
             <Form.Label>Password: </Form.Label>
             <Form.Control
-              type="text"
+              type={passwordVisible ? "text" : "password"}
               name="password"
               placeholder="Password"
               value={userData.password}
               onChange={(event) => handleChange(event)}
+            />
+            <AiOutlineEye
+              className="eye-icon"
+              onClick={togglePasswordVisibility}
             />
           </Form.Group>
           <br />
@@ -152,11 +162,17 @@ function EditProfile({ showModal, closeModal }) {
               />
             )}
           </Form.Group>
-          <Button type="submit">Submit</Button>
+          <Button type="submit" className="submit-edit">
+            Submit
+          </Button>
         </Form>
       </Modal.Body>
       <Modal.Footer>
-        <Button type="submit" onClick={() => handleDelete()}>
+        <Button
+          type="submit"
+          className="submit-edit"
+          onClick={() => handleDelete()}
+        >
           Delete Account
         </Button>
       </Modal.Footer>

@@ -10,7 +10,7 @@
   font-family: "Raleway";
 }
 
-.green_btn {
+/* .green_btn {
   border: none;
   outline: none;
   padding: 12px 12px 12px 12px;
@@ -19,6 +19,35 @@
   width: 180px;
   font-weight: bold;
   font-size: 14px;
+  cursor: pointer;
+  align-items: center;
+} */
+
+.form-control {
+  position: relative;
+}
+
+.eye-icon {
+  position: absolute;
+  right: 20px;
+  top: 60%;
+  transform: translateY(-50%);
+  cursor: pointer;
+}
+
+.submit-edit {
+  width: 200px;
+  height: 40px;
+  border: none;
+  outline: none;
+  background: #319795;
+  color: #fff;
+  font-size: 22px;
+  border-radius: 40px;
+  text-align: center;
+  box-shadow: 0 6px 20px -5px rgba(0, 0, 0, 0.4);
+  position: relative;
+  overflow: hidden;
   cursor: pointer;
   align-items: center;
 }

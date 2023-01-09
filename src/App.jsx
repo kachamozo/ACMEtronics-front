@@ -40,6 +40,7 @@ function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/users" element={<UsersTable />} />
+        <Route path="/updateproduct" element={<UpdateProduct />} />
 
 
         <Route path="/dashboard" element={<Dashboard />} />
@@ -52,7 +53,6 @@ function App() {
           <Route path="/reviews" element={<Reviews />} />
           <Route path="/stripe" element={<Stripe />} />
           <Route path="/wishlist" element={<WishList />} />
-          
           <Route path="/editprofile" element={<EditProfile />} />
           
         </Route>
