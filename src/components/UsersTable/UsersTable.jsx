@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import "./UsersTable.css";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllUsers, updateUser } from "../../redux/actions";
@@ -12,6 +13,8 @@ import {
   Modal,
   Button,
 } from "@mui/material";
+
+
 
 function UsersTable() {
   const dispatch = useDispatch();
@@ -113,10 +116,28 @@ function UsersTable() {
     </div>
   );
 
+  // obtener la cantidad total de usuarios
+  
+  const totalUsers = allUsers?.length;
+  console.log(totalUsers);
+  
+
   return (
     <>
       <div className="container">
-        <h1 className="title">List of Users</h1>
+
+      <div className="title">
+        <h1>List of Users</h1>
+        
+
+      <div className="back">
+          <Button> <Link to="/dashboard"><p>Back to Dashboard</p>
+          </Link>
+          </Button>
+        </div>
+        </div>
+        
+
         <TableContainer>
           <Table className="table">
             <TableHead className="th">

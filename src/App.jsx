@@ -41,14 +41,20 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/users" element={<UsersTable />} />
 
+
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/category" element={<UpdateCategory />} />
+        <Route path="/updateproduct" element={<UpdateProduct />} />
+
+
+
         <Route element={<ProtectedRoutes />}>
-          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/reviews" element={<Reviews />} />
           <Route path="/stripe" element={<Stripe />} />
           <Route path="/wishlist" element={<WishList />} />
-          <Route path="/updateproduct" element={<UpdateProduct />} />
+          
           <Route path="/editprofile" element={<EditProfile />} />
-          <Route path="/category" element={<UpdateCategory />} />
+          
         </Route>
       </Routes>
       <Footer />
