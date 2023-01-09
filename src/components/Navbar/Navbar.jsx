@@ -108,7 +108,7 @@ function Navbar() {
 							width={'25px'}
 							height={'25px'}
 						/>
-						<p>{user ? favsGmail : myFavs}</p>
+						<p>{user && logged ? favsGmail : myFavs}</p>
 					</Link>
 				</button>
 

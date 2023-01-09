@@ -21,8 +21,8 @@ export default function Detail() {
   
   useEffect(() => {
     dispatch(getProductDetail(id));
-    if(userDb)dispatch(getFavorites(userDb.email))
-    if(user) dispatch(getFavoritesGmail(user.email))
+    if(userDb){dispatch(getFavorites(userDb.email))}
+    if(user){dispatch(getFavoritesGmail(user.email))}
     return () => {
       dispatch(clean())};
   }, [dispatch, id]);
@@ -86,12 +86,12 @@ export default function Detail() {
       }).then((result) => {
         if (result.isConfirmed && userDb) {
           dispatch(removeFavorite(userDb.email, parseInt(id)))
-          dispatch(getFavorites(userDb.email))
           Swal.fire(
             'Deleted!',
             'The product has been deleted.',
             'success'
             )
+            dispatch(getFavorites(userDb.email))
         }  else if(result.isConfirmed && user){
           dispatch(removeFavoriteGmail(user.email, parseInt(id)))
           Swal.fire(
@@ -124,7 +124,7 @@ export default function Detail() {
             {userDb? (!user && favs["Favorites"] && favs["Favorites"].find(el => el.id === product.product.id) ? 
             (<div className={d.favIcons}><a onClick={()=> handleDeleteFavorite()} ><HiHeart size={'2em'} /></a></div>) : 
             (<div className={d.favIcons}><a onClick={()=>handleAddToFavorites()}><HiOutlineHeart size={'2em'} /></a></div>  )) :
-             (user && favs["Gmailfavs"] && favs["Gmailfavs"].find(el => el.id === product.product.id) ? 
+             (user && !userDb && favs["Gmailfavs"] && favs["Gmailfavs"].find(el => el.id === product.product.id) ? 
             (<div className={d.favIcons}><a onClick={()=> handleDeleteFavorite()} ><HiHeart size={'2em'} /></a></div>) : 
             (<div className={d.favIcons}><a onClick={()=>handleAddToFavorites()}><HiOutlineHeart size={'2em'} /></a></div>  ))}
             <p>Rating: {product.product.rating}</p>
