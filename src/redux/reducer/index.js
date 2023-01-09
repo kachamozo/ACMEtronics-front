@@ -20,7 +20,6 @@ import {
 	DELETE_ONE_FROM_CART,
 	DELETE_ALL_FROM_CART,
 	CLEAR_CART,
-	LOGIN_USER,
 	GET_FAVORITES,
 	LOGIN_REQUEST,
 	LOGIN_SUCCESS,
@@ -38,7 +37,7 @@ import {
 	GET_FAVORITES_GMAIL,
 	ADD_FAVORITE_GMAIL,
 	REMOVE_FAVORITE_GMAIL,
-  GET_USER_BY_EMAIL
+	GET_USER_BY_EMAIL,
 } from '../actions';
 
 const initialState = {
@@ -56,10 +55,10 @@ const initialState = {
 	login: [],
 	user: JSON.parse(localStorage.getItem('user')) || [],
 	isLoading: false,
-	isAuthenticated: false,
+	isAuthenticated: localStorage.getItem('logged') || false,
 	error: '',
 	userProfile: [],
-  userEmail: [],
+	userEmail: [],
 };
 
 function rootReducer(state = initialState, action) {
@@ -174,30 +173,6 @@ function rootReducer(state = initialState, action) {
 			};
 		}
 
-		/* case PRICE_FILTER: {
-      let filterorder = [...state.products]
-      let filterproduct = [...state.copyProducts]
-      if (action.payload === "all") {
-                return {
-                    ...state,
-          copyProducts: filterorder 
-                }
-            }
-            if (action.payload === 'asc') {
-                const data =  filterproduct.sort((a, b) => (a.price > b.price ? 1 : -1))
-                return {
-                    ...state,
-                    copyProducts: data
-                }
-            }
-
-            const data = filterproduct.sort((a, b) => (a.price > b.price ? -1 : 1))
-            return {
-                ...state,
-                copyProducts: data
-            }
-        }  */
-
 		case ORDERBYAZ: {
 			let filterorder = [...state.products];
 			let filterproduct = [...state.copyProducts];
@@ -251,8 +226,8 @@ function rootReducer(state = initialState, action) {
 		case GET_FAVORITES_GMAIL: {
 			return {
 				...state,
-				favorites: action.payload
-			}
+				favorites: action.payload,
+			};
 		}
 
 		case ADD_FAVORITE: {
@@ -399,6 +374,8 @@ function rootReducer(state = initialState, action) {
 				...state,
 				isAuthenticated: false,
 				user: {},
+				favorites: {},
+				userEmail: {},
 			};
 
 		case GET_USER_PROFILE:
@@ -407,11 +384,11 @@ function rootReducer(state = initialState, action) {
 				userProfile: action.payload,
 			};
 
-    case GET_USER_BY_EMAIL:
-      return {
-        ...state,
-        userEmail: action.payload,
-      };
+		case GET_USER_BY_EMAIL:
+			return {
+				...state,
+				userEmail: action.payload,
+			};
 
 		case UPDATE_CATEGORY:
 			return action.payload;

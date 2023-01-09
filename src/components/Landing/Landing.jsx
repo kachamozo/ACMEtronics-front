@@ -5,7 +5,6 @@ import { useDispatch } from 'react-redux';
 import { useAuth0 } from '@auth0/auth0-react';
 import { addGmailuser, logged } from '../../redux/actions/index';
 
-
 function Landing() {
 	const { isAuthenticated, user } = useAuth0();
 
@@ -13,19 +12,30 @@ function Landing() {
 
 	useEffect(() => {
 		if (isAuthenticated) {
-			dispatch(logged(user));
-            let data =  {
-                given_name: user.given_name,
-                family_name: user.family_name,
-                email: user.email,
-                nickname: user.nickname,
-              }
-            dispatch(addGmailuser(data))
+			const actualUser = {
+				data: {
+					searchUser: {
+						username: user.nickname,
+						firstname: user.given_name,
+						lastname: user.family_name,
+						profileImage: user.picture,
+					},
+				},
+			};
+			window.localStorage.setItem('logged', 'true');
+			dispatch(logged(actualUser));
+			let data = {
+				given_name: user.given_name,
+				family_name: user.family_name,
+				email: user.email,
+				nickname: user.nickname,
+			};
+			dispatch(addGmailuser(data));
 		}
-	}, [isAuthenticated]);
+	}, [user]);
 	return (
 		<>
-			<div className='landing' >
+			<div className='landing'>
 				<div className='landing__container'>
 					<h2>WELCOME TO :</h2>
 					<h1>ACMEtronics</h1>
