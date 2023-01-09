@@ -42,14 +42,19 @@ function App() {
         <Route path="/users" element={<UsersTable />} />
         <Route path="/updateproduct" element={<UpdateProduct />} />
 
+
+        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/category" element={<UpdateCategory />} />
+        <Route path="/updateproduct" element={<UpdateProduct />} />
+
+
+
         <Route element={<ProtectedRoutes />}>
-          <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/reviews" element={<Reviews />} />
           <Route path="/stripe" element={<Stripe />} />
           <Route path="/wishlist" element={<WishList />} />
-
           <Route path="/editprofile" element={<EditProfile />} />
-          <Route path="/category" element={<UpdateCategory />} />
+          
         </Route>
       </Routes>
       <Footer />

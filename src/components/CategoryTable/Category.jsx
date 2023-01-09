@@ -3,6 +3,7 @@ import "./Category.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Edit, Delete } from "@mui/icons-material";
 
+
 import {
   Table,
   TableContainer,
@@ -162,14 +163,22 @@ function UpdateCategory() {
   function reload() {
     window.location.reload();
   }
+
+  const categories = allCategories?.length;
+  console.log(categories.length);
+
+
   return (
     <>
       <div className="container">
+
         <h1 className="title">Edit Categories</h1>
         <br />
+      
         <Button onClick={() => modalAdd()}>
           <p>Add a new Category</p>
         </Button>
+
         <TableContainer>
           <Table className="table">
             <TableHead className="th">
@@ -214,8 +223,10 @@ function UpdateCategory() {
         <Modal keepMounted open={modalDel} onClose={(e) => modalDelete(e)}>
           {deleteBody}
         </Modal>
+
       </div>
     </>
+
   );
 }
 

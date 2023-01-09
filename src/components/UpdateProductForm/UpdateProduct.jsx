@@ -9,7 +9,7 @@ import {
   getCategories,
   createProduct,
 } from "../../redux/actions/index";
-import { Edit, Delete } from "@mui/icons-material";
+import { Edit, Delete, Duo } from "@mui/icons-material";
 import { useNavigate } from "react-router-dom";
 
 import {
@@ -394,14 +394,28 @@ function UpdateProduct() {
     window.location.reload();
   }
 
+  const products = allProducts?.length;
+  console.log(products);
+
+
   return (
     <>
+    
       <div className="container">
+
         <h1 className="title">Edit Products</h1>
 
-        <Button onClick={() => modalAdd()}>
-          <p>Add a new Product</p>
+
+      <div className="add">
+        <Button >
+          <Link to="/form"><p>Add Product</p></Link>
         </Button>
+        <br />
+        <Button >
+          <Link to="/dashboard"><p>Back to Dashboard</p></Link>
+        </Button>
+      </div>
+      
 
         <TableContainer>
           <Table className="table">
@@ -490,6 +504,7 @@ function UpdateProduct() {
           {deleteBody}
         </Modal>
       </div>
+      
     </>
   );
 }
