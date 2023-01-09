@@ -136,8 +136,8 @@ function Navbar() {
 							isAuthenticated,
 							'https://img.icons8.com/ios/50/000000/user--v1.png'
 						)}
-						width={'43px'}
-						height={'43px'}
+						width={'35px'}
+						height={'40px'}
 					/>
 				</button>
 

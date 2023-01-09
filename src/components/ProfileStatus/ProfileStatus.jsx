@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
-import { Modal, Button } from 'react-bootstrap';
-import './ProfileStatus.css';
-import { useAuth0 } from '@auth0/auth0-react';
-import { Link, Navigate } from 'react-router-dom';
-import EditProfile from '../EditProfile/EditProfile';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import { clearCart, logoutUser } from '../../redux/actions';
+
+import React, { useState,useHistory } from "react";
+import { Modal, Button } from "react-bootstrap";
+import "./ProfileStatus.css";
+import { useAuth0 } from "@auth0/auth0-react";
+import { Link, Navigate, } from "react-router-dom";
+import EditProfile from "../EditProfile/EditProfile";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
+import { clearCart, logoutUser } from "../../redux/actions";
+
 
 function ProfileStatus({ showModal, closeModal }) {
 	const { user, isAuthenticated, logout } = useAuth0();
@@ -20,13 +22,15 @@ function ProfileStatus({ showModal, closeModal }) {
 
 	const [editProfileModalVisible, setEditProfileModalVisible] = useState(false);
 
-	function toggleEditProfileModal() {
-		setEditProfileModalVisible(!editProfileModalVisible);
-	}
-	const logoutu = () => {
-		dispatch(logoutUser());
-		dispatch(clearCart());
-	};
+  function toggleEditProfileModal() {
+    setEditProfileModalVisible(!editProfileModalVisible);
+  }
+  const logoutu = () => {
+    dispatch(logoutUser());
+    dispatch(clearCart());
+    logout({ returnTo: window.location.origin });
+  };
+
 
 	const handleLogOut = () => {
 		logout({ returnTo: window.location.origin });
