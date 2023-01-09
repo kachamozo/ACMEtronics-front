@@ -26,7 +26,6 @@ export const DELETE_ALL_FROM_CART = ' DELETE_ALL_FROM_CART';
 export const CLEAR_CART = 'CLEAR_CART';
 export const INCREASE_QUANTITY = 'INCREASE_QUANTITY';
 export const PAYMENT_STRIPE = 'PAYMENT_STRIPE';
-export const LOGIN_USER = 'LOGIN_USER';
 export const LOGIN_REQUEST = 'LOGIN_REQUEST';
 export const LOGIN_SUCCESS = 'LOGIN_SUCCESS';
 export const LOGIN_AUTH0 = 'LOGIN_AUTH0';
@@ -348,6 +347,7 @@ export const loginUser = (payload) => {
 				'loggedUser',
 				JSON.stringify({ email: payload.email, password: payload.password })
 			);
+			window.localStorage.setItem('logged', true);
 
 			dispatch({
 				type: LOGIN_SUCCESS,
