@@ -54,13 +54,7 @@ const handleAddToCart= () => {
           height={"120px"}
         />{" "}
         </Link>
-        <select className="product-quantity">
-          <option value="All">1</option>
-          <option value="+">+</option>
-          <option value="-">-</option>
-        </select>
-        <button className="buy-button">Purchase</button>{" "}
-        <button onClick={()=> handleAddToCart()} className="add-to-cart-button">Add</button>
+        <button onClick={()=> handleAddToCart()} className="add-to-cart-button"> Add to cart </button>
       </div>
     </div>
   );
