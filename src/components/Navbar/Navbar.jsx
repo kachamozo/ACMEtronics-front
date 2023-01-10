@@ -31,7 +31,7 @@ function Navbar() {
 	const [name, setName] = useState('');
 	const cart = useSelector((state) => state.cart);
 	const favorites = useSelector((state) => state.favorites);
-	const logged = window.localStorage.getItem('logged');
+	const logged = useSelector((state) => state.isAuthenticated);
 	let userDb = JSON.parse(localStorage.getItem('loggedUser'));
 
 	const { user, isAuthenticated } = useAuth0();
@@ -50,9 +50,6 @@ function Navbar() {
 		favorites['Gmailfavs'] !== undefined ? favorites['Gmailfavs'].length : '0';
 
 	const [showModal, setShowModal] = useState(false);
-
-	let userAdmin = JSON.parse(localStorage.getItem('user'));
-	console.log(userAdmin);
 
 	const handleSearch = (e) => {
 		dispatch(searchName(e));
