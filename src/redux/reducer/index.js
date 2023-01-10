@@ -62,6 +62,8 @@ const initialState = {
   error: "",
   userProfile: [],
   userEmail: [],
+  allOrders: [],
+	orderDetail: {}
 };
 
 function rootReducer(state = initialState, action) {
@@ -427,6 +429,35 @@ function rootReducer(state = initialState, action) {
       return { ...state, isLoading: false, error: null };
     case SEND_EMAIL_FAILURE:
       return { ...state, isLoading: false, error: action.payload };
+      case UPDATE_ORDER:
+      if (state.orderDetail.status === "shopping_cart") {
+        state.orderDetail.status = action.status;
+      }
+      return {
+        ...state,
+        orderDetail: state.orderDetail.status,
+      };
+    case DELETE_ORDER:
+      return {
+        ...state,
+        allOrders: state.allOrders.filter((item) => item.id !== action.order),
+      };
+    case GET_ONE_ORDER:
+      return {
+        ...state,
+        orderDetail: action.order,
+      };
+    case GET_ORDER_BY_ID:
+      return {
+        ...state,
+        orderDetail: action.order,
+      };
+	  case POST_ORDER: {
+		return {
+			...state,
+			allOrders: action.order
+		}
+	  }
 
     default:
       return { ...state };

@@ -39,9 +39,16 @@ export const CREATE_CATEGORIES = "CREATE_CATEGORIES";
 export const UPDATE_USER = "UPDATE_USER";
 export const DELETE_USER = "DELETE_USER";
 export const GET_USER_BY_EMAIL = "GET_USER_BY_EMAIL";
+export const UPDATE_ORDER = "UPDATE_ORDER"
+export const GET_ONE_ORDER = "GET_ONE_ORDER"
+export const DELETE_ORDER = "DELETE_ORDER"
+export const GET_ORDERS = "GET_ORDERS"
+export const GET_ORDER_BY_ID = " GET_ORDER_BY_ID"
+export const POST_ORDER = "POST_ORDER"
 export const SEND_EMAIL_REQUEST = "SEND_EMAIL_REQUEST";
 export const SEND_EMAIL_SUCCESS = "SEND_EMAIL_SUCCESS";
 export const SEND_EMAIL_FAILURE = "SEND_EMAIL_FAILURE";
+
 
 export const getUserByEmail = (payload) => {
   return async function (dispatch) {
@@ -468,7 +475,6 @@ export const addGmailuser = (payload) => {
     return response;
   };
 };
-
 export function sendEmail(items, totalCost, customerEmail) {
   return async (dispatch) => {
     dispatch({ type: SEND_EMAIL_REQUEST });
@@ -484,3 +490,67 @@ export function sendEmail(items, totalCost, customerEmail) {
     }
   };
 }
+export const getOrders = () => (dispatch) => {
+	axios
+	  .get("http://localhost:3001/order")
+	  .then((res) => {
+		dispatch({
+		  type: GET_ORDERS,
+		  order: res.data.order,
+		});
+	  })
+	  .catch((err) => {
+		console.log(err);
+	  });
+  };
+  
+  export const deleteOrder = (id) => (dispatch) => {
+	axios.delete(`http://localhost:3001//order/${id}`).then((res) => {
+	  dispatch({
+		type: DELETE_ORDER,
+		order: res.id,
+	  });
+	}).catch((err) => console.log(err));
+  };
+  
+  export const getOneOrder = (userId) => (dispatch) => {
+	axios
+	  .get(`http://localhost:3001/order/${userId}`)
+	  .then((res) => {
+		dispatch({
+		  type: GET_ONE_ORDER,
+		  order: res.data,
+		});
+	  })
+	  .catch((err) => console.log(err));
+  };
+  
+  export const updateStatusOrder = (id, status, userId) => (dispatch) => {
+	return axios
+	  .put(`http://localhost:3001/order/${id}`, {
+		status: status,
+	  })
+	  .then((res) => {
+		dispatch({
+		  type: UPDATE_ORDER,
+		  status: res.data.orderUpdate.status,
+		})
+	  });
+  };
+  export const getOrderById = (orderId) => (dispatch) => {
+	axios.get(`http://localhost:3001/order/${orderId}`).then((res) => {
+	  dispatch({
+		type: GET_ORDER_BY_ID,
+		order: res.data[0],
+	  });
+	});
+  };
+  export const postOrder = (userId) => (dispatch) => {
+	 axios.post(`http://localhost:3001/order/${userId}`).then((res) => {
+	  dispatch({
+		type: POST_ORDER,
+		order: res,
+	  });
+	}).catch((err) => console.log(err));
+  };
+

@@ -2,7 +2,7 @@ import React, { useState, useHistory } from 'react';
 import { Modal, Button } from 'react-bootstrap';
 import './ProfileStatus.css';
 import { useAuth0 } from '@auth0/auth0-react';
-import { Link, Navigate } from 'react-router-dom';
+import { Link,  useNavigate,} from 'react-router-dom';
 import EditProfile from '../EditProfile/EditProfile';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
@@ -11,6 +11,7 @@ import { clearCart, logoutUser } from '../../redux/actions';
 function ProfileStatus({ showModal, closeModal }) {
 	const { user, isAuthenticated, logout } = useAuth0();
 	const dispatch = useDispatch();
+	const navigate = useNavigate()
 
 	const actualUser = useSelector((state) => state.user);
 
@@ -26,6 +27,7 @@ function ProfileStatus({ showModal, closeModal }) {
 	const logoutu = () => {
 		dispatch(logoutUser());
 		dispatch(clearCart());
+		navigate("/home")
 	};
 
 	const handleLogOut = () => {
