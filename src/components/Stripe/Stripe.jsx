@@ -12,6 +12,7 @@ import { useNavigate } from "react-router-dom";
 import "./Stripe.css";
 import Cart from "../Cart/Cart.jsx";
 import Swal from "sweetalert2";
+import { useAuth0 } from '@auth0/auth0-react';
 
 const stripePromise = loadStripe(
   "pk_test_51MGiEBJf3Ra7t0LIpbXGmuheCzm64uisAtUjjerxb3LCv7AEkdcfVfUWRlVRWcScZU5oLKXKRHSP45u6LIPRS66y00oG54GCjY"
@@ -23,6 +24,8 @@ function CheckoutForm() {
   const stripe = useStripe();
   const elements = useElements();
   const cart = useSelector((state) => state.cart);
+  const { user, isAuthenticated } = useAuth0();
+  const userDB = useSelector((state)=> state.user)
 
   const getCartItems = () =>
     Object.keys(cart).map((item) => (
@@ -73,6 +76,7 @@ function CheckoutForm() {
   //     }
   //   }
 
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -91,30 +95,29 @@ function CheckoutForm() {
         //fetch data from localstorage
         const items = JSON.parse(localStorage.getItem("cart"));
         const totalCost = getTotal();
-        let customerEmail;
-        let loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
-        customerEmail = loggedUser.email;
+        if(userDB && !isAuthenticated){
+          const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
+          let customerEmail = loggedUser.email; 
+          dispatch(sendEmail(items, totalCost, customerEmail));
+          console.log(items, totalCost, customerEmail);
+        } 
+        if(user){
+          console.log(items, totalCost,  user.email);
+        dispatch(sendEmail(items, totalCost, user.email));
+        }
+        Swal.fire({
+          title: "Your payment has been processed",
+          text: "You will be redirected to the shop", 
+          icon: "success"
 
-        console.log(items, totalCost, customerEmail);
-        dispatch(sendEmail(items, totalCost, customerEmail));
-        alert("You will be redirected to the shop");
+        })
         navigate("/shop");
       } catch (error) {
         console.log(error);
       }
     }
-
     dispatch(clearCart());
-    alert("You will be redirected to the shop");
-    navigate("/shop");
   };
-  /* dispatch(clearCart())
-    Swal.fire({
-      title: "Your payment has been processed",
-      text: "You will be redirected to the shop",
-      icon: "success"
-    })
-    navigate("/shop");*/
 
   return (
     <form onSubmit={handleSubmit} className="card card-body ">

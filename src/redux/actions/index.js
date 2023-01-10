@@ -480,7 +480,7 @@ export function sendEmail(items, totalCost, customerEmail) {
 
     try {
       const response = await axios.post(
-        "http://localhost:3001/purchase/completed",
+        "http://localhost:3001/email/purchase-completed",
         { items, totalCost, customerEmail }
       );
       dispatch({ type: SEND_EMAIL_SUCCESS, payload: response.data });
