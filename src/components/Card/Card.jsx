@@ -134,11 +134,6 @@ function Card(props) {
 			</Link>
 			<div className='item2'>
 				<h2>${props.price}</h2>
-				<div className='cantProducts'>
-					<button>-</button>
-					<span>0</span>
-					<button>+</button>
-				</div>
 			</div>
 			<div className='item3'>
 				<button className='addCart' onClick={() => handleAddToCart()}>

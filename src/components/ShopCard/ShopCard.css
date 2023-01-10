@@ -15,7 +15,7 @@
   flex-wrap: wrap;
   flex-direction: row;
   max-height: 40rem;
-  max-width: 25rem;
+  width: 25rem;
   margin-right: 20px;
   margin-left: 20px;
   margin-top: 20px;
@@ -39,6 +39,10 @@
 .shop-card:hover {
   box-shadow: 4px 3px 4px 2px #319795;
   transform: translateY(-5px);
+}
+.shop-card:hover a {
+  text-decoration: none;
+  color: inherit;
 }
 
 @media screen and (max-width: 768px) {
@@ -74,6 +78,7 @@
   text-decoration: none;
   color: #333;
   transition: all 0.3s ease-in-out;
+  margin: 2rem;
 }
 
 .buy-button:hover,
