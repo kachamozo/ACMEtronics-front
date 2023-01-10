@@ -39,6 +39,9 @@ export const CREATE_CATEGORIES = "CREATE_CATEGORIES";
 export const UPDATE_USER = "UPDATE_USER";
 export const DELETE_USER = "DELETE_USER";
 export const GET_USER_BY_EMAIL = "GET_USER_BY_EMAIL";
+export const SEND_EMAIL_REQUEST = "SEND_EMAIL_REQUEST";
+export const SEND_EMAIL_SUCCESS = "SEND_EMAIL_SUCCESS";
+export const SEND_EMAIL_FAILURE = "SEND_EMAIL_FAILURE";
 
 export const getUserByEmail = (payload) => {
   return async function (dispatch) {
@@ -465,3 +468,19 @@ export const addGmailuser = (payload) => {
     return response;
   };
 };
+
+export function sendEmail(items, totalCost, customerEmail) {
+  return async (dispatch) => {
+    dispatch({ type: SEND_EMAIL_REQUEST });
+
+    try {
+      const response = await axios.post(
+        "http://localhost:3001/purchase/completed",
+        { items, totalCost, customerEmail }
+      );
+      dispatch({ type: SEND_EMAIL_SUCCESS, payload: response.data });
+    } catch (error) {
+      dispatch({ type: SEND_EMAIL_FAILURE, payload: error });
+    }
+  };
+}
