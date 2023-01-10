@@ -45,6 +45,10 @@ export const DELETE_ORDER = "DELETE_ORDER"
 export const GET_ORDERS = "GET_ORDERS"
 export const GET_ORDER_BY_ID = " GET_ORDER_BY_ID"
 export const POST_ORDER = "POST_ORDER"
+export const SEND_EMAIL_REQUEST = "SEND_EMAIL_REQUEST";
+export const SEND_EMAIL_SUCCESS = "SEND_EMAIL_SUCCESS";
+export const SEND_EMAIL_FAILURE = "SEND_EMAIL_FAILURE";
+
 
 export const getUserByEmail = (payload) => {
   return async function (dispatch) {
@@ -471,6 +475,21 @@ export const addGmailuser = (payload) => {
     return response;
   };
 };
+export function sendEmail(items, totalCost, customerEmail) {
+  return async (dispatch) => {
+    dispatch({ type: SEND_EMAIL_REQUEST });
+
+    try {
+      const response = await axios.post(
+        "http://localhost:3001/purchase/completed",
+        { items, totalCost, customerEmail }
+      );
+      dispatch({ type: SEND_EMAIL_SUCCESS, payload: response.data });
+    } catch (error) {
+      dispatch({ type: SEND_EMAIL_FAILURE, payload: error });
+    }
+  };
+}
 export const getOrders = () => (dispatch) => {
 	axios
 	  .get("http://localhost:3001/order")
@@ -534,3 +553,4 @@ export const getOrders = () => (dispatch) => {
 	  });
 	}).catch((err) => console.log(err));
   };
+
