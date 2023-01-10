@@ -1,14 +1,22 @@
 import React, { useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import './Landing.css';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useAuth0 } from '@auth0/auth0-react';
-import { addGmailuser, logged } from '../../redux/actions/index';
+import {
+	addGmailuser,
+	getFavorites,
+	getFavoritesGmail,
+	logged,
+} from '../../redux/actions/index';
 
 function Landing() {
 	const { isAuthenticated, user } = useAuth0();
 
 	const dispatch = useDispatch();
+
+	const userDb = useSelector((state) => state.user);
+	const isauth = useSelector((state) => state.isAuthenticated);
 
 	useEffect(() => {
 		if (isAuthenticated) {
@@ -31,8 +39,13 @@ function Landing() {
 				nickname: user.nickname,
 			};
 			dispatch(addGmailuser(data));
+			dispatch(getFavoritesGmail(user.email));
 		}
-	}, [user]);
+		if (isauth === true) {
+			dispatch(getFavorites(userDb.data.searchUser.email));
+		}
+	}, [user, isauth]);
+
 	return (
 		<>
 			<div className='landing'>

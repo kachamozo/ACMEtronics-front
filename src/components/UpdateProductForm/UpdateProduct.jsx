@@ -395,27 +395,23 @@ function UpdateProduct() {
   }
 
   const products = allProducts?.length;
-  console.log(products);
-
 
   return (
     <>
-    
       <div className="container">
-
         <h1 className="title">Edit Products</h1>
 
-
-      <div className="add">
-        <Button >
-          <Link to="/form"><p>Add Product</p></Link>
-        </Button>
-        <br />
-        <Button >
-          <Link to="/dashboard"><p>Back to Dashboard</p></Link>
-        </Button>
-      </div>
-      
+        <div className="add">
+          <Button onClick={() => modalAdd()}>
+            <p>Add Product</p>
+          </Button>
+          <br />
+          <Button>
+            <Link to="/dashboard">
+              <p>Back to Dashboard</p>
+            </Link>
+          </Button>
+        </div>
 
         <TableContainer>
           <Table className="table">
@@ -504,7 +500,6 @@ function UpdateProduct() {
           {deleteBody}
         </Modal>
       </div>
-      
     </>
   );
 }

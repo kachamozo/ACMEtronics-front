@@ -22,6 +22,7 @@ import Dashboard from "./components/Dashboard/Dashboard";
 import UpdateCategory from "./components/CategoryTable/Category.jsx";
 import ProtectedRoutes from "./components/ProtectedRoutes/ProtectedRoutes";
 import UsersTable from "./components/UsersTable/UsersTable";
+import ContactUs from "./components/ContactUs/ContactUs";
 
 function App() {
   return (
@@ -41,20 +42,17 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/users" element={<UsersTable />} />
 
-
-       
-
-
+        <Route path="/contact" element={<ContactUs />} />
 
         <Route element={<ProtectedRoutes />}>
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/category" element={<UpdateCategory />} />
-        <Route path="/updateproduct" element={<UpdateProduct />} />
-        <Route path="/reviews" element={<Reviews />} />
-        <Route path="/stripe" element={<Stripe />} />
-        <Route path="/wishlist" element={<WishList />} />
-        <Route path="/editprofile" element={<EditProfile />} />
-          
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/category" element={<UpdateCategory />} />
+          <Route path="/updateproduct" element={<UpdateProduct />} />
+          <Route path="/reviews" element={<Reviews />} />
+          <Route path="/stripe" element={<Stripe />} />
+          <Route path="/wishlist" element={<WishList />} />
+          <Route path="/editprofile" element={<EditProfile />} />
+
         </Route>
       </Routes>
       <Footer />

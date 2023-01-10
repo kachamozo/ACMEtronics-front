@@ -57,21 +57,22 @@ if(user && isAuthenticated === true){
   return (
     <div className={w.wCont}>
       <h1> My wishlist </h1>
-      {favsGmail? favsGmail.map(el => (<div className={w.wItem} key={el.id}>
-         <img src={el.image} height='120px' width='auto' alt={el.name} />
-         <div className={w.productName}>
-          <h3>{el.name}</h3>
-          <Link to={'/shop/'+el.id}> <p>View product details</p> </Link>
-         </div>
-         <div className={w.likeBtn}>
-           <button onClick={()=> handleDeleteFavorite(el.id)}> <HiHeart size={'2em'} /> </button>
-         </div>
-         </div>)) : 
-         <div className={w.empty}>
-          <h2> Your wishlist is empty. </h2>
-          <Link to='/shop'><button className={w.searchBtn}>Search products</button></Link>
-         </div>
-         }
+      {favsGmail=== undefined || !favsGmail || !favsGmail.length ? 
+       <div className={w.empty}>
+       <h2> Your wishlist is empty. </h2>
+       <Link to='/shop'><button className={w.searchBtn}>Search products</button></Link>
+      </div> : 
+      favsGmail.map(el => (<div className={w.wItem} key={el.id}>
+        <img src={el.image} height='120px' width='auto' alt={el.name} />
+        <div className={w.productName}>
+         <h3>{el.name}</h3>
+         <Link to={'/shop/'+el.id}> <p>View product details</p> </Link>
+        </div>
+        <div className={w.likeBtn}>
+          <button onClick={()=> handleDeleteFavorite(el.id)}> <HiHeart size={'2em'} /> </button>
+        </div>
+        </div>))
+      }
     </div>
   )
 }
