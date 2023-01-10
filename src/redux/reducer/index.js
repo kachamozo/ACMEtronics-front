@@ -38,6 +38,12 @@ import {
 	ADD_FAVORITE_GMAIL,
 	REMOVE_FAVORITE_GMAIL,
 	GET_USER_BY_EMAIL,
+	GET_ORDERS,
+	UPDATE_ORDER,
+	DELETE_ORDER,
+	GET_ONE_ORDER,
+	GET_ORDER_BY_ID,
+	POST_ORDER,
 } from '../actions';
 
 const initialState = {
@@ -59,6 +65,8 @@ const initialState = {
 	error: '',
 	userProfile: [],
 	userEmail: [],
+	allOrders: [],
+	orderDetail: {}
 };
 
 function rootReducer(state = initialState, action) {
@@ -417,6 +425,40 @@ function rootReducer(state = initialState, action) {
 
 		case DELETE_USER:
 			return action.payload;
+			case GET_ORDERS:
+      return {
+        ...state,
+        allOrders: action.order,
+      };
+    case UPDATE_ORDER:
+      if (state.orderDetail.status === "shopping_cart") {
+        state.orderDetail.status = action.status;
+      }
+      return {
+        ...state,
+        orderDetail: state.orderDetail.status,
+      };
+    case DELETE_ORDER:
+      return {
+        ...state,
+        allOrders: state.allOrders.filter((item) => item.id !== action.order),
+      };
+    case GET_ONE_ORDER:
+      return {
+        ...state,
+        orderDetail: action.order,
+      };
+    case GET_ORDER_BY_ID:
+      return {
+        ...state,
+        orderDetail: action.order,
+      };
+	  case POST_ORDER: {
+		return {
+			...state,
+			allOrders: action.order
+		}
+	  }
 
 		default:
 			return { ...state };
