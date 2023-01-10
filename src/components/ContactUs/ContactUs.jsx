@@ -52,13 +52,13 @@ function ContactUs() {
             <input
               type="email"
               placeholder="Email"
-              name="email"
+              name="user_email"
               required
               className="input"
             />
 
             <input
-              type="subject"
+              type="text"
               placeholder="Subject"
               name="subject"
               required
