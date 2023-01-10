@@ -127,9 +127,9 @@ function Card(props) {
 							readonly={true}
 						/>
 					</div>
-					<div className='inStock'>
+					{/*<div className='inStock'>
 						<span>{props.stock > 0 ? 'In stock' : 'No stock'}</span>
-					</div>
+					</div> */}
 				</div>
 			</Link>
 			<div className='item2'>

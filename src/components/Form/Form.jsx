@@ -241,6 +241,7 @@ const AddProduct = () => {
             </select>
           </div>
           <button type="submit">Add product</button>
+          <button type="submit" onClick={"/updateproduct"}>Back to Edit Product</button>
         </form>
       </div>
     </>

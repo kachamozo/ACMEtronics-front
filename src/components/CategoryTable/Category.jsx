@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Category.css";
 import { useDispatch, useSelector } from "react-redux";
-import { Edit, Delete } from "@mui/icons-material";
+import { Edit, Delete, Dashboard } from "@mui/icons-material";
 
 
 import {
@@ -21,6 +21,7 @@ import {
   deleteCategory,
   createCategories,
 } from "../../redux/actions/index";
+import { Link } from "react-router-dom";
 
 function UpdateCategory() {
   const dispatch = useDispatch();
@@ -161,7 +162,7 @@ function UpdateCategory() {
   );
 
   function reload() {
-    window.location.reload();
+    Dashboard.reload();
   }
 
   const categories = allCategories?.length;
@@ -179,7 +180,7 @@ function UpdateCategory() {
           <p>Add a new Category</p>
         </Button>
 
-        <TableContainer>
+                <TableContainer>
           <Table className="table">
             <TableHead className="th">
               <TableRow>
