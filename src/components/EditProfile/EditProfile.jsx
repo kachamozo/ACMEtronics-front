@@ -162,12 +162,15 @@ function EditProfile({ showModal, closeModal }) {
               />
             )}
           </Form.Group>
+          <br />
+          <br />
           <Button type="submit" className="submit-edit">
             Submit
           </Button>
+          <br />
         </Form>
-      </Modal.Body>
-      <Modal.Footer>
+        <br />
+
         <Button
           type="submit"
           className="submit-edit"
@@ -175,7 +178,7 @@ function EditProfile({ showModal, closeModal }) {
         >
           Delete Account
         </Button>
-      </Modal.Footer>
+      </Modal.Body>
     </Modal>
   );
 }
