@@ -48,6 +48,15 @@ export const Ranking = ({allProducts}) => {
         nextArrow: <NextArrow />,
         prevArrow: <PrevArrow />,
         responsive: [
+          {
+            breakpoint: 1300,
+            settings: {
+                slidesToShow: 4,
+                slidesToScroll: 2,
+                infinite: true,
+                dots: true
+            }
+        },
             {
                 breakpoint: 1300,
                 settings: {

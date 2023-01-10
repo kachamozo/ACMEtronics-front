@@ -148,18 +148,21 @@ function Dashboard() {
                     <div className="d-flex flex-column">
                         <div className="h5">Hello... 
                         <h6>{ actualUser.data.searchUser.username}</h6>
-                        </div>
+                        
                         <img
                     src="https://www.soyvisual.org/sites/default/files/styles/twitter_card/public/images/photos/jue_0023-p.jpg?itok=rIHptSTm" style={{width:"60px", height:"60px"}}
                     alt="profile-img"
                     className="profile-img-card"
                     />
+                    
                         <h6>{actualUser.data.searchUser.firstname}</h6>
                         <h6>{actualUser.data.searchUser.lastname}</h6>
-                    <div>Logged in as: 
+                    Logged in as: 
                         <h6>{actualUser.data.searchUser.email}</h6> 
-                    </div>
-
+                        </div>
+                        <div className="wrap">
+                        <h3>Select the card of your interest</h3> 
+                        </div>
                  </div>
 
                     <div className="d-flex my-4 flex-wrap" style={{justifyContent:"space-around"}}>
@@ -176,7 +179,7 @@ function Dashboard() {
                                 alt=""/>
                             <div className="d-flex align-items-center mt-2">
                                 <div className="tag"></div>
-                                <Link to={'/whishlist/'} style={{fontSize:"14px", color:"black", marginTop:"20px"}} >Cart details</Link>
+                                <Link to={'/shop/cart'} style={{fontSize:"14px", color:"black", marginTop:"20px", fontWeight:"bold"}} >Cart details</Link>
 
                                 <div className="ms-auto number">
                                 <p>{cart.length}</p>
@@ -188,7 +191,7 @@ function Dashboard() {
                                 alt=""/>
                             <div className="d-flex align-items-center mt-2">
                                 <div className="tag"></div>
-                                <Link to={'/whishlist/'} style={{fontSize:"14px", color:"black", marginTop:"20px"}} >Wishlist details</Link>
+                                <Link to={'/wishlist'} style={{fontSize:"14px", color:"black", marginTop:"20px", fontWeight:"bold"}} >Wishlist details</Link>
 
                                 <div className="ms-auto number">
                                 <p>{myFavs}</p>
@@ -202,8 +205,9 @@ function Dashboard() {
                                             <img src="https://e7.pngegg.com/pngimages/522/207/png-clipart-profile-icon-computer-icons-business-management-social-media-service-people-icon-blue-company.png"
                                                 alt=""/>
                                             <div className="d-flex align-items-center mt-2">
-                                                <div className="tag" style={{marginTop:"20px"}}>Total Users</div>
-                                                <Link to={'/users/'} style={{fontSize:"12px", color:"black", marginTop:"20px"}} >Click for details</Link>
+                                                <div className="tag" style={{marginTop:"20px"}}></div>
+                                                <Link to={'/users/'} style={{fontSize:"14px", color:"black", marginTop:"20px", fontWeight:"bold"}} >Users details</Link>
+
                                                 <div className="ms-auto number">
                                                 <p>{myUsers}</p>
                                                 </div> 
@@ -214,8 +218,8 @@ function Dashboard() {
                                             <img src="https://e7.pngegg.com/pngimages/252/907/png-clipart-infographic-circle-icon-circles-and-triangles-infographics-ppt-01-05-text-blue-angle.png"
                                                 alt=""/>
                                             <div className="d-flex align-items-center mt-2">
-                                            <div className="tag" style={{marginTop:"20px"}}>Category</div>
-                                                <Link to={'/category/'} style={{fontSize:"12px", color:"black", marginTop:"20px"}} >Click for details</Link>
+                                            <div className="tag" style={{marginTop:"20px"}}></div>
+                                                <Link to={'/category/'} style={{fontSize:"14px", color:"black", marginTop:"20px",fontWeight:"bold"}} >Categories details</Link>
                                                 <div className="ms-auto number">
                                                 <p>{myCategories}</p>
                                                 </div>
@@ -225,8 +229,8 @@ function Dashboard() {
                                             <img src="https://e7.pngegg.com/pngimages/485/1000/png-clipart-brown-cardboard-boxes-paper-mover-box-packaging-and-labeling-box-miscellaneous-freight-transport.png"
                                                 alt=""/>
                                             <div className="d-flex align-items-center mt-2">
-                                            <div className="tag" style={{marginTop:"20px"}}>Products</div>
-                                                <Link to={'/updateproduct/'} style={{fontSize:"12px", color:"black", marginTop:"20px"}} >Click for details</Link>
+                                            <div className="tag" style={{marginTop:"20px"}}></div>
+                                                <Link to={'/updateproduct/'} style={{fontSize:"14px", color:"black", marginTop:"20px", fontWeight:"bold"}} >Products details</Link>
                 
                                                 <div className="ms-auto number">
                                                 <p>{myProducts}</p>
@@ -242,6 +246,9 @@ function Dashboard() {
         </div>
     </div>
 </div>
+
+
+
 
 
 

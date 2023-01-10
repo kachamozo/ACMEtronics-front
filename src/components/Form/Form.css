@@ -3,7 +3,7 @@
   margin: 0;
   box-sizing: border-box;
 }
-
+  
 .form {
   display: flex;
   flex-direction: column;
@@ -22,6 +22,7 @@
   border: 1px solid #e2e2e2;
   
 }
+
 @media screen and (max-width: 768px) {
   .form {
     height: 100%;
@@ -29,10 +30,10 @@
     margin-top: 350px;
     margin-left: 0px;
     margin-right: 0px;
+    
+
   }
 }
-
-
 
 .title-product {
   font-size: xx-large;
