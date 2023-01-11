@@ -23,6 +23,7 @@ import UpdateCategory from "./components/CategoryTable/Category.jsx";
 import ProtectedRoutes from "./components/ProtectedRoutes/ProtectedRoutes";
 import UsersTable from "./components/UsersTable/UsersTable";
 import ContactUs from "./components/ContactUs/ContactUs";
+import UserHistory from "./components/UserHistory/UserHistory";
 
 function App() {
   return (
@@ -52,6 +53,8 @@ function App() {
           <Route path="/stripe" element={<Stripe />} />
           <Route path="/wishlist" element={<WishList />} />
           <Route path="/editprofile" element={<EditProfile />} />
+          <Route path="/userhistory" element={<UserHistory />} />
+
 
         </Route>
       </Routes>

@@ -43,7 +43,6 @@ import {
   SEND_EMAIL_SUCCESS,
   UPDATE_ORDER,
   DELETE_ORDER,
-  GET_ONE_ORDER,
   GET_ORDER_BY_ID,
   POST_ORDER,
 } from "../actions";
@@ -434,33 +433,23 @@ function rootReducer(state = initialState, action) {
       return { ...state, isLoading: false, error: null };
     case SEND_EMAIL_FAILURE:
       return { ...state, isLoading: false, error: action.payload };
+
     case UPDATE_ORDER:
-      if (state.orderDetail.status === "shopping_cart") {
-        state.orderDetail.status = action.status;
-      }
       return {
         ...state,
-        orderDetail: state.orderDetail.status,
+        orderDetail: state.orderDetail,
       };
     case DELETE_ORDER:
-      return {
-        ...state,
-        allOrders: state.allOrders.filter((item) => item.id !== action.order),
-      };
-    case GET_ONE_ORDER:
-      return {
-        ...state,
-        orderDetail: action.order,
-      };
+      return action.payload;
     case GET_ORDER_BY_ID:
       return {
         ...state,
-        orderDetail: action.order,
+        orderDetail: action.payload,
       };
     case POST_ORDER: {
       return {
         ...state,
-        allOrders: action.order,
+        allOrders: action.payload,
       };
     }
 
