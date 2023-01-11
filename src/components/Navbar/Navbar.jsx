@@ -31,7 +31,6 @@ function Navbar() {
 	const [name, setName] = useState('');
 	const cart = useSelector((state) => state.cart);
 	const favorites = useSelector((state) => state.favorites);
-	const logged = useSelector((state) => state.isAuthenticated);
 	let userDb = JSON.parse(localStorage.getItem('loggedUser'));
 
 	const { user, isAuthenticated } = useAuth0();
@@ -46,8 +45,7 @@ function Navbar() {
 	let myFavs =
 		favorites['Favorites'] !== undefined ? favorites['Favorites'].length : '0';
 
-	let favsGmail =
-		favorites['Gmailfavs'] !== undefined ? favorites['Gmailfavs'].length : '0';
+	let favsGmail = favorites['Gmailfavs'] !== undefined ? favorites['Gmailfavs'].length : '0';
 
 	const [showModal, setShowModal] = useState(false);
 
@@ -75,7 +73,7 @@ function Navbar() {
 			<NavLink to='/home'>Home</NavLink>
 			<NavLink to='/shop'>Shop</NavLink>
 			<NavLink to='/about'>About</NavLink>
-			{logged ? <NavLink to='/dashboard'>Dashboard</NavLink> : null}
+			<NavLink to='/dashboard'>Dashboard</NavLink>
 
 			<div className='search-bar'>
 				<input
@@ -105,7 +103,7 @@ function Navbar() {
 							width={'25px'}
 							height={'25px'}
 						/>
-						<p>{user && logged ? favsGmail : myFavs}</p>
+						<p>{user ? favsGmail : myFavs}</p>
 					</Link>
 				</button>
 
@@ -133,8 +131,8 @@ function Navbar() {
 							isAuthenticated,
 							'https://img.icons8.com/ios/50/000000/user--v1.png'
 						)}
-						width={'35px'}
-						height={'40px'}
+						width={'43px'}
+						height={'43px'}
 					/>
 				</button>
 

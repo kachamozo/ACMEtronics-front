@@ -1,8 +1,8 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadStripe } from "@stripe/stripe-js";
-import {Elements, CardElement, useStripe, useElements,} from "@stripe/react-stripe-js";
-import { checkout, clearCart } from "../../redux/actions/index.js";
+import {Elements, CardElement, useStripe, useElements} from "@stripe/react-stripe-js";
+import { checkout, clearCart, updateProduct } from "../../redux/actions/index.js";
 import { useNavigate } from "react-router-dom";
 import "./Stripe.css";
 import Cart from "../Cart/Cart.jsx";
@@ -69,7 +69,7 @@ function CheckoutForm() {
         console.log(error);
       }
     }
-
+    //dispatch(updateProduct({ id: cart[0].id, name: null, brand: null, image: null, description: null, price: null, quantity: cart[0].quantity }))
     dispatch(clearCart())
     alert("You will be redirected to the shop");
     navigate("/shop"); 

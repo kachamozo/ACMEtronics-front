@@ -39,6 +39,8 @@ export const CREATE_CATEGORIES = "CREATE_CATEGORIES";
 export const UPDATE_USER = "UPDATE_USER";
 export const DELETE_USER = "DELETE_USER";
 export const GET_USER_BY_EMAIL = "GET_USER_BY_EMAIL";
+export const POST_COMMENTS = "POST_COMMENTS";
+
 
 export const getUserByEmail = (payload) => {
   return async function (dispatch) {
@@ -48,6 +50,19 @@ export const getUserByEmail = (payload) => {
     );
     return dispatch({
       type: GET_USER_BY_EMAIL,
+      payload: response.data,
+    });
+  };
+};
+export const postComments = (payload) => {
+  return async function (dispatch) {
+    console.log(payload,"soy payload")
+    const response = await axios.post(
+      "http://localhost:3001/comments",
+      payload
+    );
+    return dispatch({
+      type: POST_COMMENTS,
       payload: response.data,
     });
   };

@@ -38,6 +38,7 @@ import {
 	ADD_FAVORITE_GMAIL,
 	REMOVE_FAVORITE_GMAIL,
 	GET_USER_BY_EMAIL,
+	POST_COMMENTS,
 } from '../actions';
 
 const initialState = {
@@ -395,6 +396,9 @@ function rootReducer(state = initialState, action) {
 
 		case DELETE_CATEGORY:
 			return action.payload;
+
+		case POST_COMMENTS:
+			return {...state};
 
 		case CREATE_CATEGORIES:
 			return {
