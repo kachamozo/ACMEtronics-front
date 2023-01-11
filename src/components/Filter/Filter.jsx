@@ -1,58 +1,91 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { filterCategory } from "../../redux/actions";
-import "./Filter.css";
-
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import { filterCategory } from '../../redux/actions';
+import './Filter.css';
 
 function Filter() {
-    const dispatch = useDispatch()
-    
-    const handleCategory = (e) => {
-        e.preventDefault()
-        dispatch(filterCategory(e.target.value))
-    }
-    return(
-        <div className="componentContainer">
-            <div className="textini">
-            <h1>List of Products</h1>
-            </div>
+	const dispatch = useDispatch();
 
-            <div className="section">
-                <div className="filter">
-                    <h2>Choose category :</h2>
-                    <div className="filter-container">
-                        <div className="filter-item">
-                            <div className="filter-item-container">
-                                <div className="filter-item-item">
-                                    <input type="radio" name="category" value="all" onChange={handleCategory}></input>
-                                    <label for="All">All</label>
-                                    
-                                    <input onChange={handleCategory} type="radio" name="category" value='Headphones'/>
-                                    <label htmlFor="Headphones">Headphones </label>
+	const handleCategory = (e) => {
+		e.preventDefault();
+		dispatch(filterCategory(e.target.value));
+	};
+	return (
+		<div className='componentContainer'>
+			<div className='textini'>
+				<h1>List of Products</h1>
+			</div>
 
-                                    <input onChange={handleCategory} type="radio" name="category" value="SmartWatch"/>
-                                    <label htmlFor="SmartWatch"> SmartWatch</label>
+			<div className='section'>
+				<div className='filter'>
+					<h2>Choose category :</h2>
+					<div className='filter-container'>
+						<div className='filter-item'>
+							<div className='filter-item-container'>
+								<div className='filter-item-item'>
+									<input
+										onClick={handleCategory}
+										type='button'
+										name='category'
+										value='All'
+										className='filter-input'
+									></input>
 
-                                    <input onChange={handleCategory} type="radio" name="category" value="E-readers"/>
-                                    <label htmlFor="E-readers"> E-readers</label>
+									<input
+										onClick={handleCategory}
+										type='button'
+										name='category'
+										value='Headphones'
+										className='filter-input'
+									/>
 
-                                    <input onChange={handleCategory} type="radio" name="category" value="Tablets"/>
-                                    <label htmlFor="Tablets"> Tablets</label>
+									<input
+										onClick={handleCategory}
+										type='button'
+										name='category'
+										value='SmartWatch'
+										className='filter-input'
+									/>
 
-                                    <input onChange={handleCategory} type="radio" name="category" value="Laptops"/>
-                                    <label htmlFor="Laptops"> Laptops</label>
+									<input
+										onClick={handleCategory}
+										type='button'
+										name='category'
+										value='E-readers'
+										className='filter-input'
+									/>
 
-                                    <input onChange={handleCategory} type="radio" name="category" value="Smartphones"/>
-                                    <label htmlFor="Smartphones"> Smartphones</label>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    )
+									<input
+										onClick={handleCategory}
+										type='button'
+										name='category'
+										value='Tablets'
+										className='filter-input'
+									/>
 
+									<input
+										onClick={handleCategory}
+										type='button'
+										name='category'
+										value='Laptops'
+										className='filter-input'
+									/>
+
+									<input
+										onClick={handleCategory}
+										type='button'
+										name='category'
+										value='Smartphones'
+										className='filter-input'
+									/>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	);
 }
 
-export default Filter
+export default Filter;
