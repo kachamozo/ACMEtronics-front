@@ -1,17 +1,19 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { clearCart } from "../../redux/actions";
+import { clearCart, postOrder } from "../../redux/actions";
 import CartItem from "../CartItem/CartItem";
 import cartStyles from "../Cart/Cart.module.css"
+import { useAuth0 } from '@auth0/auth0-react';
+import { useNavigate } from "react-router-dom";
 
 export default function Cart() {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
-
+  const { user } = useAuth0();
+  const navigate = useNavigate();
   // crear una funcion para que el usuario no pueda comprar si no esta logueado
   
-
   
   let TotalCart = 0;
   Object.keys(cart).forEach(function (item) {
@@ -28,6 +30,17 @@ export default function Cart() {
 
   const handleClear = () => {
     dispatch(clearCart());
+  };
+  let data = {
+    "status": "shopping_cart",
+    "total": TotalCart,
+    "items": cart.map(item =>[ ["id", item.id], ["name", item.name], ["price", item.price], ["quantity", item.quantity]]),
+    "email": user.email
+  }
+
+  const handleSaveCart = () => {
+    dispatch(postOrder(data));
+    navigate('/stripe/')
   };
 
   if(!cart.length)
@@ -49,10 +62,7 @@ export default function Cart() {
         <div className={cartStyles.total}><h4>Total: $ {TotalCart} </h4></div>
       <div  className={cartStyles.buyBtn}>
 
-
-      <Link to={'/stripe/'}><button> Confirm Payment </button></Link>
-
-
+      <button onClick={()=>handleSaveCart()}> Confirm Payment </button>
 
       </div>
       <div className={cartStyles.clear}>

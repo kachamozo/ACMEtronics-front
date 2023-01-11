@@ -40,7 +40,6 @@ export const UPDATE_USER = "UPDATE_USER";
 export const DELETE_USER = "DELETE_USER";
 export const GET_USER_BY_EMAIL = "GET_USER_BY_EMAIL";
 export const UPDATE_ORDER = "UPDATE_ORDER";
-export const GET_ONE_ORDER = "GET_ONE_ORDER";
 export const DELETE_ORDER = "DELETE_ORDER";
 export const GET_ORDERS = "GET_ORDERS";
 export const GET_ORDER_BY_ID = " GET_ORDER_BY_ID";
@@ -489,72 +488,53 @@ export function sendEmail(items, totalCost, customerEmail) {
     }
   };
 }
-export const getOrders = () => (dispatch) => {
-  axios
-    .get("http://localhost:3001/order")
-    .then((res) => {
-      dispatch({
-        type: GET_ORDERS,
-        order: res.data.order,
-      });
-    })
-    .catch((err) => {
-      console.log(err);
+
+export const getOrders = () => {
+  return async function (dispatch) {
+    const response = await axios.get("http://localhost:3001/order/");
+    return dispatch({
+      type: GET_ORDERS,
+      payload: response,
     });
+  };
 };
 
-export const deleteOrder = (id) => (dispatch) => {
-  axios
-    .delete(`http://localhost:3001//order/${id}`)
-    .then((res) => {
-      dispatch({
-        type: DELETE_ORDER,
-        order: res.id,
-      });
-    })
-    .catch((err) => console.log(err));
-};
-
-export const getOneOrder = (userId) => (dispatch) => {
-  axios
-    .get(`http://localhost:3001/order/${userId}`)
-    .then((res) => {
-      dispatch({
-        type: GET_ONE_ORDER,
-        order: res.data,
-      });
-    })
-    .catch((err) => console.log(err));
-};
-
-export const updateStatusOrder = (id, status, userId) => (dispatch) => {
-  return axios
-    .put(`http://localhost:3001/order/${id}`, {
-      status: status,
-    })
-    .then((res) => {
-      dispatch({
-        type: UPDATE_ORDER,
-        status: res.data.orderUpdate.status,
-      });
-    });
-};
-export const getOrderById = (orderId) => (dispatch) => {
-  axios.get(`http://localhost:3001/order/${orderId}`).then((res) => {
-    dispatch({
+export const getOrderById = (id) => {
+  return async function (dispatch) {
+    const response = await axios.delete(`http://localhost:3001/order/${id}`);
+    return dispatch({
       type: GET_ORDER_BY_ID,
-      order: res.data[0],
+      payload: response,
     });
-  });
+  };
 };
-export const postOrder = (userId) => (dispatch) => {
-  axios
-    .post(`http://localhost:3001/order/${userId}`)
-    .then((res) => {
-      dispatch({
-        type: POST_ORDER,
-        order: res,
-      });
-    })
-    .catch((err) => console.log(err));
+
+export const postOrder = (payload) => {
+  return async function (dispatch) {
+    const response = await axios.post(
+      "http://localhost:3001/order",
+      payload
+    );
+    return response;
+  };
+};
+
+export const updateStatusOrder = (id, payload) => {
+  return async function (dispatch) {
+    const response = await axios.put(
+      `http://localhost:3001/order/${id}`,
+      payload
+    );
+    return response;
+  };
+}
+
+export const deleteOrder = (id) => {
+  return async function (dispatch) {
+    const response = await axios.delete(`http://localhost:3001/order/${id}`);
+    return dispatch({
+      type: DELETE_ORDER,
+      payload: response,
+    });
+  };
 };
