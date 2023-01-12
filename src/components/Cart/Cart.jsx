@@ -31,7 +31,8 @@ export default function Cart() {
   const handleClear = () => {
     dispatch(clearCart());
   };
-  let data = {
+  if(usersDb.length){
+    let data = {
     status: "shopping_cart",
     total: TotalCart,
     items: cart.map((item) => [
@@ -42,9 +43,10 @@ export default function Cart() {
     ]),
     email: usersDb.data.searchUser.email,
   };
+  }
 
   const handleSaveCart = () => {
-    dispatch(postOrder(data));
+    if(usersDb.length ){dispatch(postOrder(data));}
     navigate("/stripe/");
   };
 
