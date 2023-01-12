@@ -53,54 +53,29 @@ export default function UserHistory() {
             </TableHead>
 
             <TableBody className="tb">
-              {orders.map((order) => {
+              {orders?.map((order) => {
                 const names = order.items
                   .flat()
-                  .filter((item) => item[1] === "name")
+                  .filter((item) => item[0] === "name")
                   .map((item) => item[1])
                   .join(", ");
+
                 const quantities = order.items
                   .flat()
-                  .filter((item) => item[1] === "quantity")
+                  .filter((item) => item[0] === "quantity")
                   .map((item) => item[1])
                   .join(", ");
                 return (
                   <TableRow key={order.id}>
                     <TableCell>{order.id}</TableCell>
                     <TableCell>{order.status}</TableCell>
-                    <TableCell>{order.names}</TableCell>
-                    <TableCell>{order.quantities}</TableCell>
+                    <TableCell>{names}</TableCell>
+                    <TableCell>{quantities}</TableCell>
                     <TableCell>{order.total}</TableCell>
                   </TableRow>
                 );
               })}
             </TableBody>
-
-            {/* <TableBody className="tb">
-              {orders &&
-                orders?.map((order) => (
-                  <TableRow key={order.id}>
-                    <TableCell>{order.id}</TableCell>
-                    <TableCell>{order.status}</TableCell>
-                    <TableCell>
-                      {order.items
-                        .flat()
-                        .filter((item) => item.name)
-                        .map((item) => item.name)
-                        .join(", ")}
-                    </TableCell>
-
-                    <TableCell>
-                      {order.items
-                        .flat()
-                        .filter((item) => item.quantity)
-                        .map((item) => item.quantity)
-                        .reduce((sum, num) => sum + num, 0)}
-                    </TableCell>
-                    <TableCell>{order.total}</TableCell>
-                  </TableRow>
-                ))}
-            </TableBody> */}
           </Table>
         </TableContainer>
       </div>
