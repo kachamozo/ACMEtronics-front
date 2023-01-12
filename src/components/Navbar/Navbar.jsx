@@ -31,6 +31,7 @@ function Navbar() {
 	const [name, setName] = useState('');
 	const cart = useSelector((state) => state.cart);
 	const favorites = useSelector((state) => state.favorites);
+	const logged = useSelector((state) => state.isAuthenticated);
 	let userDb = JSON.parse(localStorage.getItem('loggedUser'));
 
 	const { user, isAuthenticated } = useAuth0();
@@ -45,7 +46,8 @@ function Navbar() {
 	let myFavs =
 		favorites['Favorites'] !== undefined ? favorites['Favorites'].length : '0';
 
-	let favsGmail = favorites['Gmailfavs'] !== undefined ? favorites['Gmailfavs'].length : '0';
+	let favsGmail =
+		favorites['Gmailfavs'] !== undefined ? favorites['Gmailfavs'].length : '0';
 
 	const [showModal, setShowModal] = useState(false);
 
@@ -73,7 +75,7 @@ function Navbar() {
 			<NavLink to='/home'>Home</NavLink>
 			<NavLink to='/shop'>Shop</NavLink>
 			<NavLink to='/about'>About</NavLink>
-			<NavLink to='/dashboard'>Dashboard</NavLink>
+			{logged ? <NavLink to='/dashboard'>Dashboard</NavLink> : null}
 
 			<div className='search-bar'>
 				<input
