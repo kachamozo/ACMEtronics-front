@@ -54,9 +54,9 @@ function Landing() {
 					<h1>ACMEtronics</h1>
 					<h3>The Best Place To Buy Electronics</h3>
 				</div>
-				<div className='landing__btn'>
+				<div className='landing__btn' >
 					<NavLink to='/home'>
-						<button className='btn'>ENTER</button>
+						<button className='btn' >ENTER</button>
 					</NavLink>
 				</div>
 			</div>

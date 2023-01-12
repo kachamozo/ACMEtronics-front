@@ -119,6 +119,7 @@ function ProfileStatus({ showModal, closeModal }) {
 		);
 	} else {
 		return (
+		
 			<Modal show={showModal} onHide={closeModal}>
 				<Modal.Header closeButton>
 					<Modal.Title>Welcome, Login to your account or Sign Up</Modal.Title>
