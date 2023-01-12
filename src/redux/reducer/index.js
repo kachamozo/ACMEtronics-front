@@ -1,4 +1,5 @@
 import {
+
 	CLEAN,
 	GET_ALL_PRODUCTS,
 	GET_PRODUCT_DETAIL,
@@ -47,6 +48,7 @@ import {
 	POST_ORDER,
 } from '../actions';
 
+
 const initialState = {
 	data: {},
 	products: [],
@@ -71,6 +73,7 @@ const initialState = {
 };
 
 function rootReducer(state = initialState, action) {
+
 	switch (action.type) {
 		case GET_ALL_PRODUCTS:
 			return {
@@ -452,10 +455,17 @@ function rootReducer(state = initialState, action) {
 				allOrders: action.payload,
 			};
 		}
+   
+    case GET_ORDERS:
+      return {
+        ...state,
+        allOrders: action.payload,
+      };
 
 		default:
 			return { ...state };
 	}
+
 }
 
 export default rootReducer;
