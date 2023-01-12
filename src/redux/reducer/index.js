@@ -48,8 +48,8 @@ import {
   GET_ORDERS,
   POST_COMMENTS,
   GET_ORDER_BY_EMAIL,
+  CREATE_PRODUCT,
 } from "../actions";
-
 
 const initialState = {
   data: {},
@@ -430,10 +430,10 @@ function rootReducer(state = initialState, action) {
 
     case DELETE_USER:
       return action.payload;
-     
+
     case POST_COMMENTS:
-			return {...state};
-      
+      return { ...state };
+
     case SEND_EMAIL_REQUEST:
       return { ...state, isLoading: true };
     case SEND_EMAIL_SUCCESS:
@@ -453,11 +453,11 @@ function rootReducer(state = initialState, action) {
         ...state,
         orderDetail: action.payload,
       };
-      case GET_ORDER_BY_EMAIL:
-        return {
-          ...state,
-          orderDetail: action.payload.data,
-        };
+    case GET_ORDER_BY_EMAIL:
+      return {
+        ...state,
+        orderDetail: action.payload.data,
+      };
     case POST_ORDER: {
       return {
         ...state,

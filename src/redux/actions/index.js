@@ -43,13 +43,13 @@ export const UPDATE_ORDER = "UPDATE_ORDER";
 export const DELETE_ORDER = "DELETE_ORDER";
 export const GET_ORDERS = "GET_ORDERS";
 export const GET_ORDER_BY_ID = " GET_ORDER_BY_ID";
-export const GET_ORDER_BY_EMAIL = "GET_ORDER_BY_EMAIL"
+export const GET_ORDER_BY_EMAIL = "GET_ORDER_BY_EMAIL";
 export const POST_ORDER = "POST_ORDER";
 export const SEND_EMAIL_REQUEST = "SEND_EMAIL_REQUEST";
 export const SEND_EMAIL_SUCCESS = "SEND_EMAIL_SUCCESS";
 export const SEND_EMAIL_FAILURE = "SEND_EMAIL_FAILURE";
-export const POST_COMMENTS = "POST_COMMENTS"
-
+export const POST_COMMENTS = "POST_COMMENTS";
+export const CREATE_PRODUCT = "CREATE_PRODUCT";
 
 export const getUserByEmail = (payload) => {
   return async function (dispatch) {
@@ -65,7 +65,7 @@ export const getUserByEmail = (payload) => {
 };
 export const postComments = (payload) => {
   return async function (dispatch) {
-    console.log(payload,"soy payload")
+    console.log(payload, "soy payload");
     const response = await axios.post(
       "http://localhost:3001/comments",
       payload
@@ -526,21 +526,20 @@ export const getOrderById = (id) => {
 };
 
 export const getOrderByEmail = (email) => {
-  return async function(dispatch){
-    const response = await axios.get(`http://localhost:3001/order?email=${email}`);
+  return async function (dispatch) {
+    const response = await axios.get(
+      `http://localhost:3001/order?email=${email}`
+    );
     return dispatch({
-      type: GET_ORDER_BY_EMAIL, 
-      payload: response
-    })
-  }
-}
+      type: GET_ORDER_BY_EMAIL,
+      payload: response,
+    });
+  };
+};
 
 export const postOrder = (payload) => {
   return async function (dispatch) {
-    const response = await axios.post(
-      "http://localhost:3001/order",
-      payload
-    );
+    const response = await axios.post("http://localhost:3001/order", payload);
     return response;
   };
 };
@@ -553,7 +552,7 @@ export const updateStatusOrder = (id, payload) => {
     );
     return response;
   };
-}
+};
 
 export const deleteOrder = (id) => {
   return async function (dispatch) {
