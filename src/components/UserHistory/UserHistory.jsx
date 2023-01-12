@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import "./UserHistory.css";
 import { useDispatch, useSelector } from "react-redux";
-import { getOrders } from "../../redux/actions/index";
+import { getOrderByEmail, getOrders } from "../../redux/actions/index";
 import { Link } from "react-router-dom";
 import {
   Table,
@@ -16,13 +16,14 @@ import {
 export default function UserHistory() {
   const dispatch = useDispatch();
 
-  const orders = useSelector((state) => state.allOrders.data);
-
+  const orders = useSelector((state) => state.orderDetail);
+  const user = useSelector((state) => state.user.data.searchUser);
+  
   useEffect(() => {
-    dispatch(getOrders());
-  }, []);
+    dispatch(getOrders)
+    dispatch(getOrderByEmail(user.email));
+  }, [dispatch]);
 
-  console.log(orders);
 
   return (
     <>
@@ -38,13 +39,14 @@ export default function UserHistory() {
               </Link>
             </Button>
           </div>
+          
         </div>
-
+      
         <TableContainer>
           <Table classname="table">
             <TableHead className="th">
               <TableRow>
-                <TableCell className="cell">ID</TableCell>
+                <TableCell className="cell ">ID</TableCell>
                 <TableCell className="cell">Status</TableCell>
                 <TableCell className="cell">Items</TableCell>
                 <TableCell className="cell">Quantity</TableCell>
@@ -53,28 +55,15 @@ export default function UserHistory() {
             </TableHead>
 
             <TableBody className="tb">
-              {orders?.map((order) => {
-                const names = order.items
-                  .flat()
-                  .filter((item) => item[0] === "name")
-                  .map((item) => item[1])
-                  .join(", ");
-
-                const quantities = order.items
-                  .flat()
-                  .filter((item) => item[0] === "quantity")
-                  .map((item) => item[1])
-                  .join(", ");
-                return (
-                  <TableRow key={order.id}>
-                    <TableCell>{order.id}</TableCell>
-                    <TableCell>{order.status}</TableCell>
-                    <TableCell>{names}</TableCell>
-                    <TableCell>{quantities}</TableCell>
-                    <TableCell>{order.total}</TableCell>
+                {Object.values(orders).map(order => 
+                   <TableRow key={order.id}>  
+                    <TableCell><p>{order.id}</p></TableCell>
+                  <TableCell><p>{order.status}</p></TableCell>
+                  <TableCell>{order.items.map(el =><p>{el[3]}</p> )}</TableCell>
+                  <TableCell>{order.items.map(el => <p>{el[7]}</p>)}</TableCell>
+                  <TableCell><p>$ {order.total}</p></TableCell>
                   </TableRow>
-                );
-              })}
+                )}
             </TableBody>
           </Table>
         </TableContainer>

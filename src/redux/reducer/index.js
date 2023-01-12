@@ -47,6 +47,7 @@ import {
   POST_ORDER,
   GET_ORDERS,
   POST_COMMENTS,
+  GET_ORDER_BY_EMAIL,
 } from "../actions";
 
 
@@ -452,6 +453,11 @@ function rootReducer(state = initialState, action) {
         ...state,
         orderDetail: action.payload,
       };
+      case GET_ORDER_BY_EMAIL:
+        return {
+          ...state,
+          orderDetail: action.payload.data,
+        };
     case POST_ORDER: {
       return {
         ...state,

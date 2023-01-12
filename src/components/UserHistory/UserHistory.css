@@ -1,6 +1,7 @@
 .container {
   margin-top: 150px;
   text-decoration: none;
+  
 }
 
 .back {
@@ -71,6 +72,7 @@
   align-items: center;
   justify-content: center;
   margin-top: 50px;
+  
 }
 
 .td {
@@ -87,6 +89,7 @@
 
 .th {
   background-color: #ddd;
+  text-align: center;
 }
 
 .input {
@@ -115,3 +118,4 @@
 .title {
   margin-top: 1px;
 }
+

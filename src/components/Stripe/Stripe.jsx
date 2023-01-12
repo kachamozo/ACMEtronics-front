@@ -71,10 +71,8 @@ function CheckoutForm() {
           const loggedUser = JSON.parse(localStorage.getItem("loggedUser"));
           let customerEmail = loggedUser.email;
           dispatch(sendEmail(items, totalCost, customerEmail));
-          console.log(items, totalCost, customerEmail);
         }
         if (user) {
-          console.log(items, totalCost, user.email);
           dispatch(sendEmail(items, totalCost, user.email));
         }
 

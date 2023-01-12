@@ -35,10 +35,10 @@ export default function Cart() {
     status: "shopping_cart",
     total: TotalCart,
     items: cart.map((item) => [
-      ["id", item.id],
-      ["name", item.name],
-      ["price", item.price],
-      ["quantity", item.quantity],
+      "id", item.id,
+      "name", item.name,
+      "price", item.price,
+      "quantity", item.quantity,
     ]),
     email: usersDb.data.searchUser.email,
   };
