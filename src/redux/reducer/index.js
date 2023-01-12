@@ -1,4 +1,5 @@
 import {
+
 	CLEAN,
 	GET_ALL_PRODUCTS,
 	GET_PRODUCT_DETAIL,
@@ -38,8 +39,17 @@ import {
 	ADD_FAVORITE_GMAIL,
 	REMOVE_FAVORITE_GMAIL,
 	GET_USER_BY_EMAIL,
-	POST_COMMENTS,
+
+	SEND_EMAIL_REQUEST,
+	SEND_EMAIL_FAILURE,
+	SEND_EMAIL_SUCCESS,
+	UPDATE_ORDER,
+	DELETE_ORDER,
+	GET_ORDER_BY_ID,
+	POST_ORDER,
+  POST_COMMENTS,
 } from '../actions';
+
 
 const initialState = {
 	data: {},
@@ -60,9 +70,12 @@ const initialState = {
 	error: '',
 	userProfile: [],
 	userEmail: [],
+	allOrders: [],
+	orderDetail: {},
 };
 
 function rootReducer(state = initialState, action) {
+
 	switch (action.type) {
 		case GET_ALL_PRODUCTS:
 			return {
@@ -207,7 +220,7 @@ function rootReducer(state = initialState, action) {
 		case FILTER_CATEGORY: {
 			let allProducts = state.products;
 			let aux2 =
-				action.payload === 'all'
+				action.payload === 'All'
 					? allProducts
 					: allProducts.filter((el) =>
 							el.CategoryProduct[0].name?.includes(action.payload)
@@ -422,9 +435,42 @@ function rootReducer(state = initialState, action) {
 		case DELETE_USER:
 			return action.payload;
 
+		case SEND_EMAIL_REQUEST:
+			return { ...state, isLoading: true };
+		case SEND_EMAIL_SUCCESS:
+			return { ...state, isLoading: false, error: null };
+		case SEND_EMAIL_FAILURE:
+			return { ...state, isLoading: false, error: action.payload };
+
+		case UPDATE_ORDER:
+			return {
+				...state,
+				orderDetail: state.orderDetail,
+			};
+		case DELETE_ORDER:
+			return action.payload;
+		case GET_ORDER_BY_ID:
+			return {
+				...state,
+				orderDetail: action.payload,
+			};
+		case POST_ORDER: {
+			return {
+				...state,
+				allOrders: action.payload,
+			};
+		}
+   
+    case GET_ORDERS:
+      return {
+        ...state,
+        allOrders: action.payload,
+      };
+
 		default:
 			return { ...state };
 	}
+
 }
 
 export default rootReducer;
