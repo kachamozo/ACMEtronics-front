@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import "./Category.css";
 import { useDispatch, useSelector } from "react-redux";
-import { Edit, Delete, Dashboard } from "@mui/icons-material";
-
+import { Edit, Delete } from "@mui/icons-material";
+import { Link } from "react-router-dom";
 
 import {
   Table,
@@ -21,7 +21,6 @@ import {
   deleteCategory,
   createCategories,
 } from "../../redux/actions/index";
-import { Link } from "react-router-dom";
 
 function UpdateCategory() {
   const dispatch = useDispatch();
@@ -41,7 +40,6 @@ function UpdateCategory() {
   const [selectedCategory, setSelectedCategory] = useState({
     name: "",
   });
-
   function handleSubmit() {
     dispatch(updateCategory(selectedCategory));
     setInput(
@@ -91,15 +89,12 @@ function UpdateCategory() {
     setSelectedCategory(category);
     situation === "Edit" ? modalEdit() : modalDelete();
   };
-
   useEffect(() => {
     dispatch(getCategories());
   }, []);
-
   function modalEdit() {
     setMEdit((prevM) => !prevM);
   }
-
   function modalDelete() {
     setModalDel((prevM) => !prevM);
   }
@@ -147,7 +142,6 @@ function UpdateCategory() {
       <br />
     </div>
   );
-
   const deleteBody = (
     <div className="modal">
       <p>
@@ -160,27 +154,24 @@ function UpdateCategory() {
       </div>
     </div>
   );
-
   function reload() {
-    Dashboard.reload();
+    window.location.reload();
   }
-
-  const categories = allCategories?.length;
-  console.log(categories.length);
-
 
   return (
     <>
       <div className="container">
-
         <h1 className="title">Edit Categories</h1>
         <br />
-      
+        <Button>
+          <Link to="/dashboard">
+            <p>Back to Dashboard</p>
+          </Link>
+        </Button>
         <Button onClick={() => modalAdd()}>
           <p>Add a new Category</p>
         </Button>
-
-                <TableContainer>
+        <TableContainer>
           <Table className="table">
             <TableHead className="th">
               <TableRow>
@@ -189,7 +180,6 @@ function UpdateCategory() {
                 <TableCell className="cell">Actions</TableCell>
               </TableRow>
             </TableHead>
-
             <TableBody className="tb">
               {allCategories &&
                 allCategories?.map((category) => (
@@ -202,7 +192,8 @@ function UpdateCategory() {
                         className="button-table"
                       >
                         <Edit />
-                      </Button>{" "}
+                      </Button>
+
                       <Button
                         onClick={() => selectCategory(category, "Delete")}
                         className="button-table"
@@ -224,11 +215,8 @@ function UpdateCategory() {
         <Modal keepMounted open={modalDel} onClose={(e) => modalDelete(e)}>
           {deleteBody}
         </Modal>
-
       </div>
     </>
-
   );
 }
-
 export default UpdateCategory;
