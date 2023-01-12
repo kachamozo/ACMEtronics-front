@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import d from "../Detail/detail.module.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
@@ -9,6 +9,7 @@ import { Link } from "react-router-dom";
 import { HiOutlineHeart, HiHeart } from 'react-icons/hi'
 import Swal from "sweetalert2";
 import { useAuth0 } from "@auth0/auth0-react";
+import Reviews from "../Reviews/Reviews";
 
 export default function Detail() {
   const dispatch = useDispatch();
@@ -18,7 +19,13 @@ export default function Detail() {
   const { user, isAuthenticated } = useAuth0();
   let userDb = JSON.parse(localStorage.getItem("loggedUser"))
   
+  const [review, setReview] = useState(false)
   
+  function handleReview (){
+    
+    if(review) {setReview(false)} else {setReview(true)}
+  }
+
   useEffect(() => {
     dispatch(getProductDetail(id));
     if(userDb){dispatch(getFavorites(userDb.email))}
@@ -33,7 +40,6 @@ export default function Detail() {
     dispatch(addToCart(product.product.id));
     notify();
   };
-  
   const handleAddToFavorites= () => {
     if(userDb || isAuthenticated === true  ){
       Swal.fire({
@@ -157,9 +163,8 @@ export default function Detail() {
             </div>
           )}
           <div className={d.reviewsBtn}>
-            <Link to="/reviews">
-              {" "}
-              <button
+          
+              <button onClick={handleReview}
                 type="button"
                 class="btn btn-danger"
                 style={{ width: "30%" }}
@@ -168,7 +173,7 @@ export default function Detail() {
               >
                 Add reviews
               </button>
-            </Link>
+              {review ? <Reviews product ={product.product?.id} /> : null}
           </div>
         </div>
         <ToastContainer

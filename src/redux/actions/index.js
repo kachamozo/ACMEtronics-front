@@ -47,6 +47,8 @@ export const POST_ORDER = "POST_ORDER";
 export const SEND_EMAIL_REQUEST = "SEND_EMAIL_REQUEST";
 export const SEND_EMAIL_SUCCESS = "SEND_EMAIL_SUCCESS";
 export const SEND_EMAIL_FAILURE = "SEND_EMAIL_FAILURE";
+export const POST_COMMENTS = "POST_COMMENTS"
+
 
 export const getUserByEmail = (payload) => {
   return async function (dispatch) {
@@ -56,6 +58,19 @@ export const getUserByEmail = (payload) => {
     );
     return dispatch({
       type: GET_USER_BY_EMAIL,
+      payload: response.data,
+    });
+  };
+};
+export const postComments = (payload) => {
+  return async function (dispatch) {
+    console.log(payload,"soy payload")
+    const response = await axios.post(
+      "http://localhost:3001/comments",
+      payload
+    );
+    return dispatch({
+      type: POST_COMMENTS,
       payload: response.data,
     });
   };

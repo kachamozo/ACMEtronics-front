@@ -46,7 +46,9 @@ import {
   GET_ORDER_BY_ID,
   POST_ORDER,
   GET_ORDERS,
+  POST_COMMENTS,
 } from "../actions";
+
 
 const initialState = {
   data: {},
@@ -427,7 +429,10 @@ function rootReducer(state = initialState, action) {
 
     case DELETE_USER:
       return action.payload;
-
+     
+    case POST_COMMENTS:
+			return {...state};
+      
     case SEND_EMAIL_REQUEST:
       return { ...state, isLoading: true };
     case SEND_EMAIL_SUCCESS:

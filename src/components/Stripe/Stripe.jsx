@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { loadStripe } from "@stripe/stripe-js";
+
 import {
   Elements,
   CardElement,
@@ -87,7 +88,9 @@ function CheckoutForm() {
         console.log(error);
       }
     }
+
     dispatch(clearCart());
+
   };
 
   return (
