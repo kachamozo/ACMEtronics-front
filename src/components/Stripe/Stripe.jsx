@@ -45,41 +45,7 @@ function CheckoutForm() {
       return sum + quantity * price;
     }, 0);
 
-  // const handleSubmit = async (event) => {
-  //   event.preventDefault();
 
-  //   const { error, paymentMethod } = await stripe.createPaymentMethod({
-  //     type: "card",
-  //     card: elements.getElement(CardElement),
-  //   });
-
-  //   if (error) {
-  //     console.log("[error]", error);
-  //   } else {
-  //     try {
-  //       const { id } = paymentMethod;
-  //       dispatch(checkout({ id, amount: getTotal() }));
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   }
-
-  //   const { error: backendError } = await stripe.createPaymentMethod({
-  //     type: "card",
-  //     card: elements.getElement(CardElement),
-  //   });
-
-  //   if (backendError) {
-  //     console.log("[backendError]", backendError);
-  //     alert("Your payment has not been processed");
-  //   } else {
-  //     try {
-  //       const { id } = paymentMethod;
-  //       dispatch(checkout({ id, amount: getTotal() }));
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   }
 
   const handleSubmit = async (event) => {
     event.preventDefault();
