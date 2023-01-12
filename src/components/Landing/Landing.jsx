@@ -27,6 +27,7 @@ function Landing() {
 						firstname: user.given_name,
 						lastname: user.family_name,
 						profileImage: user.picture,
+						email: user.email
 					},
 				},
 			};

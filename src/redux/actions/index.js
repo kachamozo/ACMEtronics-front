@@ -43,6 +43,7 @@ export const UPDATE_ORDER = "UPDATE_ORDER";
 export const DELETE_ORDER = "DELETE_ORDER";
 export const GET_ORDERS = "GET_ORDERS";
 export const GET_ORDER_BY_ID = " GET_ORDER_BY_ID";
+export const GET_ORDER_BY_EMAIL = "GET_ORDER_BY_EMAIL"
 export const POST_ORDER = "POST_ORDER";
 export const SEND_EMAIL_REQUEST = "SEND_EMAIL_REQUEST";
 export const SEND_EMAIL_SUCCESS = "SEND_EMAIL_SUCCESS";
@@ -523,6 +524,16 @@ export const getOrderById = (id) => {
     });
   };
 };
+
+export const getOrderByEmail = (email) => {
+  return async function(dispatch){
+    const response = await axios.get(`http://localhost:3001/order?email=${email}`);
+    return dispatch({
+      type: GET_ORDER_BY_EMAIL, 
+      payload: response
+    })
+  }
+}
 
 export const postOrder = (payload) => {
   return async function (dispatch) {
