@@ -45,6 +45,7 @@ import {
   DELETE_ORDER,
   GET_ORDER_BY_ID,
   POST_ORDER,
+  GET_ORDERS,
 } from "../actions";
 
 const initialState = {
@@ -445,6 +446,11 @@ function rootReducer(state = initialState, action) {
       return {
         ...state,
         orderDetail: action.payload,
+      };
+    case GET_ORDERS:
+      return {
+        ...state,
+        allOrders: action.payload,
       };
     case POST_ORDER: {
       return {
