@@ -60,6 +60,8 @@ function UpdateProduct() {
     image: "",
   });
 
+  useEffect(()=>{dispatch(getAllProducts())}, [dispatch])
+
   function handleSubmitAdd(event) {
     event.preventDefault();
 
@@ -75,7 +77,6 @@ function UpdateProduct() {
     });
     dispatch(getAllProducts());
     modalAdd();
-    reload();
     window.scroll(0.0);
   }
 
