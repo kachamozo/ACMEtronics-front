@@ -30,7 +30,31 @@ DB_DEPLOY= postgres://acme_i9sg_user:SfAm59sxZJnv95D27nqB3VhOTn9P8SvH@dpg-cftbps
   4. Go to the [Front-End repository](https://github.com/kachamozo/ACMEtronics-front)
 
   5. Clone the front-end repository
-
+  
   6. Open the terminal and run **`npm install`** to  install the client-side dependencies
 
   7. Run **`npm run dev`** to start the client and navigate to http://127.0.0.1:5173/ on your web browser.
+  
+  
+ ## Features
+  
+ * User authentication using Auth0.
+ 
+ * Secure payments using Stripe.
+ 
+ * A responsive UI built with Bootstrap and Material UI.
+ 
+ * Product browsing, searching, and filtering.
+ 
+ * Add products to a cart and checkout securely.
+ 
+ * Order history and status tracking for registered users.
+ 
+ * Admin dashboard to manage products, orders, and customers.
+ 
+
+## Deployment
+
+Visit [ACMEtronics](https://acmetronics-henryproject.vercel.app/)
+
+
