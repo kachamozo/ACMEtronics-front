@@ -36,7 +36,7 @@ DB_DEPLOY= postgres://acme_i9sg_user:SfAm59sxZJnv95D27nqB3VhOTn9P8SvH@dpg-cftbps
   7. Run **`npm run dev`** to start the client and navigate to http://127.0.0.1:5173/ on your web browser.
   
   
- ## Features
+  ## Features
   
  * User authentication using Auth0.
  
